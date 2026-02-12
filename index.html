@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테스트랩 (Test Lab) | 세상의 모든 테스트</title>
+    <meta name="description" content="테스트랩에서 다양한 심리 테스트와 관상 테스트를 즐겨보세요! 나의 숨겨진 면모를 발견하는 즐거움.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+</head>
+
+<body>
+    <!-- 상단 헤더 -->
+    <header class="main-header">
+        <div class="logo-container" id="logo-home">
+            <img src="images/logo.png" alt="Test Lab Logo" class="logo-img">
+            <span class="logo-text">Test Lab</span>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in">
+        <!-- 메인 허브 (종합 홈) -->
+        <section id="main-hub" class="section active">
+            <div class="hub-header">
+                <h2>🧪 지금 가장 핫한 테스트</h2>
+                <p>당신도 몰랐던 당신의 진짜 모습!</p>
+            </div>
+            <div class="test-grid">
+                <!-- 실제 테스트 카드 -->
+                <div class="test-card active-card" id="test-manhwa-card">
+                    <div class="badge">HOT</div>
+                    <div class="card-img">
+                        <img src="images/main_char.png" alt="Manhwa Test">
+                    </div>
+                    <div class="card-info">
+                        <h3>만화 관상 테스트</h3>
+                        <p>내 얼굴은 어떤 만화 캐릭터 관상일까?</p>
+                    </div>
+                </div>
+
+                <!-- 준비중 카드들 -->
+                <div class="test-card ready">
+                    <div class="card-img placeholder">🔓</div>
+                    <div class="card-info">
+                        <h3>연애 유형 테스트</h3>
+                        <p>준비 중입니다...</p>
+                    </div>
+                </div>
+                <div class="test-card ready">
+                    <div class="card-img placeholder">🧠</div>
+                    <div class="card-info">
+                        <h3>정신 연령 테스트</h3>
+                        <p>준비 중입니다...</p>
+                    </div>
+                </div>
+                <div class="test-card ready">
+                    <div class="card-img placeholder">🔮</div>
+                    <div class="card-info">
+                        <h3>오늘의 운세</h3>
+                        <p>준비 중입니다...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 만화 관상 테스트 시작 (홈) -->
+        <section id="manhwa-home" class="section">
+            <div class="back-nav" id="btn-back-to-hub">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h1>만화 관상 테스트</h1>
+                <p class="subtitle">나의 만화 캐릭터 관상은?</p>
+            </div>
+            <div class="main-img-placeholder">
+                <img src="images/main_char.png" alt="Identity Character">
+            </div>
+            <button class="btn" id="start-btn">테스트 시작하기</button>
+            <p class="footer">제공된 사진은 분석 후 즉시 파기됩니다.</p>
+        </section>
+
+        <!-- 업로드 섹션 -->
+        <section id="upload" class="section">
+            <div class="title-container">
+                <h2>얼굴 사진 업로드</h2>
+                <p class="subtitle">정면 사진일수록 정확도가 높아요!</p>
+            </div>
+            <div class="upload-area" id="drop-zone">
+                <span class="upload-icon">📸</span>
+                <p>클릭하여 사진 선택 또는 드래그</p>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+            <div class="preview-container" id="preview-box">
+                <img id="image-preview" src="#" alt="Preview">
+                <button class="btn" id="analyze-btn" style="margin-top: 20px;">AI 분석 시작</button>
+            </div>
+        </section>
+
+        <!-- 로딩 섹션 -->
+        <section id="loading" class="section">
+            <div class="loading-box">
+                <div class="scan-box">
+                    <img id="scan-img" src="#" alt="Scanning">
+                    <div class="scanner"></div>
+                </div>
+                <div class="loader" style="margin-top: 30px;"></div>
+                <p class="loading-text" id="status-text">관상을 분석하고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- 결과 섹션 -->
+        <section id="result" class="section">
+            <div class="result-header">
+                <p class="subtitle">나의 관상 결과는...</p>
+                <h2 class="result-title" id="res-title"></h2>
+            </div>
+            <img id="res-img" class="result-char-img" src="" alt="Character Result">
+            <div class="result-keywords" id="res-keywords">
+            </div>
+            <div class="result-desc">
+                <p id="res-desc"></p>
+            </div>
+            <div class="share-container">
+                <button class="share-btn" id="copy-link-btn" title="링크 복사">🔗</button>
+                <button class="share-btn" id="share-native-btn" title="공유하기">📱</button>
+            </div>
+            <button class="btn" id="retry-btn" style="margin-top: 30px; background: #666;">다시 테스트하기</button>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

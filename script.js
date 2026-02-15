@@ -337,6 +337,8 @@ function handleFile(e) {
         };
         reader.readAsDataURL(file);
     }
+    // Reset individual input value to allow selecting the same file again
+    fileInput.value = "";
 }
 
 // Analysis
@@ -416,7 +418,9 @@ function getHash(str) {
 
 function showResult() {
     if (!currentImage) return;
-    const hash = getHash(currentImage);
+
+    // Use unique salt for each test to provide different results for the same photo
+    const hash = getHash(currentImage + currentTest);
 
     if (currentTest === 'manhwa') {
         const index = hash % characters.length;
@@ -431,8 +435,8 @@ function showResult() {
             span.innerText = k;
             keywordsBox.appendChild(span);
         });
-        // Use user's uploaded image instead of result.img
-        document.getElementById('res-img').src = currentImage;
+        // Restore: Use character matching image for Manga test
+        document.getElementById('res-img').src = result.img;
         showSection('result');
     } else {
         const index = hash % moralCharacters.length;

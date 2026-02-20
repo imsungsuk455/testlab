@@ -316,43 +316,14 @@ const characters = [
     }
 ];
 
-// DOM elements
-const sections = document.querySelectorAll('.section');
-const logoHome = document.getElementById('logo-home');
-const testManhwaCard = document.getElementById('test-manhwa-card');
-const testMoralCard = document.getElementById('test-moral-card');
-const testJoseonCard = document.getElementById('test-joseon-card');
-
-const startBtn = document.getElementById('start-btn');
-const moralStartBtn = document.getElementById('moral-start-btn');
-const joseonStartBtn = document.getElementById('joseon-start-btn');
-const analyzeBtn = document.getElementById('analyze-btn');
-const retryBtn = document.getElementById('retry-btn');
-const moralRetryBtn = document.getElementById('moral-retry-btn');
-const joseonRetryBtn = document.getElementById('joseon-retry-btn');
-
-const fileInput = document.getElementById('file-input');
-const dropZone = document.getElementById('drop-zone');
-const imagePreview = document.getElementById('image-preview');
-const previewBox = document.getElementById('preview-box');
-const scanContainer = document.querySelector('.scan-box');
-const scanImg = document.getElementById('scan-img');
-const statusText = document.getElementById('status-text');
-
-const copyLinkBtn = document.getElementById('copy-link-btn');
-const shareNativeBtn = document.getElementById('share-native-btn');
-const moralCopyLinkBtn = document.getElementById('moral-copy-link-btn');
-const moralShareNativeBtn = document.getElementById('moral-share-native-btn');
-const joseonCopyLinkBtn = document.getElementById('joseon-copy-link-btn');
-const joseonShareNativeBtn = document.getElementById('joseon-share-native-btn');
-const toast = document.getElementById('toast');
-
 // State
 let currentImage = null;
 let currentTest = 'manhwa'; // 'manhwa', 'moral', or 'joseon'
 
-// Navigation
+// Navigation Function
 function showSection(id) {
+    const sections = document.querySelectorAll('.section');
+
     // Theme handling
     if (id === 'moral-home' || id === 'moral-result' || (currentTest === 'moral' && (id === 'upload' || id === 'loading'))) {
         document.body.classList.add('moral-theme-active');
@@ -366,95 +337,139 @@ function showSection(id) {
         document.body.classList.remove('joseon-theme-active');
     }
 
-    if (currentTest === 'joseon' && id === 'loading') {
-        document.getElementById('upload').classList.add('joseon-loading');
-    } else {
-        document.getElementById('upload').classList.remove('joseon-loading');
+    const uploadEl = document.getElementById('upload');
+    if (uploadEl) {
+        if (currentTest === 'joseon' && id === 'loading') {
+            uploadEl.classList.add('joseon-loading');
+        } else {
+            uploadEl.classList.remove('joseon-loading');
+        }
     }
 
     sections.forEach(s => {
         s.classList.remove('active');
         if (s.id === id) {
             s.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo(0, 0);
         }
     });
 }
 
-// Hub Navigation
-testManhwaCard.addEventListener('click', () => {
-    currentTest = 'manhwa';
-    showSection('manhwa-home');
-});
-
-testMoralCard.addEventListener('click', () => {
-    currentTest = 'moral';
-    showSection('moral-home');
-});
-
-testJoseonCard.addEventListener('click', () => {
-    currentTest = 'joseon';
-    showSection('joseon-home');
-});
-
-// Test Flow
 function resetUploadUI() {
     currentImage = null;
-    imagePreview.src = '#';
-    scanImg.src = '#';
-    previewBox.style.display = 'none';
-    dropZone.style.display = 'block';
-    fileInput.value = "";
+    const imagePreview = document.getElementById('image-preview');
+    const scanImg = document.getElementById('scan-img');
+    const previewBox = document.getElementById('preview-box');
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('file-input');
+
+    if (imagePreview) imagePreview.src = '#';
+    if (scanImg) scanImg.src = '#';
+    if (previewBox) previewBox.style.display = 'none';
+    if (dropZone) dropZone.style.display = 'block';
+    if (fileInput) fileInput.value = "";
 
     // Clear result images
-    document.getElementById('res-img').src = '';
-    document.getElementById('moral-res-img').src = '';
-    document.getElementById('joseon-res-img').src = '';
+    const resImg = document.getElementById('res-img');
+    const moralResImg = document.getElementById('moral-res-img');
+    const joseonResImg = document.getElementById('joseon-res-img');
+    if (resImg) resImg.src = '';
+    if (moralResImg) moralResImg.src = '';
+    if (joseonResImg) joseonResImg.src = '';
 }
 
 function resetTest() {
     resetUploadUI();
-
-    // Clear landmarks if any
-    const existingOverlay = scanContainer.querySelector('.landmark-overlay');
-    if (existingOverlay) existingOverlay.remove();
-    scanContainer.classList.remove('landmark-active');
-
+    const scanContainer = document.querySelector('.scan-box');
+    if (scanContainer) {
+        const existingOverlay = scanContainer.querySelector('.landmark-overlay');
+        if (existingOverlay) existingOverlay.remove();
+        scanContainer.classList.remove('landmark-active');
+    }
     showSection('main-hub');
 }
 
-startBtn.addEventListener('click', () => {
-    resetUploadUI();
-    showSection('upload');
-});
+// Initialization
+document.addEventListener('DOMContentLoaded', () => {
+    // Hub Navigation
+    const cards = {
+        'test-manhwa-card': 'manhwa',
+        'test-moral-card': 'moral',
+        'test-joseon-card': 'joseon'
+    };
 
-moralStartBtn.addEventListener('click', () => {
-    resetUploadUI();
-    showSection('upload');
-});
+    Object.keys(cards).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('click', () => {
+                currentTest = cards[id];
+                showSection(currentTest + '-home');
+            });
+        }
+    });
 
-joseonStartBtn.addEventListener('click', () => {
-    resetUploadUI();
-    showSection('upload');
-});
+    // Start Buttons
+    const startBtns = {
+        'start-btn': 'manhwa',
+        'moral-start-btn': 'moral',
+        'joseon-start-btn': 'joseon'
+    };
 
-retryBtn.addEventListener('click', resetTest);
-moralRetryBtn.addEventListener('click', resetTest);
-joseonRetryBtn.addEventListener('click', resetTest);
-logoHome.addEventListener('click', resetTest);
+    Object.keys(startBtns).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('click', () => {
+                resetUploadUI();
+                showSection('upload');
+            });
+        }
+    });
 
+    // Other Buttons
+    ['retry-btn', 'moral-retry-btn', 'joseon-retry-btn', 'logo-home'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', resetTest);
+    });
 
-// File Handling
-dropZone.addEventListener('click', () => fileInput.click());
-fileInput.addEventListener('change', handleFile);
-dropZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    dropZone.style.borderWidth = '3px';
-});
-dropZone.addEventListener('dragleave', () => dropZone.style.borderWidth = '2px');
-dropZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    handleFile(e);
+    const analyzeBtn = document.getElementById('analyze-btn');
+    if (analyzeBtn) {
+        analyzeBtn.addEventListener('click', () => {
+            showSection('loading');
+            startAnalysis();
+        });
+    }
+
+    // File Handling
+    const fileInput = document.getElementById('file-input');
+    const dropZone = document.getElementById('drop-zone');
+    if (fileInput && dropZone) {
+        dropZone.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', handleFile);
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderWidth = '3px';
+        });
+        dropZone.addEventListener('dragleave', () => dropZone.style.borderWidth = '2px');
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            handleFile(e);
+        });
+    }
+
+    // Share Buttons
+    const shareActions = [
+        ['copy-link-btn', copyToClipboard],
+        ['share-native-btn', shareNative],
+        ['moral-copy-link-btn', copyToClipboard],
+        ['moral-share-native-btn', shareNative],
+        ['joseon-copy-link-btn', copyToClipboard],
+        ['joseon-share-native-btn', shareNative]
+    ];
+
+    shareActions.forEach(([id, action]) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', action);
+    });
 });
 
 function handleFile(e) {
@@ -463,50 +478,31 @@ function handleFile(e) {
         const reader = new FileReader();
         reader.onload = (event) => {
             currentImage = event.target.result;
-            imagePreview.src = currentImage;
-            scanImg.src = currentImage;
-            previewBox.style.display = 'block';
-            dropZone.style.display = 'none';
+            const imagePreview = document.getElementById('image-preview');
+            const scanImg = document.getElementById('scan-img');
+            const previewBox = document.getElementById('preview-box');
+            const dropZone = document.getElementById('drop-zone');
+
+            if (imagePreview) imagePreview.src = currentImage;
+            if (scanImg) scanImg.src = currentImage;
+            if (previewBox) previewBox.style.display = 'block';
+            if (dropZone) dropZone.style.display = 'none';
         };
         reader.readAsDataURL(file);
     }
-    // Reset individual input value to allow selecting the same file again
-    fileInput.value = "";
-}
-
-// Analysis
-analyzeBtn.addEventListener('click', () => {
-    showSection('loading');
-    startAnalysis();
-});
-
-function createLandmarks() {
-    const overlay = document.createElement('div');
-    overlay.className = 'landmark-overlay';
-
-    // Create random dots representing landmarks
-    for (let i = 0; i < 20; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'dot';
-        dot.style.top = Math.random() * 80 + 10 + '%';
-        dot.style.left = Math.random() * 80 + 10 + '%';
-        dot.style.transitionDelay = (Math.random() * 1) + 's';
-        overlay.appendChild(dot);
-    }
-
-    const scanLine = document.createElement('div');
-    scanLine.className = 'scan-line-v2';
-    overlay.appendChild(scanLine);
-
-    scanContainer.appendChild(overlay);
-    setTimeout(() => scanContainer.classList.add('landmark-active'), 100);
+    const fileInput = document.getElementById('file-input');
+    if (fileInput) fileInput.value = "";
 }
 
 function startAnalysis() {
-    // Clear previous landmarks
-    const existingOverlay = scanContainer.querySelector('.landmark-overlay');
-    if (existingOverlay) existingOverlay.remove();
-    scanContainer.classList.remove('landmark-active');
+    const scanContainer = document.querySelector('.scan-box');
+    const statusText = document.getElementById('status-text');
+
+    if (scanContainer) {
+        const existingOverlay = scanContainer.querySelector('.landmark-overlay');
+        if (existingOverlay) existingOverlay.remove();
+        scanContainer.classList.remove('landmark-active');
+    }
 
     let statuses = [];
     if (currentTest === 'manhwa') {
@@ -538,13 +534,37 @@ function startAnalysis() {
 
     let i = 0;
     const interval = setInterval(() => {
-        statusText.innerText = statuses[i];
+        if (statusText) statusText.innerText = statuses[i];
         i++;
         if (i === statuses.length) {
             clearInterval(interval);
             setTimeout(showResult, 1000);
         }
     }, 1200);
+}
+
+function createLandmarks() {
+    const scanContainer = document.querySelector('.scan-box');
+    if (!scanContainer) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'landmark-overlay';
+
+    for (let i = 0; i < 20; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.style.top = Math.random() * 80 + 10 + '%';
+        dot.style.left = Math.random() * 80 + 10 + '%';
+        dot.style.transitionDelay = (Math.random() * 1) + 's';
+        overlay.appendChild(dot);
+    }
+
+    const scanLine = document.createElement('div');
+    scanLine.className = 'scan-line-v2';
+    overlay.appendChild(scanLine);
+
+    scanContainer.appendChild(overlay);
+    setTimeout(() => scanContainer.classList.add('landmark-active'), 100);
 }
 
 function getHash(str) {
@@ -560,66 +580,83 @@ function getHash(str) {
 function showResult() {
     if (!currentImage) return;
 
-    // Use unique salt for each test to provide different results for the same photo
     const hash = getHash(currentImage + currentTest);
 
     if (currentTest === 'manhwa') {
         const index = hash % characters.length;
         const result = characters[index];
-        document.getElementById('res-title').innerHTML = `<span style="font-size: 0.8em; color: #888;">${result.name}</span><br>${result.title}`;
-        document.getElementById('res-desc').innerText = result.desc;
+        const resTitle = document.getElementById('res-title');
+        const resDesc = document.getElementById('res-desc');
+        const resImg = document.getElementById('res-img');
         const keywordsBox = document.getElementById('res-keywords');
-        keywordsBox.innerHTML = '';
-        result.keywords.forEach(k => {
-            const span = document.createElement('span');
-            span.className = 'keyword';
-            span.innerText = k;
-            keywordsBox.appendChild(span);
-        });
-        // Restore: Use character matching image for Manga test
-        document.getElementById('res-img').src = result.img;
+
+        if (resTitle) resTitle.innerHTML = `<span style="font-size: 0.8em; color: #888;">${result.name}</span><br>${result.title}`;
+        if (resDesc) resDesc.innerText = result.desc;
+        if (keywordsBox) {
+            keywordsBox.innerHTML = '';
+            result.keywords.forEach(k => {
+                const span = document.createElement('span');
+                span.className = 'keyword';
+                span.innerText = k;
+                keywordsBox.appendChild(span);
+            });
+        }
+        if (resImg) resImg.src = result.img;
         showSection('result');
     } else if (currentTest === 'moral') {
         const index = hash % moralCharacters.length;
         const result = moralCharacters[index];
 
-        document.getElementById('moral-res-type').innerText = result.type;
-        // Use user's uploaded image instead of result.img
-        document.getElementById('moral-res-img').src = currentImage;
-        document.getElementById('moral-res-trait').innerText = result.trait;
-        document.getElementById('moral-res-ability').innerText = result.ability;
-        document.getElementById('moral-res-tip').innerText = result.tip;
+        const resType = document.getElementById('moral-res-type');
+        const resImg = document.getElementById('moral-res-img');
+        const resTrait = document.getElementById('moral-res-trait');
+        const resAbility = document.getElementById('moral-res-ability');
+        const resTip = document.getElementById('moral-res-tip');
+
+        if (resType) resType.innerText = result.type;
+        if (resImg) resImg.src = currentImage;
+        if (resTrait) resTrait.innerText = result.trait;
+        if (resAbility) resAbility.innerText = result.ability;
+        if (resTip) resTip.innerText = result.tip;
 
         const statFill = document.getElementById('moral-stat-fill');
         const statValue = document.getElementById('moral-stat-value');
-        statFill.style.width = '0%';
-        statValue.innerText = '0%';
+        if (statFill) statFill.style.width = '0%';
+        if (statValue) statValue.innerText = '0%';
 
         showSection('moral-result');
 
         setTimeout(() => {
-            statFill.style.width = result.stat + '%';
-            statValue.innerText = result.stat + '%';
-            statFill.style.background = result.theme === 'villain'
-                ? 'linear-gradient(90deg, #ff7eb9, #6c5ce7)'
-                : 'linear-gradient(90deg, #ffd700, #00d2ff)';
+            if (statFill) {
+                statFill.style.width = result.stat + '%';
+                statFill.style.background = result.theme === 'villain'
+                    ? 'linear-gradient(90deg, #ff7eb9, #6c5ce7)'
+                    : 'linear-gradient(90deg, #ffd700, #00d2ff)';
+            }
+            if (statValue) statValue.innerText = result.stat + '%';
         }, 300);
     } else if (currentTest === 'joseon') {
         const index = hash % joseonCharacters.length;
         const result = joseonCharacters[index];
 
-        document.getElementById('joseon-res-type').innerText = result.type;
-        document.getElementById('joseon-res-img').src = result.img; // Show result image
-        document.getElementById('joseon-res-desc').innerText = result.desc;
-
+        const resType = document.getElementById('joseon-res-type');
+        const resImg = document.getElementById('joseon-res-img');
+        const resDesc = document.getElementById('joseon-res-desc');
         const tagsBox = document.getElementById('joseon-res-tags');
-        tagsBox.innerHTML = '';
-        result.tags.forEach(t => {
-            const span = document.createElement('span');
-            span.className = 'joseon-tag';
-            span.innerText = t;
-            tagsBox.appendChild(span);
-        });
+
+        if (resType) resType.innerText = result.type;
+        if (resImg) resImg.src = result.img;
+        if (resDesc) resDesc.innerText = result.desc;
+
+        if (tagsBox) {
+            tagsBox.innerHTML = '';
+            result.tags.forEach(t => {
+                const span = document.createElement('span');
+                span.className = 'joseon-tag';
+                span.innerText = t;
+                tagsBox.appendChild(span);
+            });
+        }
 
         showSection('joseon-result');
         drawJoseonRadarChart(result.stats);
@@ -628,6 +665,7 @@ function showResult() {
 
 function drawJoseonRadarChart(stats) {
     const canvas = document.getElementById('joseon-radar-chart');
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
@@ -637,7 +675,6 @@ function drawJoseonRadarChart(stats) {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw background pentagons
     for (let i = 1; i <= 5; i++) {
         ctx.beginPath();
         for (let j = 0; j < labels.length; j++) {
@@ -653,7 +690,6 @@ function drawJoseonRadarChart(stats) {
         ctx.stroke();
     }
 
-    // Draw axes
     ctx.beginPath();
     for (let i = 0; i < labels.length; i++) {
         const x = centerX + radius * Math.cos(i * angleStep - Math.PI / 2);
@@ -661,7 +697,6 @@ function drawJoseonRadarChart(stats) {
         ctx.moveTo(centerX, centerY);
         ctx.lineTo(x, y);
 
-        // Draw labels
         ctx.font = 'bold 11px Gungsuh, serif';
         ctx.fillStyle = '#777';
         const labelX = centerX + (radius + 18) * Math.cos(i * angleStep - Math.PI / 2);
@@ -672,7 +707,6 @@ function drawJoseonRadarChart(stats) {
     ctx.strokeStyle = '#ddd';
     ctx.stroke();
 
-    // Draw data polygon
     ctx.beginPath();
     for (let i = 0; i < stats.length; i++) {
         const r = (stats[i] / 100) * radius;
@@ -689,9 +723,17 @@ function drawJoseonRadarChart(stats) {
     ctx.stroke();
 }
 
-// Share
 function copyToClipboard() {
     navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast("링크가 복사되었습니다!");
+    }).catch(() => {
+        // Fallback for non-HTTPS
+        const input = document.createElement('input');
+        input.value = window.location.href;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
         showToast("링크가 복사되었습니다!");
     });
 }
@@ -708,14 +750,9 @@ function shareNative() {
     }
 }
 
-copyLinkBtn.addEventListener('click', copyToClipboard);
-shareNativeBtn.addEventListener('click', shareNative);
-moralCopyLinkBtn.addEventListener('click', copyToClipboard);
-moralShareNativeBtn.addEventListener('click', shareNative);
-joseonCopyLinkBtn.addEventListener('click', copyToClipboard);
-joseonShareNativeBtn.addEventListener('click', shareNative);
-
 function showToast(message) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
     toast.innerText = message;
     toast.className = "show";
     setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);

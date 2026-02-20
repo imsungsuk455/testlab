@@ -92,6 +92,87 @@ const moralCharacters = [
     }
 ];
 
+// Joseon Test Result Types
+const joseonCharacters = [
+    {
+        type: "카리스마 넘치는 왕",
+        tags: ["#리더십", "#명예", "#천하를가질관상"],
+        desc: "귀하의 이마는 넓고 높아 기세가 등등하며, 눈썹 산이 뚜렷하니 만인의 우두머리가 될 상입니다. 하관이 꽉 차 있으니 말년의 운세 또한 평탄하고 영화로울 것입니다.",
+        stats: [90, 85, 80, 75, 90], // 이마, 눈, 코, 입, 턱
+        img: "images/카리스마 넘치는 왕.png"
+    },
+    {
+        type: "지혜로운 영의정",
+        tags: ["#전략가", "#이성적", "#학식과덕망"],
+        desc: "가늘고 긴 봉황의 눈매를 지녔으니 지혜가 구름 위를 뚫고 나아가며, 얼굴의 대칭이 완벽하니 공정함과 학식을 겸비한 재상의 상입니다.",
+        stats: [80, 95, 70, 75, 80],
+        img: "images/지혜로운 영의정.png"
+    },
+    {
+        type: "기개가 높은 장군",
+        tags: ["#용기", "#강직함", "#불의를못참음"],
+        desc: "눈썹이 짙고 거칠며 콧대가 대나무처럼 곧게 뻗었으니 기개가 하늘을 찌르는 무인의 상입니다. 각진 턱선은 그 어떤 고난에도 굴하지 않을 강인함을 뜻합니다.",
+        stats: [70, 85, 95, 70, 90],
+        img: "images/기개가 높은 장군.png"
+    },
+    {
+        type: "풍류를 즐기는 선비",
+        tags: ["#예술가", "#낭만", "#유유자적"],
+        desc: "매끄러운 콧날과 부드러운 입술 라인은 예술적 감수성이 풍부함을 뜻하며, 선하고 깊은 눈동자가 자연의 아름다움을 쫓는 선비의 관상입니다.",
+        stats: [85, 75, 70, 90, 70],
+        img: "images/풍류를 즐기는 선비.png"
+    },
+    {
+        type: "천재적인 도화서 화원",
+        tags: ["#관찰력", "#창의성", "#섬세한감각"],
+        desc: "눈가에 잔잔한 웃음기가 서려 있고 눈동자가 작지만 반짝이니 세상을 꿰뚫어 보는 안목이 예사롭지 않습니다. 섬세한 감각으로 천하를 화폭에 담을 상입니다.",
+        stats: [75, 90, 65, 80, 65],
+        img: "images/천재적인 도화서 화원.png"
+    },
+    {
+        type: "만능 재주꾼 보부상",
+        tags: ["#생활력", "#사교성", "#전국팔도인싸"],
+        desc: "광대뼈가 발달하고 입꼬리가 항상 위를 향하니 사교성이 뛰어나고 어디서든 환영받을 상입니다. 다부진 얼굴형은 험난한 세상에서도 생활력을 뜻합니다.",
+        stats: [65, 70, 75, 95, 80],
+        img: "images/만능 재주꾼 보부상.png"
+    },
+    {
+        type: "신비로운 국무(무녀)",
+        tags: ["#직관력", "#신비로움", "#사람을꿰뚫어봄"],
+        desc: "올라간 눈꼬리와 갸름한 얼굴형은 사람의 마음을 꿰뚫어 보는 비범한 통찰력을 상징합니다. 도드라진 눈 밑 애교살은 신비로운 기운을 머금고 있음을 뜻합니다.",
+        stats: [75, 95, 60, 75, 70],
+        img: "images/무녀.png"
+    },
+    {
+        type: "엄격한 사간원 판관",
+        tags: ["#정의로움", "#원칙주의", "#완벽주의"],
+        desc: "일자 눈썹과 얇고 단호한 입술은 시비곡직을 가림에 있어 한 치의 흔들림도 없음을 뜻합니다. 고집 서린 미간은 원칙을 지키는 굳건한 신념의 상입니다.",
+        stats: [80, 80, 85, 95, 75],
+        img: "images/사간원 판관.png"
+    },
+    {
+        type: "자애로운 안방마님",
+        tags: ["#포용력", "#인덕", "#평화주의자"],
+        desc: "둥근 얼굴형과 도톰한 귓불은 복이 가득하고 성품이 온화하여 주변에 사람이 끊이지 않을 상입니다. 여유로운 인상은 만인을 품어줄 포용력을 뜻합니다.",
+        stats: [70, 75, 75, 85, 85],
+        img: "images/안방마님.png"
+    },
+    {
+        type: "자유로운 영혼의 광대",
+        tags: ["#유머감각", "#자유", "#분위기메이커"],
+        desc: "큰 입과 움직임이 많은 눈썹은 타고난 예능인의 끼가 다분함을 뜻합니다. 비대칭적인 표정근육은 정형화된 세상에 즐거움을 선사할 행운아의 상입니다.",
+        stats: [60, 85, 60, 95, 60],
+        img: "images/자유로운 광대.png"
+    },
+    {
+        type: "야생의 전문가 백정",
+        tags: ["#장인정신", "#야성미", "#거친카리스마"],
+        desc: "두툼한 콧볼과 강하게 발달한 턱 근육은 험난한 세상을 헤쳐가는 야성적인 생존력을 뜻하며, 깊고 굵은 미간 주름은 본인의 분야에서 일가를 이룬 장인의 기운을 내뿜고 있습니다.",
+        stats: [50, 70, 95, 60, 95],
+        img: "images/백정.png"
+    }
+];
+
 const characters = [
     {
         name: "강불휘",
@@ -240,12 +321,15 @@ const sections = document.querySelectorAll('.section');
 const logoHome = document.getElementById('logo-home');
 const testManhwaCard = document.getElementById('test-manhwa-card');
 const testMoralCard = document.getElementById('test-moral-card');
+const testJoseonCard = document.getElementById('test-joseon-card');
 
 const startBtn = document.getElementById('start-btn');
 const moralStartBtn = document.getElementById('moral-start-btn');
+const joseonStartBtn = document.getElementById('joseon-start-btn');
 const analyzeBtn = document.getElementById('analyze-btn');
 const retryBtn = document.getElementById('retry-btn');
 const moralRetryBtn = document.getElementById('moral-retry-btn');
+const joseonRetryBtn = document.getElementById('joseon-retry-btn');
 
 const fileInput = document.getElementById('file-input');
 const dropZone = document.getElementById('drop-zone');
@@ -259,11 +343,13 @@ const copyLinkBtn = document.getElementById('copy-link-btn');
 const shareNativeBtn = document.getElementById('share-native-btn');
 const moralCopyLinkBtn = document.getElementById('moral-copy-link-btn');
 const moralShareNativeBtn = document.getElementById('moral-share-native-btn');
+const joseonCopyLinkBtn = document.getElementById('joseon-copy-link-btn');
+const joseonShareNativeBtn = document.getElementById('joseon-share-native-btn');
 const toast = document.getElementById('toast');
 
 // State
 let currentImage = null;
-let currentTest = 'manhwa'; // 'manhwa' or 'moral'
+let currentTest = 'manhwa'; // 'manhwa', 'moral', or 'joseon'
 
 // Navigation
 function showSection(id) {
@@ -272,6 +358,18 @@ function showSection(id) {
         document.body.classList.add('moral-theme-active');
     } else {
         document.body.classList.remove('moral-theme-active');
+    }
+
+    if (id === 'joseon-home' || id === 'joseon-result' || (currentTest === 'joseon' && (id === 'upload' || id === 'loading'))) {
+        document.body.classList.add('joseon-theme-active');
+    } else {
+        document.body.classList.remove('joseon-theme-active');
+    }
+
+    if (currentTest === 'joseon' && id === 'loading') {
+        document.getElementById('upload').classList.add('joseon-loading');
+    } else {
+        document.getElementById('upload').classList.remove('joseon-loading');
     }
 
     sections.forEach(s => {
@@ -294,6 +392,11 @@ testMoralCard.addEventListener('click', () => {
     showSection('moral-home');
 });
 
+testJoseonCard.addEventListener('click', () => {
+    currentTest = 'joseon';
+    showSection('joseon-home');
+});
+
 // Test Flow
 function resetUploadUI() {
     currentImage = null;
@@ -306,6 +409,7 @@ function resetUploadUI() {
     // Clear result images
     document.getElementById('res-img').src = '';
     document.getElementById('moral-res-img').src = '';
+    document.getElementById('joseon-res-img').src = '';
 }
 
 function resetTest() {
@@ -329,8 +433,14 @@ moralStartBtn.addEventListener('click', () => {
     showSection('upload');
 });
 
+joseonStartBtn.addEventListener('click', () => {
+    resetUploadUI();
+    showSection('upload');
+});
+
 retryBtn.addEventListener('click', resetTest);
 moralRetryBtn.addEventListener('click', resetTest);
+joseonRetryBtn.addEventListener('click', resetTest);
 logoHome.addEventListener('click', resetTest);
 
 
@@ -407,6 +517,14 @@ function startAnalysis() {
             "캐릭터 라이브러리에서 매칭 중...",
             "최적의 캐릭터를 찾았습니다!"
         ];
+    } else if (currentTest === 'joseon') {
+        statuses = [
+            "상 아래의 기운을 살피는 중입니다...",
+            "이목구비의 조화를 대조하고 있습니다...",
+            "전생의 연을 찾고 있습니다...",
+            "관상을 기록하는 중입니다...",
+            "분석이 완료되었습니다!"
+        ];
     } else {
         createLandmarks();
         statuses = [
@@ -461,7 +579,7 @@ function showResult() {
         // Restore: Use character matching image for Manga test
         document.getElementById('res-img').src = result.img;
         showSection('result');
-    } else {
+    } else if (currentTest === 'moral') {
         const index = hash % moralCharacters.length;
         const result = moralCharacters[index];
 
@@ -486,7 +604,89 @@ function showResult() {
                 ? 'linear-gradient(90deg, #ff7eb9, #6c5ce7)'
                 : 'linear-gradient(90deg, #ffd700, #00d2ff)';
         }, 300);
+    } else if (currentTest === 'joseon') {
+        const index = hash % joseonCharacters.length;
+        const result = joseonCharacters[index];
+
+        document.getElementById('joseon-res-type').innerText = result.type;
+        document.getElementById('joseon-res-img').src = result.img; // Show result image
+        document.getElementById('joseon-res-desc').innerText = result.desc;
+
+        const tagsBox = document.getElementById('joseon-res-tags');
+        tagsBox.innerHTML = '';
+        result.tags.forEach(t => {
+            const span = document.createElement('span');
+            span.className = 'joseon-tag';
+            span.innerText = t;
+            tagsBox.appendChild(span);
+        });
+
+        showSection('joseon-result');
+        drawJoseonRadarChart(result.stats);
     }
+}
+
+function drawJoseonRadarChart(stats) {
+    const canvas = document.getElementById('joseon-radar-chart');
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 65;
+    const labels = ["이마", "눈", "코", "입", "턱"];
+    const angleStep = (Math.PI * 2) / labels.length;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw background pentagons
+    for (let i = 1; i <= 5; i++) {
+        ctx.beginPath();
+        for (let j = 0; j < labels.length; j++) {
+            const r = (radius / 5) * i;
+            const x = centerX + r * Math.cos(j * angleStep - Math.PI / 2);
+            const y = centerY + r * Math.sin(j * angleStep - Math.PI / 2);
+            if (j === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.strokeStyle = '#eee';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+
+    // Draw axes
+    ctx.beginPath();
+    for (let i = 0; i < labels.length; i++) {
+        const x = centerX + radius * Math.cos(i * angleStep - Math.PI / 2);
+        const y = centerY + radius * Math.sin(i * angleStep - Math.PI / 2);
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+
+        // Draw labels
+        ctx.font = 'bold 11px Gungsuh, serif';
+        ctx.fillStyle = '#777';
+        const labelX = centerX + (radius + 18) * Math.cos(i * angleStep - Math.PI / 2);
+        const labelY = centerY + (radius + 18) * Math.sin(i * angleStep - Math.PI / 2);
+        ctx.textAlign = 'center';
+        ctx.fillText(labels[i], labelX, labelY);
+    }
+    ctx.strokeStyle = '#ddd';
+    ctx.stroke();
+
+    // Draw data polygon
+    ctx.beginPath();
+    for (let i = 0; i < stats.length; i++) {
+        const r = (stats[i] / 100) * radius;
+        const x = centerX + r * Math.cos(i * angleStep - Math.PI / 2);
+        const y = centerY + r * Math.sin(i * angleStep - Math.PI / 2);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(17, 17, 17, 0.2)';
+    ctx.fill();
+    ctx.strokeStyle = '#111';
+    ctx.lineWidth = 2;
+    ctx.stroke();
 }
 
 // Share
@@ -512,6 +712,8 @@ copyLinkBtn.addEventListener('click', copyToClipboard);
 shareNativeBtn.addEventListener('click', shareNative);
 moralCopyLinkBtn.addEventListener('click', copyToClipboard);
 moralShareNativeBtn.addEventListener('click', shareNative);
+joseonCopyLinkBtn.addEventListener('click', copyToClipboard);
+joseonShareNativeBtn.addEventListener('click', shareNative);
 
 function showToast(message) {
     toast.innerText = message;

@@ -9,6 +9,8 @@
     --glass-border: rgba(255, 255, 255, 0.5);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    --joseon-bg: #F9F7F2;
+    --joseon-ink: #111;
 }
 
 * {
@@ -780,4 +782,149 @@ body {
         margin: 40px auto;
         padding: 50px 40px;
     }
+}
+
+/* Joseon Theme Styles */
+.joseon-theme-active #app {
+    background-color: var(--joseon-bg);
+    background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+    /* Hanji-like texture */
+    border: 1px solid #d3c4a9;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.joseon-theme-active .main-header {
+    background-color: #f4f1ea;
+    border-bottom: 1px solid #d3c4a9;
+}
+
+.joseon-theme-active .logo-text,
+.joseon-theme-active .nav-item:hover {
+    color: var(--joseon-ink);
+}
+
+.ink-title {
+    font-family: 'Gungsuh', 'GungsuhChe', serif;
+    color: var(--joseon-ink);
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.joseon-main-frame {
+    margin: 30px auto;
+    padding: 2px;
+    border: 2px solid #333;
+    display: inline-block;
+    background: white;
+    max-width: 100%;
+}
+
+.joseon-title-img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+}
+
+.joseon-btn {
+    background: var(--joseon-ink) !important;
+    color: white !important;
+    font-family: 'Gungsuh', serif;
+    border-radius: 4px !important;
+    padding: 15px 30px !important;
+    font-size: 1.1rem !important;
+}
+
+.joseon-loading #analyze-btn {
+    display: none;
+}
+
+.joseon-loading .loading-text {
+    font-family: 'Gungsuh', serif;
+    font-size: 1.2rem;
+    color: var(--joseon-ink);
+}
+
+/* Joseon Result Styling */
+.joseon-res-title {
+    font-family: 'Gungsuh', serif;
+    font-size: 2rem;
+    color: var(--joseon-ink);
+    margin-top: 10px;
+}
+
+.joseon-tags {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.joseon-tag {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.joseon-result-card {
+    background: white;
+    padding: 35px 25px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.joseon-portrait {
+    width: 240px;
+    height: 320px;
+    margin: 0 auto 30px;
+    border: 1px solid #333;
+    padding: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.joseon-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Don't crop character images */
+}
+
+.joseon-chart-container {
+    margin: -10px auto 10px;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#joseon-radar-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.joseon-desc-box {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px dashed #d3c4a9;
+    background: rgba(244, 241, 234, 0.4);
+    text-align: left;
+}
+
+.ink-text {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    word-break: keep-all;
+    /* Prevent awkward line breaks in Korean */
+}
+
+.joseon-share-btn {
+    border-radius: 4px !important;
+    border-color: #333 !important;
 }

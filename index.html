@@ -48,6 +48,16 @@
             </div>
             <div class="test-grid">
                 <!-- 실제 테스트 카드 -->
+                <div class="test-card active-card" id="test-joseon-card">
+                    <div class="badge" style="background: #111;">NEW</div>
+                    <div class="card-img" style="background: #F9F7F2;">
+                        <img src="images/타이틀.png" alt="Joseon Test" style="object-fit: contain;">
+                    </div>
+                    <div class="card-info">
+                        <h3>조선시대 관상 테스트</h3>
+                        <p>조선시대 당신의 관상은?</p>
+                    </div>
+                </div>
                 <div class="test-card active-card" id="test-manhwa-card">
                     <div class="badge">HOT</div>
                     <div class="card-img">
@@ -106,15 +116,28 @@
         <section id="moral-home" class="section">
             <div class="back-nav" onclick="resetTest()">← 전체 테스트 보기</div>
             <div class="title-container">
-                <h1 style="letter-spacing: -1px;">범죄 관상 테스트</h1>
+                <h1 style="font-size: 1.8rem;">범죄 관상 테스트</h1>
                 <p class="subtitle">AI가 분석하는 나의 잠재적 본성</p>
             </div>
-            <div class="main-img-placeholder" style="background: #1a1a1a; box-shadow: 0 15px 45px rgba(0,0,0,0.4);">
-                <img src="images/메인.jpg" alt="Moral Test Banner">
+            <div class="main-img-placeholder">
+                <img src="images/메인.jpg" alt="Crime Test Title Image">
             </div>
-            <button class="btn" id="moral-start-btn"
-                style="background: #111; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">내 관상 확인하기</button>
+            <button class="btn" id="moral-start-btn" style="background: #111;">테스트 시작하기</button>
             <p class="footer">본 테스트는 과학적 근거보다는 재미를 위한 콘텐츠입니다.</p>
+        </section>
+
+        <!-- 조선 관상 거울 테스트 시작 (홈) -->
+        <section id="joseon-home" class="section joseon-theme">
+            <div class="back-nav" onclick="resetTest()">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h1 class="ink-title">조선시대 관상 테스트</h1>
+                <p class="subtitle">조선시대 당신의 관상은?</p>
+            </div>
+            <div class="joseon-main-frame">
+                <img src="images/타이틀.png" alt="조선시대 관상 테스트" class="joseon-title-img">
+            </div>
+            <button class="btn joseon-btn" id="joseon-start-btn">관상을 살펴보러 가기</button>
+            <p class="footer">귀하의 초상은 분석 즉시 파기되어 흔적을 남기지 않습니다.</p>
         </section>
 
         <!-- 업로드 섹션 -->
@@ -179,44 +202,72 @@
 
             <div class="bento-grid">
                 <div class="bento-item bento-main glass">
-                    <img id="moral-res-img" src="" alt="Moral Result">
+                    <img id="moral-res-img" src="" alt="관상 결과 이미지">
                 </div>
-                <div class="bento-item bento-stat glass" style="justify-content: center;">
-                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                        <span class="label">도덕성 지수</span>
-                        <span id="moral-stat-value"
-                            style="font-size: 1.2rem; font-weight: 800; color: var(--accent-color);">0%</span>
-                    </div>
+                <div class="bento-item bento-stat glass">
+                    <span class="label">도덕성 수치</span>
                     <div class="stat-bar">
                         <div id="moral-stat-fill" class="stat-fill"></div>
                     </div>
+                    <p id="moral-stat-value" style="font-weight: 800; font-size: 1.2rem; margin-top: 10px;">0%</p>
                 </div>
-
                 <div class="bento-item bento-trait glass">
-                    <span class="label">주요 특징</span>
+                    <span class="label">대표 특징</span>
                     <p id="moral-res-trait"></p>
                 </div>
                 <div class="bento-item bento-ability glass">
-                    <span class="label">잠재적 능력</span>
+                    <span class="label">잠재 능력</span>
                     <p id="moral-res-ability"></p>
                 </div>
                 <div class="bento-item bento-tip glass">
-                    <span class="label">보완할 점</span>
+                    <span class="label">삶의 조언</span>
                     <p id="moral-res-tip"></p>
                 </div>
             </div>
 
-            <div class="share-container" style="margin-top: 35px;">
-                <button class="share-btn" id="moral-copy-link-btn" title="링크 복사">
+            <div class="share-container" style="margin-top: 30px;">
+                <div class="share-btn" id="moral-copy-link-btn">
                     <span>🔗</span> 링크 복사
-                </button>
-                <button class="share-btn" id="moral-share-native-btn" title="공유하기">
-                    <span>📱</span> 테스트 공유
-                </button>
+                </div>
+                <div class="share-btn" id="moral-share-native-btn">
+                    <span>📤</span> 공유하기
+                </div>
+            </div>
+            <button class="btn" id="moral-retry-btn" style="margin-top: 10px; background: #666;">다른 사진으로 테스트</button>
+        </section>
+
+        <!-- 결과 섹션 (조선) -->
+        <section id="joseon-result" class="section joseon-theme">
+            <div class="result-header">
+                <p class="subtitle" style="color: #666; margin-bottom: 10px;">귀하의 관상을 살핀 결과...</p>
+                <div id="joseon-res-tags" class="joseon-tags"></div>
+                <h2 class="joseon-res-title" id="joseon-res-type"></h2>
             </div>
 
-            <button class="btn" id="moral-retry-btn" style="margin-top: 30px; background: #666; color: #fff;">다시
-                측정하기</button>
+            <div class="joseon-result-card">
+                <div class="joseon-portrait">
+                    <img id="joseon-res-img" src="" alt="조선 관상 초상화">
+                </div>
+
+                <div class="joseon-chart-container">
+                    <canvas id="joseon-radar-chart" width="200" height="200"></canvas>
+                </div>
+
+                <div class="joseon-desc-box">
+                    <p id="joseon-res-desc" class="ink-text"></p>
+                </div>
+            </div>
+
+            <div class="share-container" style="margin-top: 30px;">
+                <div class="share-btn joseon-share-btn" id="joseon-copy-link-btn">
+                    <span>📜</span> 방 붙이기
+                </div>
+                <div class="share-btn joseon-share-btn" id="joseon-share-native-btn">
+                    <span>📣</span> 소문내기
+                </div>
+            </div>
+            <button class="btn joseon-btn" id="joseon-retry-btn" style="margin-top: 10px; background: #444;">다시
+                살피기</button>
         </section>
     </div>
 

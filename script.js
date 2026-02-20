@@ -294,22 +294,45 @@ testMoralCard.addEventListener('click', () => {
     showSection('moral-home');
 });
 
-logoHome.addEventListener('click', () => showSection('main-hub'));
-
 // Test Flow
-startBtn.addEventListener('click', () => showSection('upload'));
-moralStartBtn.addEventListener('click', () => showSection('upload'));
-
-function resetTest() {
+function resetUploadUI() {
     currentImage = null;
     imagePreview.src = '#';
+    scanImg.src = '#';
     previewBox.style.display = 'none';
     dropZone.style.display = 'block';
+    fileInput.value = "";
+
+    // Clear result images
+    document.getElementById('res-img').src = '';
+    document.getElementById('moral-res-img').src = '';
+}
+
+function resetTest() {
+    resetUploadUI();
+
+    // Clear landmarks if any
+    const existingOverlay = scanContainer.querySelector('.landmark-overlay');
+    if (existingOverlay) existingOverlay.remove();
+    scanContainer.classList.remove('landmark-active');
+
     showSection('main-hub');
 }
 
+startBtn.addEventListener('click', () => {
+    resetUploadUI();
+    showSection('upload');
+});
+
+moralStartBtn.addEventListener('click', () => {
+    resetUploadUI();
+    showSection('upload');
+});
+
 retryBtn.addEventListener('click', resetTest);
 moralRetryBtn.addEventListener('click', resetTest);
+logoHome.addEventListener('click', resetTest);
+
 
 // File Handling
 dropZone.addEventListener('click', () => fileInput.click());

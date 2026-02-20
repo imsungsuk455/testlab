@@ -322,6 +322,7 @@ let currentTest = 'manhwa'; // 'manhwa', 'moral', or 'joseon'
 
 // Navigation Function
 function showSection(id) {
+    console.log('Showing section:', id, 'Current test:', currentTest);
     const sections = document.querySelectorAll('.section');
 
     // Theme handling
@@ -346,13 +347,19 @@ function showSection(id) {
         }
     }
 
+    let found = false;
     sections.forEach(s => {
         s.classList.remove('active');
         if (s.id === id) {
             s.classList.add('active');
             window.scrollTo(0, 0);
+            found = true;
         }
     });
+
+    if (!found) {
+        console.error('Section not found:', id);
+    }
 }
 
 function resetUploadUI() {
@@ -389,8 +396,10 @@ function resetTest() {
     showSection('main-hub');
 }
 
-// Initialization
-document.addEventListener('DOMContentLoaded', () => {
+// Robust Initialization
+function initApp() {
+    console.log('Test Lab initializing...');
+
     // Hub Navigation
     const cards = {
         'test-manhwa-card': 'manhwa',
@@ -402,9 +411,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById(id);
         if (el) {
             el.addEventListener('click', () => {
+                console.log('Hub card clicked:', id);
                 currentTest = cards[id];
                 showSection(currentTest + '-home');
             });
+        } else {
+            console.warn('Hub card element missing:', id);
         }
     });
 
@@ -470,7 +482,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById(id);
         if (el) el.addEventListener('click', action);
     });
-});
+}
+
+// Safer event listener execution (Robust Pattern)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
 
 function handleFile(e) {
     const file = e.target.files ? e.target.files[0] : e.dataTransfer.files[0];

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 <channel>
-  <title>TesterLab</title>
+  <title>TesterLab (테스터랩)</title>
   <link>https://testerlab.org</link>
-  <description>세상의 모든 테스트 - TesterLab에서 다양한 심리 테스트와 관상 테스트를 즐겨보세요!</description>
+  <description>세상의 모든 테스트 - 테스터랩(TesterLab)에서 다양한 심리 테스트와 관상 테스트를 즐겨보세요!</description>
   <language>ko-kr</language>
   <lastBuildDate>Thu, 19 Feb 2026 19:42:00 +0900</lastBuildDate>
   
   <item>
-    <title>TesterLab | 세상의 모든 테스트</title>
+    <title>TesterLab (테스터랩) | 세상의 모든 테스트</title>
     <link>https://testerlab.org/index.html</link>
     <description>얼굴 분석 AI를 통한 범죄자 및 성인군자 관상 분석 테스트</description>
     <pubDate>Thu, 19 Feb 2026 19:42:00 +0900</pubDate>

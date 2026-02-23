@@ -26,8 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const shareLinkBtn = document.getElementById('sg-free-share-link');
     const shareNativeBtn = document.getElementById('sg-free-share-native');
 
-    let currentImageFile = null;
-    let objectUrl = null;
+    let currentImageData = null;
 
     const resultsData = [
         { id: 1, type: "pass", icon: "👑", title: "\"어머님, 저한테 맡기시죠!\"<br>든든한 국보급 종손/맏며느리상", desc: "어른들이 보자마자 \"아이고 든든하다\"며 손부터 부여잡을 상. 어떤 시련이 와도 가정을 굳건히 지킬 것 같은 안정감 100%의 관상입니다. 젓가락 세팅부터 어색한 분위기 타파까지 분위기를 리드하는 능력이 뛰어납니다.", parent: "'우리 애가 든든한 사람을 만났구나!'" },
@@ -71,19 +70,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fileInput.addEventListener('change', function () {
         if (this.files.length > 0) {
-            currentImageFile = this.files[0];
-            if (objectUrl) URL.revokeObjectURL(objectUrl);
-            objectUrl = URL.createObjectURL(currentImageFile);
-
-            previewImg.src = objectUrl;
-            uploadBox.style.display = 'none';
-            previewBox.style.display = 'block';
+            const file = this.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                currentImageData = e.target.result;
+                previewImg.src = currentImageData;
+                uploadBox.style.display = 'none';
+                previewBox.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
         }
     });
 
     analyzeBtn.addEventListener('click', () => {
         showSection('sg-free-loading');
-        scanImg.src = objectUrl;
+        scanImg.src = currentImageData;
 
         let i = 0;
         const msgs = ["인상 데이터 스캔 중...", "어른들 심쿵 포인트 계산 중...", "관상 데이터 대조 중..."];
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             clearInterval(interval);
-            const hash = getHash(currentImageFile.name + currentImageFile.size);
+            const hash = getHash(currentImageData);
             const res = resultsData[hash % resultsData.length];
 
             resLabel.textContent = res.type === 'pass' ? "대망의 프리패스상" : "아슬아슬 재검토상";
@@ -107,15 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
             resDesc.innerHTML = res.desc;
             resParent.innerHTML = "어른들 속마음: " + res.parent;
             resIcon.textContent = res.icon;
-            resUserImg.src = objectUrl;
+            resUserImg.src = currentImageData;
 
             showSection('sg-free-result');
         }, 3500);
     });
 
     retryBtn.addEventListener('click', () => {
-        if (objectUrl) URL.revokeObjectURL(objectUrl);
-        objectUrl = null;
+        currentImageData = null;
         previewBox.style.display = 'none';
         uploadBox.style.display = 'block';
         fileInput.value = '';

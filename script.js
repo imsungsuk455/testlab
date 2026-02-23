@@ -7,7 +7,7 @@ const moralCharacters = [
         trait: "차갑고 이성적인 눈매에서 뿜어지는 천재적인 지략가형 관상입니다.",
         ability: "냉철한 상황 판단력과 목적을 위해 감정을 배제하는 추진력.",
         tip: "가끔은 주변 사람들의 감정을 살피는 여유가 필요합니다.",
-        img: "images/moral_res_1.webp"
+        img: "images/char_strategist.webp"
     },
     {
         type: "열혈 트러블메이커",
@@ -16,7 +16,7 @@ const moralCharacters = [
         trait: "넘치는 에너지를 주체하지 못하는 다혈질적인 사고뭉치형 관상입니다.",
         ability: "압도적인 행동력과 위기 상황에서도 굴하지 않는 맷집.",
         tip: "행동하기 전 딱 3초만 더 생각하는 습관을 들여보세요.",
-        img: "images/moral_res_2.webp"
+        img: "images/char_sports.webp"
     },
     {
         type: "그림자 배후",
@@ -25,7 +25,7 @@ const moralCharacters = [
         trait: "조용히 뒤에서 모든 상황을 설계하고 조종하는 흑막형 관상입니다.",
         ability: "남들이 보지 못하는 정보의 흐름을 읽는 통찰력.",
         tip: "본인의 능력을 선한 영향력을 위해 사용해보는 건 어떨까요?",
-        img: "images/moral_res_3.webp"
+        img: "images/char_villain.webp"
     },
     {
         type: "폭발적 반항아",
@@ -34,7 +34,7 @@ const moralCharacters = [
         trait: "규칙과 억압을 거부하며 본인만의 길을 걷는 자유분방형 관상입니다.",
         ability: "기성 권위에 도전하는 혁신적 사고와 강인한 독립심.",
         tip: "때로는 타협이 더 큰 결과를 만들어낼 수 있음을 기억하세요.",
-        img: "images/moral_res_4.webp"
+        img: "images/char_hacker.webp"
     },
     {
         type: "신출귀몰 괴도",
@@ -43,7 +43,7 @@ const moralCharacters = [
         trait: "잡힐 듯 잡히지 않는 유연함과 매력을 가진 자유영혼형 관상입니다.",
         ability: "순발력 넘치는 임기응변과 타인의 마음을 훔치는 매력.",
         tip: "중요한 약속은 조금 더 책임감 있게 지키는 노력이 필요합니다.",
-        img: "images/moral_res_5.webp"
+        img: "images/char_rival.webp"
     },
     {
         type: "천의 얼굴",
@@ -52,7 +52,7 @@ const moralCharacters = [
         trait: "상황에 따라 자유자재로 이미지를 변주하는 기만형 관상입니다.",
         ability: "탁월한 공감 능력으로 상대를 완벽히 이해하고 동화됨.",
         tip: "연기 속에 가려진 진짜 자신의 모습을 잃지 마세요.",
-        img: "images/moral_res_6.webp"
+        img: "images/char_idol.webp"
     },
     {
         type: "예리한 감시자",
@@ -61,7 +61,7 @@ const moralCharacters = [
         trait: "상대의 사소한 약점까지 파고드는 날카로운 통찰력의 빌런형 관상입니다.",
         ability: "데이터 기반의 완벽한 분석력과 허점을 찌르는 예리함.",
         tip: "비판보다는 칭찬으로 사람들의 마음을 얻어보는 건 어떨까요?",
-        img: "images/moral_res_7.webp"
+        img: "images/char_genius.webp"
     },
     {
         type: "평화의 수호자",
@@ -70,7 +70,7 @@ const moralCharacters = [
         trait: "자비로움과 포용력이 느껴지는 온화한 평화주의자형 관상입니다.",
         ability: "갈등을 해소하고 주변을 조화롭게 만드는 중재 능력.",
         tip: "가끔은 본인의 필요에 대해서도 당당히 요구할 필요가 있습니다.",
-        img: "images/moral_res_8.webp"
+        img: "images/char_supporter.webp"
     },
     {
         type: "지혜로운 멘토",
@@ -79,7 +79,7 @@ const moralCharacters = [
         trait: "전문성과 신뢰가 느껴지는 올바른 지도자형 관상입니다.",
         ability: "경험을 바탕으로 타인에게 명확한 방향을 제시하는 힘.",
         tip: "지적보다는 따뜻한 위로 한마디가 더 큰 변화를 만듭니다.",
-        img: "images/moral_res_9.webp"
+        img: "images/char_knight.webp"
     },
     {
         type: "햇살 같은 이타주의자",
@@ -88,7 +88,7 @@ const moralCharacters = [
         trait: "존재만으로 주변을 밝히는 순수한 선의를 가진 관상입니다.",
         ability: "긍정적인 정서를 전파하고 타인의 고통을 보듬는 치유력.",
         tip: "남을 돕기 전에 자신의 에너지가 소진되지 않게 잘 돌보세요.",
-        img: "images/moral_res_10.webp"
+        img: "images/char_ghibli.webp"
     }
 ];
 
@@ -99,77 +99,77 @@ const joseonCharacters = [
         tags: ["#리더십", "#명예", "#천하를가질관상"],
         desc: "귀하의 이마는 넓고 높아 기세가 등등하며, 눈썹 산이 뚜렷하니 만인의 우두머리가 될 상입니다. 하관이 꽉 차 있으니 말년의 운세 또한 평탄하고 영화로울 것입니다.",
         stats: [90, 85, 80, 75, 90], // 이마, 눈, 코, 입, 턱
-        img: "images/카리스마 넘치는 왕.webp"
+        img: "images/joseon_king.webp"
     },
     {
         type: "지혜로운 영의정",
         tags: ["#전략가", "#이성적", "#학식과덕망"],
         desc: "가늘고 긴 봉황의 눈매를 지녔으니 지혜가 구름 위를 뚫고 나아가며, 얼굴의 대칭이 완벽하니 공정함과 학식을 겸비한 재상의 상입니다.",
         stats: [80, 95, 70, 75, 80],
-        img: "images/지혜로운 영의정.webp"
+        img: "images/joseon_minister.webp"
     },
     {
         type: "기개가 높은 장군",
         tags: ["#용기", "#강직함", "#불의를못참음"],
         desc: "눈썹이 짙고 거칠며 콧대가 대나무처럼 곧게 뻗었으니 기개가 하늘을 찌르는 무인의 상입니다. 각진 턱선은 그 어떤 고난에도 굴하지 않을 강인함을 뜻합니다.",
         stats: [70, 85, 95, 70, 90],
-        img: "images/기개가 높은 장군.webp"
+        img: "images/joseon_general.webp"
     },
     {
         type: "풍류를 즐기는 선비",
         tags: ["#예술가", "#낭만", "#유유자적"],
         desc: "매끄러운 콧날과 부드러운 입술 라인은 예술적 감수성이 풍부함을 뜻하며, 선하고 깊은 눈동자가 자연의 아름다움을 쫓는 선비의 관상입니다.",
         stats: [85, 75, 70, 90, 70],
-        img: "images/풍류를 즐기는 선비.webp"
+        img: "images/joseon_scholar.webp"
     },
     {
         type: "천재적인 도화서 화원",
         tags: ["#관찰력", "#창의성", "#섬세한감각"],
         desc: "눈가에 잔잔한 웃음기가 서려 있고 눈동자가 작지만 반짝이니 세상을 꿰뚫어 보는 안목이 예사롭지 않습니다. 섬세한 감각으로 천하를 화폭에 담을 상입니다.",
         stats: [75, 90, 65, 80, 65],
-        img: "images/천재적인 도화서 화원.webp"
+        img: "images/joseon_artist.webp"
     },
     {
         type: "만능 재주꾼 보부상",
         tags: ["#생활력", "#사교성", "#전국팔도인싸"],
         desc: "광대뼈가 발달하고 입꼬리가 항상 위를 향하니 사교성이 뛰어나고 어디서든 환영받을 상입니다. 다부진 얼굴형은 험난한 세상에서도 생활력을 뜻합니다.",
         stats: [65, 70, 75, 95, 80],
-        img: "images/만능 재주꾼 보부상.webp"
+        img: "images/joseon_merchant.webp"
     },
     {
         type: "신비로운 국무(무녀)",
         tags: ["#직관력", "#신비로움", "#사람을꿰뚫어봄"],
         desc: "올라간 눈꼬리와 갸름한 얼굴형은 사람의 마음을 꿰뚫어 보는 비범한 통찰력을 상징합니다. 도드라진 눈 밑 애교살은 신비로운 기운을 머금고 있음을 뜻합니다.",
         stats: [75, 95, 60, 75, 70],
-        img: "images/무녀.webp"
+        img: "images/joseon_shaman.webp"
     },
     {
         type: "엄격한 사간원 판관",
         tags: ["#정의로움", "#원칙주의", "#완벽주의"],
         desc: "일자 눈썹과 얇고 단호한 입술은 시비곡직을 가림에 있어 한 치의 흔들림도 없음을 뜻합니다. 고집 서린 미간은 원칙을 지키는 굳건한 신념의 상입니다.",
         stats: [80, 80, 85, 95, 75],
-        img: "images/사간원 판관.webp"
+        img: "images/joseon_judge.webp"
     },
     {
         type: "자애로운 안방마님",
         tags: ["#포용력", "#인덕", "#평화주의자"],
         desc: "둥근 얼굴형과 도톰한 귓불은 복이 가득하고 성품이 온화하여 주변에 사람이 끊이지 않을 상입니다. 여유로운 인상은 만인을 품어줄 포용력을 뜻합니다.",
         stats: [70, 75, 75, 85, 85],
-        img: "images/안방마님.webp"
+        img: "images/joseon_lady.webp"
     },
     {
         type: "자유로운 영혼의 광대",
         tags: ["#유머감각", "#자유", "#분위기메이커"],
         desc: "큰 입과 움직임이 많은 눈썹은 타고난 예능인의 끼가 다분함을 뜻합니다. 비대칭적인 표정근육은 정형화된 세상에 즐거움을 선사할 행운아의 상입니다.",
         stats: [60, 85, 60, 95, 60],
-        img: "images/자유로운 광대.webp"
+        img: "images/joseon_clown.webp"
     },
     {
         type: "야생의 전문가 백정",
         tags: ["#장인정신", "#야성미", "#거친카리스마"],
         desc: "두툼한 콧볼과 강하게 발달한 턱 근육은 험난한 세상을 헤쳐가는 야성적인 생존력을 뜻하며, 깊고 굵은 미간 주름은 본인의 분야에서 일가를 이룬 장인의 기운을 내뿜고 있습니다.",
         stats: [50, 70, 95, 60, 95],
-        img: "images/백정.webp"
+        img: "images/joseon_butcher.webp"
     }
 ];
 
@@ -318,6 +318,7 @@ const characters = [
 
 // State
 let currentImage = null;
+let currentFile = null;
 let currentTest = 'manhwa'; // 'manhwa', 'moral', or 'joseon'
 
 // Navigation Function
@@ -364,6 +365,7 @@ function showSection(id) {
 
 function resetUploadUI() {
     currentImage = null;
+    currentFile = null;
     const imagePreview = document.getElementById('image-preview');
     const scanImg = document.getElementById('scan-img');
     const previewBox = document.getElementById('preview-box');
@@ -494,6 +496,7 @@ if (document.readyState === 'loading') {
 function handleFile(e) {
     const file = e.target.files ? e.target.files[0] : e.dataTransfer.files[0];
     if (file && file.type.startsWith('image/')) {
+        currentFile = file;
         const reader = new FileReader();
         reader.onload = (event) => {
             currentImage = event.target.result;
@@ -599,7 +602,8 @@ function getHash(str) {
 function showResult() {
     if (!currentImage) return;
 
-    const hash = getHash(currentImage + currentTest);
+    const hashInput = currentFile ? `${currentFile.name}-${currentFile.size}-${currentFile.lastModified}` : currentImage;
+    const hash = getHash(hashInput + currentTest);
 
     if (currentTest === 'manhwa') {
         const index = hash % characters.length;
@@ -620,7 +624,13 @@ function showResult() {
                 keywordsBox.appendChild(span);
             });
         }
-        if (resImg) resImg.src = result.img;
+        if (resImg) {
+            resImg.onerror = function () {
+                this.onerror = null;
+                this.src = this.src.replace('.webp', '.png');
+            };
+            resImg.src = result.img;
+        }
         showSection('result');
     } else if (currentTest === 'moral') {
         const index = hash % moralCharacters.length;
@@ -664,7 +674,13 @@ function showResult() {
         const tagsBox = document.getElementById('joseon-res-tags');
 
         if (resType) resType.innerText = result.type;
-        if (resImg) resImg.src = result.img;
+        if (resImg) {
+            resImg.onerror = function () {
+                this.onerror = null;
+                this.src = this.src.replace('.webp', '.png');
+            };
+            resImg.src = result.img;
+        }
         if (resDesc) resDesc.innerText = result.desc;
 
         if (tagsBox) {

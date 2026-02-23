@@ -401,6 +401,11 @@ body {
 
 .result-char-img {
     width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    display: block;
     border-radius: 20px;
     margin-bottom: 25px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);

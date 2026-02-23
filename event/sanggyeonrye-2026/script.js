@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const shareNativeBtn = document.getElementById('sg-free-share-native');
 
     let currentImageData = null;
+    let currentImageFile = null;
 
     const resultsData = [
         { id: 1, type: "pass", icon: "👑", title: "\"어머님, 저한테 맡기시죠!\"<br>든든한 국보급 종손/맏며느리상", desc: "어른들이 보자마자 \"아이고 든든하다\"며 손부터 부여잡을 상. 어떤 시련이 와도 가정을 굳건히 지킬 것 같은 안정감 100%의 관상입니다. 젓가락 세팅부터 어색한 분위기 타파까지 분위기를 리드하는 능력이 뛰어납니다.", parent: "'우리 애가 든든한 사람을 만났구나!'" },
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fileInput.addEventListener('change', function () {
         if (this.files.length > 0) {
             const file = this.files[0];
+            currentImageFile = file;
             const reader = new FileReader();
             reader.onload = (e) => {
                 currentImageData = e.target.result;
@@ -98,7 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             clearInterval(interval);
-            const hash = getHash(currentImageData);
+            const hashInput = currentImageFile ? `${currentImageFile.name}-${currentImageFile.size}-${currentImageFile.lastModified}` : currentImageData;
+            const hash = getHash(hashInput);
             const res = resultsData[hash % resultsData.length];
 
             resLabel.textContent = res.type === 'pass' ? "대망의 프리패스상" : "아슬아슬 재검토상";
@@ -116,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     retryBtn.addEventListener('click', () => {
         currentImageData = null;
+        currentImageFile = null;
         previewBox.style.display = 'none';
         uploadBox.style.display = 'block';
         fileInput.value = '';

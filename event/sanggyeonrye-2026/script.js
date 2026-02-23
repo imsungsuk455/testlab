@@ -42,6 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 10, type: "fail", icon: "🏄", title: "\"월급 스쳐 지나가는 소리가 들리는\"<br>태평양 베짱이상", desc: "인물은 훤칠하고 입담도 좋지만, 묘하게 통장 잔고가 걱정되는 '한량' 느낌을 풍기는 관상입니다. \"돈은 쓰라고 있는 거죠~\"라는 특유의 여유로운 미소가 아찔한 상상을 불러일으킬 수 있습니다. 오늘은 최대한 경제 관념 투철한 척이 필수입니다.", parent: "'사람 참 착해보이는데... 모아둔 돈은 있으려나?'" }
     ];
 
+    function getHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash |= 0;
+        }
+        return Math.abs(hash);
+    }
+
     function showSection(id) {
         [homeSec, uploadSec, loadingSec, resultSec].forEach(s => {
             s.style.display = 'none';
@@ -87,7 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             clearInterval(interval);
-            const res = resultsData[Math.floor(Math.random() * resultsData.length)];
+            const hash = getHash(currentImageFile.name + currentImageFile.size);
+            const res = resultsData[hash % resultsData.length];
 
             resLabel.textContent = res.type === 'pass' ? "대망의 프리패스상" : "아슬아슬 재검토상";
             resLabel.className = `custom-badge ${res.type === 'pass' ? 'custom-pass' : 'custom-fail'}`;

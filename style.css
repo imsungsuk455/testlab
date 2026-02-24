@@ -297,7 +297,7 @@ body {
 .upload-area {
     border: 2px dashed #dee2e6;
     border-radius: 20px;
-    padding: 50px 20px;
+    padding: 30px 20px;
     cursor: pointer;
     transition: all 0.3s;
     background: #f8f9fa;
@@ -325,7 +325,10 @@ body {
 
 #image-preview {
     max-width: 100%;
+    max-height: 280px;
+    object-fit: contain;
     border-radius: 20px;
+    background: #f8f9fa;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
@@ -333,9 +336,19 @@ body {
 .scan-box {
     position: relative;
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 24px;
     display: inline-block;
-    max-width: 280px;
+    width: 260px;
+    height: 340px;
+    background: #000;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+#scan-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
 }
 
 .scanner {
@@ -400,15 +413,14 @@ body {
 }
 
 .result-char-img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
-    aspect-ratio: 1 / 1;
     display: block;
-    border-radius: 20px;
-    margin-bottom: 25px;
+    margin: 0 auto 25px;
+    border-radius: 24px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
 }
 
 .result-keywords {
@@ -586,7 +598,8 @@ body {
 .bento-main img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #f8f9fa;
     border-radius: 24px;
 }
 
@@ -881,8 +894,8 @@ body {
 }
 
 .joseon-portrait {
-    width: 240px;
-    height: 320px;
+    width: 260px;
+    height: 340px;
     margin: 0 auto 30px;
     border: 1px solid #333;
     padding: 8px;
@@ -893,8 +906,7 @@ body {
 .joseon-portrait img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    /* Don't crop character images */
+    object-fit: cover;
 }
 
 .joseon-chart-container {

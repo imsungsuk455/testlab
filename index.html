@@ -122,6 +122,16 @@
                         <p>부모님이 첫눈에 반할 상일까?</p>
                     </div>
                 </div>
+                <div class="test-card active-card" id="test-facetier-card">
+                    <div class="badge" style="background: #000; color: #fff; border: 1px solid #444;">PREMIUM</div>
+                    <div class="card-img" style="background: #111;">
+                        <img src="images/외모티어.png" alt="외모 티어 테스트" style="object-fit: cover;">
+                    </div>
+                    <div class="card-info">
+                        <h3>외모 티어 테스트</h3>
+                        <p>내 외모는 상위 몇%일까?</p>
+                    </div>
+                </div>
                 <div class="test-card ready">
                     <div class="card-img placeholder">🧠</div>
                     <div class="card-info">
@@ -172,6 +182,21 @@
             </div>
             <button class="btn joseon-btn" id="joseon-start-btn">관상을 살펴보러 가기</button>
             <p class="footer">귀하의 초상은 분석 즉시 파기되어 흔적을 남기지 않습니다.</p>
+        </section>
+
+        <!-- 페이스 티어 테스트 시작 (홈) -->
+        <section id="facetier-home" class="section facetier-theme">
+            <div class="back-nav" onclick="resetTest()">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h1 class="facetier-title">외모 티어 테스트</h1>
+                <p class="subtitle">내 외모는 상위 몇%일까?</p>
+            </div>
+            <div class="facetier-main-frame">
+                <img src="images/외모티어.png" alt="외모 티어 테스트" class="facetier-main-img"
+                    style="width: 220px; height: 220px; border-radius: 30px; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
+            </div>
+            <button class="btn facetier-btn" id="facetier-start-btn">테스트 시작하기</button>
+            <p class="footer">프리미엄 관상 분석 엔진이 가동됩니다.</p>
         </section>
 
         <!-- 업로드 섹션 -->
@@ -303,6 +328,41 @@
             <button class="btn joseon-btn" id="joseon-retry-btn" style="margin-top: 10px; background: #444;">다시
                 살피기</button>
         </section>
+
+        <!-- 결과 섹션 (페이스 티어) -->
+        <section id="facetier-result" class="section facetier-theme">
+            <div class="result-header">
+                <p class="subtitle" style="color: #888;">외모 티어 테스트 결과</p>
+                <div class="facetier-result-container">
+                    <div id="facetier-result-card" class="facetier-card-premium">
+                        <div class="tier-label">ESTIMATED TIER</div>
+                        <div id="facetier-percent" class="tier-percent">상위 0.0%</div>
+
+                        <div class="tier-image-box">
+                            <img id="facetier-user-img" src="" alt="나의 사진">
+                        </div>
+
+                        <div class="tier-info-box">
+                            <h2 id="facetier-title" class="tier-title"></h2>
+                            <p id="facetier-desc" class="tier-desc"></p>
+                        </div>
+
+                        <div class="tier-watermark">TESTERLAB : 외모 티어 테스트</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="share-container" style="margin-top: 30px;">
+                <div class="share-btn facetier-share-btn" id="facetier-copy-link-btn">
+                    <span>🔗</span> 링크 복사
+                </div>
+                <div class="share-btn facetier-share-btn" id="facetier-share-native-btn">
+                    <span>📤</span> 공유하기
+                </div>
+            </div>
+            <button class="btn facetier-btn" id="facetier-retry-btn" style="margin-top: 10px; background: #333;">다시
+                테스트하기</button>
+        </section>
     </div>
 
     <!-- Toast Notification -->
@@ -324,6 +384,7 @@
       }
     }
     </script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="script.js"></script>
 </body>
 

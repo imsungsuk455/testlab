@@ -316,10 +316,38 @@ const characters = [
     }
 ];
 
+// Face Tier Result Types
+const faceTierCharacters = {
+    top: [
+        { threshold: 0.1, title: "천상의 미", desc: "인간의 영역을 넘어선 완벽한 피조물." },
+        { threshold: 1, title: "시대의 뮤즈", desc: "모든 시선이 당신의 궤적을 쫓습니다." },
+        { threshold: 5, title: "압도적 아우라", desc: "설명할 필요 없는 존재감의 증명." },
+        { threshold: 10, title: "정교한 조각", desc: "선과 면이 빚어낸 가장 아름다운 조화." },
+        { threshold: 15, title: "도회적 세련미", desc: "차가우면서도 깊은 눈빛의 소유자." },
+        { threshold: 20, title: "청량한 정석", desc: "누구나 꿈꾸는 가장 이상적인 이미지." },
+        { threshold: 25, title: "매혹적 원석", desc: "다듬어지지 않아도 빛나는 고유의 결." },
+        { threshold: 30, title: "부드러운 카리스마", desc: "강인함 속에 숨겨진 우아한 매력." },
+        { threshold: 40, title: "이지적인 우아함", desc: "지적 가치가 외모로 투영된 완성형." },
+        { threshold: 100, title: "호감의 정점", desc: "마음을 여는 가장 강력한 열쇠, 당신의 미소." },
+    ],
+    bottom: [
+        { threshold: 0.1, title: "심연의 미스터리", desc: "쉽게 파악할 수 없는 신비로운 마스크." },
+        { threshold: 1, title: "독특한 영혼", desc: "평범함을 거부하는 당신만의 세계관." },
+        { threshold: 5, title: "야생의 생명력", desc: "가공되지 않은 날것 그대로의 강렬함." },
+        { threshold: 10, title: "강렬한 존재감", desc: "외모의 기준을 새로 쓰는 파격적 개성." },
+        { threshold: 15, title: "소박한 아름다움", desc: "작은 들꽃처럼 오래 보아야 예쁜 상." },
+        { threshold: 20, title: "투박한 미학", desc: "거칠지만 따뜻함이 느껴지는 인간미." },
+        { threshold: 25, title: "꾸밈없는 진솔함", desc: "가식 없는 얼굴에 담긴 정직한 에너지." },
+        { threshold: 30, title: "개성적 마스크", desc: "정해진 틀을 거부하는 독보적 캐릭터." },
+        { threshold: 40, title: "담백한 일상", desc: "화려함보다 깊이 있는 수수한 아름다움." },
+        { threshold: 100, title: "친근한 훈풍", desc: "이웃집 같은 편안함 속에 깃든 매력." },
+    ]
+};
+
 // State
 let currentImage = null;
 let currentFile = null;
-let currentTest = 'manhwa'; // 'manhwa', 'moral', or 'joseon'
+let currentTest = 'manhwa'; // 'manhwa', 'moral', 'joseon', or 'facetier'
 
 // Navigation Function
 function showSection(id) {
@@ -337,6 +365,12 @@ function showSection(id) {
         document.body.classList.add('joseon-theme-active');
     } else {
         document.body.classList.remove('joseon-theme-active');
+    }
+
+    if (id === 'facetier-home' || id === 'facetier-result' || (currentTest === 'facetier' && (id === 'upload' || id === 'loading'))) {
+        document.body.classList.add('facetier-theme-active');
+    } else {
+        document.body.classList.remove('facetier-theme-active');
     }
 
     const uploadEl = document.getElementById('upload');
@@ -406,7 +440,8 @@ function initApp() {
     const cards = {
         'test-manhwa-card': 'manhwa',
         'test-moral-card': 'moral',
-        'test-joseon-card': 'joseon'
+        'test-joseon-card': 'joseon',
+        'test-facetier-card': 'facetier'
     };
 
     Object.keys(cards).forEach(id => {
@@ -426,7 +461,8 @@ function initApp() {
     const startBtns = {
         'start-btn': 'manhwa',
         'moral-start-btn': 'moral',
-        'joseon-start-btn': 'joseon'
+        'joseon-start-btn': 'joseon',
+        'facetier-start-btn': 'facetier'
     };
 
     Object.keys(startBtns).forEach(id => {
@@ -440,7 +476,7 @@ function initApp() {
     });
 
     // Other Buttons
-    ['retry-btn', 'moral-retry-btn', 'joseon-retry-btn', 'logo-home'].forEach(id => {
+    ['retry-btn', 'moral-retry-btn', 'joseon-retry-btn', 'facetier-retry-btn', 'logo-home'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener('click', resetTest);
     });
@@ -477,7 +513,9 @@ function initApp() {
         ['moral-copy-link-btn', copyToClipboard],
         ['moral-share-native-btn', shareNative],
         ['joseon-copy-link-btn', copyToClipboard],
-        ['joseon-share-native-btn', shareNative]
+        ['joseon-share-native-btn', shareNative],
+        ['facetier-copy-link-btn', copyToClipboard],
+        ['facetier-share-native-btn', shareNative]
     ];
 
     shareActions.forEach(([id, action]) => {
@@ -542,6 +580,14 @@ function startAnalysis() {
             "전생의 연을 찾고 있습니다...",
             "관상을 기록하는 중입니다...",
             "분석이 완료되었습니다!"
+        ];
+    } else if (currentTest === 'facetier') {
+        statuses = [
+            "얼굴 형태 및 황금 비율 분석 중...",
+            "이목구비 간의 조화도 측정 중...",
+            "피부톤 및 대칭성 검사 중...",
+            "프리미엄 관상 데이터 대조 중...",
+            "당신의 조화로운 수치가 계산되었습니다!"
         ];
     } else {
         createLandmarks();
@@ -695,6 +741,75 @@ function showResult() {
 
         showSection('joseon-result');
         drawJoseonRadarChart(result.stats);
+    } else if (currentTest === 'facetier') {
+        const resTitle = document.getElementById('facetier-title');
+        const resDesc = document.getElementById('facetier-desc');
+        const resPercent = document.getElementById('facetier-percent');
+        const resUserImg = document.getElementById('facetier-user-img');
+        if (resUserImg) resUserImg.src = currentImage;
+
+
+        // Deterministic calculation logic based on hash (0.1 ~ 99.9)
+        let finalScore = (hash % 998 + 1) / 10; // 0.1 to 99.9
+
+        const type = finalScore >= 50 ? 'top' : 'bottom';
+        let percentile = type === 'top' ? (100 - finalScore) : finalScore;
+        if (percentile < 0.1) percentile = 0.1;
+        percentile = parseFloat(percentile.toFixed(1));
+
+        const personaList = faceTierCharacters[type];
+        let matchedPersona = personaList[personaList.length - 1];
+        for (let i = 0; i < personaList.length; i++) {
+            if (percentile <= personaList[i].threshold) {
+                matchedPersona = personaList[i];
+                break;
+            }
+        }
+
+        if (resTitle) resTitle.innerText = matchedPersona.title;
+        if (resDesc) resDesc.innerText = matchedPersona.desc;
+
+        const prefix = type === 'top' ? '상위' : '하위';
+        if (resPercent) resPercent.innerText = `${prefix} 50.0%`;
+
+        showSection('facetier-result');
+
+        // Counter animation
+        let frame = 0;
+        const frames = 60;
+        const duration = 2000;
+        const startVal = 50.0;
+        const animate = setInterval(() => {
+            frame++;
+            const progress = frame / frames;
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            const currentVal = startVal - (startVal - percentile) * easeProgress;
+            if (resPercent) resPercent.innerText = `${prefix} ${currentVal.toFixed(1)}%`;
+
+            if (frame >= frames) {
+                clearInterval(animate);
+                if (resPercent) resPercent.innerText = `${prefix} ${percentile.toFixed(1)}%`;
+            }
+        }, duration / frames);
+    }
+}
+
+async function saveFaceTierImage() {
+    const card = document.getElementById('facetier-result-card');
+    if (!card) return;
+    try {
+        const canvas = await html2canvas(card, {
+            backgroundColor: '#121212',
+            scale: 2
+        });
+        const image = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = image;
+        link.download = 'testerlab_facetier_result.png';
+        link.click();
+    } catch (err) {
+        console.error('Error saving image:', err);
+        alert('이미지 생성에 실패했습니다.');
     }
 }
 

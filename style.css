@@ -11,7 +11,58 @@
     --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     --joseon-bg: #F9F7F2;
     --joseon-ink: #111;
+    --facetier-gold: #D4AF37;
 }
+
+/* Face Tier Theme Variables */
+.facetier-theme-active {
+    background: #121212 !important;
+}
+
+.facetier-theme-active #app {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #fff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.facetier-theme-active .logo-text,
+.facetier-theme-active .nav-item {
+    color: #fff !important;
+}
+
+.facetier-theme-active .main-header {
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
+}
+
+.facetier-theme-active h1,
+.facetier-theme-active h2,
+.facetier-theme-active h3,
+.facetier-theme-active .title-container h1 {
+    color: #fff !important;
+}
+
+.facetier-theme-active .subtitle,
+.facetier-theme-active .back-nav {
+    color: #888 !important;
+}
+
+.facetier-theme-active .upload-area {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ccc !important;
+}
+
+.facetier-theme-active .upload-area:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.facetier-theme-active .loading-text {
+    color: #aaa !important;
+}
+
 
 * {
     margin: 0;
@@ -944,4 +995,150 @@ body {
 .joseon-share-btn {
     border-radius: 4px !important;
     border-color: #333 !important;
+}
+
+/* Face Tier Specific Styles */
+.facetier-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #fff, #888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+}
+
+.facetier-main-frame {
+    margin: 40px 0;
+}
+
+.face-scanner-ui {
+    width: 150px;
+    height: 180px;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40% 40% 50% 50%;
+    padding: 20px;
+}
+
+.scan-line-deco {
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    box-shadow: 0 0 15px #fff;
+    opacity: 0.3;
+}
+
+.facetier-btn {
+    background: #fff !important;
+    color: #000 !important;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    border: none !important;
+}
+
+.facetier-btn:hover {
+    background: #eee !important;
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+}
+
+/* Face Tier Result Card */
+.facetier-card-premium {
+    background: linear-gradient(145deg, #1f1f1f, #111);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 50px 30px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.tier-label {
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.tier-percent {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff, #888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+.tier-image-box {
+    width: 180px;
+    height: 180px;
+    margin: 30px auto 10px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.tier-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tier-info-box {
+    margin: 40px 0;
+}
+
+.tier-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.tier-desc {
+    font-size: 0.95rem;
+    color: #aaa;
+    line-height: 1.6;
+}
+
+.tier-watermark {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 1px;
+}
+
+.facetier-share-btn {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+}
+
+.facetier-share-btn:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #fff !important;
+}
+
+@media (max-width: 600px) {
+    .facetier-title {
+        font-size: 2rem;
+    }
+
+    .tier-percent {
+        font-size: 2.8rem;
+    }
 }

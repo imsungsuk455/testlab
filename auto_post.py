@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import datetime
 from PIL import Image, ImageDraw, ImageFont
 
@@ -9,11 +10,12 @@ BLOG_DIR = "blog"
 IMAGES_DIR = "images"
 BLOG_HTML_FILE = "blog.html"
 BASE_IMG = os.path.join(IMAGES_DIR, "somenail.png")
+# 시작 글 번호 (1부터 10까지는 기존 글이고, 새로운 시스템은 11번부터 작성)
+START_INDEX = 11
 
-# 워크플로우를 위해 폰트 경로 설정 (우분투/윈도우 지원)
 FONT_PATH = "/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf"
 if not os.path.exists(FONT_PATH):
-    FONT_PATH = "C:\\Windows\\Fonts\\malgun.ttf" # 윈도우 로컬 테스트용
+    FONT_PATH = "C:\\Windows\\Fonts\\malgun.ttf"
 
 def get_next_index():
     if not os.path.exists(BLOG_DIR):
@@ -28,12 +30,10 @@ def get_next_index():
 
 def parse_posts():
     if not os.path.exists(POSTS_FILE):
-        print("posts.txt 파일이 없습니다.")
         return []
     with open(POSTS_FILE, "r", encoding="utf-8") as f:
         content = f.read()
     
-    # '###' 구분자로 포스트 나누기
     raw_posts = content.split("###")
     posts = []
     for rp in raw_posts:
@@ -41,36 +41,76 @@ def parse_posts():
         if len(lines) >= 2:
             title = lines[0]
             body = "\n".join(lines[1:])
-            # 요약 앞 100자 정도
             summary = body[:100].replace("\n", " ") + "..."
             posts.append({"title": title, "body": body, "summary": summary})
     return posts
+
+def generate_via_gemini():
+    try:
+        import google.generativeai as genai
+    except ImportError:
+         print("google-generativeai 패키지가 없습니다. Gemini 생성을 건너뜁니다.")
+         return None
+
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        print("GEMINI_API_KEY가 없습니다. 생성을 건너뜁니다.")
+        return None
+
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel('gemini-2.5-pro')
+
+    print("기존 posts.txt의 글들을 바탕으로 새로운 블로그 포스트를 Gemini로 생성 중입니다...")
+    try:
+        with open(POSTS_FILE, "r", encoding="utf-8") as f:
+            sample_content = f.read()
+    except:
+        sample_content = ""
+
+    prompt = f"""
+다음은 내 블로그의 글들입니다. 
+
+{sample_content[-3000:]}
+
+위의 샘플 글들의 문체, 길이, 그리고 주제를 철저히 분석해주세요.
+당신은 위와 완벽하게 동일한 톤앤매너로 "완전히 새로우면서도 애드센스 승인에 유리한" 고품질의 블로그 글을 딱 1개만 작성해야 합니다.
+[조건]
+1. 첫 줄은 제목. 두 번째 줄부터 본문. 내용 중간에 어떠한 인사말이나 부연 설명, 마크다운 기호 없이 바로 시작하세요. 
+2. 본문 내용은 최소 1000자 이상으로 길게.
+3. 구분자 '###' 를 절대로 포함하지 마세요(내가 직접 붙일겁니다).
+"""
+    try:
+        response = model.generate_content(prompt)
+        text = response.text.strip()
+        if text:
+            with open(POSTS_FILE, "a", encoding="utf-8") as f:
+                f.write("\n###\n" + text)
+            print("새로운 글이 posts.txt에 생성 및 추가되었습니다.")
+            return True
+    except Exception as e:
+        print("생성 중 오류 발생:", e)
+    return False
 
 def create_thumbnail(title, index):
     try:
         img = Image.open(BASE_IMG)
     except FileNotFoundError:
-        print(f"썸네일 베이스 이미지 {BASE_IMG}를 찾을 수 없습니다.")
-        # 임시 이미지 생성
         img = Image.new('RGB', (800, 800), color = (73, 109, 137))
 
     draw = ImageDraw.Draw(img)
     try:
-        # 썸네일 제목 폰트 사이즈
         font = ImageFont.truetype(FONT_PATH, 50)
     except IOError:
         font = ImageFont.load_default()
 
-    # 제목 줄바꿈 로직 (적당히 자르기)
     words = title.split()
     lines = []
     current_line = []
     for word in words:
         current_line.append(word)
-        # 텍스트 길이 체크 (PIL 버전에 따라 다름)
-        if hasattr(draw, 'textsize'): # 구버전
+        if hasattr(draw, 'textsize'):
             w, h = draw.textsize(" ".join(current_line), font=font)
-        else: # 신버전
+        else:
             w = draw.textlength(" ".join(current_line), font=font)
         if w > img.width - 60:
             current_line.pop()
@@ -79,7 +119,6 @@ def create_thumbnail(title, index):
     if current_line:
         lines.append(" ".join(current_line))
 
-    # 텍스트 중앙 병합 후 그리기
     y_text = img.height / 2 - (len(lines) * 60) / 2
     for line in lines:
         if hasattr(draw, 'textsize'):
@@ -92,7 +131,6 @@ def create_thumbnail(title, index):
 
     thumb_filename = f"thumb_{index}.webp"
     thumb_path = os.path.join(IMAGES_DIR, thumb_filename)
-    # webp 포맷으로 저장 (투명도 지원 안하면 RGB 변환 등 필요할수도있으나 썸네일이니 보통 가능)
     if img.mode != 'RGB':
         img = img.convert('RGB')
     img.save(thumb_path, "WEBP", quality=85)
@@ -146,7 +184,6 @@ def generate_post_html(post_data, index, thumb_filename):
             <img src="../images/{thumb_filename}" alt="{post_data['title']}" class="post-thumbnail">
             <article class="post-content">
 """
-    # 본문 문단별로 <p> 태그 적용
     for paragraph in post_data['body'].split("\n"):
         if paragraph.strip():
             html_content += f"                <p>{paragraph.strip()}</p>\n"
@@ -167,7 +204,6 @@ def generate_post_html(post_data, index, thumb_filename):
     print(f"[{file_path}] 생성 완료")
     return f"post-{index}.html"
 
-
 def append_to_blog_list(post_data, index, thumb_filename):
     if not os.path.exists(BLOG_HTML_FILE):
         return
@@ -185,8 +221,6 @@ def append_to_blog_list(post_data, index, thumb_filename):
                     </div>
                 </a>
 """
-
-    # <div class="blog-grid"> 직후에 추가하여 맨 위로 오게 함 (최신순)
     insert_marker = '<div class="blog-grid">'
     if insert_marker in html:
         parts = html.split(insert_marker, 1)
@@ -197,35 +231,24 @@ def append_to_blog_list(post_data, index, thumb_filename):
 
 def main():
     posts = parse_posts()
-    if not posts:
-        print("작업할 포스트가 없습니다.")
-        return
-
-    # 다음 게시물의 인덱스 확인 (11부터 시작하도록 할 수도 있지만, 파일 개수로 동적계산)
-    posts_count_to_post = 20
     next_index = get_next_index()
     
-    # next_index - 1 이 메모장의 몇 번째 글인지 (만약 메모장의 글 개수가 부족하면 중지)
-    # 이미 올라간 글 개수를 기준으로 함. 1번부터 시작
-    # 원래 10개의 글이 있으니 next_index는 11일 것. 
-    # 그러면 11번째 글을 posts[0]에서 가져와야 할까?
-    # posts.txt에 20개 글을 쭉 적어두고, 아직 작성되지 않은 첫번째 글을 찾아야 함.
-    offset = max(0, next_index - 11) # 원래 10개 글이 있었으므로, 11번이 posts[0]에 해당하도록
+    offset = max(0, next_index - START_INDEX)
     
+    # posts.txt에 준비된 글 번호보다 offset이 같거나 크면 새로운 글 생성 필요
     if offset >= len(posts):
-        print(f"모든 글이 예약 발행되었습니다. (현재 {offset}개 발행, 파일 내 총 {len(posts)}개)")
-        return
-        
+        print(f"미리 작성된 {len(posts)}개의 글이 모두 소진되었습니다. AI를 통해 새 글을 생성합니다.")
+        success = generate_via_gemini()
+        if not success:
+            print("새 글 생성에 실패하여 종료합니다.")
+            sys.exit(1)
+        posts = parse_posts() # 새로 추가된 글을 읽어옴
+    
     current_post = posts[offset]
     print(f"새로운 글 발행 진행: [{current_post['title']}] (post-{next_index}.html)")
 
-    # 썸네일 생성
     thumb_filename = create_thumbnail(current_post['title'], next_index)
-
-    # HTML 생성
     generate_post_html(current_post, next_index, thumb_filename)
-
-    # 블로그 목록 추가
     append_to_blog_list(current_post, next_index, thumb_filename)
 
 if __name__ == "__main__":

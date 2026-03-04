@@ -139,6 +139,49 @@ def create_thumbnail(title, index):
 
 def generate_post_html(post_data, index, thumb_filename):
     today_str = datetime.datetime.now().strftime("%Y-%m-%d")
+    
+    # 본문 파싱 로직 (디자인 박스 적용)
+    body_html = ""
+    in_box = False
+    in_summary_box = False
+
+    for paragraph in post_data['body'].split("\n"):
+        p = paragraph.strip()
+        if not p:
+            continue
+            
+        is_heading2 = bool(re.match(r'^(?:\d+\.?\s+|#+\s*).*', p)) or any(kw in p for kw in ["마치며", "결론 및 요약", "결론", "오늘의 실천 사항"])
+        is_special_box = p.startswith("[") and p.endswith("]")
+
+        if is_heading2:
+            if in_box or in_summary_box:
+                body_html += "                </div>\n"
+                in_box = False
+                in_summary_box = False
+                
+            clean_h2 = re.sub(r'^#+\s*', '', p)
+            if any(kw in clean_h2 for kw in ["요약", "마치며", "실천 사항", "결론"]):
+                body_html += f"                <div class=\"summary-box\">\n"
+                body_html += f"                    <h2>{clean_h2}</h2>\n"
+                in_summary_box = True
+            else:
+                body_html += f"                <h2>{clean_h2}</h2>\n"
+
+        elif is_special_box:
+            if in_box or in_summary_box:
+                body_html += "                </div>\n"
+                in_summary_box = False
+                in_box = False
+            body_html += f"                <div class=\"faq-box\">\n"
+            body_html += f"                    <h3>{p[1:-1]}</h3>\n"
+            in_box = True
+
+        else:
+            body_html += f"                <p>{p}</p>\n"
+            
+    if in_box or in_summary_box:
+        body_html += "                </div>\n"
+
     html_content = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -157,9 +200,28 @@ def generate_post_html(post_data, index, thumb_filename):
         .post-meta {{ color: #999; font-size: 0.9rem; }}
         .post-content {{ line-height: 1.8; font-size: 1.05rem; color: #333; }}
         .post-content p {{ margin-bottom: 20px; }}
+        .post-content h2 {{ font-size: 1.4rem; font-weight: 700; margin: 40px 0 20px; color: var(--accent-color); }}
+        .post-content h3 {{ font-size: 1.2rem; font-weight: 700; margin: 30px 0 15px; }}
         .post-thumbnail {{ width: 100%; border-radius: 20px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); display: block; }}
         .back-to-blog {{ display: inline-block; margin-bottom: 20px; color: var(--accent-color); text-decoration: none; font-weight: 600; }}
+        .faq-box {{ background: #f8f9fa; padding: 20px; border-radius: 16px; margin: 30px 0; }}
+        .summary-box {{ background: #f0f1ff; padding: 25px; border-radius: 20px; border-left: 5px solid var(--accent-color); margin: 40px 0; }}
     </style>
+    
+    <link rel="canonical" href="https://testerlab.org/blog/post-{index}.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://testerlab.org/blog/post-{index}.html">
+    <meta property="og:title" content="{post_data['title']} | TesterLab (테스터랩) 블로그">
+    <meta property="og:description" content="{post_data['summary']}">
+    <meta property="og:image" content="https://testerlab.org/images/{thumb_filename}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://testerlab.org/blog/post-{index}.html">
+    <meta property="twitter:title" content="{post_data['title']} | TesterLab (테스터랩) 블로그">
+    <meta property="twitter:description" content="{post_data['summary']}">
+    <meta property="twitter:image" content="https://testerlab.org/images/{thumb_filename}">
 </head>
 <body>
     <header class="main-header">
@@ -184,18 +246,34 @@ def generate_post_html(post_data, index, thumb_filename):
             </header>
             <img src="../images/{thumb_filename}" alt="{post_data['title']}" class="post-thumbnail">
             <article class="post-content">
-"""
-    for paragraph in post_data['body'].split("\n"):
-        if paragraph.strip():
-            html_content += f"                <p>{paragraph.strip()}</p>\n"
-            
-    html_content += """
-            </article>
+{body_html}            </article>
         </div>
     </div>
     <footer style="padding: 40px 0; text-align: center; color: #aaa; font-size: 0.85rem;">
         <p>&copy; 2026 TesterLab. All rights reserved.</p>
     </footer>
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "홈",
+        "item": "https://testerlab.org/"
+      }}, {{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "블로그",
+        "item": "https://testerlab.org/blog.html"
+      }}, {{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "{post_data['title']}",
+        "item": "https://testerlab.org/blog/post-{index}.html"
+      }}]
+    }}
+    </script>
 </body>
 </html>
 """

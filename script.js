@@ -534,6 +534,8 @@ function initApp() {
         const el = document.getElementById(id);
         if (el) {
             el.addEventListener('click', () => {
+                console.log('Start button clicked:', id);
+                currentTest = startBtns[id]; // Ensure currentTest is set
                 resetUploadUI();
                 showSection('upload');
             });
@@ -657,7 +659,7 @@ function startAnalysis() {
             "얼굴형의 조화를 분석하는 중...",
             "입매의 기운을 파악하고 있습니다...",
             "캐릭터 라이브러리에서 매칭 중...",
-            "최적의 캐릭터를 찾았습니다!"
+            "분석이 완료되었습니다!"
         ];
     } else if (currentTest === 'joseon') {
         statuses = [
@@ -673,7 +675,7 @@ function startAnalysis() {
             "이목구비 간의 조화도 측정 중...",
             "피부톤 및 대칭성 검사 중...",
             "프리미엄 관상 데이터 대조 중...",
-            "당신의 조화로운 수치가 계산되었습니다!"
+            "분석이 완료되었습니다!"
         ];
     } else if (currentTest === 'babyface') {
         statuses = [
@@ -681,7 +683,7 @@ function startAnalysis() {
             "눈, 코, 입의 앳된 정도 측정 중...",
             "피부결의 생기와 탄력도 스캔 중...",
             "동안 데이터베이스 대조 중...",
-            "최고의 동안 매력 포인트를 찾았습니다!"
+            "분석이 완료되었습니다!"
         ];
     } else {
         createLandmarks();
@@ -740,232 +742,243 @@ function getHash(str) {
 }
 
 function showResult() {
-    if (!currentImage) return;
+    console.log('Showing result for:', currentTest);
+    if (!currentImage) {
+        console.error('No image for analysis');
+        return;
+    }
 
-    const hashInput = currentFile ? `${currentFile.name}-${currentFile.size}-${currentFile.lastModified}` : currentImage;
-    const hash = getHash(hashInput + currentTest);
+    try {
 
-    if (currentTest === 'manhwa') {
-        const index = hash % characters.length;
-        const result = characters[index];
-        const resTitle = document.getElementById('res-title');
-        const resDesc = document.getElementById('res-desc');
-        const resImg = document.getElementById('res-img');
-        const keywordsBox = document.getElementById('res-keywords');
+        const hashInput = currentFile ? `${currentFile.name}-${currentFile.size}-${currentFile.lastModified}` : currentImage;
+        const hash = getHash(hashInput + currentTest);
 
-        if (resTitle) resTitle.innerHTML = `<span style="font-size: 0.8em; color: #888;">${result.name}</span><br>${result.title}`;
-        if (resDesc) resDesc.innerText = result.desc;
-        if (keywordsBox) {
-            keywordsBox.innerHTML = '';
-            result.keywords.forEach(k => {
-                const span = document.createElement('span');
-                span.className = 'keyword';
-                span.innerText = k;
-                keywordsBox.appendChild(span);
-            });
-        }
-        if (resImg) {
-            resImg.onerror = function () {
-                this.onerror = null;
-                this.src = this.src.replace('.webp', '.png');
+        if (currentTest === 'manhwa') {
+            const index = hash % characters.length;
+            const result = characters[index];
+            const resTitle = document.getElementById('res-title');
+            const resDesc = document.getElementById('res-desc');
+            const resImg = document.getElementById('res-img');
+            const keywordsBox = document.getElementById('res-keywords');
+
+            if (resTitle) resTitle.innerHTML = `<span style="font-size: 0.8em; color: #888;">${result.name}</span><br>${result.title}`;
+            if (resDesc) resDesc.innerText = result.desc;
+            if (keywordsBox) {
+                keywordsBox.innerHTML = '';
+                result.keywords.forEach(k => {
+                    const span = document.createElement('span');
+                    span.className = 'keyword';
+                    span.innerText = k;
+                    keywordsBox.appendChild(span);
+                });
+            }
+            if (resImg) {
+                resImg.onerror = function () {
+                    this.onerror = null;
+                    this.src = this.src.replace('.webp', '.png');
+                };
+                resImg.src = result.img;
+            }
+            showSection('result');
+        } else if (currentTest === 'moral') {
+            const index = hash % moralCharacters.length;
+            const result = moralCharacters[index];
+
+            const resType = document.getElementById('moral-res-type');
+            const resImg = document.getElementById('moral-res-img');
+            const resTrait = document.getElementById('moral-res-trait');
+            const resAbility = document.getElementById('moral-res-ability');
+            const resTip = document.getElementById('moral-res-tip');
+
+            if (resType) resType.innerText = result.type;
+            if (resImg) resImg.src = currentImage;
+            if (resTrait) resTrait.innerText = result.trait;
+            if (resAbility) resAbility.innerText = result.ability;
+            if (resTip) resTip.innerText = result.tip;
+
+            const statFill = document.getElementById('moral-stat-fill');
+            const statValue = document.getElementById('moral-stat-value');
+            if (statFill) statFill.style.width = '0%';
+            if (statValue) statValue.innerText = '0%';
+
+            showSection('moral-result');
+
+            setTimeout(() => {
+                if (statFill) {
+                    statFill.style.width = result.stat + '%';
+                    statFill.style.background = result.theme === 'villain'
+                        ? 'linear-gradient(90deg, #ff7eb9, #6c5ce7)'
+                        : 'linear-gradient(90deg, #ffd700, #00d2ff)';
+                }
+                if (statValue) statValue.innerText = result.stat + '%';
+            }, 300);
+        } else if (currentTest === 'joseon') {
+            const index = hash % joseonCharacters.length;
+            const result = joseonCharacters[index];
+
+            const resType = document.getElementById('joseon-res-type');
+            const resImg = document.getElementById('joseon-res-img');
+            const resDesc = document.getElementById('joseon-res-desc');
+            const tagsBox = document.getElementById('joseon-res-tags');
+
+            if (resType) resType.innerText = result.type;
+            if (resImg) {
+                resImg.onerror = function () {
+                    this.onerror = null;
+                    this.src = this.src.replace('.webp', '.png');
+                };
+                resImg.src = result.img;
+            }
+            if (resDesc) resDesc.innerText = result.desc;
+
+            if (tagsBox) {
+                tagsBox.innerHTML = '';
+                result.tags.forEach(t => {
+                    const span = document.createElement('span');
+                    span.className = 'joseon-tag';
+                    span.innerText = t;
+                    tagsBox.appendChild(span);
+                });
+            }
+
+            showSection('joseon-result');
+            drawJoseonRadarChart(result.stats);
+        } else if (currentTest === 'facetier') {
+            const resTitle = document.getElementById('facetier-title');
+            const resDesc = document.getElementById('facetier-desc');
+            const resPercent = document.getElementById('facetier-percent');
+            const resUserImg = document.getElementById('facetier-user-img');
+            if (resUserImg) resUserImg.src = currentImage;
+
+
+            // Deterministic calculation logic based on hash (0.1 ~ 99.9)
+            let finalScore = (hash % 998 + 1) / 10; // 0.1 to 99.9
+
+            const type = finalScore >= 50 ? 'top' : 'bottom';
+            let percentile = type === 'top' ? (100 - finalScore) : finalScore;
+            if (percentile < 0.1) percentile = 0.1;
+            percentile = parseFloat(percentile.toFixed(1));
+
+            const personaList = faceTierCharacters[type];
+            let matchedPersona = personaList[personaList.length - 1];
+            for (let i = 0; i < personaList.length; i++) {
+                if (percentile <= personaList[i].threshold) {
+                    matchedPersona = personaList[i];
+                    break;
+                }
+            }
+
+            if (resTitle) resTitle.innerText = matchedPersona.title;
+            if (resDesc) resDesc.innerText = matchedPersona.desc;
+
+            const prefix = type === 'top' ? '상위' : '하위';
+            if (resPercent) resPercent.innerText = `${prefix} 50.0%`;
+
+            showSection('facetier-result');
+
+            // Counter animation
+            let frame = 0;
+            const frames = 60;
+            const duration = 2000;
+            const startVal = 50.0;
+            const animate = setInterval(() => {
+                frame++;
+                const progress = frame / frames;
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const currentVal = startVal - (startVal - percentile) * easeProgress;
+                if (resPercent) resPercent.innerText = `${prefix} ${currentVal.toFixed(1)}%`;
+
+                if (frame >= frames) {
+                    clearInterval(animate);
+                    if (resPercent) resPercent.innerText = `${prefix} ${percentile.toFixed(1)}%`;
+                }
+            }, duration / frames);
+        } else if (currentTest === 'babyface') {
+            const hash = getHash(currentFile ? `${currentFile.name}-${currentFile.size}` : currentImage);
+
+            // Deterministic AI Age calculation (range 18-65 based on hash)
+            let aiAge = (hash % 48) + 18;
+
+            // Diff = AI_Age - Real_Age (as per user logic where negative means looking younger)
+            const diff = aiAge - userAge;
+            const diffAbs = Math.abs(diff);
+
+            // Score for result selection (Higher score if looking younger)
+            // If AI < Real (Diff < 0), score is high.
+            let score = 50 - (diff * 5);
+            score = Math.max(10, Math.min(99, score));
+
+            const resDiffText = document.getElementById('babyface-res-diff-text');
+            const realAgeEl = document.getElementById('babyface-real-age');
+            const aiAgeEl = document.getElementById('babyface-ai-age');
+            const resTitle = document.getElementById('babyface-res-title');
+            const resImg = document.getElementById('babyface-res-img');
+            const resTip = document.getElementById('babyface-res-tip');
+            const resTrait = document.getElementById('babyface-res-trait');
+            const resAbility = document.getElementById('babyface-res-ability');
+
+            // Text & Labels
+            if (realAgeEl) realAgeEl.innerText = `${userAge}세`;
+            if (aiAgeEl) aiAgeEl.innerText = `${aiAge}세`;
+
+            let statusMsg = "";
+            let themeColor = "#40C057";
+
+            if (diff < 0) {
+                statusMsg = `"${diffAbs}살만큼의 시간을 되돌렸습니다! 세월이 당신만 비껴갔네요!"`;
+                themeColor = "#40C057"; // Emerald Green
+            } else if (diff === 0) {
+                statusMsg = `"나이에 걸맞은 가장 아름다운 모습입니다."`;
+                themeColor = "#4dabf7"; // Soft Blue
+            } else {
+                statusMsg = `"성숙함이 돋보이는 클래식한 매력의 소유자!"`;
+                themeColor = "#1864ab"; // Navy
+            }
+
+            if (resDiffText) {
+                resDiffText.innerText = statusMsg;
+                resDiffText.style.color = themeColor;
+            }
+            if (aiAgeEl) aiAgeEl.style.color = themeColor;
+
+            // Find result based on score
+            let result = babyfaceResults[babyfaceResults.length - 1];
+            for (let r of babyfaceResults) {
+                if (score >= r.minScore) {
+                    result = r;
+                    break;
+                }
+            }
+
+            if (resTitle) resTitle.innerText = result.title;
+            if (resImg) resImg.src = currentImage;
+            if (resTip) resTip.innerText = result.tip;
+            if (resTrait) resTrait.innerText = result.trait;
+            if (resAbility) resAbility.innerText = result.ability;
+
+            // Timeline Bar Logic
+            const realDot = document.getElementById('timeline-real-dot');
+            const aiDot = document.getElementById('timeline-ai-dot');
+
+            // Map age 10-80 to 0-100% position
+            const getPos = (age) => {
+                let p = ((age - 10) / (80 - 10)) * 100;
+                return Math.max(5, Math.min(95, p));
             };
-            resImg.src = result.img;
+
+            if (realDot) realDot.style.left = `${getPos(userAge)}%`;
+            if (aiDot) {
+                aiDot.style.left = `${getPos(aiAge)}%`;
+                aiDot.style.background = themeColor;
+                aiDot.style.boxShadow = `0 2px 10px ${themeColor}44`;
+            }
+
+            showSection('babyface-result');
         }
+    } catch (e) {
+        console.error('Error in showResult:', e);
+        // Fallback to any result section if current one fails
         showSection('result');
-    } else if (currentTest === 'moral') {
-        const index = hash % moralCharacters.length;
-        const result = moralCharacters[index];
-
-        const resType = document.getElementById('moral-res-type');
-        const resImg = document.getElementById('moral-res-img');
-        const resTrait = document.getElementById('moral-res-trait');
-        const resAbility = document.getElementById('moral-res-ability');
-        const resTip = document.getElementById('moral-res-tip');
-
-        if (resType) resType.innerText = result.type;
-        if (resImg) resImg.src = currentImage;
-        if (resTrait) resTrait.innerText = result.trait;
-        if (resAbility) resAbility.innerText = result.ability;
-        if (resTip) resTip.innerText = result.tip;
-
-        const statFill = document.getElementById('moral-stat-fill');
-        const statValue = document.getElementById('moral-stat-value');
-        if (statFill) statFill.style.width = '0%';
-        if (statValue) statValue.innerText = '0%';
-
-        showSection('moral-result');
-
-        setTimeout(() => {
-            if (statFill) {
-                statFill.style.width = result.stat + '%';
-                statFill.style.background = result.theme === 'villain'
-                    ? 'linear-gradient(90deg, #ff7eb9, #6c5ce7)'
-                    : 'linear-gradient(90deg, #ffd700, #00d2ff)';
-            }
-            if (statValue) statValue.innerText = result.stat + '%';
-        }, 300);
-    } else if (currentTest === 'joseon') {
-        const index = hash % joseonCharacters.length;
-        const result = joseonCharacters[index];
-
-        const resType = document.getElementById('joseon-res-type');
-        const resImg = document.getElementById('joseon-res-img');
-        const resDesc = document.getElementById('joseon-res-desc');
-        const tagsBox = document.getElementById('joseon-res-tags');
-
-        if (resType) resType.innerText = result.type;
-        if (resImg) {
-            resImg.onerror = function () {
-                this.onerror = null;
-                this.src = this.src.replace('.webp', '.png');
-            };
-            resImg.src = result.img;
-        }
-        if (resDesc) resDesc.innerText = result.desc;
-
-        if (tagsBox) {
-            tagsBox.innerHTML = '';
-            result.tags.forEach(t => {
-                const span = document.createElement('span');
-                span.className = 'joseon-tag';
-                span.innerText = t;
-                tagsBox.appendChild(span);
-            });
-        }
-
-        showSection('joseon-result');
-        drawJoseonRadarChart(result.stats);
-    } else if (currentTest === 'facetier') {
-        const resTitle = document.getElementById('facetier-title');
-        const resDesc = document.getElementById('facetier-desc');
-        const resPercent = document.getElementById('facetier-percent');
-        const resUserImg = document.getElementById('facetier-user-img');
-        if (resUserImg) resUserImg.src = currentImage;
-
-
-        // Deterministic calculation logic based on hash (0.1 ~ 99.9)
-        let finalScore = (hash % 998 + 1) / 10; // 0.1 to 99.9
-
-        const type = finalScore >= 50 ? 'top' : 'bottom';
-        let percentile = type === 'top' ? (100 - finalScore) : finalScore;
-        if (percentile < 0.1) percentile = 0.1;
-        percentile = parseFloat(percentile.toFixed(1));
-
-        const personaList = faceTierCharacters[type];
-        let matchedPersona = personaList[personaList.length - 1];
-        for (let i = 0; i < personaList.length; i++) {
-            if (percentile <= personaList[i].threshold) {
-                matchedPersona = personaList[i];
-                break;
-            }
-        }
-
-        if (resTitle) resTitle.innerText = matchedPersona.title;
-        if (resDesc) resDesc.innerText = matchedPersona.desc;
-
-        const prefix = type === 'top' ? '상위' : '하위';
-        if (resPercent) resPercent.innerText = `${prefix} 50.0%`;
-
-        showSection('facetier-result');
-
-        // Counter animation
-        let frame = 0;
-        const frames = 60;
-        const duration = 2000;
-        const startVal = 50.0;
-        const animate = setInterval(() => {
-            frame++;
-            const progress = frame / frames;
-            const easeProgress = 1 - Math.pow(1 - progress, 3);
-            const currentVal = startVal - (startVal - percentile) * easeProgress;
-            if (resPercent) resPercent.innerText = `${prefix} ${currentVal.toFixed(1)}%`;
-
-            if (frame >= frames) {
-                clearInterval(animate);
-                if (resPercent) resPercent.innerText = `${prefix} ${percentile.toFixed(1)}%`;
-            }
-        }, duration / frames);
-    } else if (currentTest === 'babyface') {
-        const hash = getHash(currentFile ? `${currentFile.name}-${currentFile.size}` : currentImage);
-
-        // Deterministic AI Age calculation (range 18-65 based on hash)
-        let aiAge = (hash % 48) + 18;
-
-        // Diff = AI_Age - Real_Age (as per user logic where negative means looking younger)
-        const diff = aiAge - userAge;
-        const diffAbs = Math.abs(diff);
-
-        // Score for result selection (Higher score if looking younger)
-        // If AI < Real (Diff < 0), score is high.
-        let score = 50 - (diff * 5);
-        score = Math.max(10, Math.min(99, score));
-
-        const resDiffText = document.getElementById('babyface-res-diff-text');
-        const realAgeEl = document.getElementById('babyface-real-age');
-        const aiAgeEl = document.getElementById('babyface-ai-age');
-        const resTitle = document.getElementById('babyface-res-title');
-        const resImg = document.getElementById('babyface-res-img');
-        const resTip = document.getElementById('babyface-res-tip');
-        const resTrait = document.getElementById('babyface-res-trait');
-        const resAbility = document.getElementById('babyface-res-ability');
-
-        // Text & Labels
-        if (realAgeEl) realAgeEl.innerText = `${userAge}세`;
-        if (aiAgeEl) aiAgeEl.innerText = `${aiAge}세`;
-
-        let statusMsg = "";
-        let themeColor = "#40C057";
-
-        if (diff < 0) {
-            statusMsg = `"${diffAbs}살만큼의 시간을 되돌렸습니다! 세월이 당신만 비껴갔네요!"`;
-            themeColor = "#40C057"; // Emerald Green
-        } else if (diff === 0) {
-            statusMsg = `"나이에 걸맞은 가장 아름다운 모습입니다."`;
-            themeColor = "#4dabf7"; // Soft Blue
-        } else {
-            statusMsg = `"성숙함이 돋보이는 클래식한 매력의 소유자!"`;
-            themeColor = "#1864ab"; // Navy
-        }
-
-        if (resDiffText) {
-            resDiffText.innerText = statusMsg;
-            resDiffText.style.color = themeColor;
-        }
-        if (aiAgeEl) aiAgeEl.style.color = themeColor;
-
-        // Find result based on score
-        let result = babyfaceResults[babyfaceResults.length - 1];
-        for (let r of babyfaceResults) {
-            if (score >= r.minScore) {
-                result = r;
-                break;
-            }
-        }
-
-        if (resTitle) resTitle.innerText = result.title;
-        if (resImg) resImg.src = currentImage;
-        if (resTip) resTip.innerText = result.tip;
-        if (resTrait) resTrait.innerText = result.trait;
-        if (resAbility) resAbility.innerText = result.ability;
-
-        // Timeline Bar Logic
-        const realDot = document.getElementById('timeline-real-dot');
-        const aiDot = document.getElementById('timeline-ai-dot');
-
-        // Map age 10-80 to 0-100% position
-        const getPos = (age) => {
-            let p = ((age - 10) / (80 - 10)) * 100;
-            return Math.max(5, Math.min(95, p));
-        };
-
-        if (realDot) realDot.style.left = `${getPos(userAge)}%`;
-        if (aiDot) {
-            aiDot.style.left = `${getPos(aiAge)}%`;
-            aiDot.style.background = themeColor;
-            aiDot.style.boxShadow = `0 2px 10px ${themeColor}44`;
-        }
-
-        showSection('babyface-result');
     }
 }
 

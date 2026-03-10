@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  --font-family: 'Pretendard', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #F8F9FA;
+  color: #333;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Minimalist selection style */
+::selection {
+  background: #B2F2BB;
+  color: #2D3436;
+}

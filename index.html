@@ -133,7 +133,8 @@
                     </div>
                 </div>
                 <!-- 동안 테스트 카드 -->
-                <div class="test-card active-card" id="test-babyface-card">
+                <div class="test-card active-card" id="test-babyface-card"
+                    onclick="currentTest='babyface'; showSection('babyface-home');">
                     <div class="badge" style="background: #40C057; color: #fff;">NEW</div>
                     <div class="card-img">
                         <img src="images/lee.webp" alt="동안 테스트">
@@ -141,14 +142,6 @@
                     <div class="card-info">
                         <h3>동안 테스트</h3>
                         <p>AI가 분석하는 나의 동안도는?</p>
-                    </div>
-                </div>
-
-                <div class="test-card ready">
-                    <div class="card-img placeholder">🧠</div>
-                    <div class="card-info">
-                        <h3>정신 연령 테스트</h3>
-                        <p>준비 중입니다...</p>
                     </div>
                 </div>
             </div>
@@ -251,8 +244,8 @@
             </div>
             <div class="age-input-container" style="margin: 30px 0;">
                 <input type="number" id="user-age-input" placeholder="나이"
-                    style="width: 100px; height: 50px; font-size: 1.6rem; text-align: center; border: none; border-bottom: 2px solid #40C057; outline: none; background: transparent; font-weight: 700; color: #333;">
-                <span style="font-size: 1.1rem; font-weight: 600; color: #888; margin-left: 8px;">세</span>
+                    style="width: 80px; height: 40px; font-size: 1.2rem; text-align: center; border: none; border-bottom: 2px solid #40C057; outline: none; background: transparent; font-weight: 700; color: #333;">
+                <span style="font-size: 1rem; font-weight: 600; color: #888; margin-left: 8px;">세</span>
             </div>
             <button class="btn" id="age-submit-btn"
                 style="background: #40C057; box-shadow: 0 10px 20px rgba(64, 192, 87, 0.3);">AI 분석 시작하기</button>

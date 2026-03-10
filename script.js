@@ -392,6 +392,7 @@ const babyfaceResults = [
 let currentImage = null;
 let currentFile = null;
 let currentTest = 'manhwa'; // 'manhwa', 'moral', 'joseon', or 'facetier'
+let userAge = null;
 
 // Navigation Function
 function showSection(id) {
@@ -444,6 +445,10 @@ function showSection(id) {
 function resetUploadUI() {
     currentImage = null;
     currentFile = null;
+    userAge = null;
+    const ageInput = document.getElementById('user-age-input');
+    if (ageInput) ageInput.value = "";
+
     const imagePreview = document.getElementById('image-preview');
     const scanImg = document.getElementById('scan-img');
     const previewBox = document.getElementById('preview-box');
@@ -530,6 +535,25 @@ function initApp() {
     const analyzeBtn = document.getElementById('analyze-btn');
     if (analyzeBtn) {
         analyzeBtn.addEventListener('click', () => {
+            if (currentTest === 'babyface') {
+                showSection('babyface-age-input');
+            } else {
+                showSection('loading');
+                startAnalysis();
+            }
+        });
+    }
+
+    const ageSubmitBtn = document.getElementById('age-submit-btn');
+    const ageInput = document.getElementById('user-age-input');
+    if (ageSubmitBtn && ageInput) {
+        ageSubmitBtn.addEventListener('click', () => {
+            const val = parseInt(ageInput.value);
+            if (!val || val < 1 || val > 120) {
+                alert('올바른 나이를 입력해주세요 (1~120세)');
+                return;
+            }
+            userAge = val;
             showSection('loading');
             startAnalysis();
         });
@@ -848,17 +872,54 @@ function showResult() {
             }
         }, duration / frames);
     } else if (currentTest === 'babyface') {
-        // Babyface score logic (50 ~ 99)
-        let score = (hash % 50) + 50;
+        const hash = getHash(currentFile ? `${currentFile.name}-${currentFile.size}` : currentImage);
 
-        const resScore = document.getElementById('babyface-res-score');
+        // Deterministic AI Age calculation (range 18-65 based on hash)
+        let aiAge = (hash % 48) + 18;
+
+        // Diff = AI_Age - Real_Age (as per user logic where negative means looking younger)
+        const diff = aiAge - userAge;
+        const diffAbs = Math.abs(diff);
+
+        // Score for result selection (Higher score if looking younger)
+        // If AI < Real (Diff < 0), score is high.
+        let score = 50 - (diff * 5);
+        score = Math.max(10, Math.min(99, score));
+
+        const resDiffText = document.getElementById('babyface-res-diff-text');
+        const realAgeEl = document.getElementById('babyface-real-age');
+        const aiAgeEl = document.getElementById('babyface-ai-age');
         const resTitle = document.getElementById('babyface-res-title');
         const resImg = document.getElementById('babyface-res-img');
         const resTip = document.getElementById('babyface-res-tip');
         const resTrait = document.getElementById('babyface-res-trait');
         const resAbility = document.getElementById('babyface-res-ability');
 
-        // Find matching result
+        // Text & Labels
+        if (realAgeEl) realAgeEl.innerText = `${userAge}세`;
+        if (aiAgeEl) aiAgeEl.innerText = `${aiAge}세`;
+
+        let statusMsg = "";
+        let themeColor = "#40C057";
+
+        if (diff < 0) {
+            statusMsg = `"${diffAbs}살만큼의 시간을 되돌렸습니다! 세월이 당신만 비껴갔네요!"`;
+            themeColor = "#40C057"; // Emerald Green
+        } else if (diff === 0) {
+            statusMsg = `"나이에 걸맞은 가장 아름다운 모습입니다."`;
+            themeColor = "#4dabf7"; // Soft Blue
+        } else {
+            statusMsg = `"성숙함이 돋보이는 클래식한 매력의 소유자!"`;
+            themeColor = "#1864ab"; // Navy
+        }
+
+        if (resDiffText) {
+            resDiffText.innerText = statusMsg;
+            resDiffText.style.color = themeColor;
+        }
+        if (aiAgeEl) aiAgeEl.style.color = themeColor;
+
+        // Find result based on score
         let result = babyfaceResults[babyfaceResults.length - 1];
         for (let r of babyfaceResults) {
             if (score >= r.minScore) {
@@ -867,25 +928,30 @@ function showResult() {
             }
         }
 
-        if (resScore) resScore.innerText = '0점';
         if (resTitle) resTitle.innerText = result.title;
         if (resImg) resImg.src = currentImage;
         if (resTip) resTip.innerText = result.tip;
         if (resTrait) resTrait.innerText = result.trait;
         if (resAbility) resAbility.innerText = result.ability;
 
-        showSection('babyface-result');
+        // Timeline Bar Logic
+        const realDot = document.getElementById('timeline-real-dot');
+        const aiDot = document.getElementById('timeline-ai-dot');
 
-        // Animation for score
-        let currentScore = 0;
-        const animateScore = setInterval(() => {
-            currentScore += 2;
-            if (resScore) resScore.innerText = `${currentScore}점`;
-            if (currentScore >= score) {
-                clearInterval(animateScore);
-                if (resScore) resScore.innerText = `${score}점`;
-            }
-        }, 30);
+        // Map age 10-80 to 0-100% position
+        const getPos = (age) => {
+            let p = ((age - 10) / (80 - 10)) * 100;
+            return Math.max(5, Math.min(95, p));
+        };
+
+        if (realDot) realDot.style.left = `${getPos(userAge)}%`;
+        if (aiDot) {
+            aiDot.style.left = `${getPos(aiAge)}%`;
+            aiDot.style.background = themeColor;
+            aiDot.style.boxShadow = `0 2px 10px ${themeColor}44`;
+        }
+
+        showSection('babyface-result');
     }
 }
 

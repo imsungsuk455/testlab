@@ -132,6 +132,18 @@
                         <p>내 외모는 상위 몇%일까?</p>
                     </div>
                 </div>
+                <!-- 동안 테스트 카드 -->
+                <div class="test-card active-card" id="test-babyface-card">
+                    <div class="badge" style="background: #40C057; color: #fff;">NEW</div>
+                    <div class="card-img" style="background: #E3FAEF;">
+                        <span style="font-size: 3rem;">👶</span>
+                    </div>
+                    <div class="card-info">
+                        <h3>동안 테스트</h3>
+                        <p>AI가 분석하는 나의 동안도는?</p>
+                    </div>
+                </div>
+
                 <div class="test-card ready">
                     <div class="card-img placeholder">🧠</div>
                     <div class="card-info">
@@ -182,6 +194,21 @@
             </div>
             <button class="btn joseon-btn" id="joseon-start-btn">관상을 살펴보러 가기</button>
             <p class="footer">귀하의 초상은 분석 즉시 파기되어 흔적을 남기지 않습니다.</p>
+        </section>
+
+        <!-- 동안 테스트 시작 (홈) -->
+        <section id="babyface-home" class="section">
+            <div class="back-nav" onclick="resetTest()">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h1 style="color: #40C057;">동안 테스트</h1>
+                <p class="subtitle">AI가 분석하는 나의 동안도는?</p>
+            </div>
+            <div class="main-img-placeholder" style="background: #E3FAEF;">
+                <span style="font-size: 5rem;">👶</span>
+            </div>
+            <button class="btn" id="babyface-start-btn"
+                style="background: #40C057; box-shadow: 0 10px 20px rgba(64, 192, 87, 0.3);">테스트 시작하기</button>
+            <p class="footer">제공된 사진은 분석 후 즉시 파기됩니다.</p>
         </section>
 
         <!-- 페이스 티어 테스트 시작 (홈) -->
@@ -362,6 +389,48 @@
             </div>
             <button class="btn facetier-btn" id="facetier-retry-btn" style="margin-top: 10px; background: #333;">다시
                 테스트하기</button>
+        </section>
+
+        <!-- 결과 섹션 (동안 테스트) -->
+        <section id="babyface-result" class="section">
+            <div class="result-header">
+                <p class="subtitle">AI 분석 결과 당신의 동안 점수는...</p>
+                <h2 class="result-title" id="babyface-res-score"
+                    style="color: #40C057; font-size: 3rem; margin-bottom: 10px;">0점</h2>
+                <h3 id="babyface-res-title" style="font-size: 1.5rem; margin-bottom: 20px; color: #333;"></h3>
+            </div>
+
+            <div class="bento-grid" style="grid-template-areas: 'main main' 'stat stat' 'trait ability';">
+                <div class="bento-item bento-main glass" style="border-color: #E3FAEF;">
+                    <img id="babyface-res-img" src="" alt="동안 분석 이미지">
+                </div>
+                <div class="bento-item glass"
+                    style="grid-area: stat; background: #E3FAEF !important; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+                    <span class="label" style="color: #2F9E44;">동안 전문가 코멘트</span>
+                    <p id="babyface-res-tip" style="font-weight: 600; font-size: 0.95rem;"></p>
+                </div>
+                <div class="bento-item glass"
+                    style="grid-area: trait; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+                    <span class="label">동안 지수 분석</span>
+                    <p id="babyface-res-trait" style="font-size: 0.85rem;"></p>
+                </div>
+                <div class="bento-item glass"
+                    style="grid-area: ability; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+                    <span class="label">주요 매력포인트</span>
+                    <p id="babyface-res-ability" style="font-size: 0.85rem;"></p>
+                </div>
+            </div>
+
+            <div class="share-container" style="margin-top: 30px;">
+                <div class="share-btn" id="babyface-copy-link-btn">
+                    <span>🔗</span> 링크 복사
+                </div>
+                <div class="share-btn" id="babyface-share-native-btn">
+                    <span>📤</span> 공유하기
+                </div>
+            </div>
+            <button class="btn" id="babyface-retry-btn" style="margin-top: 10px; background: #666; box-shadow: none;">다른
+                사진으로 테스트</button>
         </section>
     </div>
 

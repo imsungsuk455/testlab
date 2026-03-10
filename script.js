@@ -344,6 +344,50 @@ const faceTierCharacters = {
     ]
 };
 
+// Baby Face Test Result Data
+const babyfaceResults = [
+    {
+        title: "우주급 최강 동안",
+        minScore: 90,
+        tip: "세월이 당신만 비껴갔군요! 지금처럼 긍정적인 마음가짐을 유지하는 것이 최고의 비결입니다.",
+        trait: "티 없이 맑은 피부톤과 둥글고 부드러운 얼굴형이 특징입니다.",
+        ability: "상대방의 경계심을 해제시키는 무해하고 사랑스러운 매력.",
+        theme: "#40C057"
+    },
+    {
+        title: "아이돌급 동안",
+        minScore: 80,
+        tip: "활동적인 에너지가 동안의 비결! 수분 섭취에 조금 더 신경 써주면 완벽하겠네요.",
+        trait: "생기 넘치는 눈매와 탄력 있는 볼 살이 매력 포인트입니다.",
+        ability: "어디서나 막내 같은 귀여움을 독차지하는 신비로운 친화력.",
+        theme: "#40C057"
+    },
+    {
+        title: "깔끔한 동안",
+        minScore: 70,
+        tip: "전형적인 관리형 동안! 꾸준한 세안과 미소 짓는 습관이 운을 불러옵니다.",
+        trait: "이목구비의 조화가 균형 있고 인상이 매우 깔끔합니다.",
+        ability: "나이보다 5~7살은 어려 보여 신선한 충격을 주는 반전 매력.",
+        theme: "#40C057"
+    },
+    {
+        title: "성숙한 매력의 동안",
+        minScore: 50,
+        tip: "동안의 요소와 세련된 성숙함이 공존합니다. 눈가 관리에 힘쓰면 동안도가 더 올라갈 거예요!",
+        trait: "차분한 분위기 속에 숨겨진 앳된 미소가 인상적입니다.",
+        ability: "신뢰감 있는 이미지와 부드러운 인상이 주는 편안한 매력.",
+        theme: "#40C057"
+    },
+    {
+        title: "카리스마 동안",
+        minScore: 0,
+        tip: "강렬한 인상 속에 소년/소녀미가 숨어있네요. 자주 웃으면 동안 에너지가 배가됩니다.",
+        trait: "뚜렷한 이목구비와 건강한 구릿빛 피부가 돋보이는 상입니다.",
+        ability: "어려 보이는 외모와 상반되는 듬직하고 기운 넘치는 에너지.",
+        theme: "#40C057"
+    }
+];
+
 // State
 let currentImage = null;
 let currentFile = null;
@@ -441,7 +485,8 @@ function initApp() {
         'test-manhwa-card': 'manhwa',
         'test-moral-card': 'moral',
         'test-joseon-card': 'joseon',
-        'test-facetier-card': 'facetier'
+        'test-facetier-card': 'facetier',
+        'test-babyface-card': 'babyface'
     };
 
     Object.keys(cards).forEach(id => {
@@ -462,7 +507,8 @@ function initApp() {
         'start-btn': 'manhwa',
         'moral-start-btn': 'moral',
         'joseon-start-btn': 'joseon',
-        'facetier-start-btn': 'facetier'
+        'facetier-start-btn': 'facetier',
+        'babyface-start-btn': 'babyface'
     };
 
     Object.keys(startBtns).forEach(id => {
@@ -476,7 +522,7 @@ function initApp() {
     });
 
     // Other Buttons
-    ['retry-btn', 'moral-retry-btn', 'joseon-retry-btn', 'facetier-retry-btn', 'logo-home'].forEach(id => {
+    ['retry-btn', 'moral-retry-btn', 'joseon-retry-btn', 'facetier-retry-btn', 'babyface-retry-btn', 'logo-home'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener('click', resetTest);
     });
@@ -515,7 +561,9 @@ function initApp() {
         ['joseon-copy-link-btn', copyToClipboard],
         ['joseon-share-native-btn', shareNative],
         ['facetier-copy-link-btn', copyToClipboard],
-        ['facetier-share-native-btn', shareNative]
+        ['facetier-share-native-btn', shareNative],
+        ['babyface-copy-link-btn', copyToClipboard],
+        ['babyface-share-native-btn', shareNative]
     ];
 
     shareActions.forEach(([id, action]) => {
@@ -588,6 +636,14 @@ function startAnalysis() {
             "피부톤 및 대칭성 검사 중...",
             "프리미엄 관상 데이터 대조 중...",
             "당신의 조화로운 수치가 계산되었습니다!"
+        ];
+    } else if (currentTest === 'babyface') {
+        statuses = [
+            "얼굴의 중안부와 하안부 비율 분석 중...",
+            "눈, 코, 입의 앳된 정도 측정 중...",
+            "피부결의 생기와 탄력도 스캔 중...",
+            "동안 데이터베이스 대조 중...",
+            "최고의 동안 매력 포인트를 찾았습니다!"
         ];
     } else {
         createLandmarks();
@@ -791,6 +847,45 @@ function showResult() {
                 if (resPercent) resPercent.innerText = `${prefix} ${percentile.toFixed(1)}%`;
             }
         }, duration / frames);
+    } else if (currentTest === 'babyface') {
+        // Babyface score logic (50 ~ 99)
+        let score = (hash % 50) + 50;
+
+        const resScore = document.getElementById('babyface-res-score');
+        const resTitle = document.getElementById('babyface-res-title');
+        const resImg = document.getElementById('babyface-res-img');
+        const resTip = document.getElementById('babyface-res-tip');
+        const resTrait = document.getElementById('babyface-res-trait');
+        const resAbility = document.getElementById('babyface-res-ability');
+
+        // Find matching result
+        let result = babyfaceResults[babyfaceResults.length - 1];
+        for (let r of babyfaceResults) {
+            if (score >= r.minScore) {
+                result = r;
+                break;
+            }
+        }
+
+        if (resScore) resScore.innerText = '0점';
+        if (resTitle) resTitle.innerText = result.title;
+        if (resImg) resImg.src = currentImage;
+        if (resTip) resTip.innerText = result.tip;
+        if (resTrait) resTrait.innerText = result.trait;
+        if (resAbility) resAbility.innerText = result.ability;
+
+        showSection('babyface-result');
+
+        // Animation for score
+        let currentScore = 0;
+        const animateScore = setInterval(() => {
+            currentScore += 2;
+            if (resScore) resScore.innerText = `${currentScore}점`;
+            if (currentScore >= score) {
+                clearInterval(animateScore);
+                if (resScore) resScore.innerText = `${score}점`;
+            }
+        }, 30);
     }
 }
 

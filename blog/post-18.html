@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI 유형별 '찰떡' 취미 추천: 나만 몰랐던 진정한 힐링 가이드 | TesterLab (테스터랩) 블로그</title>
+    <meta name="description"
+        content="내 MBTI 성향을 바탕으로 지루한 일상에 활력을 불어넣어 줄 '인생 취미'를 찾아보세요. E/I, S/N, J/P 성향에 맞는 최적의 활동을 추천해 드립니다.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --secondary-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            --accent-soft: #eef2ff;
+        }
+
+        .post-container {
+            text-align: left;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-header {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .post-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            color: #1e293b;
+            letter-spacing: -0.02em;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .post-category {
+            background: var(--accent-soft);
+            color: #6366f1;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .post-content {
+            line-height: 1.9;
+            font-size: 1.1rem;
+            color: #334155;
+        }
+
+        .post-content p {
+            margin-bottom: 25px;
+        }
+
+        .post-content h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 50px 0 25px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .post-content h2::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 24px;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+
+        .post-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 35px 0 15px;
+            color: #334155;
+        }
+
+        .post-thumbnail {
+            width: 100%;
+            border-radius: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            display: block;
+        }
+
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 25px;
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .back-to-blog:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Type Card List (Vertical) */
+        .type-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin: 35px 0;
+        }
+
+        .type-card {
+            background: white;
+            padding: 35px;
+            border-radius: 28px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 8px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .type-card:hover {
+            transform: translateX(12px) scale(1.01);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.12);
+            border-color: #e0e7ff;
+        }
+
+        .type-card h4 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .type-card p {
+            margin: 0;
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .type-card.e-type { border-left-color: #f59e0b; background: linear-gradient(to right, #fffcf5, #ffffff); }
+        .type-card.e-type h4 { color: #d97706; }
+        .type-card.i-type { border-left-color: #3b82f6; background: linear-gradient(to right, #f5f9ff, #ffffff); }
+        .type-card.i-type h4 { color: #2563eb; }
+        .type-card.s-type { border-left-color: #10b981; background: linear-gradient(to right, #f6fff9, #ffffff); }
+        .type-card.s-type h4 { color: #059669; }
+        .type-card.n-type { border-left-color: #8b5cf6; background: linear-gradient(to right, #f9f7ff, #ffffff); }
+        .type-card.n-type h4 { color: #7c3aed; }
+        .type-card.j-type { border-left-color: #ef4444; background: linear-gradient(to right, #fff5f5, #ffffff); }
+        .type-card.j-type h4 { color: #dc2626; }
+        .type-card.p-type { border-left-color: #ec4899; background: linear-gradient(to right, #fff5f9, #ffffff); }
+        .type-card.p-type h4 { color: #db2777; }
+
+        .quote-section {
+            background: #f8fafc;
+            border-left: 5px solid #6366f1;
+            padding: 30px;
+            border-radius: 0 24px 24px 0;
+            margin: 40px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-section::after {
+            content: '”';
+            position: absolute;
+            right: 20px;
+            bottom: -20px;
+            font-size: 6rem;
+            color: #e2e8f0;
+            line-height: 1;
+            font-family: serif;
+        }
+
+        .mistake-box {
+            background: #fff1f2;
+            padding: 30px;
+            border-radius: 24px;
+            margin: 40px 0;
+            border: 1px solid #fecdd3;
+        }
+
+        .mistake-box h3 {
+            color: #e11d48;
+            margin-top: 0;
+        }
+
+        .mistake-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mistake-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .mistake-list li::before {
+            content: '✕';
+            position: absolute;
+            left: 0;
+            color: #e11d48;
+            font-weight: bold;
+        }
+
+        .action-box {
+            background: var(--primary-gradient);
+            padding: 40px;
+            border-radius: 32px;
+            color: white;
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .action-box h2 {
+            color: white !important;
+            justify-content: center;
+            margin-top: 0;
+        }
+
+        .action-box h2::before { display: none; }
+
+        .action-list {
+            text-align: left;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .faq-accordion {
+            margin-top: 50px;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #f1f5f9;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 15px;
+        }
+
+        .faq-q {
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .faq-a {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .highlight-text {
+            background: linear-gradient(120deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.2) 100%);
+            padding: 0 4px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #4f46e5;
+        }
+    </style>
+
+    <link rel="canonical" href="https://testerlab.org/blog/post-18.html">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://testerlab.org/blog/post-18.html">
+    <meta property="og:title" content="MBTI 유형별 '찰떡' 취미 추천: 나만 몰랐던 진정한 힐링 가이드">
+    <meta property="og:description"
+        content="내 MBTI 성향을 바탕으로 지루한 일상에 활력을 불어넣어 줄 '인생 취미'를 찾아보세요. E/I, S/N, J/P 성향에 맞는 최적의 활동을 추천해 드립니다.">
+    <meta property="og:image" content="https://testerlab.org/images/thumb_18.webp">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../index.html'">
+                <img src="../images/logo.webp" alt="TesterLab Logo" class="logo-img">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-item">홈</a>
+                <a href="../blog.html" class="nav-item" style="color: var(--accent-color);">블로그</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in">
+        <div class="post-container">
+            <a href="../blog.html" class="back-to-blog">← 목록으로 돌아가기</a>
+            <header class="post-header">
+                <h1 class="post-title">MBTI 유형별 '찰떡' 취미 추천: 나만 몰랐던 진정한 힐링 가이드</h1>
+                <div class="post-meta">
+                    <span class="post-category">MBTI/라이프스타일</span>
+                    <span>작성일: 2026-03-12</span>
+                </div>
+            </header>
+
+            <img src="../images/thumb_18.webp" alt="MBTI 취미 추천 썸네일" class="post-thumbnail">
+
+            <article class="post-content">
+                <p>"주말에 뭐 하세요?"라는 질문에 딱히 대답할 말이 없거나, 남들이 좋다는 골프, 테니스, 독서를 따라 해 봐도 금방 흥미가 식어버린 적 있으신가요? 취미는 단순히 시간을 때우는 활동이 아닙니다. 내가 어떤 사람인지, 어떤 활동을 할 때 가장 '나다움'을 느끼는지를 확인하는 과정이죠.</p>
+
+                <p>성격 유형(MBTI)은 우리가 세상을 대하는 태도뿐만 아니라, 무엇에 열광하고 어디서 에너지를 얻는지도 명확하게 보여줍니다. 오늘은 내 MBTI 성향을 바탕으로, 지루한 일상에 활력을 불어넣어 줄 <span class="highlight-text">'인생 취미'</span>를 찾아드리는 가이드를 준비했습니다.</p>
+
+                <div class="quote-section">
+                    저 또한 한때는 '생산적인 취미'를 가져야 한다는 압박에 억지로 자격증 공부를 취미 삼기도 했습니다. 하지만 제가 'N(직관)'과 'P(인식)' 성향이 강하다는 것을 알고 난 뒤, 틀에 박힌 공부 대신 즉흥적으로 떠나는 출사와 추상화 그리기를 시작했습니다. 결과는 놀라웠습니다. 억지로 할 때보다 훨씬 창의적인 에너지가 샘솟았고, 일상의 스트레스가 눈 녹듯 사라졌죠.
+                </div>
+
+                <h2>1. 에너지의 방향: 함께 북적일까, 혼자 몰입할까? (E vs I)</h2>
+                <p>외향형은 외부와의 교류에서, 내향형은 내면의 평화에서 즐거움을 얻습니다. 취미 활동의 장소를 정할 때 가장 먼저 고려해야 할 기준입니다.</p>
+
+                <div class="type-card-list">
+                    <div class="type-card e-type">
+                        <h4>📢 E(외향형): 함께해서 더 즐거운 팀 활동</h4>
+                        <p>혼자 하는 운동보다는 풋살, 러닝 크루, 댄스 동호회처럼 사람들과 땀 흘리며 소통하는 활동이 최고입니다. 새로운 사람을 만날 기회가 있는 보드게임 모임 등에서 에너지가 충전됩니다.</p>
+                    </div>
+                    <div class="type-card i-type">
+                        <h4>🧘 I(내향형): 고요함 속의 깊은 몰입</h4>
+                        <p>외부의 소음이 차단된 공간에서 나만의 세계에 빠지는 활동이 필요합니다. 필사, 프라모델 조립, 혼자 즐기는 콘솔 게임 등이 좋습니다. 타인의 시선을 신경 쓰지 않을 때 진정한 힐링이 일어납니다.</p>
+                    </div>
+                </div>
+
+                <h2>2. 인식 기능: 현실의 오감 vs 상상의 나래 (S vs N)</h2>
+                <p>감각 유형은 결과물이 눈에 보이는 활동에, 직관 유형은 의미와 영감을 찾는 활동에 끌립니다. 어떤 '행위' 자체에서 즐거움을 느끼는지에 대한 차이입니다.</p>
+
+                <div class="type-card-list">
+                    <div class="type-card s-type">
+                        <h4>🛠️ S(감각 유형): 손맛과 오감이 즐거운 취미</h4>
+                        <p>구체적인 결과물이 눈앞에 나타나야 만족감을 느낍니다. 도예, 목공, 요리, 가죽 공예처럼 손을 부지런히 움직이는 취미가 적합합니다. 캠핑이나 등산처럼 자연을 직접 체험하는 활동도 좋습니다.</p>
+                    </div>
+                    <div class="type-card n-type">
+                        <h4>✨ N(직관 유형): 영감과 상상력이 자극되는 취미</h4>
+                        <p>사물에 담긴 의미를 탐구하는 것을 즐깁니다. 타로 카드, 철학 독서 모임, 창작 글쓰기, 인디 영화 관람 등이 좋습니다. 나만의 세계관을 투영할 수 있는 활동일수록 좋습니다.</p>
+                    </div>
+                </div>
+
+                <h2>3. 생활 양식: 체계적인 성취 vs 자유로운 탐험 (J vs P)</h2>
+                <p>판단 유형은 눈에 보이는 성장에, 인식 유형은 순간의 흥미와 자율성에 반응합니다. 취미를 지속하는 동력이 어디에 있는지 확인해 보세요.</p>
+
+                <div class="type-card-list">
+                    <div class="type-card j-type">
+                        <h4>🏆 J(판단형): 단계별 마스터형 취미</h4>
+                        <p>실력이 느는 것이 눈에 보여야 합니다. 외국어 급수 따기, 악기 연주(곡 완성하기), 수영 등급 올리기 등 목표가 뚜렷하고 계획적으로 수행할 수 있는 취미가 잘 맞습니다.</p>
+                    </div>
+                    <div class="type-card p-type">
+                        <h4>🌈 P(인식형): 즉흥적이고 유연한 탐구</h4>
+                        <p>규칙이 너무 엄격하면 금방 질립니다. 이번 주는 사진, 다음 주는 요리 등 '취미 수집가' 스타일이 많습니다. 정해진 틀 없이 그때그때 끌리는 '원데이 클래스'가 아주 잘 어울립니다.</p>
+                    </div>
+                </div>
+
+                <div class="mistake-box">
+                    <h3>⚠️ 취미 생활 시 자주 하는 실수</h3>
+                    <ul class="mistake-list">
+                        <li><b>'인스타용' 취미에 집착하기:</b> 사진은 잘 나오지만 정작 내가 즐겁지 않다면 그것은 휴식이 아닙니다.</li>
+                        <li><b>장비병에 매몰되기:</b> 시작도 하기 전에 최고급 장비부터 갖추는 것은 압박감을 줄 수 있습니다. 가볍게 시작하세요.</li>
+                        <li><b>효율 따지기:</b> "이게 돈이 되나?"라는 생각을 버리세요. 취미의 유일한 목적은 당신의 즐거움이어야 합니다.</li>
+                    </ul>
+                </div>
+
+                <div class="action-box">
+                    <h2>🚀 지금 바로 시작해보세요!</h2>
+                    <div class="action-list">
+                        <p>✅ 내 MBTI의 첫 글자와 두 번째 글자(E/I, S/N)를 조합해 보고, 끌리는 키워드 3개 적어보기.</p>
+                        <p>✅ 이번 주말, 계획에 없던 '원데이 클래스' 하나 예약해 보기 (P 추천).</p>
+                        <p>✅ 오랫동안 방치했던 취미 용품 중 딱 하나만 꺼내서 10분만 만져보기 (J 추천).</p>
+                    </div>
+                </div>
+
+                <div class="faq-accordion">
+                    <h3>📋 취미 생활 Q&A</h3>
+                    <div class="faq-item">
+                        <span class="faq-q">Q1. 저는 I(내향형)인데 동호회 활동이 즐거워요. 제가 사실 E인 걸까요?</span>
+                        <p class="faq-a">I형도 공통 관심사가 있는 목적 지향적 모임은 즐거워할 수 있습니다. 낯선 사람과의 불필요한 대화는 힘들지만, 좋아하는 주제로 깊이 소통하는 것은 I형에게도 좋은 에너지가 됩니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <span class="faq-q">Q2. 취미가 너무 자주 바뀌어서 고민이에요. 하나를 진득하게 못 하겠어요.</span>
+                        <p class="faq-a">전형적인 P형 혹은 N형의 특징입니다. "끈기가 없다"고 자책하지 마시고, "나는 다양한 스펙트럼을 가진 사람이다"라고 생각하세요. 여러 경험이 합쳐져 나만의 독특한 취향이 만들어질 것입니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <span class="faq-q">Q3. 스트레스가 너무 심할 땐 어떤 취미가 가장 좋은가요?</span>
+                        <p class="faq-a">자신의 '주기능'과 반대되는 활동을 해보세요. 머리를 많이 쓰는 일을 한다면 손을 쓰는 취미(S)를, 하루 종일 사람을 상대했다면 혼자만의 시간(I)을 갖는 것이 좋습니다.</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 60px; font-weight: 700;">내 성격에 딱 맞는 더 많은 추천이 궁금하다면?<br><a
+                        href="../index.html" style="color: #6366f1; text-decoration: none; border-bottom: 2px solid #6366f1;">'테스터랩'에서 정밀 성격 분석 테스트를 시작해보세요!</a></p>
+            </article>
+        </div>
+    </div>
+
+    <footer style="padding: 60px 0; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid #f1f5f9;">
+        <p>&copy; 2026 TesterLab. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

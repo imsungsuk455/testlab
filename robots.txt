@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-User-agent: Yeti
+User-agent: Mediapartners-Google
 Allow: /
 
 User-agent: Googlebot

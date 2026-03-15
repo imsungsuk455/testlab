@@ -775,7 +775,7 @@ function showResult() {
             if (resImg) {
                 resImg.onerror = function () {
                     this.onerror = null;
-                    this.src = this.src.replace('.webp', '.png');
+                    this.src = this.src.replace('.webp', '.webp');
                 };
                 resImg.src = result.img;
             }
@@ -825,7 +825,7 @@ function showResult() {
             if (resImg) {
                 resImg.onerror = function () {
                     this.onerror = null;
-                    this.src = this.src.replace('.webp', '.png');
+                    this.src = this.src.replace('.webp', '.webp');
                 };
                 resImg.src = result.img;
             }
@@ -993,7 +993,7 @@ async function saveFaceTierImage() {
         const image = canvas.toDataURL('image/png');
         const link = document.createElement('a');
         link.href = image;
-        link.download = 'testerlab_facetier_result.png';
+        link.download = 'testerlab_facetier_result.webp';
         link.click();
     } catch (err) {
         console.error('Error saving image:', err);

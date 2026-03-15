@@ -856,7 +856,7 @@ body {
 /* Joseon Theme Styles */
 .joseon-theme-active #app {
     background-color: var(--joseon-bg);
-    background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+    background-image: url('https://www.transparenttextures.com/patterns/natural-paper.webp');
     /* Hanji-like texture */
     border: 1px solid #d3c4a9;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);

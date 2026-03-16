@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI 유형별 '인생 술' & 음주 스타일: 당신의 성격이 고스란히 드러나는 잔 속의 철학 | TesterLab (테스터랩) 블로그</title>
+    <meta name="description"
+        content="MBTI 성향을 바탕으로 나에게 꼭 맞는 인생 술과 음주 스타일을 알아보세요. 북적이는 축제형부터 고요한 혼술형까지, 당신의 잔에 담긴 진심을 찾아드립니다.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%);
+            --secondary-gradient: linear-gradient(135deg, #fffcf0 0%, #fef3c7 100%);
+            --accent-soft: #fff7ed;
+            --drink-amber: #b45309;
+            --drink-wine: #7f1d1d;
+            --drink-beer: #d97706;
+            --drink-cocktail: #db2777;
+        }
+
+        .post-container {
+            text-align: left;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-header {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .post-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            color: #1e293b;
+            letter-spacing: -0.02em;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .post-category {
+            background: var(--accent-soft);
+            color: var(--drink-amber);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .post-content {
+            line-height: 1.9;
+            font-size: 1.1rem;
+            color: #334155;
+        }
+
+        .post-content p {
+            margin-bottom: 25px;
+        }
+
+        .post-content h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 50px 0 25px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .post-content h2::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 24px;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+
+        .post-thumbnail {
+            width: 100%;
+            border-radius: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            display: block;
+        }
+
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 25px;
+            color: var(--drink-amber);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .back-to-blog:hover {
+            transform: translateX(-5px);
+        }
+
+        .type-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin: 35px 0;
+        }
+
+        .type-card {
+            background: white;
+            padding: 35px;
+            border-radius: 28px;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-left: 8px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .type-card:hover {
+            transform: translateX(12px) scale(1.01);
+            box-shadow: 0 15px 40px rgba(124, 45, 18, 0.12);
+            border-color: #fef3c7;
+        }
+
+        .type-card h4 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .type-card p {
+            margin: 0;
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .type-card.e-type { border-left-color: #db2777; background: linear-gradient(to right, #fdf2f8, #ffffff); }
+        .type-card.e-type h4 { color: #be185d; }
+        .type-card.i-type { border-left-color: #7c2d12; background: linear-gradient(to right, #fff7ed, #ffffff); }
+        .type-card.i-type h4 { color: #7c2d12; }
+        .type-card.s-type { border-left-color: #d97706; background: linear-gradient(to right, #fffbeb, #ffffff); }
+        .type-card.s-type h4 { color: #b45309; }
+        .type-card.n-type { border-left-color: #7e22ce; background: linear-gradient(to right, #faf5ff, #ffffff); }
+        .type-card.n-type h4 { color: #7e22ce; }
+        .type-card.j-type { border-left-color: #1e293b; background: linear-gradient(to right, #f8fafc, #ffffff); }
+        .type-card.j-type h4 { color: #1e293b; }
+        .type-card.p-type { border-left-color: #fb923c; background: linear-gradient(to right, #fff7ed, #ffffff); }
+        .type-card.p-type h4 { color: #ea580c; }
+
+        .quote-section {
+            background: #fffdf5;
+            border-left: 5px solid var(--drink-amber);
+            padding: 30px;
+            border-radius: 0 24px 24px 0;
+            margin: 40px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-section::after {
+            content: '”';
+            position: absolute;
+            right: 20px;
+            bottom: -20px;
+            font-size: 6rem;
+            color: #fef3c7;
+            line-height: 1;
+            font-family: serif;
+        }
+
+        .caution-box {
+            background: #fff1f2;
+            padding: 30px;
+            border-radius: 24px;
+            margin: 40px 0;
+            border: 1px solid #fecdd3;
+        }
+
+        .caution-box h3 {
+            color: #e11d48;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .action-box {
+            background: var(--primary-gradient);
+            padding: 40px;
+            border-radius: 32px;
+            color: white;
+            margin: 50px 0;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(124, 45, 18, 0.2);
+        }
+
+        .action-box h2 {
+            color: white !important;
+            justify-content: center;
+            margin-top: 0;
+        }
+
+        .action-box h2::before { display: none; }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #f1f5f9;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-q {
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .highlight-text {
+            background: linear-gradient(120deg, rgba(180, 83, 9, 0.1) 0%, rgba(234, 88, 12, 0.2) 100%);
+            padding: 0 4px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--drink-amber);
+        }
+
+        .conclusion-box {
+            background: #fffbeb;
+            padding: 35px;
+            border-radius: 28px;
+            border: 1px solid #fef3c7;
+            margin: 50px 0;
+            text-align: center;
+        }
+    </style>
+
+    <link rel="canonical" href="https://testerlab.org/blog/post-22.html">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://testerlab.org/blog/post-22.html">
+    <meta property="og:title" content="MBTI 유형별 '인생 술' & 음주 스타일: 당신의 성격이 고스란히 드러나는 잔 속의 철학">
+    <meta property="og:description"
+        content="MBTI 성향을 바탕으로 나에게 꼭 맞는 인생 술과 음주 스타일을 알아보세요. 북적이는 축제형부터 고요한 혼술형까지, 당신의 잔에 담긴 진심을 찾아드립니다.">
+    <meta property="og:image" content="https://testerlab.org/images/thumb_22.webp">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../index.html'">
+                <img src="../images/logo.webp" alt="TesterLab Logo" class="logo-img">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-item">홈</a>
+                <a href="../blog.html" class="nav-item" style="color: var(--accent-color);">블로그</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in">
+        <div class="post-container">
+            <a href="../blog.html" class="back-to-blog">← 목록으로 돌아가기</a>
+            <header class="post-header">
+                <h1 class="post-title">MBTI 유형별 '인생 술' & 음주 스타일: 당신의 성격이 고스란히 드러나는 잔 속의 철학</h1>
+                <div class="post-meta">
+                    <span class="post-category">MBTI/라이프스타일</span>
+                    <span>작성일: 2026-03-16</span>
+                </div>
+            </header>
+
+            <img src="../images/thumb_22.webp" alt="MBTI 인생 술과 음주 스타일 추천 썸네일" class="post-thumbnail">
+
+            <article class="post-content">
+                <p>누군가와 친해지고 싶을 때, 혹은 고단한 하루를 마무리할 때 우리는 종종 '술' 한잔을 떠올립니다. 그런데 흥미로운 점은 술자리에서의 모습이 저마다 제각각이라는 것입니다. 어떤 사람은 마이크를 잡고 분위기를 주도하는 반면, 어떤 사람은 조용히 잔을 기울이며 깊은 대화에 몰입하죠. 이는 단순히 주량의 문제가 아니라, 우리의 성격 유형(MBTI)이 술이라는 매개체를 만났을 때 반응하는 방식이 다르기 때문입니다.</p>
+
+                <p>MBTI는 우리가 어떤 분위기에서 즐거움을 느끼고, 취기가 올랐을 때 어떤 본성이 드러나는지 알려주는 아주 재미있는 '술자리 가이드'가 됩니다. 오늘은 내 MBTI 성향을 바탕으로, 나의 매력을 가장 잘 살려줄 <span class="highlight-text">'인생 술'</span>과 나에게 꼭 맞는 음주 스타일을 정리해 드립니다. 이 글을 끝까지 읽으시면 더 이상 숙취만 남는 술자리가 아닌, 영혼까지 충전되는 기분 좋은 시간을 설계하실 수 있을 것입니다.</p>
+
+                <div class="quote-section">
+                    저 역시 예전에는 무조건 남들이 마시는 소맥(소주+맥주)만 마셨습니다. 하지만 제가 'N(직관)'과 'F(감정)' 성향이 강하다는 것을 알고 난 뒤로는, 술의 맛보다는 그 술에 담긴 이야기와 분위기를 즐기는 '와인'과 '수제 맥주'로 눈을 돌렸습니다. 그 뒤로 술자리는 괴로운 버티기 시간이 아니라, 사람들과 진심 어린 마음을 나누는 소중한 창구가 되었습니다. 여러분도 이제 자신의 성격 엔진에 가장 잘 어울리는 '잔'을 채워보세요.
+                </div>
+
+                <h2>1. 술자리의 온도: 축제의 중심 vs 깊은 밤의 대화 (E vs I)</h2>
+                <p>외향형은 북적이는 에너지 속에서, 내향형은 소수와의 친밀함 속에서 취기를 즐깁니다. 술자리의 목적과 장소를 결정짓는 가장 큰 지표입니다.</p>
+
+                <div class="type-card-list">
+                    <div class="type-card e-type">
+                        <h4>🍹 E(외향형): 분위기를 띄우는 화려한 칵테일 & 테킬라</h4>
+                        <p>사람들이 많이 모이는 펍이나 화려한 바(Bar)가 제격입니다. 처음 보는 사람과도 건배하며 금방 친구가 되는 E형에게는 시각적으로 화려한 칵테일이나 한 번에 에너지를 끌어올리는 테킬라 샷이 잘 어울립니다. 술자리의 텐션을 책임지는 '분위기 메이커' 역할을 할 때 본인도 가장 즐겁습니다.</p>
+                    </div>
+                    <div class="type-card i-type">
+                        <h4>🥃 I(내향형): 진심을 담은 위스키 & 정갈한 사케</h4>
+                        <p>왁자지껄한 술자리보다는 조용한 이자카야나 집에서 즐기는 '혼술'을 선호합니다. 한 잔을 마셔도 그 맛과 향을 음미할 수 있는 싱글 몰트 위스키나, 따뜻하고 부드러운 사케가 인생 술이 될 확률이 높습니다. 취기가 올랐을 때 비로소 평소 하지 못했던 속 깊은 이야기를 꺼내며 정서적 유대감을 쌓습니다.</p>
+                    </div>
+                </div>
+
+                <h2>2. 술을 고르는 기준: 검증된 대중성 vs 독특한 개성 (S vs N)</h2>
+                <p>감각 유형은 익숙하고 깔끔한 맛에, 직관 유형은 독특한 풍미와 스토리에 끌립니다. 주류 메뉴판을 볼 때 가장 먼저 눈이 가는 포인트입니다.</p>
+
+                <div class="type-card-list">
+                    <div class="type-card s-type">
+                        <h4>🍺 S(감각 유형): "실패 없는 선택" 시원한 라거 맥주 & 깔끔한 소주</h4>
+                        <p>현실적이고 실용적인 S형은 실험적인 술보다는 누구나 아는 익숙하고 대중적인 술을 선호합니다. 갈증을 단번에 날려줄 차가운 라거 맥주나, 어떤 안주와도 잘 어울리는 깔끔한 소주가 이들의 정석입니다. "술은 역시 익숙한 게 최고"라는 믿음이 강하며, 안주와의 '조화(마리아주)'에도 매우 민감합니다.</p>
+                    </div>
+                    <div class="type-card n-type">
+                        <h4>🍷 N(직관 유형): "발견하는 재미" 내추럴 와인 & 실험적인 수제 맥주</h4>
+                        <p>술 한 잔에도 의미와 영감이 담기길 원합니다. 생산자의 철학이 담긴 내추럴 와인이나, 독특한 향료가 들어간 인디 수제 맥주처럼 '경험해 보지 못한 맛'에 열광합니다. 라벨 디자인이 예쁘거나 술의 이름에 담긴 비하인드 스토리가 흥미롭다면 맛이 조금 생소하더라도 기꺼이 그 가치를 즐깁니다.</p>
+                    </div>
+                </div>
+
+                <h2>3. 음주 스타일과 태도: 체계적인 조절 vs 유연한 흐름 (J vs P)</h2>
+                <p>판단 유형은 끝을 알고 마시는 계획성을, 인식 유형은 분위기에 몸을 맡기는 즉흥성을 보입니다. 다음 날 아침의 컨디션을 결정짓는 결정적인 태도 차이입니다.</p>
+
+                <div class="type-card-list">
+                    <div class="type-card j-type">
+                        <h4>⏲️ J(판단형): "내일 일정이 있으니까" 절제된 정석 음주</h4>
+                        <p>술자리에 가기 전부터 "오늘은 10시까지만", "딱 한 병만"이라는 기준을 세웁니다. 안주를 먹는 순서나 술을 마시는 속도를 스스로 제어하며, 질서가 흐트러지는 것을 경계합니다. 숙취 해소제를 미리 챙겨 먹는 치밀함을 보이기도 합니다.</p>
+                    </div>
+                    <div class="type-card p-type">
+                        <h4>🕺 P(인식형): "기분이다! 한 잔 더" 즉흥적인 몰입 음주</h4>
+                        <p>분위기가 좋으면 계획에 없던 2차, 3차도 흔쾌히 수락합니다. "인생 뭐 있어?"라는 마음으로 순간의 즐거움에 올인합니다. 술자리의 흐름에 몸을 맡기다 보니 가끔 예상치 못한 에피소드를 만들기도 하지만, 그만큼 자유롭고 즐거운 추억을 많이 쌓습니다.</p>
+                    </div>
+                </div>
+
+                <div class="caution-box">
+                    <h3>⚠️ 자주 하는 실수: "취기는 핑계일 뿐, 본심은 숨길 수 없습니다"</h3>
+                    <p>술은 성격을 증폭시킬 뿐, 완전히 다른 사람으로 만들지는 않습니다.</p>
+                    <ul>
+                        <li><b>'T' 유형의 팩트 폭격:</b> 취기가 오르면 평소보다 더 냉철해져서 분위기를 싸하게 만드는 조언을 할 수 있습니다. 술자리에서는 논리보다 '공감' 한 잔이 더 필요합니다.</li>
+                        <li><b>'F' 유형의 눈물 파티:</b> 서운했던 감정이 폭발해 술자리를 눈물바다로 만들 수 있습니다. 감정을 쏟아내는 것도 좋지만, 상대방의 당황스러움도 고려해 주세요.</li>
+                        <li><b>주량 무시하기:</b> 자신의 한계를 모르는 것은 어떤 유형에게나 독이 됩니다. MBTI보다 중요한 것은 자신의 몸 상태입니다.</li>
+                    </ul>
+                </div>
+
+                <div class="conclusion-box">
+                    <h3>결론: 당신의 잔에는 당신의 성격이 담겨 있습니다</h3>
+                    <p>술은 단순히 알코올을 섭취하는 행위가 아니라, 나를 표현하고 타인과 연결되는 '사회적 언어'입니다. MBTI라는 가이드를 통해 나에게 가장 기분 좋은 취기를 선물해 보세요. 당신이 어떤 술을 선택하든, 그 잔에 담긴 진심이 당신의 삶을 조금 더 풍요롭게 만들어줄 것입니다.</p>
+                </div>
+
+                <div class="action-box">
+                    <h2>✨ 오늘 바로 실천해 볼 것들</h2>
+                    <div style="text-align: left; display: inline-block; margin-top: 20px;">
+                        <p>✅ 오늘 저녁, 내 MBTI 유형에 어울리는 '인생 술' 하나 골라서 직접 마셔보기.</p>
+                        <p>✅ 술자리에서 평소 내가 너무 'J'처럼 굴었다면 조금은 'P'처럼 분위기에 맡겨보기, 혹은 그 반대 시도해 보기.</p>
+                        <p>✅ 내가 좋아하는 술의 '유래'나 '스토리'를 하나 찾아서 다음 술자리에서 가볍게 이야기해 보기.</p>
+                    </div>
+                </div>
+
+                <div class="faq-accordion">
+                    <h3>📋 음주 스타일 관련 Q&A</h3>
+                    <div class="faq-item">
+                        <span class="faq-q">Q1. 저는 평소엔 내향적(I)인데 술만 마시면 외향적(E)으로 변해요.</span>
+                        <p class="faq-a">A1. 술은 우리 뇌의 억제 기제를 일시적으로 해제합니다. 평소 'I'로서 에너지를 비축해두었던 것이 술기운을 빌려 잠시 폭발하는 것이죠. 이는 당신의 내면에 그만큼 열정적인 에너지가 숨어있다는 증거입니다. 다만, 다음 날 '이불킥'을 하지 않을 정도로만 즐기세요!</p>
+                    </div>
+                    <div class="faq-item">
+                        <span class="faq-q">Q2. T 유형인데 취한 친구의 감정을 받아주기가 너무 힘들어요.</span>
+                        <p class="faq-a">A2. 논리적으로 해결해 주려 하지 마세요. 그저 "그랬구나", "힘들었겠네"라는 짧은 맞장구만으로도 충분합니다. 술자리에서의 대화는 '정보 전달'이 아니라 '감정의 배설'인 경우가 많기 때문입니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <span class="faq-q">Q3. 술을 전혀 못 마시는 사람을 위한 MBTI 추천 메뉴도 있을까요?</span>
+                        <p class="faq-a">A3. 당연하죠! E 유형에게는 화려한 장식의 '논알코올 모히토'를, I 유형에게는 깊은 풍미의 '우롱차'나 '진한 수제 에이드'를 추천합니다. 중요한 것은 '무엇을 마시느냐'보다 '그 분위기에 어떻게 참여하느냐'입니다.</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 60px; font-weight: 700;">나만의 술자리를 완성할 더 많은 팁이 궁금하다면?<br><a
+                        href="../index.html" style="color: var(--drink-amber); text-decoration: none; border-bottom: 2px solid var(--drink-amber);">'테스터랩'에서 더 다양한 성격 분석 콘텐츠를 만나보세요!</a></p>
+            </article>
+        </div>
+    </div>
+
+    <footer style="padding: 60px 0; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid #f1f5f9;">
+        <p>&copy; 2026 TesterLab. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

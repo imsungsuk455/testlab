@@ -9,6 +9,7 @@ POSTS_FILE = "posts.txt"
 BLOG_DIR = "blog"
 IMAGES_DIR = "images"
 BLOG_HTML_FILE = "blog.html"
+INDEX_HTML_FILE = "index.html"
 BASE_IMG = os.path.join(IMAGES_DIR, "somenail.png")
 # 시작 글 번호 (1부터 10까지는 기존 글이고, 새로운 시스템은 11번부터 작성)
 START_INDEX = 11
@@ -308,6 +309,56 @@ def append_to_blog_list(post_data, index, thumb_filename):
             f.write(new_html)
         print("blog.html 리스트에 새 글 추가 완료")
 
+def update_index_preview(post_data, index, thumb_filename):
+    if not os.path.exists(INDEX_HTML_FILE):
+        return
+        
+    with open(INDEX_HTML_FILE, "r", encoding="utf-8") as f:
+        html = f.read()
+
+    new_mini_card = f"""
+                    <!-- Post {index} -->
+                    <a href="blog/post-{index}.html" class="blog-mini-card">
+                        <img src="images/{thumb_filename}" alt="{post_data['title']}" class="blog-mini-img">
+                        <div class="blog-mini-info">
+                            <h3>{post_data['title']}</h3>
+                            <p>{post_data['summary'][:60]}...</p>
+                        </div>
+                    </a>"""
+    
+    grid_start_marker = '<div class="blog-preview-grid">'
+    grid_end_marker = '</div>' # The first </div> after grid_start_marker
+    
+    if grid_start_marker in html:
+        parts = html.split(grid_start_marker, 1)
+        grid_content_all = parts[1].split(grid_end_marker, 1)
+        grid_body = grid_content_all[0]
+        rest = grid_content_all[1]
+        
+        # Extract existing cards (split by <!-- Post XX -->)
+        cards = re.split(r'<!-- Post \d+ -->', grid_body)
+        # Clean up whitespace and empty strings
+        cards = [c.strip() for c in cards if c.strip()]
+        
+        # Reconstruct with naming comments
+        # We need the post IDs to properly reconstruct the comments if we want to be perfect, 
+        # but let's just keep it simple: Add new card to top, and take top 5 of existing.
+        
+        # Wrap the new card in its comment
+        new_card_with_comment = f"\n                    <!-- Post {index} -->{new_mini_card}"
+        
+        # Get existing matches of "<!-- Post \d+ -->" to keep comments consistent
+        existing_full_cards = []
+        card_matches = re.findall(r'(<!-- Post \d+ -->.*?</a>)', grid_body, re.DOTALL)
+        
+        updated_grid_body = new_card_with_comment + "\n" + "\n".join(card_matches[:5]) + "\n                "
+        
+        new_html = parts[0] + grid_start_marker + updated_grid_body + grid_end_marker + rest
+        
+        with open(INDEX_HTML_FILE, "w", encoding="utf-8") as f:
+            f.write(new_html)
+        print("index.html 블로그 프리뷰 업데이트 완료")
+
 def main():
     posts = parse_posts()
     next_index = get_next_index()
@@ -329,6 +380,7 @@ def main():
     thumb_filename = create_thumbnail(current_post['title'], next_index)
     generate_post_html(current_post, next_index, thumb_filename)
     append_to_blog_list(current_post, next_index, thumb_filename)
+    update_index_preview(current_post, next_index, thumb_filename)
 
 if __name__ == "__main__":
     main()

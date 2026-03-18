@@ -129,6 +129,7 @@ body {
 .logo-img {
     height: 35px;
     width: auto;
+    max-width: 150px;
     object-fit: contain;
 }
 
@@ -176,6 +177,7 @@ body {
     background: linear-gradient(135deg, rgba(108, 92, 231, 0.05) 0%, rgba(255, 126, 185, 0.05) 100%);
     border-radius: 20px;
     border: 1px solid rgba(108, 92, 231, 0.1);
+    overflow: hidden;
 }
 
 .intro-section h1 {
@@ -233,6 +235,7 @@ body {
     text-decoration: none;
     color: inherit;
     transition: all 0.2s;
+    overflow: hidden;
 }
 
 .blog-mini-card:hover {

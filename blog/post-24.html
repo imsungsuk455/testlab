@@ -16,209 +16,170 @@
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
-            --glass-white: rgba(255, 255, 255, 0.85);
+            --accent-soft: #eff6ff;
             --deep-blue: #1e3a8a;
             --sky-blue: #3b82f6;
-            --gold: #d97706;
-            --soft-blue: #eff6ff;
             --text-main: #1e293b;
             --text-sub: #64748b;
         }
 
-        body {
-            background: #f8fafc;
-        }
-
-        .post-wrapper {
-            max-width: 800px;
+        .post-container {
+            text-align: left;
+            padding: 0;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 40px 20px;
         }
 
-        .back-link {
+        .back-to-blog {
             display: inline-flex;
             align-items: center;
+            margin-bottom: 25px;
             color: var(--deep-blue);
             text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 30px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 600;
+            transition: transform 0.2s ease;
         }
 
-        .back-link:hover {
+        .back-to-blog:hover {
             transform: translateX(-5px);
         }
 
-        .hero-section {
-            text-align: center;
-            margin-bottom: 60px;
+        .post-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
         }
 
-        .post-category {
-            display: inline-block;
-            background: var(--soft-blue);
-            color: var(--deep-blue);
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.85rem;
+        .post-title {
+            font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .hero-title {
-            font-size: clamp(2rem, 5vw, 2.8rem);
-            font-weight: 900;
-            line-height: 1.2;
+            margin-bottom: 15px;
+            line-height: 1.4;
             color: var(--text-main);
-            margin-bottom: 25px;
             letter-spacing: -0.03em;
         }
 
-        .hero-meta {
+        .post-meta {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            align-items: center;
+            gap: 12px;
             color: var(--text-sub);
-            font-size: 0.95rem;
-            margin-bottom: 40px;
+            font-size: 0.9rem;
         }
 
-        .hero-img-container {
-            position: relative;
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-            margin-bottom: 50px;
+        .post-category {
+            background: var(--accent-soft);
+            color: var(--deep-blue);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.8rem;
         }
 
-        .hero-img {
+        .post-thumbnail {
             width: 100%;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             display: block;
-            transition: transform 0.8s ease;
         }
 
-        .hero-img-container:hover .hero-img {
-            transform: scale(1.03);
+        .post-content {
+            line-height: 1.85;
+            font-size: 1.05rem;
+            color: #334155;
         }
 
-        .post-article {
-            font-size: 1.15rem;
-            line-height: 1.9;
-            color: var(--text-main);
+        .post-content p {
+            margin-bottom: 25px;
         }
 
-        .post-article p {
-            margin-bottom: 30px;
-        }
-
-        .intro-quote {
-            background: white;
-            padding: 40px;
-            border-radius: 32px;
-            border-left: 8px solid var(--sky-blue);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            margin: 50px 0;
-            font-style: italic;
-            position: relative;
-        }
-
-        .intro-quote::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 5rem;
-            color: var(--sky-blue);
-            opacity: 0.1;
-            font-family: serif;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
+        .post-content h2 {
+            font-size: 1.5rem;
             font-weight: 800;
-            margin: 70px 0 30px;
+            margin: 50px 0 20px;
+            color: var(--text-main);
             display: flex;
             align-items: center;
-            gap: 15px;
-            color: var(--text-main);
+            gap: 12px;
         }
 
-        .section-title span {
-            display: inline-flex;
+        .post-content h2 span {
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             background: var(--primary-gradient);
             color: white;
-            border-radius: 12px;
-            font-size: 1.2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
 
-        /* Golden Word Cards */
-        .word-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+        .highlight {
+            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .quote-box {
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            border-left: 6px solid var(--sky-blue);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             margin: 40px 0;
+            font-style: italic;
+        }
+
+        /* Word Cards */
+        .word-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
         }
 
         .word-card {
-            background: var(--glass-white);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .word-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(30, 58, 138, 0.08);
-            border-color: var(--sky-blue);
+            background: #f8fafc;
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
         }
 
         .word-card h4 {
-            font-size: 1.4rem;
-            font-weight: 900;
-            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
             color: var(--deep-blue);
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .word-card h4::after {
-            content: '✨';
-            font-size: 1rem;
-        }
-
         .word-card p {
-            font-size: 1rem;
+            margin: 0 !important;
+            font-size: 0.95rem;
             color: var(--text-sub);
-            margin: 0;
             line-height: 1.6;
         }
 
-        /* Tutorial Steps */
+        /* Tutorial Container */
         .tutorial-container {
-            background: white;
-            padding: 40px;
-            border-radius: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-            margin: 40px 0;
+            background: #fff;
+            padding: 20px;
+            border-radius: 24px;
+            border: 1px solid #f1f5f9;
+            margin: 30px 0;
         }
 
         .step-item {
             display: flex;
-            gap: 25px;
-            margin-bottom: 40px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .step-item:last-child {
@@ -227,206 +188,150 @@
 
         .step-num {
             flex-shrink: 0;
-            width: 50px;
-            height: 50px;
-            background: var(--soft-blue);
+            width: 40px;
+            height: 40px;
+            background: var(--accent-soft);
             color: var(--sky-blue);
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 18px;
-            font-weight: 900;
-            font-size: 1.2rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1rem;
         }
 
         .step-content h4 {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin: 0 0 8px 0;
             color: var(--text-main);
         }
 
         .step-content p {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             color: var(--text-sub);
+            margin: 0 !important;
+        }
+
+        /* Caution Box */
+        .caution-box {
+            background: #fff1f2;
+            padding: 25px;
+            border-radius: 24px;
+            border: 1px solid #ffe4e6;
+            margin: 40px 0;
+        }
+
+        .caution-box h3 {
+            color: #be123c;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+        }
+
+        .caution-list {
+            list-style: none;
+            padding: 0;
             margin: 0;
         }
 
-        /* Alert/Caution Box */
-        .alert-box {
-            background: #fff1f2;
-            padding: 40px;
-            border-radius: 32px;
-            border: 1px solid #ffe4e6;
-            margin: 60px 0;
-        }
-
-        .alert-box h3 {
-            color: #be123c;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 0;
-            margin-bottom: 25px;
-        }
-
-        .alert-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .alert-list li {
+        .caution-list li {
             position: relative;
-            padding-left: 28px;
-            margin-bottom: 15px;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
             color: #4b5563;
         }
 
-        .alert-list li::before {
+        .caution-list li::before {
             content: '✕';
             position: absolute;
             left: 0;
             color: #be123c;
-            font-weight: 900;
+            font-weight: 800;
         }
 
-        /* Conclusion */
-        .conclusion-card {
+        /* Action Card */
+        .action-card {
             background: var(--primary-gradient);
-            padding: 50px;
-            border-radius: 40px;
+            padding: 35px 25px;
+            border-radius: 28px;
             color: white;
             text-align: center;
-            margin: 80px 0;
-            position: relative;
-            overflow: hidden;
+            margin: 50px 0;
+            box-shadow: 0 15px 35px rgba(30, 58, 138, 0.2);
         }
 
-        .conclusion-card::before {
-            content: '☀️';
-            position: absolute;
-            font-size: 10rem;
-            top: -20px;
-            right: -20px;
-            opacity: 0.1;
-        }
-
-        .conclusion-card h3 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-top: 0;
-            margin-bottom: 20px;
+        .action-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
             color: white !important;
+            margin: 0 0 15px 0;
         }
 
-        .conclusion-card p {
-            font-size: 1.2rem;
-            line-height: 1.7;
-            margin: 0;
-            opacity: 0.9;
+        .action-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+            text-align: left;
         }
 
-        /* FAQ Section */
-        .faq-section {
-            margin-top: 80px;
+        .action-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
+        .action-item span {
+            font-size: 1.4rem;
+        }
+
+        .action-item p {
+            margin: 0 !important;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* FAQ */
         .faq-item {
             background: white;
-            padding: 25px 30px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 16px;
             border: 1px solid #f1f5f9;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            border-color: var(--sky-blue);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+            margin-bottom: 12px;
         }
 
         .faq-q {
             font-weight: 800;
             color: var(--text-main);
-            font-size: 1.1rem;
+            font-size: 1rem;
+            margin-bottom: 8px;
             display: block;
-            margin-bottom: 12px;
         }
 
         .faq-a {
             color: var(--text-sub);
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin: 0;
-            line-height: 1.7;
         }
 
-        .action-list {
-            display: grid;
-            gap: 15px;
-            margin-top: 30px;
+        @media (max-width: 500px) {
+            .post-title { font-size: 1.6rem; }
+            .post-content h2 { font-size: 1.4rem; }
         }
 
-        .action-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .action-item span {
-            font-size: 1.5rem;
-        }
-
-        .header-content {
-            max-width: 800px;
-        }
-
-        @media (max-width: 600px) {
-            .post-wrapper { padding: 30px 15px; }
-            .hero-section { margin-bottom: 30px; }
-            .hero-title { font-size: 1.6rem; }
-            .hero-meta { gap: 10px; font-size: 0.85rem; flex-wrap: wrap; margin-bottom: 30px; }
-            .hero-img-container { border-radius: 24px; margin-bottom: 30px; }
-            .post-article { font-size: 1.05rem; line-height: 1.7; }
-            .post-article p { margin-bottom: 20px; }
-            .intro-quote { padding: 25px; border-radius: 20px; margin: 30px 0; }
-            .word-grid { gap: 15px; }
-            .word-card { padding: 20px; border-radius: 20px; }
-            .word-card h4 { font-size: 1.2rem; }
-            .section-title { font-size: 1.4rem; margin: 50px 0 20px; }
-            .section-title span { width: 32px; height: 32px; font-size: 1rem; border-radius: 8px; }
-            .tutorial-container { padding: 25px 20px; border-radius: 24px; }
-            .step-item { gap: 15px; margin-bottom: 30px; }
-            .step-num { width: 40px; height: 40px; font-size: 1rem; border-radius: 12px; }
-            .step-content h4 { font-size: 1.1rem; }
-            .step-content p { font-size: 0.95rem; }
-            .alert-box { padding: 25px; border-radius: 24px; margin: 40px 0; }
-            .alert-box h3 { font-size: 1.2rem; margin-bottom: 15px; }
-            .alert-list li { font-size: 0.95rem; }
-            .conclusion-card { padding: 35px 25px; border-radius: 24px; margin: 60px 0; }
-            .conclusion-card h3 { font-size: 1.5rem; }
-            .conclusion-card p { font-size: 1.05rem; }
-            .action-item { padding: 15px; gap: 10px; border-radius: 16px; }
-            .action-item span { font-size: 1.2rem; }
-            .faq-section { margin-top: 50px; }
-            .faq-item { padding: 20px; border-radius: 16px; }
-            .faq-q { font-size: 1rem; }
-            .faq-a { font-size: 0.9rem; }
-        }
-
-        /* Scroll Animation */
-        .fade-up {
+        .fade-in-up {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.1, 0, 0.1, 1);
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
         }
 
-        .fade-up.visible {
+        .fade-in-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -454,130 +359,122 @@
         </div>
     </header>
 
-    <div class="post-wrapper">
-        <a href="../blog.html" class="back-link">← 블로그 목록으로</a>
-
-        <header class="hero-section fade-up">
-            <span class="post-category">Self Development</span>
-            <h1 class="hero-title">행운을 부르는 말투의 힘:<br>말 한마디로 바뀌는 인생의 밀물과 썰물</h1>
-            <div class="hero-meta">
-                <span>📅 2026.03.18</span>
-                <span>👤 TesterLab Editor</span>
-                <span>⏱️ 5 min read</span>
-            </div>
-            <div class="hero-img-container">
-                <img src="../images/thumb_24.webp" alt="행운을 부르는 말투의 힘 썸네일" class="hero-img">
-            </div>
-        </header>
-
-        <article class="post-article">
-            <p class="fade-up">우리는 매일 수많은 사람과 대화를 나누고 수천 개의 단어를 뱉어내지만, 정작 내가 내뱉는 <b>'말의 결'</b>이 내 삶에 어떤 영향을 주는지 깊게 고민해 본 적은 드뭅니다. 흔히 "말이 씨가 된다"는 속담을 가볍게 넘기곤 하지만, 심리학과 언어학적 관점에서 보면 우리가 사용하는 단어와 문장은 <span style="background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%); padding: 2px 4px;">뇌의 회로를 결정</span>하고 타인이 나를 대하는 태도를 형성하는 가장 강력한 설계도입니다.</p>
-
-            <p class="fade-up">말투는 단순히 정보를 전달하는 수단을 넘어, 현재 내 삶의 에너지 흐름을 보여주는 지표입니다. 긍정적이고 확신에 찬 말투는 기회를 끌어당기는 자석이 되고, 부정적이고 냉소적인 말투는 찾아온 행운조차 밀어내는 벽이 됩니다. 오늘은 당장 오늘 저녁 대화부터 적용해 행운을 불러올 수 있는 <b>'행운의 말투 튜토리얼'</b>을 준비했습니다.</p>
-
-            <div class="intro-quote fade-up">
-                저 또한 과거에는 겸손이 미덕이라 생각하며 "제가 뭘요", "운이 좋았을 뿐이에요"라는 식의 소극적인 표현을 입에 달고 살았습니다. 하지만 이런 말투가 제 잠재의식에 <b>'나는 부족한 사람'</b>이라는 낙인을 찍고 있다는 것을 깨달았습니다. 이후 "감사합니다", "제가 해낼 수 있어서 기쁩니다"라는 능동적인 화법으로 바꾼 뒤, 제 주변에는 더 도전적이고 긍정적인 사람들이 모이기 시작했습니다.
-            </div>
-
-            <h2 class="section-title fade-up"><span>1</span> 운의 흐름을 바꾸는 세 가지 '골든 워딩'</h2>
-            <p class="fade-up">어떤 단어를 선택하느냐에 따라 당신의 하루가 결정됩니다. 우리가 무의식중에 가장 많이 사용하는 단어들에는 저마다의 에너지가 담겨 있습니다. 특히 주목해야 할 포인트입니다.</p>
-
-            <div class="word-grid">
-                <div class="word-card fade-up">
-                    <h4>"다행이다"</h4>
-                    <p><b>위기관리의 말:</b> 나쁜 상황 속에서도 긍정적인 면을 찾아내는 습관입니다. "망했다" 대신 "이만하길 다행이다"라고 말하는 순간, 뇌는 스트레스 모드에서 해결책을 찾는 모드로 전환됩니다.</p>
+    <div id="app" class="fade-in">
+        <div class="post-container">
+            <a href="../blog.html" class="back-to-blog">← 목록으로 돌아가기</a>
+            
+            <header class="post-header">
+                <span class="post-category">Self Development</span>
+                <h1 class="post-title">행운을 부르는 말투의 힘:<br>말 한마디로 바뀌는 인생의 밀물과 썰물</h1>
+                <div class="post-meta">
+                    <span>📅 2026.03.18</span>
+                    <span>👤 Editor</span>
                 </div>
-                <div class="word-card fade-up">
-                    <h4>"덕분에"</h4>
-                    <p><b>인덕을 부르는 말:</b> 나의 성취를 타인의 공으로 돌리는 마법의 단어입니다. "내가 했다" 대신 "당신 덕분에 잘 풀렸다"라고 말하면, 주변 사람들은 당신을 돕고 싶은 든든한 조력자로 변하게 됩니다.</p>
-                </div>
-                <div class="word-card fade-up">
-                    <h4>"그럴 수 있지"</h4>
-                    <p><b>포용의 말:</b> 타인의 실수나 예상치 못한 변수에 유연하게 대처하는 말입니다. 이 말을 자주 쓰는 사람은 갈등이 적고, 감정 소모가 줄어들어 본인의 목표에 집중할 에너지를 얻게 됩니다.</p>
-                </div>
-            </div>
+            </header>
 
-            <h2 class="section-title fade-up"><span>2</span> 1분 만에 매력을 높이는 '행운의 대화법'</h2>
-            <p class="fade-up">특별한 기술 없이도 상대방의 호감을 얻고 운을 틔우는 구체적인 방법입니다. 매일의 연습으로 다듬어보세요.</p>
+            <img src="../images/thumb_24.webp" alt="행운을 부르는 말투의 힘 썸네일" class="post-thumbnail">
 
-            <div class="tutorial-container fade-up">
-                <div class="step-item">
-                    <div class="step-num">01</div>
-                    <div class="step-content">
-                        <h4>문장의 끝을 차분하게 맺기</h4>
-                        <p>말 끝을 올리거나 흐리는 습관은 자신감이 없어 보이게 만듭니다. "합니다.", "그렇습니다."와 같이 명확하게 마침표를 찍으세요. 말의 끝맺음이 단단할수록 상대방은 당신의 말에 신뢰를 느낍니다.</p>
+            <article class="post-content">
+                <p class="fade-in-up">우리는 매일 수많은 사람과 대화를 나누고 수천 개의 단어를 뱉어내지만, 정작 내가 내뱉는 <b>'말의 결'</b>이 내 삶에 어떤 영향을 주는지 깊게 고민해 본 적은 드뭅니다. 흔히 "말이 씨가 된다"는 속담을 가볍게 넘기곤 하지만, 심리학과 언어학적 관점에서 보면 우리가 사용하는 단어와 문장은 <span class="highlight">뇌의 회로를 결정</span>하고 타인이 나를 대하는 태도를 형성하는 가장 강력한 설계도입니다.</p>
+
+                <p class="fade-in-up">말투는 단순히 정보를 전달하는 수단을 넘어, 현재 내 삶의 에너지 흐름을 보여주는 지표입니다. 긍정적이고 확신에 찬 말투는 기회를 끌어당기는 자석이 되고, 부정적이고 냉소적인 말투는 찾아온 행운조차 밀어내는 벽이 됩니다. 오늘은 당장 오늘 저녁 대화부터 적용해 행운을 불러올 수 있는 <b>'행운의 말투 튜토리얼'</b>을 준비했습니다.</p>
+
+                <div class="quote-box fade-in-up">
+                    저 또한 과거에는 겸손이 미덕이라 생각하며 "제가 뭘요", "운이 좋았을 뿐이에요"라는 식의 소극적인 표현을 입에 달고 살았습니다. 하지만 이런 말투가 제 잠재의식에 <b>'나는 부족한 사람'</b>이라는 낙인을 찍고 있다는 것을 깨달았습니다. 이후 "감사합니다", "제가 해낼 수 있어서 기쁩니다"라는 능동적인 화법으로 바꾼 뒤, 제 주변에는 더 도전적이고 긍정적인 사람들이 모이기 시작했습니다.
+                </div>
+
+                <h2 class="fade-in-up"><span>1</span> 운의 흐름을 바꾸는 세 가지 '골든 워딩'</h2>
+                <p class="fade-in-up">어떤 단어를 선택하느냐에 따라 당신의 하루가 결정됩니다. 우리가 무의식중에 가장 많이 사용하는 단어들에는 저마다의 에너지가 담겨 있습니다.</p>
+
+                <div class="word-grid">
+                    <div class="word-card fade-in-up">
+                        <h4>"다행이다"</h4>
+                        <p>나쁜 상황 속에서도 긍정적인 면을 찾아내는 습관입니다. "망했다" 대신 "이만하길 다행이다"라고 말하는 순간, 뇌는 스트레스 모드에서 해결책을 찾는 모드로 전환됩니다.</p>
+                    </div>
+                    <div class="word-card fade-in-up">
+                        <h4>"덕분에"</h4>
+                        <p>나의 성취를 타인의 공으로 돌리는 마법의 단어입니다. "내가 했다" 대신 "당신 덕분에 잘 풀렸다"라고 말하면, 주변 사람들이 당신을 돕고 싶어집니다.</p>
+                    </div>
+                    <div class="word-card fade-in-up">
+                        <h4>"그럴 수 있지"</h4>
+                        <p>타인의 실수나 예상치 못한 변수에 유연하게 대처하는 말입니다. 이 말을 자주 쓰는 사람은 갈등이 적고, 감정 소모가 줄어들어 목표에 집중하게 됩니다.</p>
                     </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-num">02</div>
-                    <div class="step-content">
-                        <h4>'하지만' 대신 '그리고' 사용하기</h4>
-                        <p>반대할 때 "하지만"이라고 시작하면 대화의 흐름이 끊깁니다. 대신 "맞아요, 그리고 이런 관점도 있어요"라고 <b>'And 화법'</b>을 써보세요. 상대의 의견을 존중하면서 내 생각을 덧붙이는 기술입니다.</p>
+
+                <h2 class="fade-in-up"><span>2</span> 1분 만에 매력을 높이는 '행운의 대화법'</h2>
+                
+                <div class="tutorial-container fade-in-up">
+                    <div class="step-item">
+                        <div class="step-num">01</div>
+                        <div class="step-content">
+                            <h4>문장의 끝을 차분하게 맺기</h4>
+                            <p>"합니다.", "그렇습니다."와 같이 명확하게 마침표를 찍으세요. 말의 끝맺음이 단단할수록 상대방은 신뢰를 느낍니다.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">02</div>
+                        <div class="step-content">
+                            <h4>'하지만' 대신 '그리고' 사용하기</h4>
+                            <p>"맞아요, 그리고 이런 관점도 있어요"라고 <b>'And 화법'</b>을 써보세요. 상대의 의견을 존중하면서 내 생각을 덧붙이는 기술입니다.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">03</div>
+                        <div class="step-content">
+                            <h4>감탄사 아끼지 않기</h4>
+                            <p>"와!", "대단하네요!"와 같은 긍정적인 리액션은 대화의 활력을 불어넣고 좋은 소식을 불러옵니다.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-num">03</div>
-                    <div class="step-content">
-                        <h4>감탄사 아끼지 않기</h4>
-                        <p>"와!", "대단하네요!", "정말요?"와 같은 긍정적인 리액션은 대화의 활력을 불어넣습니다. 리액션이 좋은 사람 주변에는 항상 즐거운 소식과 정보가 모이기 마련입니다.</p>
+
+                <div class="caution-box fade-in-up">
+                    <h3>⚠️ 주의: 운을 갉아먹는 '말의 독소'</h3>
+                    <ul class="caution-list">
+                        <li><b>냉소와 비꼬기:</b> 비꼼은 나의 잠재의식까지 부정적으로 물들입니다.</li>
+                        <li><b>습관적인 "안 돼", "몰라":</b> 성장의 문을 닫는 행위입니다.</li>
+                        <li><b>뒷담화와 험담:</b> 타인을 깎아내리는 말은 나의 품격을 떨어뜨립니다.</li>
+                    </ul>
+                </div>
+
+                <h2 class="fade-in-up"><span>3</span> 말투보다 깊은 '진심'</h2>
+                <p class="fade-in-up">진성한 행운의 말투는 타인을 향한 따뜻한 관심에서 시작됩니다. 말투를 바꾸면 행동이 바뀌고, 행동이 바뀌면 운명이 바뀐다는 말은 진리입니다.</p>
+
+                <div class="action-card fade-in-up">
+                    <h3>결론: 입술은 실천의 붓입니다</h3>
+                    <div class="action-list">
+                        <div class="action-item">
+                            <span>🎁</span>
+                            <p>오늘 만나는 사람에게 <b>"덕분에 즐거웠다"</b>는 인사 건네기</p>
+                        </div>
+                        <div class="action-item">
+                            <span>💪</span>
+                            <p>부정적인 생각이 들 때 <b>"다행이다"</b>로 바꿔보기</p>
+                        </div>
+                        <div class="action-item">
+                            <span>❤️</span>
+                            <p>자기 전 나에게 <b>"고마워"</b>라고 말해주기</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="alert-box fade-up">
-                <h3>⚠️ 주의: 운을 갉아먹는 '말의 독소'</h3>
-                <ul class="alert-list">
-                    <li><b>냉소와 비꼬기:</b> 비꼼은 상대방뿐만 아니라 나의 잠재의식까지 부정적으로 물들입니다.</li>
-                    <li><b>습관적인 "안 돼", "몰라":</b> 시도해 보기도 전에 성장의 문을 닫는 행위입니다. "모른다" 대신 "알아보겠다"고 말하세요.</li>
-                    <li><b>뒷담화와 험담:</b> 남을 깎아내리는 말은 결국 나 자신의 품격을 떨어뜨립니다. 그 대가로 치러야 할 '신뢰의 상실'은 뼈아픕니다.</li>
-                </ul>
-            </div>
-
-            <h2 class="section-title fade-up"><span>3</span> 말투보다 깊은 '진심': 결국 마음의 소리</h2>
-            <p class="fade-up">진정한 행운의 말투는 타인을 향한 따뜻한 관심에서 시작됩니다. 말투를 바꾸면 행동이 바뀌고, 행동이 바뀌면 운명이 바뀐다는 말은 진리입니다. 하지만 가장 강력한 대화법은 상대방을 진심으로 위하는 마음입니다.</p>
-
-            <p class="fade-up">누군가와 대화할 때 그 사람의 장점을 하나라도 찾아내어 진심으로 칭찬해 보세요. 억지로 꾸며낸 말이 아닌, 마음에서 우러나오는 따뜻한 말 한마디가 상대방의 안색을 밝히고, 그 밝은 기운이 다시 나에게 선순환되어 돌아옵니다.</p>
-
-            <div class="conclusion-card fade-up">
-                <h3>결론: 당신의 입술은 내일의 풍경을 그리는 붓입니다</h3>
-                <p>오늘 당신이 누군가에게 건넨 말은 어떤 빛깔이었나요? 작은 실천만으로도 당신의 인생은 바로 이 순간부터 풍요로운 밀물을 맞이하게 될 것입니다.</p>
-                <div class="action-list">
-                    <div class="action-item">
-                        <span>🎁</span>
-                        <p>오늘 만나는 사람에게 <br><b>"덕분에 즐거웠다"</b>는 인사 건네기</p>
+                <div class="faq-section fade-in-up">
+                    <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 20px;">📋 말투 관련 Q&A</h3>
+                    <div class="faq-item">
+                        <span class="faq-q">Q1. 화가 날 때는 도저히 예쁜 말이 안 나와요.</span>
+                        <p class="faq-a">그럴 때는 일단 <b>3초만 침묵</b>하세요. 심호흡 후 "나는 이런 기분을 느꼈어"라고 말하면 갈등을 해결로 바꿀 수 있습니다.</p>
                     </div>
-                    <div class="action-item">
-                        <span>💪</span>
-                        <p>부정적인 생각이 들 때 <br><b>"다행이다"</b>라는 말로 문장 바꿔보기</p>
-                    </div>
-                    <div class="action-item">
-                        <span>❤️</span>
-                        <p>자기 전, 오늘 하루 고생한 나에게 <br><b>"고마워"</b>라고 소리 내어 말해주기</p>
+                    <div class="faq-item">
+                        <span class="faq-q">Q2. 가식적으로 보이지 않을까요?</span>
+                        <p class="faq-a">처음엔 어색하겠지만 진심은 결국 전달됩니다. 가식이 아니라 타인을 향한 <b>'예의'</b>라고 생각하세요.</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="faq-section fade-up">
-                <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 30px;">📋 말투와 운세 관련 Q&A</h3>
-                <div class="faq-item">
-                    <span class="faq-q">Q1. 화가 날 때는 도저히 예쁜 말이 안 나오는데 어떡하죠?</span>
-                    <p class="faq-a">그럴 때는 일단 <b>3초만 침묵</b>하세요. 화가 치밀어 오를 때 바로 내뱉는 말은 100% 독설이 됩니다. 심호흡을 한 뒤, "나는 이런 기분을 느꼈어"라고 '나(I-Message)'를 주어로 말하면 갈등을 행운의 해결로 바꿀 수 있습니다.</p>
-                </div>
-                <div class="faq-item">
-                    <span class="faq-q">Q2. 말투를 바꾸면 주변 사람들이 가식적이라고 생각하지 않을까요?</span>
-                    <p class="faq-a">처음에는 어색할 수 있습니다. 하지만 진심이 담긴 긍정의 말은 시간이 지나면 반드시 전달됩니다. 가식적인 친절이 아닌, 타인과 나를 배려하는 <b>'예의'</b>라고 생각하세요. 품격 있는 말투는 결국 당신의 가치를 높여주는 최고의 액세서리가 됩니다.</p>
-                </div>
-                <div class="faq-item">
-                    <span class="faq-q">Q3. 말투가 운세에 영향을 미친다는 과학적 근거가 있나요?</span>
-                    <p class="faq-a">심리학에는 <b>'확증 편향'</b>과 <b>'자기 충족적 예언'</b>이라는 용어가 있습니다. 긍정적인 말을 내뱉으면 뇌는 그 말에 맞는 증거들을 현실에서 찾아내기 시작합니다. 결국 내가 내뱉은 말이 현실을 인식하는 필터가 되어, 실제로 좋은 기회를 포착할 확률을 높여주는 것입니다.</p>
-                </div>
-            </div>
-
-            <p class="fade-up" style="text-align: center; margin-top: 80px; font-weight: 800; color: var(--deep-blue);">
-                당신의 일상에 행운을 더하는 더 많은 비결이 궁금하다면?<br>
-                <a href="../index.html" style="text-decoration: underline; color: inherit;">'테스터랩'에서 다양한 심리 분석을 경험해보세요!</a>
-            </p>
-        </article>
+                <p class="fade-in-up" style="text-align: center; margin-top: 50px; font-weight: 700;">
+                    더 많은 행운 팁이 궁금하다면?<br>
+                    <a href="../index.html" style="color: var(--deep-blue); text-decoration: none; border-bottom: 2px solid var(--deep-blue);">'테스터랩'에서 다양한 심리 분석을 경험해보세요!</a>
+                </p>
+            </article>
+        </div>
     </div>
 
     <footer style="padding: 60px 0; text-align: center; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid #f1f5f9;">
@@ -585,22 +482,15 @@
     </footer>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-up').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
     </script>
 </body>
 

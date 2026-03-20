@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>행운을 부르는 '관계의 디톡스': 나를 갉아먹는 인연을 정리하고 복을 채우는 법 | TesterLab (테스터랩) 블로그</title>
+    <title>운을 끌어당기는 '공간 정돈'의 마법: 버리는 순간 채워지는 행운의 법칙 | TesterLab (테스터랩) 블로그</title>
     <meta name="description"
-        content="진정한 행운은 비워진 자리에서 시작됩니다. 내면의 에너지를 갉아먹는 관계를 정리하고, 긍정적인 귀인들로 주변을 채워 운의 선순환을 만드는 지혜를 확인해보세요.">
+        content="인생의 중요한 기회와 긍정적인 에너지는 내가 머무는 '공간'의 상태에 따라 달라집니다. 불필요한 것을 비우고 새로운 행운이 들어올 자리를 만드는 공간 정돈 튜토리얼을 확인해보세요.">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -15,12 +15,11 @@
         crossorigin="anonymous"></script>
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
-            --accent-soft: #f0fdf4;
-            --sage-green: #059669;
-            --sky-blue: #3b82f6;
+            --primary-gradient: linear-gradient(135deg, #0d9488 0%, #06b6d4 100%);
+            --accent-soft: #f0fdfa;
+            --deep-teal: #0f766e;
             --text-main: #1e293b;
-            --text-sub: #64748b;
+            --text-sub: #475569;
         }
 
         .post-container {
@@ -34,7 +33,7 @@
             display: inline-flex;
             align-items: center;
             margin-bottom: 25px;
-            color: var(--sage-green);
+            color: var(--deep-teal);
             text-decoration: none;
             font-weight: 600;
             transition: transform 0.2s ease;
@@ -69,7 +68,7 @@
 
         .post-category {
             background: var(--accent-soft);
-            color: var(--sage-green);
+            color: var(--deep-teal);
             padding: 4px 12px;
             border-radius: 100px;
             font-weight: 700;
@@ -118,7 +117,7 @@
         }
 
         .highlight {
-            background: linear-gradient(120deg, #dcfce7 0%, #ccfbf1 100%);
+            background: linear-gradient(120deg, #ccfbf1 0%, #99f6e4 100%);
             padding: 2px 4px;
             border-radius: 4px;
             font-weight: 600;
@@ -128,39 +127,42 @@
             background: white;
             padding: 30px;
             border-radius: 24px;
-            border-left: 6px solid #10b981;
+            border-left: 6px solid #0d9488;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             margin: 40px 0;
             font-style: italic;
         }
 
-        /* Vampire Cards */
-        .vampire-grid {
+        /* Ritual Cards */
+        .ritual-grid {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin: 30px 0;
         }
 
-        .vampire-card {
-            background: #f8fafc;
+        .ritual-card {
+            background: #fff;
             padding: 24px;
             border-radius: 20px;
-            border: 1px solid #f1f5f9;
+            border: 1px solid #ccfbf1;
             transition: all 0.3s ease;
         }
 
-        .vampire-card h4 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            margin: 0 0 10px 0;
-            color: var(--sage-green);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .ritual-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
         }
 
-        .vampire-card p {
+        .ritual-card h4 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            color: var(--deep-teal);
+        }
+
+        .ritual-card p {
             margin: 0 !important;
             font-size: 0.95rem;
             color: var(--text-sub);
@@ -172,7 +174,7 @@
             background: #fff;
             padding: 20px;
             border-radius: 24px;
-            border: 1px solid #f1f5f9;
+            border: 1px solid #ccfbf1;
             margin: 30px 0;
         }
 
@@ -191,7 +193,7 @@
             width: 40px;
             height: 40px;
             background: var(--accent-soft);
-            color: var(--sage-green);
+            color: var(--deep-teal);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -215,15 +217,15 @@
 
         /* Alert/Caution Box */
         .caution-box {
-            background: #fffbeb;
+            background: #f0fdfa;
             padding: 25px;
             border-radius: 24px;
-            border: 1px solid #fef3c7;
+            border: 1px solid #ccfbf1;
             margin: 40px 0;
         }
 
         .caution-box h3 {
-            color: #b45309;
+            color: #0f766e;
             font-weight: 800;
             font-size: 1.2rem;
             margin: 0 0 15px 0;
@@ -244,7 +246,7 @@
         }
 
         .caution-list li::before {
-            content: '⚠️';
+            content: '🌿';
             position: absolute;
             left: 0;
             font-size: 0.9rem;
@@ -258,7 +260,7 @@
             color: white;
             text-align: center;
             margin: 50px 0;
-            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 15px 35px rgba(13, 148, 136, 0.2);
         }
 
         .action-card h3 {
@@ -301,7 +303,7 @@
             background: white;
             padding: 20px;
             border-radius: 16px;
-            border: 1px solid #f1f5f9;
+            border: 1px solid #ccfbf1;
             margin-bottom: 12px;
         }
 
@@ -338,9 +340,9 @@
     <link rel="canonical" href="https://testerlab.org/blog/post-26.html">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://testerlab.org/blog/post-26.html">
-    <meta property="og:title" content="행운을 부르는 '관계의 디톡스': 나를 갉아먹는 인연을 정리하고 복을 채우는 법">
+    <meta property="og:title" content="운을 끌어당기는 '공간 정돈'의 마법: 버리는 순간 채워지는 행운의 법칙">
     <meta property="og:description"
-        content="진정한 행운은 비워진 자리에서 시작됩니다. 내면의 에너지를 갉아먹는 관계를 정리하고, 긍정적인 귀인들로 주변을 채워 운의 선순환을 만드는 지혜를 확인해보세요.">
+        content="인생의 중요한 기회와 긍정적인 에너지는 내가 머무는 '공간'의 상태에 따라 달라집니다. 불필요한 것을 비우고 새로운 행운이 들어올 자리를 만드는 공간 정돈 튜토리얼을 확인해보세요.">
     <meta property="og:image" content="https://testerlab.org/images/thumb_26.webp">
 </head>
 
@@ -363,117 +365,119 @@
             <a href="../blog.html" class="back-to-blog">← 목록으로 돌아가기</a>
             
             <header class="post-header">
-                <span class="post-category">Human Relations</span>
-                <h1 class="post-title">행운을 부르는 '관계의 디톡스':<br>나를 갉아먹는 인연을 정리하고 복을 채우는 법</h1>
+                <span class="post-category">Luck & Mindset</span>
+                <h1 class="post-title">운을 끌어당기는 '공간 정돈'의 마법:<br>버리는 순간 채워지는 행운의 법칙</h1>
                 <div class="post-meta">
-                    <span>📅 2026.03.21</span>
+                    <span>📅 2026.03.20</span>
                     <span>👤 Editor</span>
                 </div>
             </header>
 
-            <img src="../images/thumb_26.webp" alt="관계의 디톡스 썸네일" class="post-thumbnail">
+            <img src="../images/thumb_26.webp" alt="공간 정돈의 마법 썸네일" class="post-thumbnail">
 
             <article class="post-content">
-                <p class="fade-in-up">우리는 흔히 운이 하늘에서 뚝 떨어지는 것이라 생각하지만, 사실 대부분의 기회와 행운은 <b>'사람'</b>을 타고 옵니다. 하지만 반대로 나를 지치게 하고 에너지를 뺏어가는 인연이 내 곁을 꽉 채우고 있다면, 정작 내 인생을 바꿔줄 소중한 귀인이 들어올 자리는 사라지게 됩니다.</p>
+                <p class="fade-in-up">우리는 흔히 운이 밖에서 찾아오는 로또 같은 것이라고 생각합니다. 하지만 인생의 중요한 기회와 긍정적인 에너지는 의외로 내가 매일 머무는 <b>'공간'</b>의 상태에 따라 머물기도 하고 떠나기도 합니다. 발 디딜 틈 없이 물건이 쌓여있거나 먼지가 내려앉은 방은 정체된 에너지를 만들어내고, 이는 거주자의 사고방식과 컨디션에도 고스란히 영향을 미칩니다.</p>
 
-                <p class="fade-in-up">인간관계에도 <span class="highlight">'정리 정돈'</span>이 필요합니다. 물건을 비워내듯, 내 마음의 에너지를 갉아먹는 관계를 멀리하고 긍정적인 자극을 주는 인연에 집중하는 것, 이것이 바로 '운의 선순환'을 만드는 핵심 비결입니다. 오늘은 당장 내 주변의 인맥을 점검하고 행운을 끌어당길 수 있는 <b>'관계 디톡스 튜토리얼'</b>을 준비했습니다.</p>
+                <p class="fade-in-up">정리는 단순히 깨끗하게 치우는 청소가 아닙니다. 나에게 불필요한 과거의 집착을 덜어내고, 새로운 행운이 들어올 <span class="highlight">'빈자리'</span>를 만드는 의식에 가깝습니다. 오늘은 큰 비용을 들이지 않고도 집안의 공기를 바꾸고, 막혀있던 운의 흐름을 틔워줄 <b>'공간 정돈 튜토리얼'</b>을 준비했습니다.</p>
 
                 <div class="quote-box fade-in-up">
-                    저 또한 예전에는 '모두에게 좋은 사람'이 되고 싶어 거절하지 못하고 모든 모임에 참석하곤 했습니다. 하지만 결과적으로는 제 에너지만 고갈되었고, 정작 제 성장을 응원해 주는 소중한 사람들에게 소홀해졌죠. 용기를 내어 부정적인 관계를 정리하기 시작하자, 신기하게도 제 일을 진심으로 도와줄 파트너들이 나타나고 삶의 활력이 되살아나는 것을 경험했습니다.
+                    저 또한 한때는 '언젠가 쓰겠지'라는 생각으로 물건을 쌓아두고 살았습니다. 물건이 많아질수록 결정 장애가 심해지고 늘 피곤함을 느꼈죠. 하지만 마음을 먹고 불필요한 물건들을 비워내기 시작하자, 신기하게도 머릿속이 맑아지며 새로운 프로젝트 아이디어가 샘솟고 좋은 인연들이 찾아오기 시작했습니다.
                 </div>
 
-                <h2 class="fade-in-up"><span>1</span> 운을 막는 '에너지 뱀파이어' 감별법</h2>
-                <p class="fade-in-up">나의 기운을 뺏어가는 인연을 알아차리는 것이 디톡스의 시작입니다. 만나고 돌아오는 길에 진이 빠진다면, 다음 세 가지 유형이 아닌지 살펴보세요.</p>
-
-                <div class="vampire-grid">
-                    <div class="vampire-card fade-in-up">
-                        <h4>끊임없는 불평주의자</h4>
-                        <p>세상을 원망하고 남 탓만 하는 사람과 오래 있으면 나도 모르게 부정적인 주파수에 전염됩니다. 행운은 밝은 기운을 좋아하기에 이런 관계는 당신의 운세를 정체시킵니다.</p>
+                <h2 class="fade-in-up"><span>1</span> 운의 입구를 다스리는 3가지 '포인트 정돈법'</h2>
+                <div class="ritual-grid">
+                    <div class="ritual-card fade-in-up">
+                        <span class="icon">🚪</span>
+                        <h4>현관 (행운의 시작점)</h4>
+                        <p>외부의 기운이 들어오는 첫 관문입니다. 신지 않는 신발은 신발장에 넣고, 바닥을 깨끗이 닦아보세요. 밝고 깨끗한 현관은 귀인을 불러들이는 자석이 됩니다.</p>
                     </div>
-                    <div class="vampire-card fade-in-up">
-                        <h4>비난 섞인 조언자</h4>
-                        <p>"다 너 잘되라고 하는 소리야"라며 교묘하게 자존감을 깎는 사람입니다. 진정한 귀인은 당신의 가능성을 믿어주지, 한계를 짓지 않습니다.</p>
+                    <div class="ritual-card fade-in-up">
+                        <span class="icon">🛌</span>
+                        <h4>침실 (에너지의 충전소)</h4>
+                        <p>잠을 자는 동안 우리는 공간의 기운을 흡수합니다. 침대 밑에 물건을 쌓아두지 말고, 베개 주변을 정돈하세요. 원활한 공기 흐름이 숙면과 내면의 힘을 길러줍니다.</p>
                     </div>
-                    <div class="vampire-card fade-in-up">
-                        <h4>필요할 때만 찾는 기회주의자</h4>
-                        <p>당신의 자원을 이용만 하고 정작 당신이 힘들 때는 곁에 없는 관계입니다. 이런 인연에 쏟는 시간은 행운을 갉아먹는 시간 낭비일 뿐입니다.</p>
+                    <div class="ritual-card fade-in-up">
+                        <span class="icon">🍳</span>
+                        <h4>주방 (건강과 재물)</h4>
+                        <p>물과 불을 동시에 쓰는 주방은 재물운과 직결됩니다. 설거지감을 쌓아두지 않고 가스레인지 주변을 닦는 것만으로도 경제적 안정을 꾀할 수 있습니다.</p>
                     </div>
                 </div>
 
-                <h2 class="fade-in-up"><span>2</span> 매끄럽게 거리를 두는 '관계 정리'</h2>
+                <h2 class="fade-in-up"><span>2</span> '비움'으로 행운을 부르는 3단계 튜토리얼</h2>
+                
                 <div class="tutorial-container fade-in-up">
                     <div class="step-item">
                         <div class="step-num">01</div>
                         <div class="step-content">
-                            <h4>'감정 일기' 써보기</h4>
-                            <p>최근 소통한 명단을 적고, 대화 후 기분을 점수로 매겨보세요. 점수가 낮은 사람과는 의식적으로 만남의 횟수를 줄여야 합니다.</p>
+                            <h4>'설레지 않는' 물건과 이별하기</h4>
+                            <p>1년 넘게 쓰지 않은 물건, 깨지거나 고장 난 물건은 과감히 비워내야 합니다. 낡은 기운을 덜어내야 비로소 새로운 행운이 담길 공간이 생깁니다.</p>
                         </div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">02</div>
                         <div class="step-content">
-                            <h4>'정중한 거절' 연습하기</h4>
-                            <p>"이번에는 선약이 있어서 어렵겠네요"와 같이 명확하게 거절하세요. 거절은 타인을 거부하는 것이 아니라 나 자신을 수용하는 행위입니다.</p>
+                            <h4>물건마다 '집'을 정해주기</h4>
+                            <p>사용 후 반드시 제자리로 돌아가게 하세요. 물건에 주소를 부여하면 찾는 시간을 줄일 수 있고, 그만큼 삶에 집중할 에너지가 생깁니다.</p>
                         </div>
                     </div>
                     <div class="step-item">
                         <div class="step-num">03</div>
                         <div class="step-content">
-                            <h4>나만의 '안전 기지' 구축하기</h4>
-                            <p>부정적인 관계를 줄인 만큼, 나를 지지해주는 귀인들에게 먼저 연락하세요. 좋은 에너지를 주고받을 때 운세는 상승 기류를 탑니다.</p>
+                            <h4>바닥과 평면 비우기</h4>
+                            <p>식탁이나 책상 위 물건은 시각적 노이즈를 만들어 스트레스를 유발합니다. 깨끗한 수평선은 마음의 평화를 가져다주는 최고의 인테리어입니다.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="caution-box fade-in-up">
-                    <h3>⚠️ 주의: 관계를 망치는 '독소 태도'</h3>
+                    <h3>⚠️ 주의: 운을 갉아먹는 '공간의 독소'</h3>
                     <ul class="caution-list">
-                        <li><b>과도한 자기비하:</b> 부정적인 사람들의 타깃이 되기 쉽습니다. 당당함이 행운을 끌어당깁니다.</li>
-                        <li><b>모두를 만족시키려는 강박:</b> 모든 사람에게 사랑받으려 하면 나 자신을 잃게 됩니다.</li>
-                        <li><b>감정의 쓰레기통 자처:</b> 타인의 감정을 무조건 받아주는 것이 배려가 아닙니다.</li>
+                        <li><b>시든 식물과 죽은 꽃:</b> 생명력을 잃은 것은 정체된 기운을 뿜어냅니다. 살아있는 생화나 화분으로 생기를 불어넣으세요.</li>
+                        <li><b>보이지 않는 곳의 쓰레기:</b> 서랍 안이나 옷장 깊숙한 잡동사니는 마음속의 짐입니다. 보이지 않는 곳이 깨끗해야 진정한 변화가 시작됩니다.</li>
+                        <li><b>낡은 속옷과 수건:</b> 몸에 직접 닿는 직물이 낡았다면 바로 교체하세요. 자신을 귀하게 대접하는 마음이 행운을 맞이할 자격을 줍니다.</li>
                     </ul>
                 </div>
 
-                <h2 class="fade-in-up"><span>3</span> 관계보다 깊은 '자존감'</h2>
-                <p class="fade-in-up">진정한 관계의 디톡스는 나 자신을 가장 소중한 인연으로 대접하는 것입니다. 잡초를 뽑아내야 꽃이 필 자리가 생기듯, 불필요한 인연을 비워냈을 때 비로소 진짜 인연들이 나타납니다.</p>
+                <h2 class="fade-in-up"><span>3</span> 정돈보다 깊은 '마음의 여백'</h2>
+                <p class="fade-in-up">공간을 비우는 과정은 곧 내 마음의 복잡한 타래를 푸는 과정입니다. 외부 환경을 통제하고 질서를 잡는 경험은 "내 삶을 내가 조절할 수 있다"는 강력한 자신감을 심어줍니다. 이 자신감이 곧 운을 포착하는 용기가 됩니다.</p>
 
                 <div class="action-card fade-in-up">
-                    <h3>결론: 당신의 인맥은 정원입니다</h3>
+                    <h3>결론: 당신의 방은 미래를 비추는 거울입니다</h3>
                     <div class="action-list">
                         <div class="action-item">
-                            <span>🗑️</span>
-                            <p>연락처 목록에서 1년간 연락 없는 <b>번호 5개 삭제</b>하기</p>
+                            <span>💄</span>
+                            <p>오늘 당장 유통기한 지난 <b>화장품/식품 3개</b> 버리기</p>
                         </div>
                         <div class="action-item">
-                            <span>💌</span>
-                            <p>나를 응원해주는 소중한 사람에게 <b>고맙다는 메시지</b> 보내기</p>
+                            <span>👟</span>
+                            <p>현관 바닥의 신발 중 <b>딱 한 켤레만 남기고</b> 다 넣기</p>
                         </div>
                         <div class="action-item">
-                            <span>🚫</span>
-                            <p>내키지 않는 모임의 권유가 온다면 <b>명확하게 거절</b>해보기</p>
+                            <span>🪑</span>
+                            <p>내가 가장 오래 머무는 <b>책상 위</b> 깨끗이 닦아보기</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-section fade-in-up">
-                    <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 20px;">📋 관계 디톡스 관련 Q&A</h3>
+                    <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 20px;">📋 공간 정돈 관련 Q&A</h3>
                     <div class="faq-item">
-                        <span class="faq-q">Q1. 직장 상사처럼 피할 수 없는 관계가 빌런이라면?</span>
-                        <p class="faq-a">물리적으로 멀어질 수 없다면 <b>'심리적 거리'</b>를 두세요. 그들의 말을 감정적으로 수용하지 말고 제3자의 시선으로 바라보는 연습이 필요합니다.</p>
+                        <span class="faq-q">Q1. 정리를 잘 못 하는 성격인데, 한꺼번에 다 치워야 효과가 있나요?</span>
+                        <p class="faq-a">아니요, 아주 작은 단위부터 시작하세요. '오늘은 이 서랍 한 칸만'처럼 작은 성공의 경험이 뇌에 도파민을 공급해 다음 단계로 나아갈 힘을 줍니다.</p>
                     </div>
                     <div class="faq-item">
-                        <span class="faq-q">Q2. 인맥이 넓어야 운이 좋아지는 것 아닌가요?</span>
-                        <p class="faq-a">운은 '양'보다 '질'입니다. 100명의 얕은 지인보다 나를 진심으로 이해해주는 1명의 귀인이 인생을 바꿉니다.</p>
+                        <span class="faq-q">Q2. 추억이 깃든 물건이라 버리기가 너무 힘들어요.</span>
+                        <p class="faq-a">물건 그 자체가 추억은 아닙니다. 사진으로 남기거나 가장 소중한 것 하나만 남기세요. 과거에 너무 묶여있으면 미래의 행운이 들어올 자리가 좁아집니다.</p>
                     </div>
                     <div class="faq-item">
-                        <span class="faq-q">Q3. 제가 누군가에게 민폐일까 봐 걱정돼요.</span>
-                        <p class="faq-a">이런 고민을 한다는 것 자체가 이미 타인을 배려하는 사람이라는 증거입니다. 칭찬과 감사의 언어를 늘려가는 것만으로도 충분합니다.</p>
+                        <span class="faq-q">Q3. 정리를 하면 실제로 돈이 모이나요?</span>
+                        <p class="faq-a">네, 중복 구매를 막아주고 정돈된 환경에서 오는 심리적 안정감이 충동구매를 줄여주는 강력한 억제제 역할을 합니다.</p>
                     </div>
                 </div>
 
                 <p class="fade-in-up" style="text-align: center; margin-top: 50px; font-weight: 700;">
-                    내일의 행운을 여는 더 많은 지혜가 궁금하다면?<br>
-                    <a href="../index.html" style="color: var(--sage-green); text-decoration: none; border-bottom: 2px solid var(--sage-green);">'테스터랩'에서 다양한 성향 분석을 경험해보세요!</a>
+                    내 공간의 에너지를 바꾸는 더 많은 방법이 궁금하다면?<br>
+                    <a href="../index.html" style="color: var(--deep-teal); text-decoration: none; border-bottom: 2px solid var(--deep-teal);">'테스터랩'에서 당신의 성향에 맞는 라이프스타일을 찾아보세요!</a>
                 </p>
             </article>
         </div>

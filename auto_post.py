@@ -10,6 +10,8 @@ BLOG_DIR = "blog"
 IMAGES_DIR = "images"
 BLOG_HTML_FILE = "blog.html"
 INDEX_HTML_FILE = "index.html"
+SITEMAP_FILE = "sitemap.xml"
+RSS_FILE = "rss.xml"
 BASE_IMG = os.path.join(IMAGES_DIR, "somenail.png")
 # 시작 글 번호 (1부터 10까지는 기존 글이고, 새로운 시스템은 11번부터 작성)
 START_INDEX = 11
@@ -203,11 +205,11 @@ def generate_post_html(post_data, index, thumb_filename):
         .post-content p {{ margin-bottom: 20px; }}
         .post-content h2 {{ font-size: 1.4rem; font-weight: 700; margin: 40px 0 20px; color: var(--accent-color); }}
         .post-content h3 {{ font-size: 1.2rem; font-weight: 700; margin: 30px 0 15px; }}
-        .post-thumbnail {{ width: 100%; border-radius: 20px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); display: block; }}
-        .back-to-blog {{ display: inline-block; margin-bottom: 20px; color: var(--accent-color); text-decoration: none; font-weight: 600; }}
-        .faq-box {{ background: #f8f9fa; padding: 20px; border-radius: 16px; margin: 30px 0; }}
-        .summary-box {{ background: #f0f1ff; padding: 25px; border-radius: 20px; border-left: 5px solid var(--accent-color); margin: 40px 0; }}
+        .back-to-blog { display: inline-block; margin-bottom: 20px; color: var(--accent-color); text-decoration: none; font-weight: 600; }
+        .faq-box { background: #f8f9fa; padding: 20px; border-radius: 16px; margin: 30px 0; }
+        .summary-box { background: #f0f1ff; padding: 25px; border-radius: 20px; border-left: 5px solid var(--accent-color); margin: 40px 0; }
     </style>
+    
     
     <link rel="canonical" href="https://testerlab.org/blog/post-{index}.html">
     <!-- Open Graph / Facebook -->
@@ -359,6 +361,61 @@ def update_index_preview(post_data, index, thumb_filename):
             f.write(new_html)
         print("index.html 블로그 프리뷰 업데이트 완료")
 
+def update_sitemap(index):
+    if not os.path.exists(SITEMAP_FILE):
+        return
+        
+    today_str = datetime.datetime.now().strftime("%Y-%m-%d")
+    new_url = f"""  <url>
+    <loc>https://testerlab.org/blog/post-{index}.html</loc>
+    <lastmod>{today_str}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+"""
+    with open(SITEMAP_FILE, "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    if f"post-{index}</loc>" in content:
+        return
+        
+    if "</urlset>" in content:
+        new_content = content.replace("</urlset>", new_url + "</urlset>")
+        with open(SITEMAP_FILE, "w", encoding="utf-8") as f:
+            f.write(new_content)
+        print("sitemap.xml 업데이트 완료")
+
+def update_rss(post_data, index):
+    if not os.path.exists(RSS_FILE):
+        return
+        
+    now = datetime.datetime.now()
+    # RFC 2822 format for pubDate
+    pub_date = now.strftime("%a, %d %b %Y %H:%M:%S +0900")
+    
+    new_item = f"""  <item>
+    <title>{post_data['title']} | TesterLab</title>
+    <link>https://testerlab.org/blog/post-{index}.html</link>
+    <description>{post_data['summary']}</description>
+    <pubDate>{pub_date}</pubDate>
+  </item>
+"""
+    with open(RSS_FILE, "r", encoding="utf-8") as f:
+        content = f.read()
+        
+    if f"post-{index}</link>" in content:
+        return
+
+    # Update lastBuildDate
+    content = re.sub(r'<lastBuildDate>.*?</lastBuildDate>', f'<lastBuildDate>{pub_date}</lastBuildDate>', content)
+    
+    if "</language>" in content:
+        parts = content.split("</language>", 1)
+        new_content = parts[0] + "</language>\n\n" + new_item + parts[1]
+        with open(RSS_FILE, "w", encoding="utf-8") as f:
+            f.write(new_content)
+        print("rss.xml 업데이트 완료")
+
 def main():
     posts = parse_posts()
     next_index = get_next_index()
@@ -381,6 +438,8 @@ def main():
     generate_post_html(current_post, next_index, thumb_filename)
     append_to_blog_list(current_post, next_index, thumb_filename)
     update_index_preview(current_post, next_index, thumb_filename)
+    update_sitemap(next_index)
+    update_rss(current_post, next_index)
 
 if __name__ == "__main__":
     main()

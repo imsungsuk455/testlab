@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>번아웃 증후군 탈출하기: 멈춰버린 나를 다시 움직이게 하는 '마음 회복' 가이드 | TesterLab (테스터랩) 블로그</title>
+    <meta name="description"
+        content="몸과 마음의 모든 연료가 타버린 '번아웃 증후군'. 다시 일상의 활력을 찾고 나를 보호하는 구체적인 에너지 재충전 튜토리얼을 통해 소진된 마음을 정화해보세요.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+            --accent-soft: #fdf4ff;
+            --ink-deep: #1e1b4b;
+            --healing-teal: #14b8a6;
+            --warning-amber: #f59e0b;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        .post-container {
+            text-align: left;
+            padding: 0;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 25px;
+            color: var(--ink-deep);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .back-to-blog:hover {
+            transform: translateX(-5px);
+        }
+
+        .post-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .post-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .post-category {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+        }
+
+        .post-thumbnail {
+            width: 100%;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            display: block;
+        }
+
+        .post-content {
+            line-height: 1.9;
+            font-size: 1.08rem;
+            color: #334155;
+        }
+
+        .post-content p {
+            margin-bottom: 28px;
+        }
+
+        .post-content h2 {
+            font-size: 1.55rem;
+            font-weight: 800;
+            margin: 55px 0 25px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .post-content h2 span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+        }
+
+        .highlight-glow {
+            background: linear-gradient(120deg, rgba(139, 92, 246, 0.15) 0%, rgba(217, 70, 239, 0.15) 100%);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            color: #7c3aed;
+        }
+
+        .story-box {
+            background: #faf5ff;
+            padding: 35px;
+            border-radius: 30px;
+            border-left: 8px solid #d946ef;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
+            margin: 45px 0;
+            position: relative;
+        }
+
+        .story-box::before {
+            content: '“';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(217, 70, 239, 0.1);
+            font-family: serif;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 35px 0;
+        }
+
+        .status-card {
+            background: white;
+            padding: 28px;
+            border-radius: 28px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .status-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: #e879f9;
+        }
+
+        .status-card h4 {
+            font-size: 1.25rem;
+            font-weight: 850;
+            margin: 0 0 15px 0;
+            color: var(--ink-deep);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-tag {
+            font-size: 0.75rem;
+            background: #fff1f2;
+            color: #e11d48;
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        /* Recharge Tutorial */
+        .recharge-wrap {
+            background: #fff;
+            padding: 35px;
+            border-radius: 35px;
+            border: 1px solid #f1f5f9;
+            margin: 40px 0;
+            background-image: radial-gradient(at 0% 0%, rgba(217, 70, 239, 0.05) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.05) 0px, transparent 50%);
+        }
+
+        .recharge-step {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .recharge-step::after {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 60px;
+            height: calc(100% - 25px);
+            width: 2px;
+            background: #f1f5f9;
+        }
+
+        .recharge-step:last-child::after { display: none; }
+
+        .recharge-num {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: #8b5cf6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            border: 2px solid #f5f3ff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1;
+        }
+
+        .recharge-content h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin: 0 0 12px 0;
+            color: var(--text-main);
+        }
+
+        /* Toxic Warning Box */
+        .toxic-box {
+            background: #fff7ed;
+            padding: 35px;
+            border-radius: 32px;
+            border: 1px solid #ffedd5;
+            margin: 45px 0;
+        }
+
+        .toxic-box h3 {
+            color: #9a3412;
+            font-weight: 900;
+            font-size: 1.4rem;
+            margin: 0 0 25px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toxic-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toxic-list li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #431407;
+            line-height: 1.7;
+        }
+
+        .toxic-list li::before {
+            content: '×';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #f97316;
+            line-height: 1;
+        }
+
+        /* Summary Card */
+        .summary-card {
+            background: var(--primary-gradient);
+            padding: 45px 35px;
+            border-radius: 36px;
+            color: white;
+            text-align: center;
+            margin: 60px 0;
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card h3 {
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: white !important;
+            margin: 0 0 35px 0;
+        }
+
+        .check-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            text-align: left;
+        }
+
+        .check-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 22px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .check-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.02);
+        }
+
+        .check-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .check-text {
+            margin: 0 !important;
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        /* Q&A Section */
+        .qa-container {
+            margin-top: 70px;
+            background: #f8fafc;
+            padding: 50px 30px;
+            border-radius: 36px;
+        }
+
+        .qa-card {
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .qa-card:hover { border-color: #8b5cf6; box-shadow: 0 10px 20px rgba(139, 92, 246, 0.05); }
+
+        .qa-q {
+            font-weight: 900;
+            color: var(--text-main);
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .qa-q::before { content: 'Q.'; color: #8b5cf6; font-size: 1.3rem; }
+
+        .qa-a {
+            color: var(--text-sub);
+            font-size: 1rem;
+            margin: 0;
+            line-height: 1.7;
+            padding-left: 32px;
+        }
+
+        @media (max-width: 600px) {
+            .post-title { font-size: 1.65rem; }
+            .post-content h2 { font-size: 1.45rem; }
+            .status-grid { grid-template-columns: 1fr; }
+            .recharge-wrap, .toxic-box, .qa-container, .summary-card { padding: 30px 20px; }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    <link rel="canonical" href="https://testerlab.org/blog/post-32.html">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://testerlab.org/blog/post-32.html">
+    <meta property="og:title" content="번아웃 증후군 탈출하기: 멈춰버린 나를 다시 움직이게 하는 '마음 회복' 가이드">
+    <meta property="og:description"
+        content="지친 마음을 위한 긴급 처방전. 번아웃의 신호를 조기에 발견하고, 효과적인 에너지 재충전 방법을 통해 일상의 활력을 되찾는 구체적인 가이드를 확인해보세요.">
+    <meta property="og:image" content="https://testerlab.org/images/thumb_32.webp">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../index.html'">
+                <img src="../images/logo.webp" alt="TesterLab Logo" class="logo-img">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-item">홈</a>
+                <a href="../blog.html" class="nav-item" style="color: var(--accent-color);">블로그</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in">
+        <div class="post-container">
+            <a href="../blog.html" class="back-to-blog">← 목록으로 돌아가기</a>
+            
+            <header class="post-header">
+                <span class="post-category">Emotional Wellness</span>
+                <h1 class="post-title">번아웃 증후군 탈출하기:<br>멈춰버린 나를 다시 움직이게 하는 '마음 회복' 가이드</h1>
+                <div class="post-meta">
+                    <span>📅 2026.03.27</span>
+                    <span>👤 Editor</span>
+                </div>
+            </header>
+
+            <img src="../images/thumb_32.webp" alt="번아웃 증후군과 마음 회복 썸네일" class="post-thumbnail">
+
+            <article class="post-content">
+                <p class="fade-in-up">어느 날 문득, 아침에 눈을 뜨는 것이 고통스럽고 매일 해오던 일이 감당할 수 없을 만큼 무겁게 느껴진 적이 있으신가요? 좋아하던 취미도 무의미해지고, 사람들을 만나는 것조차 에너지가 고갈되는 기분이 든다면 그것은 단순한 피로가 아닙니다. 바로 몸과 마음의 모든 연료가 타버린 상태인 <span class="highlight-glow">'번아웃 증후군(Burnout Syndrome)'</span>의 신호일 수 있습니다.</p>
+
+                <p class="fade-in-up">번아웃은 열심히 살지 않아서 생기는 것이 아닙니다. 오히려 누구보다 책임감이 강하고, 열정적으로 자신을 소진하며 달려온 사람들에게 찾아오는 '슬픈 훈장'과도 같습니다. 하지만 이를 방치하면 만성적인 무기력증과 우울감으로 이어질 수 있습니다.</p>
+
+                <div class="story-box fade-in-up">
+                    저 또한 프로젝트의 성공만을 위해 몇 달간 밤낮없이 매달렸던 적이 있습니다. 목표를 이뤘음에도 불구하고 돌아온 것은 성취감이 아닌 깊은 허무함과 무기력이었죠. 그때 깨달았습니다. 나를 돌보지 않는 성공은 모래 위에 쌓은 성과 같다는 것을요. <b>'쉼'을 사치가 아닌 '필수 생존 전략'</b>으로 받아들인 뒤에야 비로소 진정한 몰입의 즐거움을 되찾을 수 있었습니다.
+                </div>
+
+                <h2 class="fade-in-up"><span>1</span> 내 마음의 경고등 확인하기: 번아웃의 3단계 징후</h2>
+                <p class="fade-in-up">단순 피로와 번아웃을 구분하는 것이 회복의 첫걸음입니다. 나의 상태가 다음 중 어디에 해당하는지 조용히 들여다보세요.</p>
+                
+                <div class="status-grid">
+                    <div class="status-card fade-in-up">
+                        <span class="status-tag">Phase 1</span>
+                        <h4>정서적 고갈</h4>
+                        <p>감정이 메마른 느낌이 들고 사소한 일에도 짜증이나 눈물이 납니다. 예전에는 쉽게 넘겼던 타인의 부탁이 공격처럼 느껴지기도 합니다.</p>
+                    </div>
+                    <div class="status-card fade-in-up">
+                        <span class="status-tag">Phase 2</span>
+                        <h4>비인간화 (냉소주의)</h4>
+                        <p>업무나 사람들에 대해 냉소적인 태도를 보이게 됩니다. "해서 뭐해?", "다 똑같지"라는 생각이 지배하며 정서적인 거리두기를 시작합니다.</p>
+                    </div>
+                    <div class="status-card fade-in-up">
+                        <span class="status-tag">Phase 3</span>
+                        <h4>성취감 저하</h4>
+                        <p>스스로가 무능하게 느껴지고, 아무리 노력해도 성과가 나지 않는다는 패배감에 빠집니다. 나만 뒤처지는 것 같은 불안감이 커집니다.</p>
+                    </div>
+                </div>
+
+                <p class="fade-in-up">실제로 제가 만난 많은 분은 <b>"쉬어도 쉰 것 같지 않다"</b>는 말을 공통적으로 합니다. 몸은 쉬고 있지만 머릿속은 여전히 '해야 할 일'로 가득 차 있기 때문입니다.</p>
+
+                <h2 class="fade-in-up"><span>2</span> 5분 만에 에너지를 보호하는 '심리적 방어막' 튜토리얼</h2>
+                <p class="fade-in-up">외부의 압박으로부터 나를 분리하고 보호하는 구체적인 방법입니다. 마음이 소란스러울 때 다음 3단계를 실천해 보세요.</p>
+                
+                <div class="recharge-wrap fade-in-up">
+                    <div class="recharge-step">
+                        <div class="recharge-num">1</div>
+                        <div class="recharge-content">
+                            <h4>'일시정지' 선언하기</h4>
+                            <p>번아웃 상태에서는 의사결정 능력이 떨어집니다. 중요한 결정을 내리기 전, 스스로에게 "지금은 판단 유예 기간"이라고 선언하세요. 5분간 심호흡을 하며 지금 느끼는 압박감이 '실제'인지 '환상'인지 분리해 보는 것만으로도 숨통이 트입니다.</p>
+                        </div>
+                    </div>
+                    <div class="recharge-step">
+                        <div class="recharge-num">2</div>
+                        <div class="recharge-content">
+                            <h4>'작은 감각'에 집중하기 (Grounding)</h4>
+                            <p>지금 손에 닿는 컵의 온도, 발바닥에 느껴지는 지면의 단단함, 주변에서 들리는 작은 소리에 집중해보세요. 감각에 집중하면 뇌는 '안전함'을 느끼고 과부하된 신경계를 진정시킵니다.</p>
+                        </div>
+                    </div>
+                    <div class="recharge-step">
+                        <div class="recharge-num">3</div>
+                        <div class="recharge-content">
+                            <h4>'안 돼'라고 말할 권리 사용하기</h4>
+                            <p>모든 요청을 수락하는 것은 자신을 낭떠러지로 미는 일입니다. 하루에 딱 한 번이라도 타인의 요청에 정중히 거절해 보세요. 이는 이기적인 것이 아니라, 나를 지키기 위한 '최소한의 예의'입니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="fade-in-up"><span>3</span> 회복을 방해하는 '심리적 독소' 피하기</h2>
+                <div class="toxic-box fade-in-up">
+                    <h3>⚠️ 주의: 이런 습관이 회복을 가로막습니다</h3>
+                    <ul class="toxic-list">
+                        <li><b>'쉬는 것'에 대한 죄책감:</b> 쉬면서도 "남들은 뛰고 있는데 나만 노는 게 아닐까?"라고 걱정하는 것은 쉬는 게 아닙니다. 쉼은 다음 단계로 나아가기 위한 가장 지적인 투자입니다.</li>
+                        <li><b>보상 심리로 인한 자극적인 쾌락:</b> 밤샘 영상 시청, 폭식, 과도한 쇼핑은 도파민을 일시적으로 높이지만 뒤돌아서면 더 큰 허탈감을 줍니다. 진짜 회복은 '고요함'에서 옵니다.</li>
+                        <li><b>한꺼번에 모든 것을 바꾸려는 조급함:</b> 번아웃은 서서히 왔듯이 회복도 천천히 이루어집니다. 갑자기 운동을 시작하고 식단을 바꾸는 등 자신을 또 다른 틀에 가두지 마세요.</li>
+                    </ul>
+                </div>
+
+                <h2 class="fade-in-up"><span>4</span> 번아웃보다 깊은 '자기 사랑'</h2>
+                <p class="fade-in-up">진정한 회복은 내가 나를 다시 신뢰하기 시작할 때 완성됩니다. 많은 분이 "언제쯤 예전처럼 열정적인 나로 돌아갈 수 있을까요?"라고 묻습니다. 답은 <b>"예전의 당신으로 돌아가는 것이 아니라, 더 단단하고 유연해진 새로운 당신으로 나아가는 것"</b>입니다.</p>
+                <p class="fade-in-up">번아웃은 당신의 인생이 잘못되었다는 신호가 아니라, 잠시 속도를 줄이고 방향을 점검하라는 친절한 경고등입니다. 저는 매일 저녁 '칭찬 일기' 대신 <b>'애썼다 일기'</b>를 씁니다. 대단한 성과가 없어도 "오늘도 무사히 하루를 살아내느라 정말 애썼다"고 적습니다. 내가 나의 가장 다정한 보호자가 되어줄 때, 마음의 배터리는 비로소 충전되기 시작합니다.</p>
+
+                <div class="summary-card fade-in-up">
+                    <h3>오늘 바로 실천해 볼 수 있는 것들</h3>
+                    <div class="check-wrap">
+                        <div class="check-item">
+                            <span class="check-icon">📴</span>
+                            <p class="check-text">퇴근 후 스마트폰 알림 끄고 30분간 오롯이 나만의 정적 즐기기</p>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">🌙</span>
+                            <p class="check-text">평소보다 1시간 일찍 잠자리에 들어 뇌에 휴식 선물하기</p>
+                        </div>
+                        <div class="check-item">
+                            <span class="check-icon">🪞</span>
+                            <p class="check-text">거울을 보며 고생한 나 자신에게 "그동안 미안했어, 이제 좀 쉬자"라고 말해주기</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-container fade-in-up">
+                    <h3 style="font-size: 1.35rem; font-weight: 900; margin-bottom: 30px; text-align: center;">📋 번아웃과 마음 회복 관련 Q&A</h3>
+                    <div class="qa-card">
+                        <span class="qa-q">회사를 그만둘 수 없는 상황인데 번아웃을 어떻게 극복하죠?</span>
+                        <p class="qa-a">물리적으로 떠날 수 없다면 '심리적 사표'를 던져보세요. 업무와 나를 동일시하지 않는 연습이 필요합니다. 퇴근 후에는 업무 연락을 철저히 차단하고, 회사 밖에서의 '부캐(부캐릭터)' 활동이나 사소한 성취를 느낄 수 있는 취미에 집중하세요.</p>
+                    </div>
+                    <div class="qa-card">
+                        <span class="qa-q">번아웃을 예방하는 가장 좋은 방법은 무엇인가요?</span>
+                        <p class="qa-a">'나만의 데드라인'을 정하는 것입니다. 열정적인 사람들은 끝없이 달립니다. 하루의 업무 끝, 일주일의 휴식 시간을 미리 달력에 표시해두고 무슨 일이 있어도 그 시간은 침범하지 못하게 하세요. '한계'가 '열정'을 지속시킵니다.</p>
+                    </div>
+                    <div class="qa-card">
+                        <span class="qa-q">주변 사람이 번아웃인 것 같아요. 어떻게 도와줘야 할까요?</span>
+                        <p class="qa-a">조언보다 그저 곁에 있어 주는 것이 힘이 됩니다. "힘내"라는 말보다는 "그동안 정말 많이 힘들었겠다"는 공감이 필요합니다. 맛있는 음식을 함께 먹거나 조용히 산책을 제안하며 묵묵히 기다려주는 인내심이 필요합니다.</p>
+                    </div>
+                </div>
+
+                <p class="fade-in-up" style="text-align: center; margin-top: 60px; font-weight: 700; color: var(--text-sub);">
+                    당신의 불꽃은 사라진 게 아니라 잠시 숨을 고르는 중입니다.<br>
+                    <a href="../index.html" style="color: #8b5cf6; text-decoration: none; border-bottom: 2px solid #8b5cf6; padding-bottom: 2px;">테스터랩과 함께 다시 빛날 준비를 시작해보세요.</a>
+                </p>
+            </article>
+        </div>
+    </div>
+
+    <footer style="padding: 70px 0; text-align: center; color: #94a3b8; font-size: 0.95rem; border-top: 1px solid #f1f5f9;">
+        <p>&copy; 2026 TesterLab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

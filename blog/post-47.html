@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>감정의 파도에 휩쓸리지 않는 '감정 서핑' 기술: 내 마음의 주도권을 되찾는 법 | TesterLab (테스터랩) 블로그</title>
+    <title>'비교의 늪'에서 탈출하기: 남의 하이라이트와 내 비하인드를 비교하는 습관 멈추기 | TesterLab (테스터랩) 블로그</title>
     <meta name="description"
-        content="거친 감정의 파도가 밀려올 때 휩쓸리지 않고 유연하게 파도를 타는 '서퍼'가 되어보세요. 마음의 평정을 찾는 구체적인 감정 서핑 튜토리얼을 제안합니다.">
+        content="SNS 속 남들의 화려한 일상과 나를 비교하며 작아지고 있나요? 타인의 '편집된 결과물'이 아닌 내 삶의 '고유한 과정'에 집중하여 자존감을 되찾는 3단계 비교 디톡스 튜토리얼을 만나보세요.">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -15,11 +15,11 @@
         crossorigin="anonymous"></script>
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #2dd4bf 100%);
-            --accent-soft: #f0f9ff;
-            --ink-deep: #0c4a6e;
-            --ocean-blue: #0ea5e9;
-            --mint-glow: #2dd4bf;
+            --primary-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --accent-soft: #ecfdf5;
+            --ink-deep: #064e3b;
+            --sage-green: #34d399;
+            --warm-gold: #fbbf24;
             --text-main: #1e293b;
             --text-sub: #64748b;
             --glass-bg: rgba(255, 255, 255, 0.85);
@@ -49,7 +49,7 @@
         .post-header {
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid #e0f2fe;
+            border-bottom: 1px solid #d1fae5;
         }
 
         .post-title {
@@ -70,13 +70,13 @@
         }
 
         .post-category {
-            background: #f0f9ff;
-            color: #0369a1;
+            background: #ecfdf5;
+            color: #059669;
             padding: 4px 14px;
             border-radius: 100px;
             font-weight: 800;
             font-size: 0.8rem;
-            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.1);
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.1);
         }
 
         .post-thumbnail {
@@ -118,22 +118,22 @@
             border-radius: 12px;
             font-size: 1rem;
             flex-shrink: 0;
-            box-shadow: 0 4px 10px rgba(14, 165, 233, 0.2);
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
         }
 
-        .highlight-ocean {
-            background: linear-gradient(120deg, rgba(14, 165, 233, 0.15) 0%, rgba(45, 212, 191, 0.15) 100%);
+        .highlight-sage {
+            background: linear-gradient(120deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%);
             padding: 2px 8px;
             border-radius: 6px;
             font-weight: 800;
-            color: #0369a1;
+            color: #065f46;
         }
 
         .story-card {
-            background: #f0f9ff;
+            background: #fdfcf6;
             padding: 35px;
             border-radius: 28px;
-            border-left: 8px solid #0ea5e9;
+            border-left: 8px solid #10b981;
             box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.01);
             margin: 45px 0;
             font-style: italic;
@@ -146,10 +146,10 @@
             top: 20px;
             left: 20px;
             font-size: 4rem;
-            color: rgba(14, 165, 233, 0.1);
+            color: rgba(16, 185, 129, 0.1);
         }
 
-        /* Logic Cards */
+        /* Identity Cards */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -167,15 +167,15 @@
 
         .logic-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.08);
-            border-color: #0ea5e9;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.08);
+            border-color: #10b981;
         }
 
         .logic-card h4 {
             font-size: 1.25rem;
             font-weight: 850;
             margin: 0 0 15px 0;
-            color: #0c4a6e;
+            color: #064e3b;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -183,8 +183,8 @@
 
         .logic-num {
             font-size: 0.75rem;
-            background: #e0f2fe;
-            color: #0ea5e9;
+            background: #ecfdf5;
+            color: #059669;
             padding: 2px 8px;
             border-radius: 8px;
             font-weight: 800;
@@ -197,8 +197,8 @@
             border-radius: 35px;
             border: 1px solid #f1f5f9;
             margin: 40px 0;
-            background-image: radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.05) 0px, transparent 50%),
-                               radial-gradient(at 100% 100%, rgba(45, 212, 191, 0.05) 0px, transparent 50%);
+            background-image: radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(251, 191, 36, 0.05) 0px, transparent 50%);
         }
 
         .tutorial-step {
@@ -215,14 +215,14 @@
             width: 50px;
             height: 50px;
             background: white;
-            color: #0ea5e9;
+            color: #059669;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 18px;
             font-weight: 900;
             font-size: 1.25rem;
-            border: 2px solid #e0f2fe;
+            border: 2px solid #ecfdf5;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             z-index: 1;
         }
@@ -242,7 +242,7 @@
             color: white;
             text-align: center;
             margin: 60px 0;
-            box-shadow: 0 20px 50px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 20px 50px rgba(5, 150, 105, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -285,7 +285,7 @@
         /* Q&A Section */
         .qa-area {
             margin-top: 70px;
-            background: #f8fafc;
+            background: #fdfdfb;
             padding: 50px 30px;
             border-radius: 40px;
             border: 1px solid #f1f5f9;
@@ -300,16 +300,16 @@
             transition: all 0.2s ease;
         }
 
-        .qa-item:hover { border-color: #0ea5e9; }
+        .qa-item:hover { border-color: #10b981; }
 
-        .qa-q { font-weight: 900; color: #0c4a6e; font-size: 1.15rem; margin-bottom: 12px; display: block; }
+        .qa-q { font-weight: 900; color: #064e3b; font-size: 1.15rem; margin-bottom: 12px; display: block; }
 
-        .qa-q::before { content: 'Q. '; color: #0ea5e9; font-size: 1.3rem; }
+        .qa-q::before { content: 'Q. '; color: #10b981; font-size: 1.3rem; }
 
         .qa-a { color: var(--text-sub); font-size: 1.02rem; margin: 0; line-height: 1.7; }
 
         @media (max-width: 600px) {
-            .post-title { font-size: 1.6 rem; }
+            .post-title { font-size: 1.65rem; }
             .post-content h2 { font-size: 1.45rem; }
             .grid-3 { grid-template-columns: 1fr; }
             .tutorial-wrap, .action-panel, .qa-area { padding: 30px 20px; }
@@ -326,13 +326,13 @@
             transform: translateY(0);
         }
     </style>
-    <link rel="canonical" href="https://testerlab.org/blog/post-43">
+    <link rel="canonical" href="https://testerlab.org/blog/post-47">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://testerlab.org/blog/post-43">
-    <meta property="og:title" content="감정의 파도에 휩쓸리지 않는 '감정 서핑' 기술: 내 마음의 주도권을 되찾는 법">
+    <meta property="og:url" content="https://testerlab.org/blog/post-47">
+    <meta property="og:title" content="'비교의 늪'에서 탈출하기: 남의 하이라이트와 내 비하인드를 비교하는 습관 멈추기">
     <meta property="og:description"
-        content="순간의 감정에 휘둘려 후회하고 있나요? 감정을 억누르는 대신 파도처럼 부드럽게 타는 90초 감정 서핑 기술을 통해 마음의 고요를 되찾는 튜토리얼을 만나보세요.">
-    <meta property="og:image" content="https://testerlab.org/images/thumb_43.webp">
+        content="SNS 속 남들의 화려한 일상과 나를 비교하며 작아지고 있나요? 타인의 '편집된 결과물'이 아닌 내 삶의 '고유한 과정'에 집중하여 자존감을 되찾는 3단계 비교 디톡스 튜토리얼을 만나보세요.">
+    <meta property="og:image" content="https://testerlab.org/images/thumb_47.webp">
 </head>
 
 <body>
@@ -354,84 +354,84 @@
             <a href="../blog" class="back-to-blog">← 목록으로 돌아가기</a>
             
             <header class="post-header">
-                <span class="post-category">Emotional Intelligence</span>
-                <h1 class="post-title">감정의 파도에 휩쓸리지 않는 '감정 서핑' 기술:<br>내 마음의 주도권을 되찾는 법</h1>
+                <span class="post-category">Self-Growth</span>
+                <h1 class="post-title">'비교의 늪'에서 탈출하기:<br>남의 하이라이트와 내 비하인드를 비교하는 습관 멈추기</h1>
                 <div class="post-meta">
-                    <span>📅 2026.04.07</span>
+                    <span>📅 2026.04.11</span>
                     <span>👤 Editor</span>
                 </div>
             </header>
 
-            <img src="../images/thumb_43.webp" alt="감정 서핑 썸네일" class="post-thumbnail">
+            <img src="../images/thumb_47.webp" alt="비교의 늪 탈출과 자존감 회복 썸네일" class="post-thumbnail">
 
             <article class="post-content">
-                <p class="fade-in-up">순간적으로 욱하는 마음에 날 선 말을 내뱉고 후회하거나, 갑자기 밀려오는 우울감에 하루 종일 아무것도 하지 못한 채 무기력에 빠진 적이 있으신가요? 우리는 흔히 성숙한 어른이라면 자신의 감정을 완벽하게 '통제'해야 한다고 믿습니다. 하지만 심리학과 뇌과학에서 감정을 억 누르는 것은 물속으로 비치볼을 억지로 밀어 넣는 것과 같다고 말합니다.</p>
+                <p class="fade-in-up">SNS를 열어 화려한 휴양지에서 웃고 있는 지인의 사진을 볼 때 마음 한구석이 서늘해진 적이 있으신가요? "나는 지금까지 뭘 한 거지?"라는 자괴감이 밀려온다면, 당신은 지금 뇌가 파놓은 가장 잔인한 함정인 <span class="highlight-sage">'비교의 늪'</span>에 빠진 것입니다.</p>
 
-                <p class="fade-in-up">감정은 우리가 싸워서 이겨야 할 적이 아닙니다. 내면의 상태를 알려주는 자연스러운 날씨이자, 뇌가 보내는 생존의 신호일 뿐입니다. 진정으로 감정 조절을 잘하는 사람은 감정을 느끼지 않는 '로봇'이 아니라, 거친 감정의 파도가 밀려올 때 휩쓸리지 않고 유연하게 파도를 타는 <span class="highlight-ocean">'서퍼(Surfer)'</span>와 같은 사람입니다. 오늘은 내 마음의 주도권을 되찾는 <b>'감정 서핑 튜토리얼'</b>을 소개합니다.</p>
+                <p class="fade-in-up">인간에게 타인과의 비교는 무리 지어 생존해야 했던 원시 시대부터 각인된 본능입니다. 하지만 현대 사회에서 이 본능은 우리의 자존감을 갉아먹는 독이 되었습니다. 오늘 준비한 <b>'비교 탈출 튜토리얼'</b>은 시선을 타인에서 나로 돌려 나만의 궤도를 걷는 비밀을 알려드립니다.</p>
 
                 <div class="story-card fade-in-up">
-                    감정은 영원히 머물지 않습니다. 아무리 거대한 파도도 결국 해변에 닿으면 하얀 거품이 되어 사라지듯, 우리를 괴롭히는 감정도 일정 시간이 지나면 반드시 잦아듭니다. 중요한 것은 그 파도가 지나갈 때까지 내가 침몰하지 않고 중심을 잡는 '기술'입니다.
+                    인생은 일렬로 서서 뛰는 100m 달리기가 아니라, 각자의 목적지를 향해 걷는 산책입니다. 누군가 당신보다 앞서가는 것처럼 보인다면, 그저 당신과 그의 '계절'이 다를 뿐입니다. 당신이라는 나무의 가치는 결코 부족하지 않습니다.
                 </div>
 
-                <h2 class="fade-in-up"><span>1</span> 감정의 파도가 위험해지는 3가지 순간</h2>
+                <h2 class="fade-in-up"><span>1</span> 비교의 늪을 깊게 만드는 3가지 심리적 착각</h2>
                 <div class="grid-3">
                     <div class="logic-card fade-in-up">
-                        <h4><span class="logic-num">01</span> 동화 (Identification)</h4>
-                        <p>"나는 화가 났다"가 아니라 "나는 화 그 자체다"라고 믿는 상태입니다. 감정과 나를 동일시하면 감정의 노예가 되어 비이성적인 행동을 하게 됩니다.</p>
+                        <h4><span class="logic-num">01</span> 하이라이트 vs 비하인드</h4>
+                        <p>우리는 타인의 보정된 '단 한 장의 명장면'과 나의 지극히 '현실적인 제작 과정'을 비교합니다. 영화의 하이라이트와 다큐를 비교하니 당연히 초라해 보일 수밖에 없습니다.</p>
                     </div>
                     <div class="logic-card fade-in-up">
-                        <h4><span class="logic-num">02</span> 억압 (Repression)</h4>
-                        <p>슬픔이나 분노를 억지로 누르면 에너지는 사라지지 않고 몸속 어딘가에 쌓입니다. 이는 결국 갑작스러운 폭발이나 신체적인 심신증으로 나타납니다.</p>
+                        <h4><span class="logic-num">02</span> 가상의 '완벽한 존재'</h4>
+                        <p>A의 재력, B의 외모, C의 가정을 떼어내 '가상의 완벽한 인물'을 조립하고 비교합니다. 세상에 그 모든 것을 다 갖춘 사람은 존재하지 않습니다.</p>
                     </div>
                     <div class="logic-card fade-in-up">
-                        <h4><span class="logic-num">03</span> 반추 (Rumination)</h4>
-                        <p>이미 지나간 감정의 파도를 머릿속에서 계속 재생하며 스스로를 더 깊은 고통의 늪으로 밀어 넣는 행위입니다. 감정의 유통기한을 강제로 늘리는 독입니다.</p>
+                        <h4><span class="logic-num">03</span> 상향 비교의 굴레</h4>
+                        <p>연봉 1억이 되어도 10억 버는 사람만 쳐다봅니다. 비교를 멈추지 않는 한 뇌는 영원히 나를 '부족한 상태'에 가둬버립니다.</p>
                     </div>
                 </div>
 
-                <h2 class="fade-in-up"><span>2</span> 평정심을 되찾는 3단계 '감정 서핑' 튜토리얼</h2>
+                <h2 class="fade-in-up"><span>2</span> 시선을 나에게로 돌리는 3단계 '비교 디톡스' 튜토리얼</h2>
                 <div class="tutorial-wrap fade-in-up">
                     <div class="tutorial-step">
                         <div class="step-bubble">1</div>
                         <div class="step-info">
-                            <h4>감정에 '이름' 붙여주기 (Labeling)</h4>
-                            <p>지금 느껴지는 감정을 있는 그대로 관찰하고 이름을 속으로 불러보세요. "오, 지금 내 마음속에 '조바심'이라는 파도가 밀려오고 있구나." 이름을 붙이는 순간, 뇌의 전두엽이 활성화되며 감정 폭풍이 진정되기 시작합니다.</p>
+                            <h4>비교의 '트리거' 물리적으로 차단하기</h4>
+                            <p>나를 초라하게 만드는 원인을 찾아내세요. 특정 SNS나 모임을 과감히 '언팔로우'하거나 차단하세요. 보이지 않으면 뇌는 자극받지 않습니다. 나를 지키는 가장 적극적인 방어입니다.</p>
                         </div>
                     </div>
                     <div class="tutorial-step">
                         <div class="step-bubble">2</div>
                         <div class="step-info">
-                            <h4>모든 감정을 '손님'으로 맞이하기</h4>
-                            <p>감정을 밀쳐내려 하지 말고, 잠시 들렀다 가는 손님처럼 대하세요. "이 감정은 나를 해치러 온 게 아니라, 잠시 내 마음의 방을 거쳐 가는 것뿐이다"라고 생각하며 파도가 몸을 핥고 지나가게 두세요.</p>
+                            <h4>비교의 대상을 '어제의 나'로 고정하기</h4>
+                            <p>타인과의 비교는 시기심을 낳지만, 어제의 나와의 비교는 성장을 낳습니다. "동기는 과장인데 나는 대리네" 대신 "작년보다 내 실무 능력이 얼마나 늘었나"에 스포트라이트를 비추세요.</p>
                         </div>
                     </div>
                     <div class="tutorial-step">
                         <div class="step-bubble">3</div>
                         <div class="step-info">
-                            <h4>'90초의 법칙' 기다리기</h4>
-                            <p>뇌과학적으로 한 번 발생한 감정의 화학 물질이 혈액을 타고 사라지는 데는 약 90초가 걸립니다. 90초 동안만 판단하지 않고 깊은 호흡을 유지하면, 파도의 정점을 지나 서서히 부서지는 것을 느낄 수 있습니다.</p>
+                            <h4>나만의 '방어 주문' 만들기</h4>
+                            <p>비교하는 마음이 들 때 흐름을 끊을 문장을 준비하세요. 속으로 <b>"그건 그의 인생이고, 이것은 내 인생이다(His life is his, my life is mine)"</b>라고 외치며 서로의 시험지가 다름을 인정하세요.</p>
                         </div>
                     </div>
                 </div>
 
-                <h2 class="fade-in-up"><span>3</span> 감정의 바다에서 나를 지키는 습관</h2>
-                <p class="fade-in-up">감정이 격해졌을 때는 <b>'중요한 결정을 내리지 않는 것'</b>이 철칙입니다. 파도가 높게 일 때는 바닷속이 보이지 않듯, 감정이 요동칠 때는 진실을 볼 수 없기 때문입니다. 또한 "내가 왜 이럴까?"라는 자책은 감정의 파도 위에 기름을 붓는 격입니다.</p>
-                <p class="fade-in-up">당신의 마음은 바다와 같습니다. 파도는 칠 수도, 잦아들 수도 있지만 바다 그 자체는 언제나 그 자리에 깊고 넓게 존재합니다. 파도에 일희일비하기보다 당신이라는 거대한 바다의 존재를 믿으세요.</p>
+                <h2 class="fade-in-up"><span>3</span> 자존감을 갉아먹는 '심리적 독소' 피하기</h2>
+                <p class="fade-in-up">남의 불행에서 위안을 얻는 <span class="highlight-sage">하향 비교</span>는 위험합니다. 타인의 불행을 먹고 자란 자존감은 더 잘난 사람 앞에서는 모래성처럼 무너집니다. 또한 부러움을 비난으로 포장해 상대를 깎아내리는 것은 내 가치를 올리지 못합니다. 부러우면 인정하고 배우는 것이 성숙한 태도입니다.</p>
+                <p class="fade-in-up">가장 주의할 점은 '좋은 자극'이라는 착각입니다. 보고 나서 에너지가 솟는다면 롤모델이지만, <b>우울해지고 자책하게 된다면 그것은 당장 끊어버려야 할 독</b>입니다.</p>
 
                 <div class="action-panel fade-in-up">
-                    <h3>오늘 감정의 파도를 타기 위한 마음 미션</h3>
+                    <h3>오늘 나만의 속도와 무대를 지키기 위해</h3>
                     <div class="check-grid">
                         <div class="check-box">
-                            <span class="check-emoji">🌊</span>
-                            <p class="check-desc">격한 감정이 들 때 눈을 감고 그 감정의 '모양'과 '색깔'을 상상해보기</p>
+                            <span class="check-emoji">📵</span>
+                            <p class="check-desc">무의식적으로 접속하던 SNS 앱을 폴더 깊숙한 곳으로 옮겨두기</p>
                         </div>
                         <div class="check-box">
-                            <span class="check-emoji">🧘</span>
-                            <p class="check-desc">감정이 나를 덮칠 때 아무 말도 하지 않고 열 번 크게 심호흡하기</p>
+                            <span class="check-emoji">✨</span>
+                            <p class="check-desc">메모장에 '남들보다 뛰어나진 않아도 내가 좋아하는 나의 점' 3가지 적기</p>
                         </div>
                         <div class="check-box">
-                            <span class="check-emoji">🚿</span>
-                            <p class="check-desc">부정적인 감정이 사라지지 않을 땐 시원한 물로 손을 씻으며 흘려보내기</p>
+                            <span class="check-emoji">🌱</span>
+                            <p class="check-desc">누군가 부러워질 때 "그에게도 내가 모르는 고충이 있을 거야"라고 상상하기</p>
                         </div>
                     </div>
                 </div>
@@ -439,28 +439,28 @@
                 <div class="qa-area fade-in-up">
                     <h3 style="font-size: 1.4rem; font-weight: 950; margin-bottom: 30px; text-align: center;">📋 자주 묻는 질문(Q&A)</h3>
                     <div class="qa-item">
-                        <span class="qa-q">나쁜 감정은 빨리 없애버려야 하는 거 아닌가요?</span>
-                        <p class="qa-a">나쁜 감정은 없습니다. 불편한 감정이 있을 뿐이죠. 모든 감정은 생존을 위해 필요한 메시지를 담고 있습니다. 무조건 없애려 하기보다 그 감정이 나에게 어떤 말을 하고 싶은지 귀 기울여 보세요.</p>
+                        <span class="qa-q">주변 사람들이 자꾸 저를 다른 사람과 비교해서 스트레스입니다.</span>
+                        <p class="qa-a">타인의 입은 막을 수 없지만 내 마음의 문은 닫을 수 있습니다. "그분은 훌륭하네요. 하지만 저는 저만의 인생을 잘 만들어가고 있으니 걱정 마세요"라고 부드럽지만 단호하게 경계선을 지키세요.</p>
                     </div>
                     <div class="qa-item">
-                        <span class="qa-q">감정 조절이 안 돼서 이미 화를 냈을 때는 어떻게 하죠?</span>
-                        <p class="qa-a">이미 낸 화는 지나간 파도입니다. 주워 담으려 애쓰기보다 즉시 상황을 인정하고 사과하거나, 혼자만의 공간으로 가서 뒤늦게라도 '감정 서핑'을 시작해 남은 에너지를 정화하세요.</p>
+                        <span class="qa-q">비교를 안 하면 뒤처질까 봐 불안해요.</span>
+                        <p class="qa-a">진정한 성취를 이룬 이들은 남을 이기기보다 자기 일에 몰입했을 뿐입니다. 사과나무와 포도나무는 열매 맺는 속도를 비교하지 않습니다. 그저 자신의 계절에 맞춰 최선을 다할 뿐입니다.</p>
                     </div>
                     <div class="qa-item">
-                        <span class="qa-q">아이에게도 이 방법을 알려줄 수 있나요?</span>
-                        <p class="qa-a">물론입니다. 아이들에게 "울지 마!"라고 하기보다 "지금 마음속에 어떤 괴물이 나타난 것 같아?"라고 물으며 감정을 객관화하도록 도와주는 것이 훌륭한 정서 교육입니다.</p>
+                        <span class="qa-q">경쟁심 때문에 라이벌과 자꾸 비교하게 됩니다.</span>
+                        <p class="qa-a">라이벌의 '결과'가 아닌 '과정'과 나를 비교하세요. "쟤는 1등 했네"가 아니라 "쟤는 주말에도 공부했구나"로 초점을 바꾸면, 우울함 대신 내가 지금 무엇을 해야 할지 명확한 힌트를 얻게 됩니다.</p>
                     </div>
                 </div>
 
                 <p class="fade-in-up" style="text-align: center; margin-top: 60px; font-weight: 700; color: var(--text-sub);">
-                    당신의 마음속에도 평화로운 수평선이 기다리고 있습니다.<br>
-                    <a href="../" style="color: #0ea5e9; text-decoration: none; border-bottom: 2px solid #0ea5e9; padding-bottom: 2px;">테스터랩과 함께 매일 더 유연한 마음의 서퍼가 되어보세요.</a>
+                    당신의 무대는 오직 당신만을 위해 준비되어 있습니다.<br>
+                    <a href="../" style="color: #059669; text-decoration: none; border-bottom: 2px solid #059669; padding-bottom: 2px;">테스터랩과 함께 나만의 고유한 빛을 발견해 보세요.</a>
                 </p>
             </article>
         </div>
     </div>
 
-    <footer style="padding: 70px 0; text-align: center; color: #94a3b8; font-size: 0.95rem; border-top: 1px solid #e0f2fe;">
+    <footer style="padding: 70px 0; text-align: center; color: #94a3b8; font-size: 0.95rem; border-top: 1px solid #d1fae5;">
         <p>&copy; 2026 TesterLab. All rights reserved.</p>
     </footer>
 

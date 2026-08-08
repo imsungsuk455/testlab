@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이지를 찾을 수 없습니다 (404) | TesterLab (테스터랩)</title>
+    <meta name="robots" content="noindex">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="style.css">
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        .error-page {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .error-code {
+            font-size: 5rem;
+            font-weight: 900;
+            background: var(--primary-gradient, linear-gradient(135deg, #6366f1, #4338ca));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -0.04em;
+        }
+        .error-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main, #1e293b);
+            margin-bottom: 12px;
+        }
+        .error-desc {
+            font-size: 1rem;
+            color: var(--text-sub, #64748b);
+            margin-bottom: 30px;
+            max-width: 400px;
+            line-height: 1.7;
+        }
+        .btn-home {
+            display: inline-block;
+            padding: 13px 32px;
+            border-radius: 100px;
+            background: var(--primary-gradient, linear-gradient(135deg, #6366f1, #4338ca));
+            color: #fff;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+            transition: transform 0.2s ease;
+        }
+        .btn-home:hover {
+            transform: translateY(-2px);
+        }
+        .error-links {
+            margin-top: 24px;
+            font-size: 0.85rem;
+            color: #999;
+        }
+        .error-links a {
+            color: var(--accent-color, #6366f1);
+            text-decoration: none;
+            margin: 0 8px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='./'">
+                <img src="images/logo.webp" alt="TesterLab Logo" class="logo-img">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="./" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in">
+        <div class="error-page">
+            <div class="error-code">404</div>
+            <h1 class="error-title">페이지를 찾을 수 없습니다</h1>
+            <p class="error-desc">요청하신 페이지가 이동되었거나 존재하지 않습니다.<br>테스트랩의 다양한 테스트를 즐겨보세요!</p>
+            <a href="./" class="btn-home">홈으로 돌아가기</a>
+            <div class="error-links">
+                <a href="./">홈</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a> · <a href="contact">문의하기</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-info">
+            <p>&copy; 2026 TesterLab (테스터랩). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // GitHub Pages soft-404 방지: 404.html이 항상 HTTP 404을 반환하도록 리다이렉트 처리
+        if (window.location.pathname !== '/' && !document.getElementById('app').dataset.rendered) {
+            document.title = '404 Not Found | TesterLab';
+        }
+    </script>
+</body>
+</html>

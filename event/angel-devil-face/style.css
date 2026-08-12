@@ -26,6 +26,88 @@ body {
     background: transparent;
 }
 
+/* ===== 이미지 표시 (사이즈에 맞게) ===== */
+
+/* 홈 타이틀 이미지: 비율 유지, 화면 폭에 맞게 */
+.main-img-placeholder {
+    width: min(260px, 78vw);
+    height: min(260px, 78vw);
+    margin: 0 auto 35px;
+    border-radius: 30px;
+    background: #1e1b3a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+.main-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* 잘리지 않고 원본 비율 유지 */
+}
+
+/* 업로드 후 미리보기: 원본 비율 유지 + 화면 폭 대응 */
+#t-image-preview {
+    max-width: 100%;
+    max-height: min(60vh, 480px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 20px;
+    background: #1e1b3a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 분석(로딩) 중 스캔 이미지: 원본 비율 유지 + 반응형 크기 */
+.scan-box {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    display: inline-block;
+    width: min(280px, 80vw);
+    height: min(360px, 90vw);
+    background: #000;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+.scan-box #t-scan-image,
+.scan-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* 잘리지 않고 원본 비율 유지 */
+    opacity: 0.85;
+    background: #000;
+}
+
+/* 결과 섹션: 사용자 사진 원본 비율 유지 */
+#t-result .main-img-placeholder {
+    width: min(300px, 80vw);
+    height: min(340px, 92vw);
+    background: #1e1b3a;
+}
+
+#t-result .main-img-placeholder img {
+    object-fit: contain;
+}
+
+/* 결과 캐릭터 이미지: 비율 유지 + 반응형 */
+.q-result-char-img {
+    max-width: min(340px, 85vw);
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #2d2b55;
+}
+
+.q-result-char-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
 .custom-btn {
     border-radius: 100px;
     padding: 14px 32px;
@@ -76,14 +158,41 @@ body {
     color: #FFFFFF;
 }
 
+/* ===== 폰트 가독성 (다크 배경 대비) ===== */
+
+/* 결과 타이틀: 크고 또렷하게 */
+.result-title {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+/* 분석 중 로딩 텍스트: 밝게 */
+.loading-text {
+    color: #e5e3f5 !important;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* 결과 설명: 크고 밝게 */
 .result-desc {
-    background: rgba(255, 255, 255, 0.06) !important;
+    background: rgba(255, 255, 255, 0.07) !important;
     border-left: 4px solid #6C5CE7;
-    color: #e5e3f5;
+    color: #f0eefc;
+    font-size: 1.05rem;
+    line-height: 1.8;
 }
 
 .result-desc p {
-    color: #e5e3f5 !important;
+    color: #f0eefc !important;
+}
+
+/* 추가 코멘트 (extra) */
+#t-res-extra-text {
+    color: #cfc9f2 !important;
+    font-size: 0.95rem !important;
 }
 
 .result-header .subtitle {
@@ -124,4 +233,31 @@ body {
 #toast.show {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+}
+
+/* ===== 모바일 대응 ===== */
+@media (max-width: 480px) {
+    .result-title {
+        font-size: 1.5rem;
+    }
+
+    .result-desc {
+        font-size: 0.98rem;
+        padding: 18px;
+    }
+
+    .custom-btn {
+        padding: 13px 24px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .scan-box {
+        width: 82vw;
+        height: 92vw;
+    }
 }

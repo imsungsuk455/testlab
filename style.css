@@ -169,6 +169,38 @@ body {
     font-size: 0.9rem;
 }
 
+/* 테스트 유형 탭 */
+.test-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.test-tab {
+    padding: 9px 22px;
+    border-radius: 100px;
+    border: 1.5px solid #e2e2ea;
+    background: #fff;
+    color: #555;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.test-tab:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.test-tab.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(108, 92, 231, 0.3);
+}
+
 /* Intro Section */
 .intro-section {
     text-align: left;

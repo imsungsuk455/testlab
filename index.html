@@ -96,9 +96,28 @@
                 <h2>🧪 지금 가장 핫한 테스트</h2>
                 <p>당신도 몰랐던 당신의 진짜 모습!</p>
             </div>
+
+            <!-- 테스트 유형 탭 -->
+            <div class="test-tabs" id="test-tabs">
+                <button class="test-tab active" data-tab="all">전체</button>
+                <button class="test-tab" data-tab="face">관상 테스트</button>
+                <button class="test-tab" data-tab="quiz">퀴즈 테스트</button>
+            </div>
+
             <div class="test-grid">
-                <!-- 천사악마 관상 테스트 -->
-                <div class="test-card active-card" onclick="location.href='event/angel-devil-face/'">
+                <!-- [QUIZ] 연애 유형 테스트 -->
+                <div class="test-card active-card" data-tab="quiz" onclick="location.href='event/love-type/'">
+                    <div class="badge" style="background: #E86A8D;">NEW</div>
+                    <div class="card-img" style="background: #FFF0F3;">
+                        <img src="images/title_love-type.webp" alt="연애 유형 테스트" style="object-fit: contain;">
+                    </div>
+                    <div class="card-info">
+                        <h3>연애 유형 테스트</h3>
+                        <p>8문항으로 알아보는 나의 연애 스타일</p>
+                    </div>
+                </div>
+                <!-- [FACE] 천사악마 관상 테스트 -->
+                <div class="test-card active-card" data-tab="face" onclick="location.href='event/angel-devil-face/'">
                     <div class="badge" style="background: #6C5CE7;">NEW</div>
                     <div class="card-img" style="background: #1e1b3a;">
                         <img src="images/title_angel-devil-face.webp" alt="천사악마 관상 테스트" style="object-fit: contain;">
@@ -109,7 +128,7 @@
                     </div>
                 </div>
                 <!-- 실제 테스트 카드 -->
-                <div class="test-card active-card" id="test-joseon-card">
+                <div class="test-card active-card" id="test-joseon-card" data-tab="face">
                     <div class="badge" style="background: #111;">NEW</div>
                     <div class="card-img" style="background: #F9F7F2;">
                         <img src="images/title_joseon.webp" alt="Joseon Test" style="object-fit: contain;">
@@ -119,7 +138,7 @@
                         <p>조선시대 당신의 관상은?</p>
                     </div>
                 </div>
-                <div class="test-card active-card" id="test-manhwa-card">
+                <div class="test-card active-card" id="test-manhwa-card" data-tab="face">
                     <div class="badge">HOT</div>
                     <div class="card-img">
                         <img src="images/main_char.webp" alt="Manhwa Test">
@@ -130,7 +149,7 @@
                     </div>
                 </div>
 
-                <div class="test-card active-card" id="test-moral-card">
+                <div class="test-card active-card" id="test-moral-card" data-tab="face">
                     <div class="badge" style="background: #111;">NEW</div>
                     <div class="card-img" style="background: #222;">
                         <img src="images/main_moral.webp" alt="Moral Test">
@@ -142,7 +161,7 @@
                 </div>
 
                 <!-- 상견례 프리패스 테스트 카드 -->
-                <div class="test-card active-card" onclick="location.href='event/sanggyeonrye-2026/'">
+                <div class="test-card active-card" data-tab="face" onclick="location.href='event/sanggyeonrye-2026/'">
                     <div class="badge" style="background: #E0C8B1; color: #2D2D2D;">NEW</div>
                     <div class="card-img" style="background: #F8F6F0;">
                         <img src="images/title_inlaws.webp" alt="상견례 관상 테스트">
@@ -152,7 +171,7 @@
                         <p>부모님이 첫눈에 반할 상일까?</p>
                     </div>
                 </div>
-                <div class="test-card active-card" id="test-facetier-card">
+                <div class="test-card active-card" id="test-facetier-card" data-tab="face">
                     <div class="badge" style="background: #000; color: #fff; border: 1px solid #444;">PREMIUM</div>
                     <div class="card-img" style="background: #111;">
                         <img src="images/facetier.webp" alt="외모 티어 테스트" style="object-fit: cover;">
@@ -163,7 +182,7 @@
                     </div>
                 </div>
                 <!-- 동안 테스트 카드 -->
-                <div class="test-card active-card" id="test-babyface-card"
+                <div class="test-card active-card" id="test-babyface-card" data-tab="face"
                     onclick="currentTest='babyface'; showSection('babyface-home');">
                     <div class="badge" style="background: #40C057; color: #fff;">NEW</div>
                     <div class="card-img">
@@ -543,7 +562,7 @@
     }
     </script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="script.js?v=2026031802"></script>
+    <script src="script.js?v=20260812b"></script>
 </body>
 
 </html>

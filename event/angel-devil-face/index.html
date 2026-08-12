@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>천사악마 관상 테스트 | 테스터랩(TesterLab)</title>
+    <meta name="description" content="내 얼굴에 숨겨진 본성은 천사? 악마? AI가 분석하는 나의 천사악마 관상! 테스터랩(TesterLab)의 신규 관상 테스트.">
+    <meta name="keywords" content="천사악마 관상 테스트, 천사 관상, 악마 관상, 관상 테스트, 심리 테스트, TesterLab, 테스터랩, AI 관상 분석">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="천사악마 관상 테스트 - 내 관상은 천사일까 악마일까?">
+    <meta property="og:description" content="AI가 분석하는 나의 천사악마 관상! 내 얼굴에 숨겨진 본성을 지금 확인해보세요.">
+    <meta property="og:image" content="https://testerlab.org/images/title_angel-devil-face.webp">
+    <meta property="og:url" content="https://testerlab.org/event/angel-devil-face/index">
+
+    <!-- Using exactly the same stylesheet logic as the main site to ensure identical sizing -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='./'">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in custom-theme">
+
+        <!-- SECTION: HOME -->
+        <section id="t-home" class="section active">
+            <div class="back-nav" onclick="location.href='../../'">← 전체 테스트 보기</div>
+
+            <div class="title-container">
+                <h1>천사악마 관상 테스트</h1>
+                <p class="subtitle">내 얼굴에 숨겨진 본성은 천사? 악마?</p>
+            </div>
+
+            <div class="main-img-placeholder" style="background: #6C5CE7;">
+                <img src="../../images/title_angel-devil-face.webp" alt="천사악마 관상 테스트"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <button id="t-start-btn" class="btn custom-btn pulse" style="background: #6C5CE7; color: #FFFFFF;">관상
+                스캔하기</button>
+            <p class="footer">제공된 사진은 분석 후 즉시 파기됩니다.</p>
+        </section>
+
+        <!-- SECTION: UPLOAD -->
+        <section id="t-upload" class="section">
+            <div class="title-container">
+                <h2>얼굴 사진 업로드</h2>
+                <p class="subtitle">정면 사진일수록 정확도가 높아요!</p>
+            </div>
+            <div class="upload-area" id="t-drop-zone">
+                <span class="upload-icon">📸</span>
+                <p>클릭하여 사진 선택</p>
+                <input type="file" id="t-file-input" accept="image/*">
+            </div>
+            <div class="preview-container" id="t-preview-box" style="display: none;">
+                <img id="t-image-preview" src="#" alt="Preview">
+                <button class="btn custom-btn" id="t-analyze-btn" style="margin-top: 20px;">AI 분석 시작</button>
+            </div>
+        </section>
+
+        <!-- SECTION: LOADING -->
+        <section id="t-loading" class="section">
+            <div class="loading-box">
+                <div class="scan-box">
+                    <img id="t-scan-image" src="#" alt="Scanning">
+                    <div class="scanner" style="background: #6C5CE7; box-shadow: 0 0 15px #6C5CE7;"></div>
+                </div>
+                <div class="loader" style="margin-top: 30px; border-top-color: #6C5CE7;"></div>
+                <p class="loading-text" id="t-loading-text">관상을 분석하고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- SECTION: RESULT -->
+        <section id="t-result" class="section">
+            <div class="result-header">
+                <p class="subtitle" style="margin-bottom: 10px;">분석 완료</p>
+                <span id="t-res-label" class="custom-badge"></span>
+                <h2 class="result-title custom-title" id="t-res-title" style="color: #FFFFFF; margin-top: 15px;">
+                </h2>
+            </div>
+
+            <div class="q-result-char-img" style="margin: 0 auto 20px; max-width: 340px; border-radius: 20px; overflow: hidden; background: #2d2b55;">
+                <img id="t-res-char-img" src="#" alt="천사악마 캐릭터" style="width: 100%; display: block;">
+            </div>
+
+            <div class="main-img-placeholder"
+                style="background: #6C5CE7; position: relative; overflow: hidden; border-radius: 16px;">
+                <img id="t-res-user-img" src="#" alt="분석된 얼굴"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+                <span id="t-res-icon"
+                    style="font-size: 3rem; position: absolute; bottom: 10px; right: 10px; background: rgba(255,255,255,0.9); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></span>
+            </div>
+
+            <div class="result-desc" style="border-left-color: #6C5CE7; background: #FFF;">
+                <p id="t-res-desc-text"></p>
+                <p id="t-res-extra-text"
+                    style="margin-top: 15px; font-size: 0.85rem; color: #777; font-style: italic;"></p>
+            </div>
+
+            <div class="share-container">
+                <button class="share-btn" id="t-share-link" title="링크 복사">
+                    <span>🔗</span> 링크 복사하기
+                </button>
+                <button class="share-btn" id="t-share-native" title="공유하기">
+                    <span>📤</span> 결과 공유하기
+                </button>
+            </div>
+            <button class="btn" id="t-retry-btn" style="margin-top: 20px; background: #666;">다른 사진으로 테스트</button>
+        </section>
+
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

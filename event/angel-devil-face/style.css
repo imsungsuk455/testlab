@@ -1,104 +1,89 @@
-/* 천사악마 관상 테스트 전용 스타일 - 메인 사이트 style.css를 상속받아 덮어씀 */
-/* 테마 컬러: #6C5CE7 / #FFFFFF (다크 테마) */
-
-body {
-    background: linear-gradient(to bottom, #1e1b3a, #12101f) !important;
-    background-color: #12101f !important;
-}
+/* 천사악마 관상 테스트 전용 스타일
+ * 기존 상견례 테스트와 동일한 구조: 밝은 배경 + 진한(검정) 폰트 + 화면 안 고정 크기
+ * 테마 컬러: #6C5CE7 (포인트 보라) */
 
 .custom-theme {
-    --accent-color: #6C5CE7;
+    background-color: #FFFFFF !important;
 }
 
 .custom-theme .title-container h1 {
-    color: #FFFFFF;
+    color: #222;
 }
 
 .custom-theme .title-container .subtitle {
-    color: #b8b5d9;
+    color: #666;
 }
 
-.custom-theme .back-nav {
-    color: #b8b5d9;
-}
+/* ===== 이미지 표시: 기존 페이지 방식(고정 크기, 화면 안) + 비율 유지(contain) ===== */
 
-.section {
-    background: transparent;
-}
-
-/* ===== 이미지 표시 (사이즈에 맞게) ===== */
-
-/* 홈 타이틀 이미지: 비율 유지, 화면 폭에 맞게 */
+/* 홈 타이틀 이미지: 기존 220px 고정, 화면을 벗어나지 않음 */
 .main-img-placeholder {
-    width: min(260px, 78vw);
-    height: min(260px, 78vw);
+    width: 220px;
+    height: 220px;
     margin: 0 auto 35px;
     border-radius: 30px;
-    background: #1e1b3a;
+    background: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .main-img-placeholder img {
     width: 100%;
     height: 100%;
-    object-fit: contain;   /* 잘리지 않고 원본 비율 유지 */
+    object-fit: contain;   /* 원본 비율 유지, 잘리지 않음 */
 }
 
-/* 업로드 후 미리보기: 원본 비율 유지 + 화면 폭 대응 */
+/* 업로드 후 미리보기: 기존 max-height 280px + 비율 유지 */
 #t-image-preview {
     max-width: 100%;
-    max-height: min(60vh, 480px);
-    width: auto;
-    height: auto;
+    max-height: 280px;
     object-fit: contain;
     border-radius: 20px;
-    background: #1e1b3a;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: #f8f9fa;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* 분석(로딩) 중 스캔 이미지: 원본 비율 유지 + 반응형 크기 */
+/* 분석(로딩) 중 스캔 이미지: 기존 260x340 고정, 화면 안 */
 .scan-box {
-    position: relative;
-    overflow: hidden;
+    width: 260px;
+    height: 340px;
+    background-color: #000;
+    margin: 0 auto;
     border-radius: 24px;
-    display: inline-block;
-    width: min(280px, 80vw);
-    height: min(360px, 90vw);
-    background: #000;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
-.scan-box #t-scan-image,
 .scan-box img {
     width: 100%;
     height: 100%;
-    object-fit: contain;   /* 잘리지 않고 원본 비율 유지 */
+    object-fit: contain;   /* 원본 비율 유지, 잘리지 않음 */
     opacity: 0.85;
-    background: #000;
 }
 
-/* 결과 섹션: 사용자 사진 원본 비율 유지 */
+/* 결과 섹션: 사용자 사진 기존 크기(220px) + 비율 유지 */
 #t-result .main-img-placeholder {
-    width: min(300px, 80vw);
-    height: min(340px, 92vw);
-    background: #1e1b3a;
+    width: 220px;
+    height: 220px;
+    background: #f8f9fa;
 }
 
 #t-result .main-img-placeholder img {
     object-fit: contain;
 }
 
-/* 결과 캐릭터 이미지: 비율 유지 + 반응형 */
+/* 결과 캐릭터 이미지: 화면 안 고정 크기 */
 .q-result-char-img {
-    max-width: min(340px, 85vw);
+    max-width: 300px;
     margin: 0 auto 20px;
     border-radius: 20px;
     overflow: hidden;
-    background: #2d2b55;
+    background: #f0f1ff;
+    border: 1px solid #e8e8ef;
 }
 
 .q-result-char-img img {
@@ -108,18 +93,83 @@ body {
     object-fit: contain;
 }
 
+/* ===== 폰트: 검정 계열로 또렷하게 (기존 페이지 방식) ===== */
+
+/* 결과 타이틀: 진한 색, 크고 굵게 */
+.result-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #222 !important;
+}
+
+/* 분석 중 로딩 텍스트 */
+.loading-text {
+    color: #444 !important;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+/* 결과 설명: 검정 계열 */
+.result-desc {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: left;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    color: #333;
+    margin-bottom: 35px;
+    border-left: 5px solid #6C5CE7;
+}
+
+.result-desc p {
+    color: #333 !important;
+}
+
+/* 추가 코멘트 (extra): 짙은 회색으로 또렷하게 */
+#t-res-extra-text {
+    color: #555 !important;
+    font-size: 0.95rem !important;
+}
+
+/* 배지: 밝은 배경에 진한 색 (기존 custom-pass/fail 방식) */
+.custom-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.custom-badge.custom-pass {
+    background: #EEF2FF;
+    color: #4338CA;
+}
+
+.custom-badge.custom-fail {
+    background: #FEF2F2;
+    color: #B91C1C;
+}
+
+.custom-title {
+    letter-spacing: -0.03em;
+    color: #222 !important;
+}
+
+/* 버튼 */
 .custom-btn {
     border-radius: 100px;
     padding: 14px 32px;
     font-size: 1.05rem;
     font-weight: 800;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .custom-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
 }
 
 .custom-btn.pulse {
@@ -127,90 +177,48 @@ body {
 }
 
 @keyframes customPulse {
-    0% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.35); }
+    0% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.3); }
     70% { box-shadow: 0 0 0 14px rgba(108, 92, 231, 0); }
     100% { box-shadow: 0 0 0 0 rgba(108, 92, 231, 0); }
 }
 
-.custom-badge {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-weight: 800;
-    font-size: 0.85rem;
-    letter-spacing: -0.02em;
-}
-
-.custom-badge.custom-pass {
-    background: linear-gradient(135deg, #a78bfa, #7c3aed);
-    color: #FFFFFF;
-    box-shadow: 0 4px 14px rgba(167, 139, 250, 0.4);
-}
-
-.custom-badge.custom-fail {
-    background: linear-gradient(135deg, #ef4444, #991b1b);
-    color: #FFFFFF;
-    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
-}
-
-.custom-title {
-    letter-spacing: -0.03em;
-    color: #FFFFFF;
-}
-
-/* ===== 폰트 가독성 (다크 배경 대비) ===== */
-
-/* 결과 타이틀: 크고 또렷하게 */
-.result-title {
-    font-size: 1.75rem;
-    font-weight: 900;
-    color: #FFFFFF !important;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
-}
-
-/* 분석 중 로딩 텍스트: 밝게 */
-.loading-text {
-    color: #e5e3f5 !important;
-    font-weight: 700;
-    font-size: 1.05rem;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
-}
-
-/* 결과 설명: 크고 밝게 */
-.result-desc {
-    background: rgba(255, 255, 255, 0.07) !important;
-    border-left: 4px solid #6C5CE7;
-    color: #f0eefc;
-    font-size: 1.05rem;
-    line-height: 1.8;
-}
-
-.result-desc p {
-    color: #f0eefc !important;
-}
-
-/* 추가 코멘트 (extra) */
-#t-res-extra-text {
-    color: #cfc9f2 !important;
-    font-size: 0.95rem !important;
-}
-
-.result-header .subtitle {
-    color: #b8b5d9 !important;
+/* 공유 버튼: 기존 방식(흰 배경 + 테두리) */
+.share-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
 }
 
 .share-btn {
-    background: rgba(255, 255, 255, 0.08) !important;
-    color: #e5e3f5 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    height: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333 !important;
+    border: 1px solid #eee;
+    background: white !important;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .share-btn:hover {
-    background: rgba(108, 92, 231, 0.3) !important;
+    border-color: #6C5CE7 !important;
+    background: #f0f1ff !important;
+}
+
+.share-btn span {
+    font-size: 1.2rem;
 }
 
 #t-retry-btn {
-    background: #3a3659 !important;
-    color: #e5e3f5 !important;
+    background: #666 !important;
+    color: #fff !important;
 }
 
 #toast {
@@ -235,10 +243,21 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ===== 모바일 대응 ===== */
+/* ===== 모바일: 화면 폭 이내로 유지 (오버플로우 방지) ===== */
 @media (max-width: 480px) {
+    .main-img-placeholder,
+    #t-result .main-img-placeholder {
+        width: 200px;
+        height: 200px;
+    }
+
+    .scan-box {
+        width: 230px;
+        height: 300px;
+    }
+
     .result-title {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
     }
 
     .result-desc {
@@ -250,14 +269,13 @@ body {
         padding: 13px 24px;
         font-size: 1rem;
         width: 100%;
-        max-width: 320px;
+        max-width: 300px;
         margin-left: auto;
         margin-right: auto;
         display: block;
     }
 
-    .scan-box {
-        width: 82vw;
-        height: 92vw;
+    .q-result-char-img {
+        max-width: 260px;
     }
 }

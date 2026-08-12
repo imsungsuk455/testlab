@@ -51,7 +51,10 @@
             margin: 20px auto;
             text-align: center;
             overflow: hidden;
-            min-height: 100px;
+            min-height: 0;
+        }
+        .ad-container:empty {
+            display: none;
         }
     </style>
 </head>
@@ -80,7 +83,7 @@
             </div>
 
             <!-- 애드센스 광고 영역 (승인 후 실제 광고 유닛 코드로 교체) -->
-            <div class="ad-container">
+            <div class="ad-container" style="display: none;">
                 <!--
                 <ins class="adsbygoogle"
                     style="display:block"
@@ -92,7 +95,7 @@
                 -->
             </div>
 
-            <div class="hub-header" style="margin-top: 50px;">
+            <div class="hub-header" style="margin-top: 30px;">
                 <h2>🧪 지금 가장 핫한 테스트</h2>
                 <p>당신도 몰랐던 당신의 진짜 모습!</p>
             </div>

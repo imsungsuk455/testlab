@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>친구 관계 유형 테스트 | 테스터랩(TesterLab)</title>
+    <meta name="description" content="8문항으로 알아보는 나의 친구 관계 유형! 나는 어떤 친구일까? 테스터랩(TesterLab)의 신규 심리 테스트.">
+    <meta name="keywords" content="친구 관계 유형 테스트, 친구 테스트, 심리 테스트, 우정 테스트, 나는 어떤 친구, TesterLab, 테스터랩">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="친구 관계 유형 테스트 - 나는 어떤 친구일까?">
+    <meta property="og:description" content="8문항으로 알아보는 나의 친구 관계 유형! 지금 테스터랩에서 확인해보세요.">
+    <meta property="og:image" content="https://testerlab.org/images/title_friend-type.webp">
+    <meta property="og:url" content="https://testerlab.org/event/friend-type/index">
+
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css?v=20260813">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../../'">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in custom-theme">
+
+        <!-- SECTION: HOME -->
+        <section id="q-home" class="section active">
+            <div class="back-nav" onclick="location.href='../../'">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h1>친구 관계 유형 테스트</h1>
+                <p class="subtitle">8문항으로 알아보는 나의 친구 유형</p>
+            </div>
+            <div class="main-img-placeholder" style="background: #7CCF5A;">
+                <img src="../../images/title_friend-type.webp" alt="친구 관계 유형 테스트"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <button id="q-start-btn" class="btn custom-btn pulse" style="background: #7CCF5A; color: #FFFFFF;">테스트
+                시작하기</button>
+            <p class="footer">총 8문항 · 약 2분</p>
+        </section>
+
+        <!-- SECTION: QUIZ -->
+        <section id="q-quiz" class="section">
+            <div class="quiz-progress">
+                <div class="quiz-progress-text"><span id="q-current">1</span> / <span id="q-total">8</span></div>
+                <div class="quiz-progress-bar">
+                    <div id="q-progress-fill" class="quiz-progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="quiz-question-box">
+                <h2 id="q-question-text"></h2>
+                <div id="q-options" class="quiz-options"></div>
+            </div>
+
+            <button id="q-prev-btn" class="btn quiz-prev-btn" style="background: #ddd; color: #555;">이전</button>
+        </section>
+
+        <!-- SECTION: LOADING -->
+        <section id="q-loading" class="section">
+            <div class="loading-box">
+                <div class="loader" style="margin-top: 30px; border-top-color: #7CCF5A;"></div>
+                <p class="loading-text" id="q-loading-text">결과를 분석하고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- SECTION: RESULT -->
+        <section id="q-result" class="section">
+            <div class="result-header">
+                <p class="subtitle" style="margin-bottom: 10px;">당신의 결과는</p>
+                <h2 class="result-title custom-title" id="q-res-title" style="color: #FFFFFF; font-size: 1.9rem;">
+                </h2>
+            </div>
+
+            <div class="q-result-card" style="border-top-color: #7CCF5A;">
+                <div class="q-result-char-img" style="max-width: 280px; margin: 0 auto 16px; border-radius: 20px; overflow: hidden; background: #F2FBEC; border: 1px solid #DCEDD0;">
+                    <img id="q-res-char-img" src="#" alt="친구 유형 캐릭터" style="width: 100%; display: block;">
+                </div>
+                <div class="q-result-icon" id="q-res-icon"></div>
+                <div class="q-result-tags" id="q-res-tags"></div>
+                <div class="result-desc" style="border-left-color: #7CCF5A; background: #FFF; text-align: left;">
+                    <p id="q-res-desc-text"></p>
+                </div>
+                <div class="q-result-extra" id="q-res-extra" style="background: #7CCF5A22;"></div>
+            </div>
+
+            <div class="share-container">
+                <button class="share-btn" id="q-share-link" title="링크 복사">
+                    <span>🔗</span> 링크 복사하기
+                </button>
+                <button class="share-btn" id="q-share-native" title="공유하기">
+                    <span>📤</span> 결과 공유하기
+                </button>
+            </div>
+            <button class="btn" id="q-retry-btn" style="margin-top: 20px; background: #666;">다시 테스트하기</button>
+        </section>
+
+    </div>
+
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js?v=20260813"></script>
+</body>
+
+</html>

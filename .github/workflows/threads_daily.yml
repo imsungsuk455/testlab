@@ -1,0 +1,47 @@
+name: Threads Daily Marketing
+
+on:
+  schedule:
+    # ⚠️ 발행 시간은 사용자가 설정한 KST 시간에 맞춰 수정한다 (KST→UTC = -9h)
+    # 예: KST 18:00 → UTC 09:00 → '0 9 * * *'
+    #     KST 21:00 → UTC 12:00 → '0 12 * * *'
+    #     KST 10:00 → UTC 01:00 → '0 1 * * *'
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dotenv
+
+      - name: Prepare env
+        run: |
+          echo "THREADS_ACCESS_TOKEN=${{ secrets.THREADS_ACCESS_TOKEN }}" >> .env
+          echo "THREADS_USER_ID=${{ secrets.THREADS_USER_ID }}" >> .env
+
+      - name: Publish today's marketing post
+        run: |
+          python scripts/threads_publish.py output/marketing_posts_*.json || echo "NO_SLOT_TODAY"
+
+      - name: Commit schedule updates
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/marketing_posts_*.json
+          git commit -m "Threads marketing: update schedule status" || echo "No changes"
+          git push

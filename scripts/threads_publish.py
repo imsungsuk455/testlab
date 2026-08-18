@@ -1,0 +1,177 @@
+# -*- coding: utf-8 -*-
+"""
+Threads API 발행 스크립트 (TesterLab 마케팅).
+
+텍스트(+이미지)를 Threads에 게시한다.
+Threads API는 예약 게시를 지원하지 않으므로, GitHub Actions cron으로
+매일 1개씩 실행되어 스케줄 JSON의 해당 날짜 슬롯을 발행한다.
+
+사용법:
+  # 1) 특정 JSON 슬롯 발행 (오늘 날짜 슬롯 자동 선택)
+  python threads_publish.py output/marketing_posts_{slug}.json
+
+  # 2) 특정 날짜/일차 지정
+  python threads_publish.py output/marketing_posts_{slug}.json --date 2026-08-13
+  python threads_publish.py output/marketing_posts_{slug}.json --day 3
+
+  # 3) 오늘 슬롯이 이미 발행됐으면 건너뜀 (재실행 안전)
+
+API 참고:
+  - 이미지 게시: POST /{user-id}/threads {media_type=IMAGE, image_url=...} → creation_id
+    → POST /{user-id}/threads_publish {creation_id} → 게시
+  - 텍스트 게시: POST /{user-id}/threads {media_type=TEXT, text=...} → creation_id
+    → POST /{user-id}/threads_publish {creation_id} → 게시
+  - 이미지는 공개 URL이 필요 (testerlab.org 호스팅 이미지 사용)
+"""
+import argparse
+import json
+import os
+import sys
+import time
+from datetime import date, datetime
+from pathlib import Path
+
+import requests
+from dotenv import load_dotenv
+
+# Windows 콘솔 UTF-8 출력 보정 (이모지 포함 카피 출력 시)
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
+HERE = Path(__file__).parent
+ENV_PATH = HERE.parent / ".env"
+API_BASE = "https://graph.threads.net/v1.0"
+
+
+def load_env():
+    load_dotenv(ENV_PATH)
+    token = os.getenv("THREADS_ACCESS_TOKEN")
+    uid = os.getenv("THREADS_USER_ID")
+    if not (token and uid):
+        raise SystemExit("THREADS_ACCESS_TOKEN / THREADS_USER_ID 가 .env에 없습니다.")
+    return token, uid
+
+
+def create_container(token, uid, payload):
+    url = f"{API_BASE}/{uid}/threads"
+    params = {"access_token": token, **payload}
+    r = requests.post(url, params=params, timeout=30)
+    if r.status_code != 200:
+        raise RuntimeError(f"컨테이너 생성 실패: {r.status_code} - {r.text[:300]}")
+    return r.json()["id"]
+
+
+def publish_container(token, uid, creation_id):
+    url = f"{API_BASE}/{uid}/threads_publish"
+    params = {"access_token": token, "creation_id": creation_id}
+    r = requests.post(url, params=params, timeout=30)
+    if r.status_code != 200:
+        raise RuntimeError(f"게시 실패: {r.status_code} - {r.text[:300]}")
+    return r.json()
+
+
+def post_text(token, uid, text):
+    cid = create_container(token, uid, {"media_type": "TEXT", "text": text})
+    return publish_container(token, uid, cid)
+
+
+def post_image(token, uid, text, image_url):
+    payload = {"media_type": "IMAGE", "image_url": image_url}
+    if text:
+        payload["text"] = text
+    cid = create_container(token, uid, payload)
+    # 이미지 업로드 처리 대기 (권장)
+    time.sleep(3)
+    return publish_container(token, uid, cid)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Threads 발행")
+    parser.add_argument("schedule", help="마케팅 스케줄 JSON 경로")
+    parser.add_argument("--date", default=None, help="발행할 날짜 YYYY-MM-DD (기본: 오늘)")
+    parser.add_argument("--day", type=int, default=None, help="발행할 day 번호 (1~10)")
+    parser.add_argument("--dry-run", action="store_true", help="실제 발행 없이 카피만 출력")
+    args = parser.parse_args()
+
+    token, uid = load_env()
+
+    sched_path = Path(args.schedule)
+    if not sched_path.exists():
+        raise SystemExit(f"스케줄 없음: {sched_path}")
+    with open(sched_path, "r", encoding="utf-8") as f:
+        sched = json.load(f)
+
+    today = args.date or date.today().isoformat()
+    slot = None
+    for s in sched["slots"]:
+        if args.day and s["day"] == args.day:
+            slot = s
+            break
+        if s["date"] == today:
+            slot = s
+            break
+    if not slot:
+        print(f"오늘({today}) 발행 슬롯이 없습니다. 건너뜁니다.")
+        sys.exit(0)
+
+    if slot["status"] == "posted":
+        print(f"[{slot['date']}] 이미 발행됨 (day {slot['day']}). 건너뜁니다.")
+        sys.exit(0)
+
+    if not slot.get("content"):
+        print(f"[{slot['date']}] content(카피)가 아직 없습니다. 마케팅 워크플로우에서 카피를 채우세요.")
+        sys.exit(1)
+
+    # 사용자 검증 필수 루틴: 실제 발행 전에 반드시 확인
+    if not slot.get("user_approved"):
+        print("=" * 60)
+        print("⚠️  사용자 검증 필요: 이 슬롯은 아직 사용자 승인을 받지 않았습니다.")
+        print("  SKILL.md 마케팅 워크플로우에 따라 아래 카피/이미지/발행시간을")
+        print("  사용자에게 보여주고 승인을 받은 뒤 재실행하세요.")
+        print("  (승인 시 JSON의 slot.user_approved 를 true로 설정)")
+        print("=" * 60)
+        sys.exit(2)
+
+    # 발행 시간 확인: 슬롯에 설정된 시간(KST) 정보를 안내
+    pub_time = slot.get("publish_time")
+    if pub_time:
+        print(f"  ⏰ 발행 시각: 매일 KST {pub_time} (GitHub Actions cron 기준)")
+
+    text = slot["content"]
+    image = slot.get("image")
+    print(f"▶ 발행 슬롯: day {slot['day']} / {slot['date']}")
+    print("  ----- 발행될 카피 -----")
+    print(text)
+    print("  -----------------------")
+    if image:
+        print(f"  이미지: {image}")
+
+    if args.dry_run:
+        print("  (dry-run: 발행 안 함)")
+        sys.exit(0)
+
+    if image:
+        # 로컬 파일이면 공개 URL로 변환 필요 - 스케줄 JSON에는 공개 URL 또는 로컬 경로
+        image_url = image
+        if image.startswith("site/") or image.startswith(".\\") or "\\" in image or image.startswith("."):
+            raise SystemExit(
+                "로컬 이미지 경로는 발행 불가. 공개 URL로 지정하세요.\n"
+                "예: https://testerlab.org/images/title_love-type.webp"
+            )
+        result = post_image(token, uid, text, image_url)
+    else:
+        result = post_text(token, uid, text)
+
+    slot["status"] = "posted"
+    slot["posted_at"] = datetime.now().isoformat()
+    slot["thread_id"] = result.get("id")
+    with open(sched_path, "w", encoding="utf-8") as f:
+        json.dump(sched, f, ensure_ascii=False, indent=2)
+    print(f"✅ 발행 완료! Threads 게시 ID: {result.get('id')}")
+
+
+if __name__ == "__main__":
+    main()

@@ -36,7 +36,11 @@ jobs:
 
       - name: Publish today's marketing post
         run: |
-          python scripts/threads_publish.py output/marketing_posts_*.json || echo "NO_SLOT_TODAY"
+          # 각 스케줄 파일을 개별적으로 처리 (와일드카드 확장 문제 방지)
+          for f in output/marketing_posts_*.json; do
+            echo "Processing: $f"
+            python scripts/threads_publish.py "$f" || echo "NO_SLOT_OR_SKIPPED: $f"
+          done
 
       - name: Commit schedule updates
         run: |

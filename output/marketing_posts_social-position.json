@@ -63,11 +63,11 @@
       "url": "https://testerlab.org/event/social-position/",
       "image": null,
       "result_type": "mood",
-      "status": "pending",
-      "posted_at": null,
+      "status": "posted",
+      "posted_at": "2026-08-21T09:23:45.455320",
       "publish_time": "18:00",
       "content": "술자리에서 '이야기 잘 들어주는 사람' 🎧 vs '이야기 잘 끌어내는 사람' 🎤\n\n둘 다 필요한 존재인데, 대부분 내 역할을 정확히 모름.\n\n8문항 풀면 네가 어느 쪽인지 나옴 ✨\n\n테스트는 프로필 링크에 있어요.",
-      "thread_id": null,
+      "thread_id": "18103162658235408",
       "user_approved": true
     },
     {

@@ -1,0 +1,281 @@
+/* 재물운 부자 관상 테스트 전용 스타일
+ * 기존 상견례 테스트와 동일한 구조: 밝은 배경 + 진한(검정) 폰트 + 화면 안 고정 크기
+ * 테마 컬러: #F5C542 (포인트 컬러) */
+
+.custom-theme {
+    background-color: #FFFFFF !important;
+}
+
+.custom-theme .title-container h1 {
+    color: #222;
+}
+
+.custom-theme .title-container .subtitle {
+    color: #666;
+}
+
+/* ===== 이미지 표시: 고정 크기(화면 안) + 비율 유지(contain) ===== */
+
+/* 홈 타이틀 이미지 */
+.main-img-placeholder {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 35px;
+    border-radius: 30px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.main-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* 원본 비율 유지, 잘리지 않음 */
+}
+
+/* 업로드 후 미리보기 */
+#t-image-preview {
+    max-width: 100%;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 20px;
+    background: #f8f9fa;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* 분석(로딩) 중 스캔 이미지: 고정 크기, 화면 안 */
+.scan-box {
+    width: 260px;
+    height: 340px;
+    background-color: #000;
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.scan-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* 원본 비율 유지, 잘리지 않음 */
+    opacity: 0.85;
+}
+
+/* 결과 섹션: 사용자 사진 */
+#t-result .main-img-placeholder {
+    width: 220px;
+    height: 220px;
+    background: #f8f9fa;
+}
+
+#t-result .main-img-placeholder img {
+    object-fit: contain;
+}
+
+/* 결과 캐릭터 이미지 */
+.q-result-char-img {
+    max-width: 300px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #f0f1ff;
+    border: 1px solid #e8e8ef;
+}
+
+.q-result-char-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* ===== 폰트: 검정 계열로 또렷하게 ===== */
+
+/* 결과 타이틀: 진한 색, 크고 굵게 */
+.result-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #222 !important;
+}
+
+/* 분석 중 로딩 텍스트 */
+.loading-text {
+    color: #444 !important;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+/* 결과 설명: 검정 계열 */
+.result-desc {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: left;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    color: #333;
+    margin-bottom: 35px;
+    border-left: 5px solid #F5C542;
+}
+
+.result-desc p {
+    color: #333 !important;
+}
+
+/* 추가 코멘트 (extra): 짙은 회색 */
+#t-res-extra-text {
+    color: #555 !important;
+    font-size: 0.95rem !important;
+}
+
+/* 배지: 밝은 배경에 진한 색 */
+.custom-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.custom-badge.custom-pass {
+    background: #EEF2FF;
+    color: #4338CA;
+}
+
+.custom-badge.custom-fail {
+    background: #FEF2F2;
+    color: #B91C1C;
+}
+
+.custom-title {
+    letter-spacing: -0.03em;
+    color: #222 !important;
+}
+
+/* 버튼 */
+.custom-btn {
+    border-radius: 100px;
+    padding: 14px 32px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.custom-btn.pulse {
+    animation: customPulse 2s infinite;
+}
+
+@keyframes customPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.12); }
+    70% { box-shadow: 0 0 0 14px rgba(0, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+}
+
+/* 공유 버튼: 흰 배경 + 테두리 */
+.share-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    height: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333 !important;
+    border: 1px solid #eee;
+    background: white !important;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.share-btn:hover {
+    border-color: #F5C542 !important;
+    background: #f0f1ff !important;
+}
+
+.share-btn span {
+    font-size: 1.2rem;
+}
+
+#t-retry-btn {
+    background: #666 !important;
+    color: #fff !important;
+}
+
+#toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #222;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===== 모바일: 화면 폭 이내로 유지 (오버플로우 방지) ===== */
+@media (max-width: 480px) {
+    .main-img-placeholder,
+    #t-result .main-img-placeholder {
+        width: 200px;
+        height: 200px;
+    }
+
+    .scan-box {
+        width: 230px;
+        height: 300px;
+    }
+
+    .result-title {
+        font-size: 1.35rem;
+    }
+
+    .result-desc {
+        font-size: 0.98rem;
+        padding: 18px;
+    }
+
+    .custom-btn {
+        padding: 13px 24px;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .q-result-char-img {
+        max-width: 260px;
+    }
+}

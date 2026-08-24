@@ -3,11 +3,12 @@ name: Threads Daily Marketing
 on:
   schedule:
     # ⚠️ 발행 시간은 사용자가 설정한 KST 시간에 맞춰 수정한다 (KST→UTC = -9h)
-    # 예: KST 18:00 → UTC 09:00 → '0 9 * * *'
-    #     KST 21:00 → UTC 12:00 → '0 12 * * *'
-    #     KST 10:00 → UTC 01:00 → '0 1 * * *'
-    # 현재 설정: 매일 KST 21:00 (저녁 9시) 발행
-    - cron: '0 12 * * *'
+    # 캠페인별 발행 시각이 다를 수 있으므로 cron을 여러 개 등록하고,
+    # 스크립트가 slot의 publish_time(KST 시각)과 현재 시각이 일치할 때만 발행한다.
+    # 예: KST 18:00 → UTC 09:00 → '0 9 * * *'  (기존 social-position 캠페인)
+    #     KST 21:00 → UTC 12:00 → '0 12 * * *' (wealth-face-2026 캠페인)
+    - cron: '0 9 * * *'   # KST 18:00 (저녁 6시)
+    - cron: '0 12 * * *'  # KST 21:00 (저녁 9시)
   workflow_dispatch:
 
 permissions:

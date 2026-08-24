@@ -28,7 +28,7 @@ import json
 import os
 import sys
 import time
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import requests
@@ -123,6 +123,16 @@ def main():
     if not slot:
         print(f"오늘({today}) 발행 슬롯이 없습니다. 건너뜁니다.")
         sys.exit(0)
+
+    # 발행 시각(publish_time, KST) 체크: 여러 캠페인이 서로 다른 시간에 발행되도록
+    # (예: A캠페인 18:00, B캠페인 21:00) 현재 KST 시(hour)가 슬롯 발행 시각과 일치할 때만 발행한다.
+    pub_time = slot.get("publish_time")
+    if pub_time:
+        now_kst = datetime.utcnow() + timedelta(hours=9)
+        pub_hour = int(str(pub_time).split(":")[0])
+        if now_kst.hour != pub_hour:
+            print(f"[{slot['date']}] 발행 시각(KST {pub_time})이 현재(KST {now_kst.hour:02d}:00)와 다름. 건너뜁니다.")
+            sys.exit(0)
 
     if slot["status"] == "posted":
         print(f"[{slot['date']}] 이미 발행됨 (day {slot['day']}). 건너뜁니다.")

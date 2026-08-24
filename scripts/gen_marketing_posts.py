@@ -47,7 +47,7 @@ def main():
     parser.add_argument("test_name", help="테스트명")
     parser.add_argument("tagline", help="한 줄 소개 (테스트 카드 설명)")
     parser.add_argument("--url", required=True, help="테스트 페이지 URL")
-    parser.add_argument("--image", default=None, help="메인 이미지 경로 (site/images/title_*.webp)")
+    parser.add_argument("--image", default=None, help="썸네일 공개 URL (기본: https://testerlab.org/images/title_{slug}.webp 자동 설정)")
     parser.add_argument("--start", default=None, help="발행 시작일 YYYY-MM-DD (기본: 오늘)")
     parser.add_argument("--days", type=int, default=10, help="발행 일수 (기본 10)")
     parser.add_argument("--time", default=None, help="매일 발행 시각 KST (예: 18:00). 사용자에게 확인 후 설정")
@@ -58,13 +58,8 @@ def main():
     start = datetime.strptime(args.start, "%Y-%m-%d").date() if args.start else datetime.now().date()
     publish_time = args.time
 
-    image_rel = None
-    if args.image:
-        p = Path(args.image)
-        if p.exists():
-            image_rel = str(p).replace("\\", "/")
-        else:
-            print(f"⚠️  이미지 없음: {args.image}", file=sys.stderr)
+    # 발행 시 썸네일 이미지 공개 URL (필수 포함 규칙): 기본값은 title_{slug}.webp 공개 URL
+    image_url = args.image or f"https://testerlab.org/images/title_{args.slug}.webp"
 
     slots = []
     for i in range(args.days):
@@ -76,7 +71,7 @@ def main():
             "test_name": args.test_name,
             "tagline": args.tagline,
             "url": args.url,
-            "image": image_rel,
+            "image": image_url,
             "status": "pending",       # pending | posted | failed
             "posted_at": None,
             "publish_time": publish_time,  # 매일 발행 시각 KST (사용자 설정)
@@ -93,6 +88,7 @@ def main():
 
     print(f"✅ 마케팅 콘텐츠 스케줄 생성: {out_path}")
     print(f"   기간: {start} ~ {start + timedelta(days=args.days - 1)} ({args.days}일, 매일 1개)")
+    print(f"   썸네일 이미지(공개 URL): {image_url}")
     print("\n📝 다음 단계: SKILL.md 마케팅 워크플로우에 따라")
     print("   각 슬롯의 content(카피)를 채우고 threads_publish.py로 발행합니다.")
 

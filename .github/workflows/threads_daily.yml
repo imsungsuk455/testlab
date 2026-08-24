@@ -6,7 +6,8 @@ on:
     # 예: KST 18:00 → UTC 09:00 → '0 9 * * *'
     #     KST 21:00 → UTC 12:00 → '0 12 * * *'
     #     KST 10:00 → UTC 01:00 → '0 1 * * *'
-    - cron: '0 9 * * *'
+    # 현재 설정: 매일 KST 21:00 (저녁 9시) 발행
+    - cron: '0 12 * * *'
   workflow_dispatch:
 
 permissions:

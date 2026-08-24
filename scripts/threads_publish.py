@@ -88,6 +88,13 @@ def post_image(token, uid, text, image_url):
     return publish_container(token, uid, cid)
 
 
+def post_reply(token, uid, text, reply_to_id):
+    """본문 게시물에 답글(댓글)을 단다. Threads API: reply_to_id에 원본 미디어 ID."""
+    payload = {"media_type": "TEXT", "text": text, "reply_to_id": reply_to_id}
+    cid = create_container(token, uid, payload)
+    return publish_container(token, uid, cid)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Threads 발행")
     parser.add_argument("schedule", help="마케팅 스케줄 JSON 경로")
@@ -142,12 +149,15 @@ def main():
 
     text = slot["content"]
     image = slot.get("image")
+    comment = slot.get("comment")
     print(f"▶ 발행 슬롯: day {slot['day']} / {slot['date']}")
     print("  ----- 발행될 카피 -----")
     print(text)
     print("  -----------------------")
     if image:
         print(f"  이미지: {image}")
+    if comment:
+        print(f"  댓글(답글): {comment}")
 
     if args.dry_run:
         print("  (dry-run: 발행 안 함)")
@@ -168,9 +178,20 @@ def main():
     slot["status"] = "posted"
     slot["posted_at"] = datetime.now().isoformat()
     slot["thread_id"] = result.get("id")
+    print(f"✅ 발행 완료! Threads 게시 ID: {result.get('id')}")
+
+    # 본문 발행 후 댓글(답글)로 링크 발행 (SKILL.md 규칙: 링크는 본문이 아닌 댓글로)
+    if comment:
+        time.sleep(3)
+        try:
+            reply = post_reply(token, uid, comment, result.get("id"))
+            slot["comment_id"] = reply.get("id")
+            print(f"✅ 댓글 발행 완료! 댓글 ID: {reply.get('id')}")
+        except Exception as e:
+            print(f"⚠️ 댓글 발행 실패 (본문은 발행됨): {e}")
+
     with open(sched_path, "w", encoding="utf-8") as f:
         json.dump(sched, f, ensure_ascii=False, indent=2)
-    print(f"✅ 발행 완료! Threads 게시 ID: {result.get('id')}")
 
 
 if __name__ == "__main__":

@@ -30,6 +30,13 @@ import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
+# Windows 콘솔 UTF-8 출력 보정 (이모지 포함 출력 시)
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 HERE = Path(__file__).parent
 OUTPUT_DIR = HERE.parent / "output"
 
@@ -44,6 +51,8 @@ def main():
     parser.add_argument("--start", default=None, help="발행 시작일 YYYY-MM-DD (기본: 오늘)")
     parser.add_argument("--days", type=int, default=10, help="발행 일수 (기본 10)")
     parser.add_argument("--time", default=None, help="매일 발행 시각 KST (예: 18:00). 사용자에게 확인 후 설정")
+    parser.add_argument("--comment", default=None,
+                        help="본문 발행 후 댓글(답글)로 달 링크. SKILL.md 규칙상 본문에는 URL을 넣지 않고 댓글로 유도")
     args = parser.parse_args()
 
     start = datetime.strptime(args.start, "%Y-%m-%d").date() if args.start else datetime.now().date()
@@ -71,7 +80,9 @@ def main():
             "status": "pending",       # pending | posted | failed
             "posted_at": None,
             "publish_time": publish_time,  # 매일 발행 시각 KST (사용자 설정)
-            "content": None,           # 에이전트가 채움 (마케팅 카피)
+            "content": None,           # 에이전트가 채움 (마케팅 카피, 댓글 유도형)
+            "comment": args.comment,   # 본문 발행 후 댓글로 달 링크
+            "comment_id": None,        # 댓글 발행 후 Threads 댓글 ID
             "thread_id": None,         # 발행 후 Threads 게시 ID
         })
 

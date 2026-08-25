@@ -95,6 +95,35 @@ def post_reply(token, uid, text, reply_to_id):
     return publish_container(token, uid, cid)
 
 
+def media_exists(token, media_id):
+    """미디어(게시물)가 API에서 조회되는지 확인. 발직 직후에는 인덱싱 지연으로 조회 안 될 수 있음."""
+    r = requests.get(f"{API_BASE}/{media_id}", params={"access_token": token, "fields": "id"}, timeout=30)
+    return r.status_code == 200
+
+
+def post_reply_with_retry(token, uid, text, reply_to_id, attempts=3, delay=15):
+    """본문 미디어 인덱싱 대기 + 답글 발행 재시도.
+
+    발행 직후에는 미디어 전파 지연으로 reply 시도가 'Media Not Found'(코드 24)로 실패할 수 있어,
+    미디어가 조회될 때까지 폴링하고 그래도 실패하면 답글 발행을 재시도한다.
+    """
+    for i in range(attempts):
+        if media_exists(token, reply_to_id):
+            break
+        print(f"  ... 본문 미디어 인덱싱 대기 중 ({i + 1}/{attempts})")
+        time.sleep(delay)
+
+    last_err = None
+    for i in range(attempts):
+        try:
+            return post_reply(token, uid, text, reply_to_id)
+        except Exception as e:
+            last_err = e
+            print(f"  ... 댓글 발행 재시도 ({i + 1}/{attempts}): {e}")
+            time.sleep(delay)
+    raise last_err
+
+
 def main():
     parser = argparse.ArgumentParser(description="Threads 발행")
     parser.add_argument("schedule", help="마케팅 스케줄 JSON 경로")
@@ -191,10 +220,10 @@ def main():
     print(f"✅ 발행 완료! Threads 게시 ID: {result.get('id')}")
 
     # 본문 발행 후 댓글(답글)로 링크 발행 (SKILL.md 규칙: 링크는 본문이 아닌 댓글로)
+    # 발행 직후 전파 지연으로 실패할 수 있어 인덱싱 대기 + 재시도 로직 사용
     if comment:
-        time.sleep(3)
         try:
-            reply = post_reply(token, uid, comment, result.get("id"))
+            reply = post_reply_with_retry(token, uid, comment, result.get("id"))
             slot["comment_id"] = reply.get("id")
             print(f"✅ 댓글 발행 완료! 댓글 ID: {reply.get('id')}")
         except Exception as e:

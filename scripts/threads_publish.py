@@ -75,6 +75,7 @@ def publish_container(token, uid, creation_id):
 
 def post_text(token, uid, text):
     cid = create_container(token, uid, {"media_type": "TEXT", "text": text})
+    time.sleep(5)
     return publish_container(token, uid, cid)
 
 

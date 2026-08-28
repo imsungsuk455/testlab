@@ -36,6 +36,18 @@ jobs:
           echo "THREADS_ACCESS_TOKEN=${{ secrets.THREADS_ACCESS_TOKEN }}" >> .env
           echo "THREADS_USER_ID=${{ secrets.THREADS_USER_ID }}" >> .env
 
+      - name: Set PUBLISH_HOUR (KST) from cron trigger
+        run: |
+          # github.event.schedule으로 어떤 cron이 실행됐는지 판단해 KST 발행 시각 설정
+          # 스크립트가 이 값으로 해당 캠페인만 발행하므로, cron이 수 시간 지연돼도 정확한 매칭 보장
+          if [ "${{ github.event.schedule }}" = "0 9 * * *" ]; then
+            echo "PUBLISH_HOUR=18" >> $GITHUB_ENV
+          elif [ "${{ github.event.schedule }}" = "0 12 * * *" ]; then
+            echo "PUBLISH_HOUR=21" >> $GITHUB_ENV
+          else
+            echo "PUBLISH_HOUR=" >> $GITHUB_ENV
+          fi
+
       - name: Publish today's marketing post
         run: |
           # 각 스케줄 파일을 개별적으로 처리 (와일드카드 확장 문제 방지)

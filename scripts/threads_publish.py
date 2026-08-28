@@ -153,14 +153,23 @@ def main():
         print(f"오늘({today}) 발행 슬롯이 없습니다. 건너뜁니다.")
         sys.exit(0)
 
-    # 발행 시각(publish_time, KST) 체크: 여러 캠페인이 서로 다른 시간에 발행되도록
-    # (예: A캠페인 18:00, B캠페인 21:00) 현재 KST 시(hour)가 슬롯 발행 시각과 일치할 때만 발행한다.
-    pub_time = slot.get("publish_time")
-    if pub_time:
+    # 캠페인별 발행 시각 매칭:
+    # PUBLISH_HOUR 환경변수(workflow가 cron에 따라 KST 시각 설정)가 있으면
+    # 해당 시간대 슬롯만 발행 — cron이 수 시간 지연돼도 정확한 매칭 보장.
+    # PUBLISH_HOUR 미설정 시(수동 실행 등): 날짜 기반 (오늘/어제 KST 슬롯 허용).
+    publish_hour_env = os.getenv("PUBLISH_HOUR")
+    if publish_hour_env:
+        pub_hour = int(publish_hour_env)
+        slot_pub_hour = int(str(slot.get("publish_time", "0:00")).split(":")[0])
+        if slot_pub_hour != pub_hour:
+            print(f"[{slot['date']}] 이 cron은 KST {pub_hour}시 전용. 슬롯 발행 시각(KST {slot_pub_hour}시) 불일치. 건너뜁니다.")
+            sys.exit(0)
+    else:
         now_kst = datetime.utcnow() + timedelta(hours=9)
-        pub_hour = int(str(pub_time).split(":")[0])
-        if now_kst.hour != pub_hour:
-            print(f"[{slot['date']}] 발행 시각(KST {pub_time})이 현재(KST {now_kst.hour:02d}:00)와 다름. 건너뜁니다.")
+        today_kst = now_kst.date()
+        slot_date = datetime.strptime(slot["date"], "%Y-%m-%d").date()
+        if slot_date < today_kst - timedelta(days=1):
+            print(f"[{slot['date']}] 슬롯 날짜가 2일 이상 지났습니다 (오늘 KST {today_kst}). 건너뜁니다.")
             sys.exit(0)
 
     if slot["status"] == "posted":

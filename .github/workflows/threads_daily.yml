@@ -9,6 +9,7 @@ on:
     #     KST 21:00 → UTC 12:00 → '0 12 * * *' (wealth-face-2026 캠페인)
     - cron: '0 9 * * *'   # KST 18:00 (저녁 6시)
     - cron: '0 12 * * *'  # KST 21:00 (저녁 9시)
+    - cron: '0 4 * * *'   # KST 13:00 (낮 1시, flirt-quiz-2026 캠페인)
   workflow_dispatch:
 
 permissions:
@@ -44,6 +45,8 @@ jobs:
             echo "PUBLISH_HOUR=18" >> $GITHUB_ENV
           elif [ "${{ github.event.schedule }}" = "0 12 * * *" ]; then
             echo "PUBLISH_HOUR=21" >> $GITHUB_ENV
+          elif [ "${{ github.event.schedule }}" = "0 4 * * *" ]; then
+            echo "PUBLISH_HOUR=13" >> $GITHUB_ENV
           else
             echo "PUBLISH_HOUR=" >> $GITHUB_ENV
           fi

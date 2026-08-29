@@ -154,17 +154,30 @@ def main():
         print(f"오늘({today}) 발행 슬롯이 없습니다. 건너뜁니다.")
         sys.exit(0)
 
-    # 발행 날짜 체크 (KST): 슬롯 날짜가 '오늘 KST' 또는 '어제 KST'이면 발행.
-    # GitHub Actions cron은 가끔 수 시간~10시간 이상 지연될 수 있어
-    # 시각 기반 체크(PUBLISH_HOUR)는 불안정하므로 날짜 기반으로 단순화.
-    # 같은 날의 모든 슬롯은 첫 번째로 실행되는 cron에서 모두 발행되고,
-    # 이후 cron은 '이미 발행됨'으로 스킵되므로 겹침 없음.
-    now_kst = datetime.utcnow() + timedelta(hours=9)
-    today_kst = now_kst.date()
-    slot_date = datetime.strptime(slot["date"], "%Y-%m-%d").date()
-    if slot_date < today_kst - timedelta(days=1):
-        print(f"[{slot['date']}] 슬롯 날짜가 2일 이상 지났습니다 (오늘 KST {today_kst}). 건너뜁니다.")
-        sys.exit(0)
+    # 발행 시간대 매칭 (PUBLISH_HOUR ±3시간 윈도우):
+    # cron이 수 시간 지연돼도 같은 시간대면 발행되도록 허용 윈도우 적용.
+    # 예: PUBLISH_HOUR=13 → 10:00~16:00 KST 슬롯 발행
+    #     PUBLISH_HOUR=21 → 18:00~00:00 KST 슬롯 발행
+    # PUBLISH_HOUR 미설정 시(수동 실행 등): 날짜 기반 (오늘/어제 허용).
+    publish_hour_env = os.getenv("PUBLISH_HOUR")
+    if publish_hour_env:
+        now_kst = datetime.utcnow() + timedelta(hours=9)
+        pub_hour = int(publish_hour_env)
+        slot_pub_hour = int(str(slot.get("publish_time", "0:00")).split(":")[0])
+        diff = abs(slot_pub_hour - pub_hour)
+        # 자정 넘나드는 경우 처리 (예: 23시 vs 1시 = 2시간차)
+        if diff > 12:
+            diff = 24 - diff
+        if diff > 5:
+            print(f"[{slot['date']}] 시간대 불일치 (cron KST {pub_hour}시, 슬롯 KST {slot_pub_hour}시, 차이 {diff}h). 건너뜁니다.")
+            sys.exit(0)
+    else:
+        now_kst = datetime.utcnow() + timedelta(hours=9)
+        today_kst = now_kst.date()
+        slot_date = datetime.strptime(slot["date"], "%Y-%m-%d").date()
+        if slot_date < today_kst - timedelta(days=1):
+            print(f"[{slot['date']}] 슬롯 날짜가 2일 이상 지났습니다 (오늘 KST {today_kst}). 건너뜁니다.")
+            sys.exit(0)
 
     if slot["status"] == "posted":
         print(f"[{slot['date']}] 이미 발행됨 (day {slot['day']}). 건너뜁니다.")

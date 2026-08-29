@@ -154,24 +154,17 @@ def main():
         print(f"오늘({today}) 발행 슬롯이 없습니다. 건너뜁니다.")
         sys.exit(0)
 
-    # 캠페인별 발행 시각 매칭:
-    # PUBLISH_HOUR 환경변수(workflow가 cron에 따라 KST 시각 설정)가 있으면
-    # 해당 시간대 슬롯만 발행 — cron이 수 시간 지연돼도 정확한 매칭 보장.
-    # PUBLISH_HOUR 미설정 시(수동 실행 등): 날짜 기반 (오늘/어제 KST 슬롯 허용).
-    publish_hour_env = os.getenv("PUBLISH_HOUR")
-    if publish_hour_env:
-        pub_hour = int(publish_hour_env)
-        slot_pub_hour = int(str(slot.get("publish_time", "0:00")).split(":")[0])
-        if slot_pub_hour != pub_hour:
-            print(f"[{slot['date']}] 이 cron은 KST {pub_hour}시 전용. 슬롯 발행 시각(KST {slot_pub_hour}시) 불일치. 건너뜁니다.")
-            sys.exit(0)
-    else:
-        now_kst = datetime.utcnow() + timedelta(hours=9)
-        today_kst = now_kst.date()
-        slot_date = datetime.strptime(slot["date"], "%Y-%m-%d").date()
-        if slot_date < today_kst - timedelta(days=1):
-            print(f"[{slot['date']}] 슬롯 날짜가 2일 이상 지났습니다 (오늘 KST {today_kst}). 건너뜁니다.")
-            sys.exit(0)
+    # 발행 날짜 체크 (KST): 슬롯 날짜가 '오늘 KST' 또는 '어제 KST'이면 발행.
+    # GitHub Actions cron은 가끔 수 시간~10시간 이상 지연될 수 있어
+    # 시각 기반 체크(PUBLISH_HOUR)는 불안정하므로 날짜 기반으로 단순화.
+    # 같은 날의 모든 슬롯은 첫 번째로 실행되는 cron에서 모두 발행되고,
+    # 이후 cron은 '이미 발행됨'으로 스킵되므로 겹침 없음.
+    now_kst = datetime.utcnow() + timedelta(hours=9)
+    today_kst = now_kst.date()
+    slot_date = datetime.strptime(slot["date"], "%Y-%m-%d").date()
+    if slot_date < today_kst - timedelta(days=1):
+        print(f"[{slot['date']}] 슬롯 날짜가 2일 이상 지났습니다 (오늘 KST {today_kst}). 건너뜁니다.")
+        sys.exit(0)
 
     if slot["status"] == "posted":
         print(f"[{slot['date']}] 이미 발행됨 (day {slot['day']}). 건너뜁니다.")
@@ -241,6 +234,14 @@ def main():
 
     with open(sched_path, "w", encoding="utf-8") as f:
         json.dump(sched, f, ensure_ascii=False, indent=2)
+    # 확인: 파일이 실제로 기록되었는지 검증
+    with open(sched_path, "r", encoding="utf-8") as f:
+        verify = json.load(f)
+    verify_slot = next((s for s in verify["slots"] if s["date"] == slot["date"]), None)
+    if verify_slot and verify_slot["status"] == "posted":
+        print(f"✅ 스케줄 JSON 기록 확인 완료")
+    else:
+        print(f"⚠️ 스케줄 JSON 기록 검증 실패 — 수동 확인 필요")
 
 
 if __name__ == "__main__":

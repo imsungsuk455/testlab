@@ -154,29 +154,44 @@ def main():
         print(f"오늘({today}) 발행 슬롯이 없습니다. 건너뜁니다.")
         sys.exit(0)
 
-    # 발행 시간대 매칭 (PUBLISH_HOUR ±3시간 윈도우):
-    # cron이 수 시간 지연돼도 같은 시간대면 발행되도록 허용 윈도우 적용.
-    # 예: PUBLISH_HOUR=13 → 10:00~16:00 KST 슬롯 발행
-    #     PUBLISH_HOUR=21 → 18:00~00:00 KST 슬롯 발행
-    # PUBLISH_HOUR 미설정 시(수동 실행 등): 날짜 기반 (오늘/어제 허용).
+    # 2단계 발행 로직:
+    # 1차) PUBLISH_HOUR ±1시간: 해당 크론의 시간대에 맞는 슬롯만 발행 (정상 동작)
+    # 2차) 4시간 이상 지연된 미발행 슬롯: 어떤 크론에서든 발행 (백업/캐치업)
+    # → 시간 분리 발행이 보장되면서, 크론 지연 시에도 누락 없음
+    now_kst = datetime.utcnow() + timedelta(hours=9)
     publish_hour_env = os.getenv("PUBLISH_HOUR")
+
     if publish_hour_env:
-        now_kst = datetime.utcnow() + timedelta(hours=9)
         pub_hour = int(publish_hour_env)
         slot_pub_hour = int(str(slot.get("publish_time", "0:00")).split(":")[0])
         diff = abs(slot_pub_hour - pub_hour)
-        # 자정 넘나드는 경우 처리 (예: 23시 vs 1시 = 2시간차)
         if diff > 12:
             diff = 24 - diff
-        if diff > 5:
-            print(f"[{slot['date']}] 시간대 불일치 (cron KST {pub_hour}시, 슬롯 KST {slot_pub_hour}시, 차이 {diff}h). 건너뜁니다.")
-            sys.exit(0)
+
+        if diff <= 1:
+            # 1차: 정확한 시간대 매칭 (해당 캠페인만 발행)
+            pass
+        else:
+            # 2차: 캐치업 — 오늘 슬롯인데 4시간 이상 지났으면 발행 (누락 방지)
+            slot_date = datetime.strptime(slot["date"], "%Y-%m-%d").date()
+            today_kst = now_kst.date()
+            if slot_date != today_kst:
+                print(f"[{slot['date']}] 캐치업 대상 아님 (오늘 아님). 건너뜁니다.")
+                sys.exit(0)
+            # 슬롯 발행 시각으로부터 경과 시간 계산
+            slot_dt = datetime.strptime(f"{slot['date']} {slot_pub_hour:02d}:00", "%Y-%m-%d %H:%M")
+            slot_dt_kst = slot_dt  # 이미 KST 기준
+            elapsed = (now_kst - slot_dt_kst).total_seconds() / 3600
+            if elapsed < 4:
+                print(f"[{slot['date']}] 캐치업 대기 중 (경과 {elapsed:.1f}h, 4h 미만). 건너뜁니다.")
+                sys.exit(0)
+            print(f"  ⏰ 캐치업 발행 (경과 {elapsed:.1f}h)")
     else:
-        now_kst = datetime.utcnow() + timedelta(hours=9)
+        # PUBLISH_HOUR 미설정 (수동 실행): 날짜 기반
         today_kst = now_kst.date()
         slot_date = datetime.strptime(slot["date"], "%Y-%m-%d").date()
         if slot_date < today_kst - timedelta(days=1):
-            print(f"[{slot['date']}] 슬롯 날짜가 2일 이상 지났습니다 (오늘 KST {today_kst}). 건너뜁니다.")
+            print(f"[{slot['date']}] 슬롯 날짜가 2일 이상 지났습니다. 건너뜁니다.")
             sys.exit(0)
 
     if slot["status"] == "posted":

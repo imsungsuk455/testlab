@@ -207,7 +207,7 @@ body {
 /* Intro Section */
 .intro-section {
     text-align: left;
-    margin-bottom: 35px;
+    margin-bottom: 24px;
     padding: 25px;
     background: linear-gradient(135deg, rgba(108, 92, 231, 0.05) 0%, rgba(255, 126, 185, 0.05) 100%);
     border-radius: 20px;
@@ -1377,4 +1377,10 @@ input[type=number] {
     .tier-percent {
         font-size: 2.8rem;
     }
+}
+
+/* 빈 광고 공간 접기 (애드센스): 광고가 채워지지 않은 유닛은 영역을 차지하지 않음.
+   실제 광고가 로드되면 data-ad-status 속성이 제거되어 정상 표시됨 */
+ins.adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
 }

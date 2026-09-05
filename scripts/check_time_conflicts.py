@@ -19,34 +19,95 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
         pass
 
 OUTPUT_DIR = Path(__file__).parent.parent / "output"
+# ⚠️ 진실 공급원(single source of truth)은 site/output (GitHub Actions가 읽는 배포본).
+# output/(스킬 로컬)은 stale될 수 있으므로 반드시 site/output과 비교한다.
+SITE_OUTPUT_DIR = Path(__file__).parent.parent / "site" / "output"
 AVAILABLE_SLOTS = [6, 9, 12, 15, 18, 21]  # 3시간 간격
 
 
-def get_active_campaigns():
-    """활성(발행 중) 캠페인의 publish_time을 수집한다."""
-    active = []
-    for p in OUTPUT_DIR.glob("marketing_posts_*.json"):
+def today_kst():
+    from datetime import datetime, timedelta
+    return (datetime.utcnow() + timedelta(hours=9)).date().isoformat()
+
+
+def resolve_publish_time(d):
+    """top-level publish_time이 없으면(구 스케줄) 슬롯에서 추출."""
+    pt = d.get("publish_time")
+    if pt:
+        return pt
+    for s in d.get("slots", []):
+        if s.get("publish_time"):
+            return s["publish_time"]
+    return None
+
+
+def load_campaigns(base_dir):
+    out = {}
+    if not base_dir.exists():
+        return out
+    for p in base_dir.glob("marketing_posts_*.json"):
         if p.name.startswith("marketing_posts_love-type"):
             continue  # 레거시 제외
         with open(p, encoding="utf-8") as f:
             d = json.load(f)
-        slug = d.get("slug", p.stem.replace("marketing_posts_", ""))
-        pub_time = d.get("publish_time")
+        out[p.name] = d
+    return out
+
+
+def get_active_campaigns():
+    """활성(발행 중) 캠페인의 publish_time을 수집한다. 기준: site/output + 오늘 이후 pending 존재."""
+    site_maps = load_campaigns(SITE_OUTPUT_DIR)
+    local_maps = load_campaigns(OUTPUT_DIR)
+    # 소스 선택: site/output 우선, 없으면 output/ 폴백
+    merged = dict(local_maps)
+    merged.update(site_maps)
+    source_note = "site/output" if site_maps else "output/(폴백)"
+
+    # 불일치 경고: 로컬 output/이 배포본과 다르면 새 세션 겹침의 원인
+    for name, local in local_maps.items():
+        remote = site_maps.get(name)
+        if remote is None:
+            print(f"⚠️ {name}: 배포본(site/output)에 없음 — gen 후 복사가 안 됐을 수 있음")
+            continue
+        lp = sum(1 for s in local.get("slots", []) if s.get("status") != "posted")
+        rp = sum(1 for s in remote.get("slots", []) if s.get("status") != "posted")
+        if lp != rp:
+            print(f"⚠️ {name}: 로컬 잔여 {lp} ≠ 배포본 잔여 {rp} — `git -C site pull` 후 로컬 동기화 필요")
+
+    today = today_kst()
+    active = []
+    for name, d in merged.items():
+        slug = d.get("slug", name.replace("marketing_posts_", "").replace(".json", ""))
+        pub_time = resolve_publish_time(d)
         if not pub_time:
             continue
-        # 활성 여부: 아직 미발행 슬롯이 있는지 확인
-        pending = sum(1 for s in d.get("slots", []) if s.get("status") != "posted")
+        # 활성 여부: 오늘(KST) 이후 날짜의 미발행 슬롯이 있는지
+        # (종료된 캠페인: 전부 posted이거나 pending이 과거 날짜뿐 → 제외)
+        future_pending = [s for s in d.get("slots", [])
+                          if s.get("status") != "posted" and s.get("date", "") >= today]
+        missed = [s for s in d.get("slots", [])
+                  if s.get("status") != "posted" and s.get("date", "") < today]
         total = len(d.get("slots", []))
-        if pending > 0:
+        if future_pending:
             hour = int(pub_time.split(":")[0])
             active.append({
                 "slug": slug,
                 "name": d.get("test_name", slug),
                 "hour": hour,
                 "time": pub_time,
-                "pending": pending,
+                "pending": len(future_pending),
                 "total": total,
             })
+        elif missed:
+            from datetime import datetime, timedelta as _td
+            _y = ((datetime.utcnow() + _td(hours=9)).date() - _td(days=1)).isoformat()
+            catchable = [s for s in missed if s.get("date") == _y]
+            if catchable:
+                print(f"📌 {d.get('test_name', slug)}: {len(catchable)}개 슬롯이 어제 미발행 — 다음 cron 어제-캐치업이 처리")
+            older = [s for s in missed if s.get("date", "") < _y]
+            if older:
+                print(f"ℹ️ {d.get('test_name', slug)}: {len(older)}개 슬롯은 2일 이상 지나 발행 불가 (무시됨, 시간대 차지 안 함)")
+    print(f"(기준: {source_note}, 오늘 KST {today})")
     return active
 
 

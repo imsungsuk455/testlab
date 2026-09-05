@@ -84,8 +84,8 @@ def post_image(token, uid, text, image_url):
     if text:
         payload["text"] = text
     cid = create_container(token, uid, payload)
-    # 이미지 업로드 처리 대기 (권장)
-    time.sleep(3)
+    # 이미지 업로드 처리 대기 (권장 10초 — 3초로는 Media Not Found 발생 가능)
+    time.sleep(10)
     return publish_container(token, uid, cid)
 
 
@@ -93,6 +93,8 @@ def post_reply(token, uid, text, reply_to_id):
     """본문 게시물에 답글(댓글)을 단다. Threads API: reply_to_id에 원본 미디어 ID."""
     payload = {"media_type": "TEXT", "text": text, "reply_to_id": reply_to_id}
     cid = create_container(token, uid, payload)
+    # 답글 컨테이너도 인덱싱 대기 필요 (없으면 publish 시 Media Not Found)
+    time.sleep(10)
     return publish_container(token, uid, cid)
 
 
@@ -102,12 +104,16 @@ def media_exists(token, media_id):
     return r.status_code == 200
 
 
-def post_reply_with_retry(token, uid, text, reply_to_id, attempts=3, delay=15):
+def post_reply_with_retry(token, uid, text, reply_to_id, attempts=5, delay=30):
     """본문 미디어 인덱싱 대기 + 답글 발행 재시도.
 
     발행 직후에는 미디어 전파 지연으로 reply 시도가 'Media Not Found'(코드 24)로 실패할 수 있어,
-    미디어가 조회될 때까지 폴링하고 그래도 실패하면 답글 발행을 재시도한다.
+    본문 게시 후 최소 60초를 먼저 대기한 뒤 미디어가 조회될 때까지 폴링하고
+    그래도 실패하면 답글 발행을 재시도한다.
+    (실측 2026-09-04: GET 폴링은 즉시 성공해도 reply publish가 3회 연속 실패 → 고정 대기 필요)
     """
+    print("  ... 본문 인덱싱 대기 중 (60초)")
+    time.sleep(60)
     for i in range(attempts):
         if media_exists(token, reply_to_id):
             break
@@ -141,27 +147,74 @@ def main():
     with open(sched_path, "r", encoding="utf-8") as f:
         sched = json.load(f)
 
-    today = args.date or date.today().isoformat()
-    slot = None
-    for s in sched["slots"]:
-        if args.day and s["day"] == args.day:
-            slot = s
-            break
-        if s["date"] == today:
-            slot = s
-            break
-    if not slot:
-        print(f"오늘({today}) 발행 슬롯이 없습니다. 건너뜁니다.")
-        sys.exit(0)
+    # ⚠️ 날짜 기준은 항상 KST (GitHub Actions 러너는 UTC라 date.today()와 하루 차이 가능.
+    # 실측 2026-09-04: UTC 15:53(=KST 00:53 다음날) 실행에서 UTC 날짜로 조회해 슬롯을 놓침)
+    now_kst = datetime.utcnow() + timedelta(hours=9)
+    today_kst = now_kst.date()
+    yesterday_kst = today_kst - timedelta(days=1)
 
-    # 2단계 발행 로직:
+    def find_slot(date_str):
+        for s in sched["slots"]:
+            if args.day and s["day"] == args.day:
+                return s
+            if not args.day and s["date"] == date_str:
+                return s
+        return None
+
+    slot = None
+    is_catchup_yesterday = False
+    if args.day or args.date:
+        slot = find_slot(args.date) if args.date else find_slot(None)
+        if not slot:
+            print(f"지정 슬롯이 없습니다 (date={args.date}, day={args.day}). 건너뜁니다.")
+            sys.exit(0)
+    else:
+        slot = find_slot(today_kst.isoformat())
+        if slot is None or (slot["status"] == "posted" and not slot.get("comment_retry_needed")):
+            # 어제 미발행 캐치업: 오늘 슬롯이 없거나 이미 완료됐고,
+            # 어제 슬롯이 pending이면 (cron 지연/실패로 놓친 경우) 오늘 첫 실행에서 발행
+            missed = find_slot(yesterday_kst.isoformat())
+            if missed and missed["status"] != "posted" and missed.get("content") and missed.get("user_approved"):
+                slot = missed
+                is_catchup_yesterday = True
+                print(f"  📌 어제({missed['date']}) 미발행 슬롯 캐치업")
+        if slot is None:
+            print(f"오늘(KST {today_kst}) 발행 슬롯이 없습니다. 건너뜁니다.")
+            sys.exit(0)
+
+    # 댓글 전수 재시도 (시간 게이팅 전): 본문은 발행됐는데 댓글(링크)이 빠진 슬롯이
+    # 어느 날짜에 있든 먼저 처리한다. 선택된 오늘 슬롯과 무관하게 동작해야
+    # 과거 슬롯의 누락 링크가 영원히 방치되지 않는다 (실측 2026-09-04 flirt-skill day1).
+    def save_sched():
+        with open(sched_path, "w", encoding="utf-8") as f:
+            json.dump(sched, f, ensure_ascii=False, indent=2)
+
+    if not args.day and not args.date:
+        pending_comments = [s for s in sched["slots"]
+                            if s.get("status") == "posted" and s.get("comment_retry_needed")
+                            and s.get("comment") and s.get("thread_id")]
+        for cs in pending_comments:
+            print(f"▶ 댓글 재시도 슬롯: day {cs['day']} / {cs['date']} (본문 {cs['thread_id']})")
+            if args.dry_run:
+                print("  (dry-run: 댓글 발행 안 함)")
+                continue
+            try:
+                reply = post_reply_with_retry(token, uid, cs["comment"], cs["thread_id"])
+                cs["comment_id"] = reply.get("id")
+                cs["comment_retry_needed"] = False
+                print(f"✅ 댓글 발행 완료! 댓글 ID: {reply.get('id')}")
+            except Exception as e:
+                print(f"⚠️ 댓글 재시도 실패 (다음 실행에서 다시 시도): {e}")
+            save_sched()
+
+    # 2단계 발행 로직 (KST 기준):
     # 1차) PUBLISH_HOUR ±1시간: 해당 크론의 시간대에 맞는 슬롯만 발행 (정상 동작)
     # 2차) 4시간 이상 지연된 미발행 슬롯: 어떤 크론에서든 발행 (백업/캐치업)
+    # 3차) 어제 미발행 슬롯: 날짜가 바뀌었어도 최대 1일까지는 발행 (cron 대지연 대응)
     # → 시간 분리 발행이 보장되면서, 크론 지연 시에도 누락 없음
-    now_kst = datetime.utcnow() + timedelta(hours=9)
     publish_hour_env = os.getenv("PUBLISH_HOUR")
 
-    if publish_hour_env:
+    if publish_hour_env and not is_catchup_yesterday:
         pub_hour = int(publish_hour_env)
         slot_pub_hour = int(str(slot.get("publish_time", "0:00")).split(":")[0])
         diff = abs(slot_pub_hour - pub_hour)
@@ -174,9 +227,8 @@ def main():
         else:
             # 2차: 캐치업 — 오늘 슬롯인데 4시간 이상 지났으면 발행 (누락 방지)
             slot_date = datetime.strptime(slot["date"], "%Y-%m-%d").date()
-            today_kst = now_kst.date()
             if slot_date != today_kst:
-                print(f"[{slot['date']}] 캐치업 대상 아님 (오늘 아님). 건너뜁니다.")
+                print(f"[{slot['date']}] 캐치업 대상 아님 (오늘 KST {today_kst} 아님). 건너뜁니다.")
                 sys.exit(0)
             # 슬롯 발행 시각으로부터 경과 시간 계산
             slot_dt = datetime.strptime(f"{slot['date']} {slot_pub_hour:02d}:00", "%Y-%m-%d %H:%M")
@@ -187,8 +239,7 @@ def main():
                 sys.exit(0)
             print(f"  ⏰ 캐치업 발행 (경과 {elapsed:.1f}h)")
     else:
-        # PUBLISH_HOUR 미설정 (수동 실행): 날짜 기반
-        today_kst = now_kst.date()
+        # PUBLISH_HOUR 미설정 (수동 실행): KST 날짜 기반
         slot_date = datetime.strptime(slot["date"], "%Y-%m-%d").date()
         if slot_date < today_kst - timedelta(days=1):
             print(f"[{slot['date']}] 슬롯 날짜가 2일 이상 지났습니다. 건너뜁니다.")
@@ -256,9 +307,12 @@ def main():
         try:
             reply = post_reply_with_retry(token, uid, comment, result.get("id"))
             slot["comment_id"] = reply.get("id")
+            slot["comment_retry_needed"] = False
             print(f"✅ 댓글 발행 완료! 댓글 ID: {reply.get('id')}")
         except Exception as e:
-            print(f"⚠️ 댓글 발행 실패 (본문은 발행됨): {e}")
+            # 본문은 발행됐으므로 posted 유지하되, 다음 cron에서 댓글만 재시도하도록 표시
+            slot["comment_retry_needed"] = True
+            print(f"⚠️ 댓글 발행 실패 (본문은 발행됨, 다음 실행에서 댓글 재시도): {e}")
 
     with open(sched_path, "w", encoding="utf-8") as f:
         json.dump(sched, f, ensure_ascii=False, indent=2)

@@ -2,15 +2,14 @@ name: Threads Daily Marketing
 
 on:
   schedule:
-    # ⚠️ 발행 시간은 사용자가 설정한 KST 시간에 맞춰 수정한다 (KST→UTC = -9h)
-    # 캠페인별 발행 시각이 다를 수 있으므로 cron을 여러 개 등록하고,
-    # 스크립트가 slot의 publish_time(KST 시각)과 현재 시각이 일치할 때만 발행한다.
-    # 예: KST 18:00 → UTC 09:00 → '0 9 * * *'  (기존 social-position 캠페인)
-    #     KST 21:00 → UTC 12:00 → '0 12 * * *' (wealth-face-2026 캠페인)
-    - cron: '0 9 * * *'   # KST 18:00 (저녁 6시)
-    - cron: '0 12 * * *'  # KST 21:00 (저녁 9시)
-    - cron: '0 4 * * *'   # KST 13:00 (낮 1시, flirt-quiz-2026 캠페인)
-    - cron: '0 0 * * *'   # KST 09:00 (아침 9시, flirt-skill-2026 캠페인)
+    # KST→UTC = -9h. ensure_cron.py가 보장 (고정 슬롯 06/09/12/15/18/21 + 기존 캠페인 시간)
+    - cron: '0 21 * * *'   # KST 06:00
+    - cron: '0 0 * * *'   # KST 09:00
+    - cron: '0 3 * * *'   # KST 12:00
+    - cron: '0 4 * * *'   # KST 13:00
+    - cron: '0 6 * * *'   # KST 15:00
+    - cron: '0 9 * * *'   # KST 18:00
+    - cron: '0 12 * * *'   # KST 21:00
   workflow_dispatch:
 
 permissions:
@@ -41,15 +40,22 @@ jobs:
       - name: Set PUBLISH_HOUR (KST) from cron trigger
         run: |
           # cron 스케줄에 따라 KST 발행 시간대 설정
-          # 스크립트가 ±3시간 윈도우로 매칭하므로 cron 지연 시에도 같은 시간대면 발행
-          if [ "${{ github.event.schedule }}" = "0 9 * * *" ]; then
+          # 스크립트가 ±1시간 매칭 + 4시간 경과 캐치업 + 어제 미발행 캐치업으로 처리하므로
+          # cron 지연 시에도 누락 없이 발행됨. 날짜 기준은 KST (스크립트 내부 계산)
+          if [ "${{ github.event.schedule }}" = "0 21 * * *" ]; then
+            echo "PUBLISH_HOUR=6" >> $GITHUB_ENV
+          elif [ "${{ github.event.schedule }}" = "0 0 * * *" ]; then
+            echo "PUBLISH_HOUR=9" >> $GITHUB_ENV
+          elif [ "${{ github.event.schedule }}" = "0 3 * * *" ]; then
+            echo "PUBLISH_HOUR=12" >> $GITHUB_ENV
+          elif [ "${{ github.event.schedule }}" = "0 4 * * *" ]; then
+            echo "PUBLISH_HOUR=13" >> $GITHUB_ENV
+          elif [ "${{ github.event.schedule }}" = "0 6 * * *" ]; then
+            echo "PUBLISH_HOUR=15" >> $GITHUB_ENV
+          elif [ "${{ github.event.schedule }}" = "0 9 * * *" ]; then
             echo "PUBLISH_HOUR=18" >> $GITHUB_ENV
           elif [ "${{ github.event.schedule }}" = "0 12 * * *" ]; then
             echo "PUBLISH_HOUR=21" >> $GITHUB_ENV
-          elif [ "${{ github.event.schedule }}" = "0 4 * * *" ]; then
-            echo "PUBLISH_HOUR=13" >> $GITHUB_ENV
-          elif [ "${{ github.event.schedule }}" = "0 0 * * *" ]; then
-            echo "PUBLISH_HOUR=9" >> $GITHUB_ENV
           else
             echo "PUBLISH_HOUR=" >> $GITHUB_ENV
           fi

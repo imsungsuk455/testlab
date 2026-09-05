@@ -133,14 +133,15 @@
       "tagline": "8문항으로 알아보는 나의 숨겨진 바람기 지수",
       "url": "https://testerlab.org/event/flirt-quiz-2026/",
       "image": "https://testerlab.org/images/title_flirt-quiz-2026.webp",
-      "status": "pending",
-      "posted_at": null,
+      "status": "posted",
+      "posted_at": "2026-09-05T12:16:32.964246",
       "publish_time": "18:00",
       "content": "요즘 연애 시작하려는 사람들 필수 템 📋\n썸 타기 전에 서로 바람기 레벨부터 확인하는 게 국룰이라던데\n\nLv.0 순정이냐 Lv.8 플레이어냐에 따라\n연애 난이도가 완전 달라짐\n주소는 댓글에 👇",
       "comment": "https://testerlab.org/event/flirt-quiz-2026/",
-      "comment_id": null,
-      "thread_id": null,
-      "user_approved": true
+      "comment_id": "18116837057512686",
+      "thread_id": "17907784596498230",
+      "user_approved": true,
+      "comment_retry_needed": false
     },
     {
       "day": 9,

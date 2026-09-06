@@ -151,14 +151,15 @@
       "tagline": "8문항으로 알아보는 나의 숨겨진 바람기 지수",
       "url": "https://testerlab.org/event/flirt-quiz-2026/",
       "image": "https://testerlab.org/images/title_flirt-quiz-2026.webp",
-      "status": "pending",
-      "posted_at": null,
+      "status": "posted",
+      "posted_at": "2026-09-06T12:31:41.544627",
       "publish_time": "18:00",
       "content": "바람기 Lv.0 나오면 결과 캡처해서 연인한테 자랑하셈 😇\n만렙 나오면... 그건 조용히 창 닫으셈 ㅋㅋㅋ\n\n8단계 중 어디에 해당하는지 궁금하면\n테스트 링크는 댓글에 👇",
       "comment": "https://testerlab.org/event/flirt-quiz-2026/",
-      "comment_id": null,
-      "thread_id": null,
-      "user_approved": true
+      "comment_id": "18351208984219304",
+      "thread_id": "18085124792475429",
+      "user_approved": true,
+      "comment_retry_needed": false
     },
     {
       "day": 10,

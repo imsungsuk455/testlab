@@ -169,14 +169,15 @@
       "tagline": "8문항으로 알아보는 나의 숨겨진 바람기 지수",
       "url": "https://testerlab.org/event/flirt-quiz-2026/",
       "image": "https://testerlab.org/images/title_flirt-quiz-2026.webp",
-      "status": "pending",
-      "posted_at": null,
+      "status": "posted",
+      "posted_at": "2026-09-07T14:40:52.748384",
       "publish_time": "18:00",
       "content": "심심할 때 연애 심리 테스트 하나 추천함 ☕\n8문항이라 짧은데 결과가 은근 정확해서 소름\n\n순정형부터 프로 플레이어까지 8종\n만렙 나와도 책임은 안 짐 ㅋㅋ 링크는 댓글에 👇",
       "comment": "https://testerlab.org/event/flirt-quiz-2026/",
-      "comment_id": null,
-      "thread_id": null,
-      "user_approved": true
+      "comment_id": "18148550938526608",
+      "thread_id": "18620691895035366",
+      "user_approved": true,
+      "comment_retry_needed": false
     }
   ]
 }

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이상형 동물 테스트 | 테스터랩(TesterLab)</title>
+    <meta name="description" content="이상형 동물 테스트 - 나의 진짜 관상과 성향을 확인해보세요!">
+    <meta name="keywords" content="이상형 동물 테스트, 관상 테스트, 심리 테스트, TesterLab, 테스터랩, AI 관상 분석">
+    <link rel="canonical" href="https://testerlab.org/event/ideal-animal/">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="이상형 동물 테스트 - 나는 과연 무엇일까?">
+    <meta property="og:description" content="이상형 동물 테스트 - 나의 진짜 관상과 성향을 확인해보세요!">
+    <meta property="og:image" content="https://testerlab.org/images/title_ideal-animal.webp">
+    <meta property="og:url" content="https://testerlab.org/event/ideal-animal/index">
+
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css?v=20260911">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../../'">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in custom-theme">
+
+        <!-- SECTION: HOME -->
+        <section id="q-home" class="section active">
+            <div class="back-nav" onclick="location.href='../../'">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h1>이상형 동물 테스트</h1>
+                <p class="subtitle">AI가 분석하는 나의 진짜 관상</p>
+            </div>
+            <div class="main-img-placeholder" style="background: #F06595;">
+                <img src="../../images/title_ideal-animal.webp" alt="이상형 동물 테스트"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <button id="q-start-btn" class="btn custom-btn pulse" style="background: #F06595; color: #FFFFFF;">테스트
+                시작하기</button>
+            <p class="footer">총 8문항 · 약 2분</p>
+        </section>
+
+        <!-- SECTION: QUIZ -->
+        <section id="q-quiz" class="section">
+            <div class="quiz-progress">
+                <div class="quiz-progress-text"><span id="q-current">1</span> / <span id="q-total">8</span></div>
+                <div class="quiz-progress-bar">
+                    <div id="q-progress-fill" class="quiz-progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="quiz-question-box">
+                <h2 id="q-question-text"></h2>
+                <div id="q-options" class="quiz-options"></div>
+            </div>
+
+            <button id="q-prev-btn" class="btn quiz-prev-btn" style="background: #ddd; color: #555;">이전</button>
+        </section>
+
+        <!-- SECTION: LOADING -->
+        <section id="q-loading" class="section">
+            <div class="loading-box">
+                <div class="loader" style="margin-top: 30px; border-top-color: #F06595;"></div>
+                <p class="loading-text" id="q-loading-text">결과를 분석하고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- SECTION: RESULT -->
+        <section id="q-result" class="section">
+            <div class="result-header">
+                <p class="subtitle" style="margin-bottom: 10px;">당신의 결과는</p>
+                <h2 class="result-title custom-title" id="q-res-title" style="color: #FFFFFF; font-size: 1.9rem;">
+                </h2>
+            </div>
+
+            <div class="q-result-card" style="border-top-color: #F06595;">
+                <div class="q-result-icon" id="q-res-icon"></div>
+                <div class="q-result-tags" id="q-res-tags"></div>
+                <div class="result-desc" style="border-left-color: #F06595; background: #FFF; text-align: left;">
+                    <p id="q-res-desc-text"></p>
+                </div>
+                <div class="q-result-extra" id="q-res-extra" style="background: #F0659522;"></div>
+            </div>
+
+            <div class="share-container">
+                <button class="share-btn" id="q-share-link" title="링크 복사">
+                    <span>🔗</span> 링크 복사하기
+                </button>
+                <button class="share-btn" id="q-share-native" title="공유하기">
+                    <span>📤</span> 결과 공유하기
+                </button>
+            </div>
+            <button class="btn" id="q-retry-btn" style="margin-top: 20px; background: #666;">다시 테스트하기</button>
+        </section>
+
+    </div>
+
+    <!-- 테스트 소개 & FAQ (정적 콘텐츠 — AdSense 심사 핵심 영역) -->
+    <!-- 규칙: 800자 이상, 테스트별 고유 서술. 다른 테스트 문구 복붙 금지. -->
+    <!-- 구성: 테스트란? → 이용 방법(4단계) → 이런 분께 추천 → FAQ 5개 → 관련 테스트 내부링크 3개 → 재미용 면책 -->
+    <div class="site-content-block" style="max-width: 720px; margin: 10px auto 40px; padding: 20px; text-align: left; color: #333; background: #fff; border-radius: 12px; border: 1px solid #eee;">
+        <h2>이상형 동물 테스트란?</h2>
+        <p>이상형 동물 테스트는 8개의 질문에 답하면 나의 연애 스타일을 동물 캐릭터로 진단하는 심리 퀴즈입니다. 좋아하는 사람이 생겼을 때의 행동, 연락 습관, 싸웠을 때의 반응을 유형별 점수 합산으로 분석해 리트리버형부터 햄스터형까지 8가지 중 나와 가장 맞는 이상형 동물을 알려드립니다. "내가 연애할 때 어떤 동물 같을까?"라는 가벼운 호기심에서 출발한 오락 콘텐츠입니다.</p>
+
+        <h3>이용 방법</h3>
+        <ol style="line-height: 1.9; font-size: 0.92rem; padding-left: 18px;">
+            <li><strong>테스트 시작</strong> — 상단의 '테스트 시작하기' 버튼을 누르면 연애 상황에 관한 8문항이 순서대로 출제됩니다.</li>
+            <li><strong>솔직하게 답변</strong> — 잘 보이고 싶은 모습이 아니라 실제 연애할 때의 모습을 떠올리며 답합니다. 약 2분이면 충분합니다.</li>
+            <li><strong>결과 확인</strong> — 리트리버형, 고양이형, 여우형, 토끼형, 곰형, 호랑이형, 펭귄형, 햄스터형 중 총점이 가장 높은 유형이 표시되고, 잘 맞는 상성도 함께 안내됩니다.</li>
+            <li><strong>공유하기</strong> — 결과 화면의 링크 복사·공유 버튼으로 친구나 연인에게 보내 서로의 동물을 비교해보세요.</li>
+        </ol>
+
+        <h3>이런 분께 추천합니다</h3>
+        <p>썸 단계에서 상대의 스타일이 궁금한 분, 연애 중인 커플이 서로를 알아가는 놀이를 찾는 분께 잘 맞습니다. 특히 결과마다 잘 맞는 상성이 표시되므로, 커플이 각자 테스트한 뒤 상성을 대조하면 대화가 끊이지 않습니다. 동물 캐릭터라 부담 없이 놀리기 좋은 것도 장점입니다.</p>
+
+        <h3>자주 묻는 질문</h3>
+        <p><strong>Q. 결과는 저장되거나 공유되나요?</strong><br>아니요. 답변과 결과는 브라우저에서만 처리되며 서버로 전송되지 않습니다. 페이지를 벗어나면 사라집니다.</p>
+        <p><strong>Q. 몇 번이나 반복해서 할 수 있나요?</strong><br>무제한 무료입니다. 답변을 바꿔가며 다른 유형도 확인해보세요.</p>
+        <p><strong>Q. 결과를 친구에게 공유할 수 있나요?</strong><br>결과 화면 하단의 '링크 복사하기' 또는 '공유하기' 버튼으로 공유할 수 있습니다.</p>
+        <p><strong>Q. 결과 유형은 몇 개인가요?</strong><br>총 8개입니다. 각 문항의 보기는 특정 동물 유형에 가중치를 주며, 8문항의 합산 점수가 가장 높은 유형이 결과로 나옵니다. 동점인 경우 먼저 정의된 유형이 표시될 수 있습니다.</p>
+        <p><strong>Q. 상성 결과는 정확한가요?</strong><br>상성은 각 유형의 성격을 빗대어 짝지은 재미용 해석입니다. 실제 궁합을 단정하는 것이 아니니 가볍게 즐겨주세요.</p>
+
+        <h3>함께 해보면 좋은 테스트</h3>
+        <p>근본적인 연애 스타일은 <a href="../love-type/">연애 유형 테스트</a>에서, 매력 발산 방식은 <a href="../flirt-skill-2026/">플러팅 능력 테스트</a>에서 확인해보세요. 숨겨진 바람기 지수는 <a href="../flirt-quiz-2026/">바람기 테스트</a>가 알려드립니다.</p>
+
+        <p>모든 결과는 재미와 오락을 위한 참고용 해석입니다.</p>
+    </div>
+
+    <!-- AdSense 승인 전에는 수동 <ins> 광고 유닛 추가 금지. head의 자동 광고 스크립트만 유지한다. -->
+    <footer class="main-footer" style="max-width: 720px; margin: 30px auto 0; padding: 24px 20px; text-align: center;">
+        <div class="footer-links">
+            <a href="../../about">소개</a>
+            <a href="../../privacy">개인정보처리방침</a>
+            <a href="../../terms">이용약관</a>
+            <a href="../../contact">문의하기</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2026 TesterLab (테스터랩). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js?v=20260911"></script>
+</body>
+
+</html>

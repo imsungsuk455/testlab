@@ -22,7 +22,7 @@ const moralCharacters = [
         type: "그림자 배후",
         theme: "villain",
         stat: 20,
-        trait: "조용히 뒤에서 모든 상황을 설계하고 조종하는 흑막형 관상입니다.",
+        trait: "조용히 뒤에서 모든 상황을 설계하는 전략가형 분위기입니다.",
         ability: "남들이 보지 못하는 정보의 흐름을 읽는 통찰력.",
         tip: "본인의 능력을 선한 영향력을 위해 사용해보는 건 어떨까요?",
         img: "images/char_villain.webp"
@@ -49,7 +49,7 @@ const moralCharacters = [
         type: "천의 얼굴",
         theme: "villain",
         stat: 35,
-        trait: "상황에 따라 자유자재로 이미지를 변주하는 기만형 관상입니다.",
+        trait: "상황에 따라 자유자재로 이미지를 변주하는 카멜레온형 분위기입니다.",
         ability: "탁월한 공감 능력으로 상대를 완벽히 이해하고 동화됨.",
         tip: "연기 속에 가려진 진짜 자신의 모습을 잃지 마세요.",
         img: "images/char_idol.webp"
@@ -58,7 +58,7 @@ const moralCharacters = [
         type: "예리한 감시자",
         theme: "villain",
         stat: 10,
-        trait: "상대의 사소한 약점까지 파고드는 날카로운 통찰력의 빌런형 관상입니다.",
+        trait: "상대의 말하지 않은 부분까지 읽어내는 날카로운 통찰력의 전략가형 분위기입니다.",
         ability: "데이터 기반의 완벽한 분석력과 허점을 찌르는 예리함.",
         tip: "비판보다는 칭찬으로 사람들의 마음을 얻어보는 건 어떨까요?",
         img: "images/char_genius.webp"
@@ -204,9 +204,9 @@ const characters = [
     },
     {
         name: "디안",
-        title: "퇴폐미 넘치는 느와르풍 빌런",
+        title: "신비로운 매력의 느와르풍 캐릭터",
         keywords: ["#카리스마", "#독보적", "#고독", "#미스터리"],
-        desc: "속내를 알 수 없는 위험한 매력을 가진 관상입니다. 독립적인 성향이 강하며 본인만의 확고한 세계관이 있습니다.",
+        desc: "속내를 알 수 없는 신비로운 매력을 가진 분위기입니다. 독립적인 성향이 강하며 본인만의 확고한 세계관이 있습니다.",
         img: "images/char_villain.webp"
     },
     {
@@ -690,10 +690,10 @@ function startAnalysis() {
         ];
     } else if (currentTest === 'facetier') {
         statuses = [
-            "얼굴 형태 및 황금 비율 분석 중...",
-            "이목구비 간의 조화도 측정 중...",
-            "피부톤 및 대칭성 검사 중...",
-            "프리미엄 관상 데이터 대조 중...",
+            "첫인상 스타일 분석 중...",
+            "분위기 요소 측정 중...",
+            "매력 포인트 스캔 중...",
+            "스타일 데이터베이스 대조 중...",
             "분석이 완료되었습니다!"
         ];
     } else if (currentTest === 'babyface') {
@@ -708,7 +708,7 @@ function startAnalysis() {
         createLandmarks();
         statuses = [
             "얼굴의 주요 랜드마크 스캔 중...",
-            "도덕성 지수 스캔 중...",
+            "첫인상 분위기 스캔 중...",
             "잠재적 성향 분석 중...",
             "미세 표정 기운 감지하는 중...",
             "분석이 완료되었습니다!"
@@ -890,7 +890,7 @@ function showResult() {
             if (resTitle) resTitle.innerText = matchedPersona.title;
             if (resDesc) resDesc.innerText = matchedPersona.desc;
 
-            const prefix = type === 'top' ? '상위' : '하위';
+            const prefix = '스타일 매칭도';
             if (resPercent) resPercent.innerText = `${prefix} 50.0%`;
 
             showSection('facetier-result');

@@ -2,6 +2,11 @@
     --primary-color: #ff7eb9;
     --secondary-color: #7afcff;
     --accent-color: #6c5ce7;
+    --accent-deep: #5748c9;
+    --accent-soft: rgba(108, 92, 231, 0.08);
+    --spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --shadow-tinted: 0 10px 30px rgba(108, 92, 231, 0.10);
+    --shadow-card-hover: 0 18px 40px rgba(108, 92, 231, 0.18);
     --bg-color: #f0f2f5;
     --text-color: #333;
     --secondary-text: #777;
@@ -71,19 +76,56 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
     overflow-x: hidden;
-    background: linear-gradient(to bottom, #f0f2f5, #ffffff);
+    background:
+        radial-gradient(600px 300px at 15% -5%, rgba(108, 92, 231, 0.10), transparent 70%),
+        radial-gradient(500px 260px at 90% 0%, rgba(255, 126, 185, 0.10), transparent 70%),
+        linear-gradient(to bottom, #f0f2f5, #ffffff);
+}
+
+/* Subtle paper grain (fixed, non-interactive, GPU-safe) */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.028;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* Korean typography rhythm */
+#main-hub h1,
+#main-hub h2,
+#main-hub h3,
+.intro-section p,
+.hub-header p,
+.card-info p {
+    word-break: keep-all;
+}
+
+#main-hub h1,
+#main-hub h2,
+.card-info h3 {
+    text-wrap: balance;
 }
 
 /* Header Styling */
 .main-header {
     height: 60px;
-    background: white;
+    background: rgba(255, 255, 255, 0.82);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.06);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1383,4 +1425,252 @@ input[type=number] {
    실제 광고가 로드되면 data-ad-status 속성이 제거되어 정상 표시됨 */
 ins.adsbygoogle[data-ad-status="unfilled"] {
     display: none !important;
+}
+
+/* ============ Supanova Homepage Upgrade (2026-09-12, light / incremental) ============ */
+/* Premium hero */
+.hero-premium {
+    background:
+        radial-gradient(420px 200px at 85% 0%, rgba(108, 92, 231, 0.12), transparent 70%),
+        radial-gradient(360px 180px at 0% 100%, rgba(255, 126, 185, 0.10), transparent 70%),
+        linear-gradient(135deg, rgba(108, 92, 231, 0.06) 0%, rgba(255, 126, 185, 0.06) 100%);
+    border: 1px solid rgba(108, 92, 231, 0.14);
+    box-shadow: var(--shadow-tinted);
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--accent-deep);
+    background: rgba(108, 92, 231, 0.10);
+    border: 1px solid rgba(108, 92, 231, 0.18);
+    margin-bottom: 14px;
+}
+
+.hero-premium h1 {
+    font-size: 1.65rem !important;
+    line-height: 1.32 !important;
+    letter-spacing: -0.02em;
+    color: #16161a !important;
+    text-wrap: balance;
+}
+
+.hero-gradient {
+    background: linear-gradient(120deg, #6c5ce7 10%, #c65d9e 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-premium p {
+    max-width: 65ch;
+}
+
+.hero-cta-row {
+    margin-top: 18px;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent-color);
+    color: #fff;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 14px 14px 14px 26px;
+    border-radius: 999px;
+    box-shadow: 0 12px 26px rgba(108, 92, 231, 0.35);
+    transition: transform 0.5s var(--spring), box-shadow 0.5s var(--spring), background 0.3s;
+}
+
+.hero-cta:hover {
+    transform: scale(1.02);
+    background: var(--accent-deep);
+    box-shadow: 0 16px 34px rgba(108, 92, 231, 0.42);
+}
+
+.hero-cta:active {
+    transform: scale(0.98);
+}
+
+.hero-cta:focus-visible,
+.test-tab:focus-visible,
+.test-card:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+.hero-cta-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: transform 0.5s var(--spring);
+}
+
+.hero-cta:hover .hero-cta-icon {
+    transform: translateX(4px);
+}
+
+.hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6b6b7a;
+}
+
+.hero-trust span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.hero-trust iconify-icon {
+    font-size: 0.95rem;
+    color: var(--accent-color);
+}
+
+/* Hub header */
+.hub-header h2 {
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hub-fire {
+    color: #ff6b4a;
+    font-size: 1.25rem;
+}
+
+/* Tabs spring physics */
+.test-tab {
+    transition: all 0.5s var(--spring);
+}
+
+.test-tab.active {
+    box-shadow: 0 4px 14px rgba(108, 92, 231, 0.16);
+}
+
+/* Test cards: tinted shadows + tactile feedback */
+.test-card {
+    transition: transform 0.5s var(--spring), box-shadow 0.5s var(--spring), border-color 0.3s;
+}
+
+.test-card.active-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(108, 92, 231, 0.45);
+}
+
+.test-card.active-card:active {
+    transform: scale(0.98);
+}
+
+.badge {
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.card-info h3 {
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+}
+
+/* Featured bento card (breaks the uniform 2-col symmetry) */
+.featured-card {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+    border: 1px solid rgba(240, 101, 149, 0.35);
+    box-shadow: 0 14px 34px rgba(240, 101, 149, 0.16);
+}
+
+.featured-card .card-img {
+    width: 42%;
+    min-height: 148px;
+    height: auto;
+}
+
+.featured-card .card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 16px;
+}
+
+.featured-card .card-info h3 {
+    font-size: 1.05rem;
+    white-space: normal;
+}
+
+.card-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #e64980;
+}
+
+.card-go iconify-icon {
+    transition: transform 0.5s var(--spring);
+}
+
+.featured-card:hover .card-go iconify-icon {
+    transform: translateX(4px);
+}
+
+/* Staggered scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(4px);
+}
+
+.reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    transition: opacity 0.7s var(--spring), transform 0.7s var(--spring), filter 0.7s var(--spring);
+    transition-delay: calc(var(--index, 0) * 80ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+
+    .test-card,
+    .hero-cta,
+    .test-tab {
+        transition: none;
+    }
 }

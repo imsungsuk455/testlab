@@ -915,21 +915,21 @@ function showResult() {
         } else if (currentTest === 'babyface') {
             const hash = getHash(currentFile ? `${currentFile.name}-${currentFile.size}` : currentImage);
 
-            // Deterministic AI Age calculation (range 18-65 based on hash)
-            let aiAge = (hash % 48) + 18;
+            // Deterministic photo-age estimate (range 18-65 based on hash)
+            let photoAge = (hash % 48) + 18;
 
-            // Diff = AI_Age - Real_Age (as per user logic where negative means looking younger)
-            const diff = aiAge - userAge;
+            // Diff = Photo_Age - Real_Age (negative means looking younger)
+            const diff = photoAge - userAge;
             const diffAbs = Math.abs(diff);
 
             // Score for result selection (Higher score if looking younger)
-            // If AI < Real (Diff < 0), score is high.
+            // If photo age < real age (Diff < 0), score is high.
             let score = 50 - (diff * 5);
             score = Math.max(10, Math.min(99, score));
 
             const resDiffText = document.getElementById('babyface-res-diff-text');
             const realAgeEl = document.getElementById('babyface-real-age');
-            const aiAgeEl = document.getElementById('babyface-ai-age');
+            const photoAgeEl = document.getElementById('babyface-ai-age');
             const resTitle = document.getElementById('babyface-res-title');
             const resImg = document.getElementById('babyface-res-img');
             const resTip = document.getElementById('babyface-res-tip');
@@ -938,7 +938,7 @@ function showResult() {
 
             // Text & Labels
             if (realAgeEl) realAgeEl.innerText = `${userAge}세`;
-            if (aiAgeEl) aiAgeEl.innerText = `${aiAge}세`;
+            if (photoAgeEl) photoAgeEl.innerText = `${photoAge}세`;
 
             let statusMsg = "";
             let themeColor = "#40C057";
@@ -958,7 +958,7 @@ function showResult() {
                 resDiffText.innerText = statusMsg;
                 resDiffText.style.color = themeColor;
             }
-            if (aiAgeEl) aiAgeEl.style.color = themeColor;
+            if (photoAgeEl) photoAgeEl.style.color = themeColor;
 
             // Find result based on score
             let result = babyfaceResults[babyfaceResults.length - 1];
@@ -987,7 +987,7 @@ function showResult() {
 
             if (realDot) realDot.style.left = `${getPos(userAge)}%`;
             if (aiDot) {
-                aiDot.style.left = `${getPos(aiAge)}%`;
+                aiDot.style.left = `${getPos(photoAge)}%`;
                 aiDot.style.background = themeColor;
                 aiDot.style.boxShadow = `0 2px 10px ${themeColor}44`;
             }
@@ -1099,7 +1099,7 @@ function shareNative() {
     if (navigator.share) {
         navigator.share({
             title: '테스트랩 - 관상 테스트',
-            text: 'AI가 분석하는 나의 잠재적 관상은? 지금 확인해보세요!',
+            text: '사진으로 보는 나의 관상 유형은? 지금 확인해보세요!',
             url: window.location.href,
         }).catch(err => console.log('Error sharing:', err));
     } else {

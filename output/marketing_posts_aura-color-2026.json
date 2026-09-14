@@ -20,7 +20,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     },
     {
       "day": 2,
@@ -38,7 +38,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     },
     {
       "day": 3,
@@ -56,7 +56,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     },
     {
       "day": 4,
@@ -74,7 +74,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     },
     {
       "day": 5,
@@ -92,7 +92,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     },
     {
       "day": 6,
@@ -110,7 +110,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     },
     {
       "day": 7,
@@ -128,7 +128,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     },
     {
       "day": 8,
@@ -146,7 +146,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     },
     {
       "day": 9,
@@ -164,7 +164,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     },
     {
       "day": 10,
@@ -182,7 +182,7 @@
       "comment_id": null,
       "comment_retry_needed": false,
       "thread_id": null,
-      "user_approved": false
+      "user_approved": true
     }
   ]
 }

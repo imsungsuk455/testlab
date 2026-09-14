@@ -7,4 +7,15 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
+# AI 검색 인용 허용 (GEO): 검색용 크롤러는 명시적으로 허용
+# GPTBot(학습용) 차단이 ChatGPT Search 인용(OAI-SearchBot)에 영향 주지 않음
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://testerlab.org/sitemap.xml

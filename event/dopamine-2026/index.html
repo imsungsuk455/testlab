@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도파민 중독 테스트 | 테스터랩(TesterLab)</title>
+    <meta name="description" content="도파민 중독 테스트 - 나의 진짜 관상과 성향을 확인해보세요!">
+    <meta name="keywords" content="도파민 중독 테스트, 관상 테스트, 심리 테스트, TesterLab, 테스터랩, AI 관상 분석">
+    <link rel="canonical" href="https://testerlab.org/event/dopamine-2026/">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="도파민 중독 테스트 - 나는 과연 무엇일까?">
+    <meta property="og:description" content="도파민 중독 테스트 - 나의 진짜 관상과 성향을 확인해보세요!">
+    <meta property="og:image" content="https://testerlab.org/images/title_dopamine-2026.webp">
+    <meta property="og:url" content="https://testerlab.org/event/dopamine-2026/">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="TesterLab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="도파민 중독 테스트 - 나는 과연 무엇일까?">
+    <meta name="twitter:description" content="도파민 중독 테스트 - 나의 진짜 관상과 성향을 확인해보세요!">
+    <meta name="twitter:image" content="https://testerlab.org/images/title_dopamine-2026.webp">
+
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css?v=20260918">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../../'">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in custom-theme">
+
+        <!-- SECTION: HOME -->
+        <section id="q-home" class="section active">
+            <div class="back-nav" onclick="location.href='../../'">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h1>도파민 중독 테스트</h1>
+                <p class="subtitle">AI가 분석하는 나의 진짜 관상</p>
+            </div>
+            <div class="main-img-placeholder" style="background: #F5F3FF;">
+                <img src="../../images/title_dopamine-2026.webp" alt="도파민 중독 테스트"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <button id="q-start-btn" class="btn custom-btn pulse" style="background: #F5F3FF; color: #1E1B4B;">테스트
+                시작하기</button>
+            <p class="footer">총 8문항 · 약 2분</p>
+        </section>
+
+        <!-- SECTION: QUIZ -->
+        <section id="q-quiz" class="section">
+            <div class="quiz-progress">
+                <div class="quiz-progress-text"><span id="q-current">1</span> / <span id="q-total">8</span></div>
+                <div class="quiz-progress-bar">
+                    <div id="q-progress-fill" class="quiz-progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="quiz-question-box">
+                <h2 id="q-question-text"></h2>
+                <div id="q-options" class="quiz-options"></div>
+            </div>
+
+            <button id="q-prev-btn" class="btn quiz-prev-btn" style="background: #ddd; color: #555;">이전</button>
+        </section>
+
+        <!-- SECTION: LOADING -->
+        <section id="q-loading" class="section">
+            <div class="loading-box">
+                <div class="loader" style="margin-top: 30px; border-top-color: #F5F3FF;"></div>
+                <p class="loading-text" id="q-loading-text">결과를 분석하고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- SECTION: RESULT -->
+        <section id="q-result" class="section">
+            <div class="result-header">
+                <p class="subtitle" style="margin-bottom: 10px;">당신의 결과는</p>
+                <h2 class="result-title custom-title" id="q-res-title" style="color: #1E1B4B; font-size: 1.9rem;">
+                </h2>
+            </div>
+
+            <div class="q-result-card" style="border-top-color: #F5F3FF;">
+                <div class="q-result-icon" id="q-res-icon"></div>
+                <div class="q-result-tags" id="q-res-tags"></div>
+                <div class="result-desc" style="border-left-color: #F5F3FF; background: #FFF; text-align: left;">
+                    <p id="q-res-desc-text"></p>
+                </div>
+                <div class="q-result-extra" id="q-res-extra" style="background: #F5F3FF22;"></div>
+            </div>
+
+            <div class="share-container">
+                <button class="share-btn" id="q-share-link" title="링크 복사">
+                    <span>🔗</span> 링크 복사하기
+                </button>
+                <button class="share-btn" id="q-share-native" title="공유하기">
+                    <span>📤</span> 결과 공유하기
+                </button>
+            </div>
+            <button class="btn" id="q-retry-btn" style="margin-top: 20px; background: #666;">다시 테스트하기</button>
+        </section>
+
+    </div>
+
+    <!-- 테스트 소개 & FAQ (정적 콘텐츠 — AdSense 심사 핵심 영역) -->
+    <!-- 규칙: 800자 이상, 테스트별 고유 서술. 다른 테스트 문구 복붙 금지. -->
+    <!-- 구성: 테스트란? → 이용 방법(4단계) → 이런 분께 추천 → FAQ 5개 → 관련 테스트 내부링크 3개 → 재미용 면책 -->
+    <div class="site-content-block" style="max-width: 720px; margin: 10px auto 40px; padding: 20px; text-align: left; color: #333; background: #fff; border-radius: 12px; border: 1px solid #eee;">
+        <h2>도파민 중독 테스트란?</h2>
+        <p>도파민 중독 테스트는 일상 속 스마트폰 사용 습관을 묻는 8개의 질문에 답하면 나의 도파민 중독 단계를 알려주는 심리 테스트입니다. 아침에 눈을 뜨자마자 폰을 확인하는지, 밥 먹을 때 영상을 틀어놓는지 같은 솔직한 문항들로 현재 상태를 진단합니다. 결과는 도파민 디톡스 장인부터 밤샘 스크롤 좀비, 도파민 말기 환자까지 총 6가지 유형으로 나뉘며, 각 유형마다 재미있는 설명과 함께 실천 가능한 한 줄 처방전을 제공합니다.</p>
+
+        <h3>이용 방법</h3>
+        <ol style="line-height: 1.9; font-size: 0.92rem; padding-left: 18px;">
+            <li><strong>테스트 시작</strong> — 상단의 '테스트 시작하기' 버튼을 눌러 첫 질문으로 이동합니다.</li>
+            <li><strong>솔직하게 답변</strong> — 8개의 질문마다 가장 평소의 나에 가까운 보기를 하나씩 선택합니다. 이전 버튼으로 돌아가 수정할 수 있습니다.</li>
+            <li><strong>결과 확인</strong> — 모든 답변을 합산해 도파민 디톡스 장인, 밸런스 유지자, 쇼츠 입문자, 알림 노예, 밤샘 스크롤 좀비, 도파민 말기 환자 중 하나의 유형을 보여줍니다.</li>
+            <li><strong>공유하기</strong> — 결과 화면의 링크 복사하기 버튼으로 친구에게 공유하고 서로의 중독 단계를 비교해보세요.</li>
+        </ol>
+
+        <h3>이런 분께 추천합니다</h3>
+        <p>새벽까지 쇼츠를 넘기다 후회한 적 있는 분, 집중이 안 돼 고민인 수험생과 직장인, 친구들과 서로의 폰 사용 습관을 비교하며 웃고 싶은 분께 추천합니다. 특히 '나는 중독이 아니야'라고 생각하는 분일수록 의외의 결과를 만날 수 있으니 가볍게 도전해보세요.</p>
+
+        <h3>자주 묻는 질문</h3>
+        <h4>Q. 결과는 저장되거나 공유되나요?</h4>
+        <p>아니요. 답변과 결과는 브라우저에서만 처리되며 서버로 전송되지 않습니다. 페이지를 벗어나면 사라집니다.</p>
+        <h4>Q. 몇 번이나 반복해서 할 수 있나요?</h4>
+        <p>무제한 무료입니다. 답변을 바꿔가며 다른 유형도 확인해보세요.</p>
+        <h4>Q. 결과를 친구에게 공유할 수 있나요?</h4>
+        <p>결과 화면 하단의 '링크 복사하기' 또는 '공유하기' 버튼으로 공유할 수 있습니다.</p>
+        <h4>Q. 결과 유형은 총 몇 개인가요?</h4>
+        <p>총 6개입니다. 도파민 디톡스 장인, 밸런스 유지자, 쇼츠 입문자, 알림 노예, 밤샘 스크롤 좀비, 도파민 말기 환자 순서로 중독 단계가 깊어집니다.</p>
+        <h4>Q. 같은 사람이 다시 하면 결과가 바뀔 수 있나요?</h4>
+        <p>네, 답변에 따라 바뀝니다. 각 보기가 6개 유형에 서로 다른 가중치 점수를 주기 때문에 평소 습관대로 솔직하게 답할수록 정확한 유형이 나옵니다.</p>
+
+        <h3>함께 해보면 좋은 테스트</h3>
+        <p><a href="../mind-age/">정신연령 테스트</a>로 마음의 나이를 확인하고, <a href="../love-type/">연애 유형 테스트</a>로 연애 스타일을 알아보세요. 집중력을 되찾은 뒤에는 <a href="../past-life/">전생 테스트</a>에서 전생의 나를 만나보는 것도 재미있습니다.</p>
+
+        <p>모든 결과는 재미와 오락을 위한 참고용 해석입니다.</p>
+    </div>
+
+    <!-- AdSense 승인 전에는 수동 <ins> 광고 유닛 추가 금지. head의 자동 광고 스크립트만 유지한다. -->
+    <footer class="main-footer" style="max-width: 720px; margin: 30px auto 0; padding: 24px 20px; text-align: center;">
+        <div class="footer-links">
+            <a href="../../about">소개</a>
+            <a href="../../privacy">개인정보처리방침</a>
+            <a href="../../terms">이용약관</a>
+            <a href="../../contact">문의하기</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2026 TesterLab (테스터랩). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js?v=20260918"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://testerlab.org/event/dopamine-2026/",
+          "url": "https://testerlab.org/event/dopamine-2026/",
+          "name": "도파민 중독 테스트",
+          "description": "도파민 중독 테스트 - 나의 진짜 관상과 성향을 확인해보세요!",
+          "image": "https://testerlab.org/images/title_dopamine-2026.webp",
+          "inLanguage": "ko",
+          "isPartOf": { "@id": "https://testerlab.org/#website" },
+          "breadcrumb": { "@id": "https://testerlab.org/event/dopamine-2026/#breadcrumb" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://testerlab.org/event/dopamine-2026/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://testerlab.org/" },
+            { "@type": "ListItem", "position": 2, "name": "도파민 중독 테스트", "item": "https://testerlab.org/event/dopamine-2026/" }
+          ]
+        }
+      ]
+    }
+    </script>
+</body>
+
+</html>

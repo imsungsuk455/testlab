@@ -405,6 +405,8 @@ body::before {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid #f1f3f5;
     text-align: left;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 240px;
 }
 
 .test-card.active-card:hover {

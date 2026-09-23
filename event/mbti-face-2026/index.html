@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI 관상 테스트 | 테스터랩(TesterLab)</title>
+    <meta name="description" content="MBTI 관상 테스트 - 나의 진짜 관상과 성향을 확인해보세요!">
+    <meta name="keywords" content="MBTI 관상 테스트, 관상 테스트, 심리 테스트, TesterLab, 테스터랩, AI 관상 분석">
+    <link rel="canonical" href="https://testerlab.org/event/mbti-face-2026/">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="MBTI 관상 테스트 - 나는 과연 무엇일까?">
+    <meta property="og:description" content="MBTI 관상 테스트 - 나의 진짜 관상과 성향을 확인해보세요!">
+    <meta property="og:image" content="https://testerlab.org/images/title_mbti-face-2026.webp">
+    <meta property="og:url" content="https://testerlab.org/event/mbti-face-2026/">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="TesterLab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MBTI 관상 테스트 - 나는 과연 무엇일까?">
+    <meta name="twitter:description" content="MBTI 관상 테스트 - 나의 진짜 관상과 성향을 확인해보세요!">
+    <meta name="twitter:image" content="https://testerlab.org/images/title_mbti-face-2026.webp">
+
+    <!-- Using exactly the same stylesheet logic as the main site to ensure identical sizing -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css?v=20260923-1">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../../'">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in custom-theme">
+
+        <!-- SECTION: HOME -->
+        <section id="t-home" class="section active">
+            <div class="back-nav" onclick="location.href='../../'">← 전체 테스트 보기</div>
+
+            <div class="title-container">
+                <h1>MBTI 관상 테스트</h1>
+                <p class="subtitle">AI가 분석하는 나의 진짜 관상</p>
+            </div>
+
+            <div class="main-img-placeholder" style="background: #F4F1FF;">
+                <img src="../../images/title_mbti-face-2026.webp" alt="MBTI 관상 테스트"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+
+            <button id="t-start-btn" class="btn custom-btn pulse" style="background: #F4F1FF; color: #222222;">관상
+                스캔하기</button>
+            <p class="footer">제공된 사진은 분석 후 즉시 파기됩니다.</p>
+        </section>
+
+        <!-- SECTION: UPLOAD -->
+        <section id="t-upload" class="section">
+            <div class="title-container">
+                <h2>얼굴 사진 업로드</h2>
+                <p class="subtitle">정면 사진일수록 결과가 잘 나와요!</p>
+            </div>
+            <div class="upload-area" id="t-drop-zone">
+                <span class="upload-icon">📸</span>
+                <p>클릭하여 사진 선택</p>
+                <input type="file" id="t-file-input" accept="image/*">
+            </div>
+            <div class="preview-container" id="t-preview-box" style="display: none;">
+                <img id="t-image-preview" src="#" alt="Preview">
+                <button class="btn custom-btn" id="t-analyze-btn" style="margin-top: 20px;">결과 확인하기</button>
+            </div>
+        </section>
+
+        <!-- SECTION: LOADING -->
+        <section id="t-loading" class="section">
+            <div class="loading-box">
+                <div class="scan-box">
+                    <img id="t-scan-image" src="#" alt="Scanning">
+                    <div class="scanner" style="background: #F4F1FF; box-shadow: 0 0 15px #F4F1FF;"></div>
+                </div>
+                <div class="loader" style="margin-top: 30px; border-top-color: #F4F1FF;"></div>
+                <p class="loading-text" id="t-loading-text">관상을 분석하고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- SECTION: RESULT -->
+        <section id="t-result" class="section">
+            <div class="result-header">
+                <p class="subtitle" style="margin-bottom: 10px;">분석 완료</p>
+                <span id="t-res-label" class="custom-badge"></span>
+                <h2 class="result-title custom-title" id="t-res-title" style="margin-top: 15px;">
+                </h2>
+            </div>
+
+            <div class="q-result-char-img">
+                <img id="t-res-char-img" src="#" alt="MBTI 관상 캐릭터" style="width: 100%; display: block;">
+            </div>
+
+            <div class="main-img-placeholder"
+                style="background: #f8f9fa; position: relative; overflow: hidden; border-radius: 16px;">
+                <img id="t-res-user-img" src="#" alt="분석된 얼굴"
+                    style="width: 100%; height: 100%;">
+                <span id="t-res-icon"
+                    style="font-size: 3rem; position: absolute; bottom: 10px; right: 10px; background: rgba(255,255,255,0.9); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></span>
+            </div>
+
+            <div class="result-desc" style="border-left-color: #F4F1FF;">
+                <p id="t-res-desc-text"></p>
+                <p id="t-res-extra-text"
+                    style="margin-top: 15px; font-size: 0.95rem; font-style: italic;"></p>
+            </div>
+
+            <div class="share-container">
+                <button class="share-btn" id="t-share-link" title="링크 복사">
+                    <span>🔗</span> 링크 복사하기
+                </button>
+                <button class="share-btn" id="t-share-native" title="공유하기">
+                    <span>📤</span> 결과 공유하기
+                </button>
+            </div>
+            <button class="btn" id="t-retry-btn" style="margin-top: 20px; background: #666;">다른 사진으로 테스트</button>
+        </section>
+
+    </div>
+
+    <!-- 테스트 소개 & FAQ (정적 콘텐츠 — AdSense 심사 핵심 영역) -->
+    <!-- 규칙: 800자 이상, 테스트별 고유 서술. 다른 테스트 문구 복붙 금지. -->
+    <!-- 구성: 테스트란? → 이용 방법(4단계, 사진 팁 포함) → 이런 분께 추천 → FAQ 5개 → 관련 테스트 내부링크 3개 → 재미용 면책 -->
+    <div class="site-content-block" style="max-width: 720px; margin: 10px auto 40px; padding: 20px; text-align: left; color: #333; background: #fff; border-radius: 12px; border: 1px solid #eee;">
+        <h2>MBTI 관상 테스트란?</h2>
+        <p>MBTI 관상 테스트는 얼굴 사진을 올리면 인상에서 느껴지는 MBTI 기질을 재미로 풀어보는 오락용 관상 테스트입니다. ENTJ 타고난 리더상, ENFP 해피 바이러스상, INFP 순수 몽상가상, INTJ 천재 전략가상, ESFP 분위기 메이커상, ISTJ 믿음직 반듯상, ENTP 천재 발명가상, ISFJ 따뜻한 수호자상까지 총 8가지 중 나의 MBTI 관상을 알려드립니다. 각 결과에는 캐릭터 이미지와 최고의 MBTI 궁합 한 줄이 함께 표시돼 친구와 비교하는 재미가 있습니다. 실제 MBTI 검사가 아니라 인상을 소재로 한 가벼운 놀이이니 부담 없이 즐겨주세요.</p>
+
+        <h3>이용 방법</h3>
+        <ol style="line-height: 1.9; font-size: 0.92rem; padding-left: 18px;">
+            <li><strong>정면 사진 준비</strong> — 얼굴이 정면을 향하고 눈·코·입이 또렷하게 보이는 사진이 좋습니다. 밝은 조명에서 안경이나 마스크 없이 찍은 사진일수록 결과가 잘 어울립니다. 단체 사진이나 옆모습은 피해주세요.</li>
+            <li><strong>사진 업로드</strong> — '테스트 시작하기' 버튼을 누른 뒤 사진을 선택합니다. 사진은 브라우저에서만 처리되고 서버에 저장되지 않습니다.</li>
+            <li><strong>결과 확인</strong> — ENTJ, ENFP, INFP, INTJ, ESFP, ISTJ, ENTP, ISFJ 중 하나가 캐릭터 이미지와 함께 표시됩니다. 같은 사진 파일로는 언제나 같은 결과가 나오니, 다른 사진으로 해보면 또 다른 MBTI 관상이 나올 수 있습니다.</li>
+            <li><strong>공유하기</strong> — 결과 화면 하단의 '링크 복사하기' 또는 '공유하기' 버튼으로 친구에게 전달하세요. 서로의 MBTI 관상과 궁합을 비교하면 대화가 훨씬 재미있어집니다.</li>
+        </ol>
+
+        <h3>이런 분께 추천합니다</h3>
+        <p>MBTI 이야기가 나오면 늘 빠지지 않고 참여하는 분, 친구들과 가볍게 웃을 거리를 찾는 분께 딱 맞습니다. 모임에서 어색한 분위기를 풀고 싶을 때 서로의 MBTI 관상을 확인해보세요. 연인이나 썸 상대의 결과와 궁합을 비교해보는 것도 인기 있는 활용법입니다. "내 얼굴이 무슨 MBTI처럼 생겼대?"라는 질문 하나로 대화가 길어집니다.</p>
+
+        <h3>자주 묻는 질문</h3>
+        <h4>Q. 결과는 저장되거나 공유되나요?</h4>
+        <p>아니요. 업로드한 사진과 결과는 브라우저에서만 처리되며 서버로 전송되지 않습니다. 페이지를 벗어나면 사라집니다.</p>
+        <h4>Q. 몇 번이나 반복해서 할 수 있나요?</h4>
+        <p>무제한 무료입니다. 다른 사진으로 여러 번 확인할 수 있습니다.</p>
+        <h4>Q. 결과를 친구에게 공유할 수 있나요?</h4>
+        <p>결과 화면 하단의 '링크 복사하기' 또는 '공유하기' 버튼으로 공유할 수 있습니다.</p>
+        <h4>Q. 같은 사진을 올리면 결과가 바뀌나요?</h4>
+        <p>같은 파일(이름·용량·수정시각이 동일한 사진)은 같은 MBTI 관상 결과가 나옵니다. 조명이나 각도가 다른 사진으로 올리면 다른 결과가 나올 수 있으니 여러 장으로 비교해보세요.</p>
+        <h4>Q. 이 결과가 실제 MBTI와 다르면 어떻게 하나요?</h4>
+        <p>이 테스트는 실제 MBTI 검사가 아니라 인상을 소재로 한 재미용 해석입니다. 실제 MBTI와 달라도 "내 얼굴은 이렇게 보이나 보다" 정도로 가볍게 즐겨주세요.</p>
+
+        <h3>함께 해보면 좋은 테스트</h3>
+        <p>MBTI 관상이 재미있었다면 <a href="../wealth-face-2026/">재물 관상 테스트</a>에서 얼굴에 숨겨진 재물 기운을, <a href="../angel-devil-face/">천사악마 관상 테스트</a>에서 나의 천사·악마 본성을 확인해보세요. MBTI 이야기가 더 듣고 싶다면 <a href="../love-type/">연애 유형 테스트</a>에서 8문항으로 알아보는 나의 연애 스타일도 함께 해보세요.</p>
+
+        <p>모든 결과는 재미와 오락을 위한 참고용 해석입니다.</p>
+    </div>
+
+    <!-- AdSense 승인 전에는 수동 <ins> 광고 유닛 추가 금지. head의 자동 광고 스크립트만 유지한다. -->
+    <footer class="main-footer" style="max-width: 720px; margin: 30px auto 0; padding: 24px 20px; text-align: center;">
+        <div class="footer-links">
+            <a href="../../about">소개</a>
+            <a href="../../privacy">개인정보처리방침</a>
+            <a href="../../terms">이용약관</a>
+            <a href="../../contact">문의하기</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2026 TesterLab (테스터랩). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js?v=20260923"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://testerlab.org/event/mbti-face-2026/",
+          "url": "https://testerlab.org/event/mbti-face-2026/",
+          "name": "MBTI 관상 테스트",
+          "description": "MBTI 관상 테스트 - 나의 진짜 관상과 성향을 확인해보세요!",
+          "image": "https://testerlab.org/images/title_mbti-face-2026.webp",
+          "inLanguage": "ko",
+          "isPartOf": { "@id": "https://testerlab.org/#website" },
+          "breadcrumb": { "@id": "https://testerlab.org/event/mbti-face-2026/#breadcrumb" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://testerlab.org/event/mbti-face-2026/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://testerlab.org/" },
+            { "@type": "ListItem", "position": 2, "name": "MBTI 관상 테스트", "item": "https://testerlab.org/event/mbti-face-2026/" }
+          ]
+        }
+      ]
+    }
+    </script>
+</body>
+
+</html>

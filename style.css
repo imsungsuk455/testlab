@@ -1450,6 +1450,13 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
     border-left: 3px solid #222;
     line-height: 1.5;
 }
+.site-content-block h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #222;
+    margin: 16px 0 4px;
+    line-height: 1.6;
+}
 .site-content-block p {
     font-size: 0.93rem;
     line-height: 1.85;

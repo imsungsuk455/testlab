@@ -1429,6 +1429,100 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
     display: none !important;
 }
 
+/* ===== 테스트 소개글 (site-content-block) 디자인 시스템 =====
+   11개 이벤트 페이지 공통 적용. 밝은 배경 + 진한 폰트 유지. */
+.site-content-block h2 {
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: #222;
+    margin: 26px 0 10px;
+    line-height: 1.5;
+}
+.site-content-block h2:first-child {
+    margin-top: 4px;
+}
+.site-content-block h3 {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: #222;
+    margin: 22px 0 8px;
+    padding-left: 10px;
+    border-left: 3px solid #222;
+    line-height: 1.5;
+}
+.site-content-block p {
+    font-size: 0.93rem;
+    line-height: 1.85;
+    color: #333;
+    margin: 10px 0;
+}
+.site-content-block ol,
+.site-content-block ul {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: #333;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+.site-content-block li {
+    margin: 6px 0;
+}
+.site-content-block li strong,
+.site-content-block p strong {
+    color: #222;
+}
+.site-content-block a {
+    color: #1a73e8;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.site-content-block .t-table-wrap {
+    overflow-x: auto;
+    margin: 12px 0 4px;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    -webkit-overflow-scrolling: touch;
+}
+.site-content-block table.t-types {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    min-width: 430px;
+}
+.site-content-block .t-types thead th {
+    background: #f1f3f5;
+    color: #222;
+    font-weight: 800;
+    padding: 10px 12px;
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 2px solid #dee2e6;
+}
+.site-content-block .t-types tbody td {
+    padding: 10px 12px;
+    border-top: 1px solid #e9ecef;
+    text-align: left;
+    vertical-align: top;
+    color: #333;
+}
+.site-content-block .t-types tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+.site-content-block .t-types tbody td:first-child {
+    font-weight: 700;
+    color: #222;
+    white-space: nowrap;
+}
+@media (max-width: 480px) {
+    .site-content-block {
+        padding: 16px !important;
+    }
+    .site-content-block h2 {
+        font-size: 1.05rem;
+    }
+}
+
 /* ============ Supanova Homepage Upgrade (2026-09-12, light / incremental) ============ */
 /* Premium hero */
 .hero-premium {

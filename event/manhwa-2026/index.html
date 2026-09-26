@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>만화 관상 테스트 | 테스터랩(TesterLab)</title>
+    <meta name="description" content="내 얼굴은 어떤 만화 캐릭터 관상일까? 20가지 만화 캐릭터 중 나의 캐릭터를 재미로 찾아보세요.">
+    <meta name="keywords" content="만화 관상 테스트, 만화 캐릭터 테스트, 관상 테스트, TesterLab, 테스터랩">
+    <link rel="canonical" href="https://testerlab.org/event/manhwa-2026/">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="만화 관상 테스트">
+    <meta property="og:description" content="내 얼굴은 어떤 만화 캐릭터 관상일까? 20가지 만화 캐릭터 중 나의 캐릭터를 재미로 찾아보세요.">
+    <meta property="og:image" content="https://testerlab.org/images/main_char.webp">
+    <meta property="og:url" content="https://testerlab.org/event/manhwa-2026/">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="TesterLab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="만화 관상 테스트">
+    <meta name="twitter:description" content="내 얼굴은 어떤 만화 캐릭터 관상일까? 20가지 만화 캐릭터 중 나의 캐릭터를 재미로 찾아보세요.">
+    <meta name="twitter:image" content="https://testerlab.org/images/main_char.webp">
+
+    <link rel="stylesheet" href="../../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../../'">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in">
+        <!-- 만화 관상 테스트 시작 (홈) -->
+        <section id="manhwa-home" class="section active"">
+            <div class="back-nav" onclick="location.href='../../'">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h2>만화 관상 테스트</h2>
+                <p class="subtitle">나의 만화 캐릭터 관상은?</p>
+            </div>
+            <div class="main-img-placeholder">
+                <img src="../../images/main_char.webp" alt="Identity Character" loading="lazy" decoding="async">
+            </div>
+            <button class="btn" id="start-btn">테스트 시작하기</button>
+            <p class="footer">제공된 사진은 분석 후 즉시 파기됩니다.</p>
+        </section>
+
+        <!-- 얼굴 사진 업로드 섹션 -->
+        <section id="upload" class="section">
+            <div class="title-container">
+                <h2>얼굴 사진 업로드</h2>
+                <p class="subtitle">정면 사진일수록 결과가 잘 나와요!</p>
+            </div>
+            <div class="upload-area" id="drop-zone">
+                <span class="upload-icon">📸</span>
+                <p>클릭하여 사진 선택 또는 드래그</p>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+            <div class="preview-container" id="preview-box">
+                <img id="image-preview" src="#" alt="Preview">
+                <button class="btn" id="analyze-btn" style="margin-top: 20px;">사진 선택 완료</button>
+            </div>
+        </section>
+
+        <!-- 로딩 섹션 -->
+        <section id="loading" class="section">
+            <div class="loading-box">
+                <div class="scan-box">
+                    <img id="scan-img" src="#" alt="Scanning">
+                    <div class="scanner"></div>
+                </div>
+                <div class="loader" style="margin-top: 30px;"></div>
+                <p class="loading-text" id="status-text">관상을 분석하고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- 결과 섹션 (만화) -->
+        <section id="result" class="section">
+            <div class="result-header">
+                <p class="subtitle">나의 관상 결과는...</p>
+                <h2 class="result-title" id="res-title"></h2>
+            </div>
+            <img id="res-img" class="result-char-img" src="" alt="Character Result">
+            <div class="result-keywords" id="res-keywords">
+            </div>
+            <div class="result-desc">
+                <p id="res-desc"></p>
+            </div>
+            <div class="share-container">
+                <button class="share-btn" id="copy-link-btn" title="링크 복사">
+                    <span>🔗</span> 링크 복사
+                </button>
+                <button class="share-btn" id="share-native-btn" title="공유하기">
+                    <span>📱</span> 테스트 공유
+                </button>
+            </div>
+            <button class="btn" id="retry-btn" style="margin-top: 30px; background: #666;">다시 테스트하기</button>
+        </section>
+
+    </div>
+
+    <!-- 테스트 소개 & FAQ (정적 콘텐츠 — AdSense 심사 핵심 영역) -->
+    <!-- 규칙: 800자 이상, 테스트별 고유 서술. 다른 테스트 문구 복붙 금지. -->
+    <div class="site-content-block" style="max-width: 720px; margin: 10px auto 40px; padding: 20px; text-align: left; color: #333; background: #fff; border-radius: 12px; border: 1px solid #eee;">
+
+<h2>만화 관상 테스트란?</h2>
+<p>만화 관상 테스트는 정면 사진 한 장으로 내 얼굴이 어떤 만화 캐릭터의 관상인지 재미로 알아보는 콘텐츠입니다. 정의로운 열혈 소년만화 주인공, 신비로운 지브리풍 서브 주인공, 냉철한 천재 두뇌파 라이벌, 햇살 가득한 순정만화 여주인공, 개그 캐릭터, 기사단장형, 고양이상, 지략가, 은둔형 천재, 아이돌형, 해커, 큐피트 요정형까지 스무 가지 캐릭터 유형이 준비되어 있습니다.</p>
+<p>결과는 사진 파일의 이름·크기·수정 시각을 조합해 브라우저 안에서 계산되는 결정론적 방식입니다. 같은 사진 파일을 올리면 항상 같은 캐릭터가 나오며, 사진은 서버로 전송되거나 저장되지 않습니다. 캐릭터 해석은 순수한 오락을 위한 것이므로 본인의 성격과 다르게 나와도 가볍게 웃고 넘기기 좋습니다.</p>
+<h3>결과 유형 해설</h3>
+<p><strong>강불휘(열혈 소년만화 주인공):</strong> 불의를 못 참는 직진 에너지형입니다. <strong>시아(지브리풍 서브 주인공):</strong> 말수는 적지만 분위기로 압도하는 치유자입니다. <strong>레이(천재 두뇌파 라이벌):</strong> 논리가 먼저 앞서는 츤데레형입니다. <strong>몽이(개그 캐릭터):</strong> 어디로 튈지 모르는 분위기 메이커입니다. <strong>에드릭(기사단장):</strong> 한번 맡은 일은 끝내는 책임감의 상징입니다. 이 밖에도 순정 여주인공, 느와르, 고양이상, 지략가, 은둔형 천재, 얼음성 공주, 사이버펑크, 조력자, 비운의 주인공, 스포츠 에이스, 마법학교 우등생, 빵집 주인, 아이돌, 해커, 큐피트까지 다양한 캐릭터가 있습니다.</p>
+<h3>이용 방법</h3>
+<ol style="line-height: 1.9; font-size: 0.92rem; padding-left: 18px;">
+<li><strong>테스트 시작하기</strong> — 상단 버튼을 눌러 사진 업로드 화면으로 이동합니다.</li>
+<li><strong>사진 올리기</strong> — 정면 사진을 선택하거나 드래그해 넣습니다. 얼굴이 잘 보이는 사진이 좋습니다.</li>
+<li><strong>분석 대기</strong> — 캐릭터 라이브러리 매칭 진행 문구가 표시된 뒤 결과 화면으로 넘어갑니다.</li>
+<li><strong>결과 공유</strong> — 나의 캐릭터와 핵심어를 확인하고 링크 복사·공유 버튼으로 친구와 비교해 보세요.</li>
+</ol>
+<h3>이런 분께 추천합니다</h3>
+<p>만화와 애니메이션을 좋아하는 분, 친구들끼리 서로 어떤 캐릭터인지 맞히는 놀이를 즐기는 분께 잘 맞습니다. 유형이 스무 가지나 되어 단체로 해도 재미있습니다.</p>
+<h3>자주 묻는 질문</h3>
+<h4>Q. 결과가 성격과 안 맞아요.</h4>
+<p>캐릭터 유형은 오락을 위한 해석입니다. 실제 성격과 다르게 나와도 걱정하지 마시고 재미로만 받아들여 주세요.</p>
+<h4>Q. 사진이 저장되나요?</h4>
+<p>저장되지 않습니다. 사진은 브라우저에서만 처리되고 서버로 전송되지 않으며 페이지를 벗어나면 사라집니다.</p>
+<h4>Q. 같은 사진이면 같은 결과인가요?</h4>
+<p>네. 결과는 사진 파일 정보의 해시 값으로 계산되어 같은 파일은 항상 같은 캐릭터가 나옵니다.</p>
+<h4>Q. 어떤 사진이 좋나요?</h4>
+<p>정면에서 밝은 조명 아래 찍은 사진이 가장 좋습니다. 선글라스나 모자 등 얼굴을 가리는 요소는 피해 주세요.</p>
+<h4>Q. 유료인가요?</h4>
+<p>무료입니다. 회원가입 없이 횟수 제한 없이 이용할 수 있습니다.</p>
+<h3>함께 해보면 좋은 테스트</h3>
+<p><a href="../joseon-2026/">조선시대 관상 테스트</a>로 전통 관상 유형을, <a href="../ideal-animal/">이상형 동물 테스트</a>로 나의 동물 캐릭터를 확인해 보세요. <a href="../flirt-skill-2026/">플러팅 능력 테스트</a>로 매력 발산 방식을 알아보는 것도 재미있습니다.</p>
+<p>모든 결과는 재미와 오락을 위한 참고용 해석입니다.</p>
+
+    </div>
+
+    <!-- AdSense 승인 전에는 수동 <ins> 광고 유닛 추가 금지. head의 자동 광고 스크립트만 유지한다. -->
+    <footer class="main-footer" style="max-width: 720px; margin: 30px auto 0; padding: 24px 20px; text-align: center;">
+        <div class="footer-links">
+            <a href="../../about">소개</a>
+            <a href="../../privacy">개인정보처리방침</a>
+            <a href="../../terms">이용약관</a>
+            <a href="../../contact">문의하기</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2026 TesterLab (테스터랩). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js?v=20260927"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://testerlab.org/event/manhwa-2026/",
+          "url": "https://testerlab.org/event/manhwa-2026/",
+          "name": "만화 관상 테스트",
+          "description": "내 얼굴은 어떤 만화 캐릭터 관상일까? 20가지 만화 캐릭터 중 나의 캐릭터를 재미로 찾아보세요.",
+          "image": "https://testerlab.org/images/main_char.webp",
+          "inLanguage": "ko",
+          "isPartOf": { "@id": "https://testerlab.org/#website" },
+          "breadcrumb": { "@id": "https://testerlab.org/event/manhwa-2026/#breadcrumb" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://testerlab.org/event/manhwa-2026/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://testerlab.org/" },
+            { "@type": "ListItem", "position": 2, "name": "만화 관상 테스트", "item": "https://testerlab.org/event/manhwa-2026/" }
+          ]
+        }
+      ]
+    }
+    </script>
+</body>
+
+</html>

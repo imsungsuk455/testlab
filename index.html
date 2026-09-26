@@ -258,7 +258,7 @@
                     </div>
                 </div>
                 <!-- 실제 테스트 카드 -->
-                <div class="test-card active-card" id="test-joseon-card" data-tab="face">
+                <div class="test-card active-card" id="test-joseon-card" data-tab="face" onclick="location.href='event/joseon-2026/'">
                     <div class="badge" style="background: #111;">NEW</div>
                     <div class="card-img" style="background: #F9F7F2;">
                         <img src="images/title_joseon.webp" alt="조선시대 관상 테스트" style="object-fit: contain;" loading="lazy" decoding="async">
@@ -268,7 +268,7 @@
                         <p>조선시대 당신의 관상은?</p>
                     </div>
                 </div>
-                <div class="test-card active-card" id="test-manhwa-card" data-tab="face">
+                <div class="test-card active-card" id="test-manhwa-card" data-tab="face" onclick="location.href='event/manhwa-2026/'">
                     <div class="badge">HOT</div>
                     <div class="card-img">
                         <img src="images/main_char.webp" alt="만화 관상 테스트" loading="lazy" decoding="async">
@@ -279,7 +279,7 @@
                     </div>
                 </div>
 
-                <div class="test-card active-card" id="test-moral-card" data-tab="face">
+                <div class="test-card active-card" id="test-moral-card" data-tab="face" onclick="location.href='event/moral-2026/'">
                     <div class="badge" style="background: #111;">NEW</div>
                     <div class="card-img" style="background: #222;">
                         <img src="images/main_moral.webp" alt="첫인상 분위기 테스트" loading="lazy" decoding="async">
@@ -301,7 +301,7 @@
                         <p>부모님이 첫눈에 반할 상일까?</p>
                     </div>
                 </div>
-                <div class="test-card active-card" id="test-facetier-card" data-tab="face">
+                <div class="test-card active-card" id="test-facetier-card" data-tab="face" onclick="location.href='event/facetier-2026/'">
                     <div class="badge" style="background: #000; color: #fff; border: 1px solid #444;">PREMIUM</div>
                     <div class="card-img" style="background: #111;">
                         <img src="images/facetier.webp" alt="첫인상 스타일 테스트" style="object-fit: cover;" loading="lazy" decoding="async">
@@ -313,7 +313,7 @@
                 </div>
                 <!-- 동안 테스트 카드 -->
                 <div class="test-card active-card" id="test-babyface-card" data-tab="face"
-                    onclick="currentTest='babyface'; showSection('babyface-home');">
+                    onclick="location.href='event/babyface-2026/'">
                     <div class="badge" style="background: #40C057; color: #fff;">NEW</div>
                     <div class="card-img">
                         <img src="images/lee.webp" alt="동안 테스트" loading="lazy" decoding="async">
@@ -325,339 +325,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- 만화 관상 테스트 시작 (홈) -->
-        <section id="manhwa-home" class="section">
-            <div class="back-nav" onclick="resetTest()">← 전체 테스트 보기</div>
-            <div class="title-container">
-                <h2>만화 관상 테스트</h2>
-                <p class="subtitle">나의 만화 캐릭터 관상은?</p>
-            </div>
-            <div class="main-img-placeholder">
-                <img src="images/main_char.webp" alt="Identity Character" loading="lazy" decoding="async">
-            </div>
-            <button class="btn" id="start-btn">테스트 시작하기</button>
-            <p class="footer">제공된 사진은 분석 후 즉시 파기됩니다.</p>
-        </section>
-
-        <!-- 첫인상 분위기 테스트 시작 (홈) -->
-        <section id="moral-home" class="section">
-            <div class="back-nav" onclick="resetTest()">← 전체 테스트 보기</div>
-            <div class="title-container">
-                <h2 style="font-size: 1.8rem;">첫인상 분위기 테스트</h2>
-                <p class="subtitle">사진으로 보는 나의 첫인상 분위기 (재미용)</p>
-            </div>
-            <div class="main-img-placeholder">
-                <img src="images/main_moral.webp" alt="Crime Test Title Image" loading="lazy" decoding="async">
-            </div>
-            <button class="btn" id="moral-start-btn" style="background: #111;">테스트 시작하기</button>
-            <p class="footer">본 테스트는 과학적 근거보다는 재미를 위한 콘텐츠입니다.</p>
-        </section>
-
-        <!-- 조선 관상 거울 테스트 시작 (홈) -->
-        <section id="joseon-home" class="section joseon-theme">
-            <div class="back-nav" onclick="resetTest()">← 전체 테스트 보기</div>
-            <div class="title-container">
-                <h2 class="ink-title">조선시대 관상 테스트</h2>
-                <p class="subtitle">조선시대 당신의 관상은?</p>
-            </div>
-            <div class="joseon-main-frame">
-                <img src="images/title_joseon.webp" alt="조선시대 관상 테스트" class="joseon-title-img" loading="lazy" decoding="async">
-            </div>
-            <button class="btn joseon-btn" id="joseon-start-btn">관상을 살펴보러 가기</button>
-            <p class="footer">귀하의 초상은 분석 즉시 파기되어 흔적을 남기지 않습니다.</p>
-        </section>
-
-        <!-- 동안 테스트 시작 (홈) -->
-        <section id="babyface-home" class="section">
-            <div class="back-nav" onclick="resetTest()">← 전체 테스트 보기</div>
-            <div class="title-container">
-                <h2 style="color: #40C057;">동안 테스트</h2>
-                <p class="subtitle">사진으로 보는 나의 동안도 (재미용)</p>
-            </div>
-            <div class="main-img-placeholder">
-                <img src="images/lee.webp" alt="동안 테스트 타이틀" loading="lazy" decoding="async">
-            </div>
-            <button class="btn" id="babyface-start-btn" onclick="resetUploadUI(); showSection('upload');"
-                style="background: #40C057; box-shadow: 0 10px 20px rgba(64, 192, 87, 0.3);">테스트 시작하기</button>
-            <p class="footer">제공된 사진은 분석 후 즉시 파기됩니다.</p>
-        </section>
-
-        <!-- 페이스 티어 테스트 시작 (홈) -->
-        <section id="facetier-home" class="section facetier-theme">
-            <div class="back-nav" onclick="resetTest()">← 전체 테스트 보기</div>
-            <div class="title-container">
-                <h2 class="facetier-title">첫인상 스타일 테스트</h2>
-                <p class="subtitle">내 첫인상 스타일을 재미로 확인하기</p>
-            </div>
-            <div class="facetier-main-frame">
-                <img src="images/facetier.webp" alt="첫인상 스타일 테스트" class="facetier-main-img" loading="lazy" decoding="async"
-                    style="width: 220px; height: 220px; border-radius: 30px; object-fit: cover; box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
-            </div>
-            <button class="btn facetier-btn" id="facetier-start-btn">테스트 시작하기</button>
-            <p class="footer">재미용 분석이 시작됩니다. 결과는 참고용으로 가볍게 즐겨주세요.</p>
-        </section>
-
-        <!-- 얼굴 사진 업로드 섹션 -->
-        <section id="upload" class="section">
-            <div class="title-container">
-                <h2>얼굴 사진 업로드</h2>
-                <p class="subtitle">정면 사진일수록 결과가 잘 나와요!</p>
-            </div>
-            <div class="upload-area" id="drop-zone">
-                <span class="upload-icon">📸</span>
-                <p>클릭하여 사진 선택 또는 드래그</p>
-                <input type="file" id="file-input" accept="image/*">
-            </div>
-            <div class="preview-container" id="preview-box">
-                <img id="image-preview" src="#" alt="Preview">
-                <button class="btn" id="analyze-btn" style="margin-top: 20px;">사진 선택 완료</button>
-            </div>
-        </section>
-
-        <!-- 동안 테스트 전용: 나이 입력 섹션 -->
-        <section id="babyface-age-input" class="section">
-            <div class="title-container">
-                <h2 style="font-size: 1.8rem; margin-bottom: 5px;">현재 나이는?</h2>
-                <p class="subtitle">더 재미있는 비교를 위해 현재 나이를 알려주세요.</p>
-            </div>
-            <div class="age-input-container" style="margin: 30px 0;">
-                <input type="number" id="user-age-input" placeholder="나이"
-                    style="width: 80px; height: 40px; font-size: 1.2rem; text-align: center; border: none; border-bottom: 2px solid #40C057; outline: none; background: transparent; font-weight: 700; color: #333;">
-                <span style="font-size: 1rem; font-weight: 600; color: #888; margin-left: 8px;">세</span>
-            </div>
-            <button class="btn" id="age-submit-btn"
-                style="background: #40C057; box-shadow: 0 10px 20px rgba(64, 192, 87, 0.3);">결과 확인하기</button>
-        </section>
-
-        <!-- 로딩 섹션 -->
-        <section id="loading" class="section">
-            <div class="loading-box">
-                <div class="scan-box">
-                    <img id="scan-img" src="#" alt="Scanning">
-                    <div class="scanner"></div>
-                </div>
-                <div class="loader" style="margin-top: 30px;"></div>
-                <p class="loading-text" id="status-text">관상을 분석하고 있습니다...</p>
-            </div>
-        </section>
-
-        <!-- 결과 섹션 (만화) -->
-        <section id="result" class="section">
-            <div class="result-header">
-                <p class="subtitle">나의 관상 결과는...</p>
-                <h2 class="result-title" id="res-title"></h2>
-            </div>
-            <img id="res-img" class="result-char-img" src="" alt="Character Result">
-            <div class="result-keywords" id="res-keywords">
-            </div>
-            <div class="result-desc">
-                <p id="res-desc"></p>
-            </div>
-            <div class="share-container">
-                <button class="share-btn" id="copy-link-btn" title="링크 복사">
-                    <span>🔗</span> 링크 복사
-                </button>
-                <button class="share-btn" id="share-native-btn" title="공유하기">
-                    <span>📱</span> 테스트 공유
-                </button>
-            </div>
-            <button class="btn" id="retry-btn" style="margin-top: 30px; background: #666;">다시 테스트하기</button>
-        </section>
-
-        <!-- 결과 섹션 (첫인상 분위기) -->
-        <section id="moral-result" class="section moral-theme">
-            <div class="result-header">
-                <p class="subtitle" style="color: var(--secondary-text);">분석 완료: 당신의 첫인상 분위기는</p>
-                <h2 class="result-title" id="moral-res-type" style="color: var(--accent-color); font-size: 2.2rem;">
-                </h2>
-            </div>
-
-            <div class="bento-grid">
-                <div class="bento-item bento-main glass">
-                    <img id="moral-res-img" src="" alt="관상 결과 이미지">
-                </div>
-                <div class="bento-item bento-stat glass">
-                    <span class="label">첫인상 지수</span>
-                    <div class="stat-bar">
-                        <div id="moral-stat-fill" class="stat-fill"></div>
-                    </div>
-                    <p id="moral-stat-value" style="font-weight: 800; font-size: 1.2rem; margin-top: 10px;">0%</p>
-                </div>
-                <div class="bento-item bento-trait glass">
-                    <span class="label">대표 특징</span>
-                    <p id="moral-res-trait"></p>
-                </div>
-                <div class="bento-item bento-ability glass">
-                    <span class="label">잠재 능력</span>
-                    <p id="moral-res-ability"></p>
-                </div>
-                <div class="bento-item bento-tip glass">
-                    <span class="label">삶의 조언</span>
-                    <p id="moral-res-tip"></p>
-                </div>
-            </div>
-
-            <div class="share-container" style="margin-top: 30px;">
-                <div class="share-btn" id="moral-copy-link-btn">
-                    <span>🔗</span> 링크 복사
-                </div>
-                <div class="share-btn" id="moral-share-native-btn">
-                    <span>📤</span> 공유하기
-                </div>
-            </div>
-            <button class="btn" id="moral-retry-btn" style="margin-top: 10px; background: #666;">다른 사진으로 테스트</button>
-        </section>
-
-        <!-- 결과 섹션 (조선) -->
-        <section id="joseon-result" class="section joseon-theme">
-            <div class="result-header">
-                <p class="subtitle" style="color: #666; margin-bottom: 10px;">귀하의 관상을 살핀 결과...</p>
-                <div id="joseon-res-tags" class="joseon-tags"></div>
-                <h2 class="joseon-res-title" id="joseon-res-type"></h2>
-            </div>
-
-            <div class="joseon-result-card">
-                <div class="joseon-portrait">
-                    <img id="joseon-res-img" src="" alt="조선 관상 초상화">
-                </div>
-
-                <div class="joseon-chart-container">
-                    <canvas id="joseon-radar-chart" width="200" height="200"></canvas>
-                </div>
-
-                <div class="joseon-desc-box">
-                    <p id="joseon-res-desc" class="ink-text"></p>
-                </div>
-            </div>
-
-            <div class="share-container" style="margin-top: 30px;">
-                <div class="share-btn joseon-share-btn" id="joseon-copy-link-btn">
-                    <span>📜</span> 방 붙이기
-                </div>
-                <div class="share-btn joseon-share-btn" id="joseon-share-native-btn">
-                    <span>📣</span> 소문내기
-                </div>
-            </div>
-            <button class="btn joseon-btn" id="joseon-retry-btn" style="margin-top: 10px; background: #444;">다시
-                살피기</button>
-        </section>
-
-        <!-- 결과 섹션 (페이스 티어) -->
-        <section id="facetier-result" class="section facetier-theme">
-            <div class="result-header">
-                <p class="subtitle" style="color: #888;">첫인상 스타일 테스트 결과</p>
-                <div class="facetier-result-container">
-                    <div id="facetier-result-card" class="facetier-card-premium">
-                        <div class="tier-label">FIRST IMPRESSION STYLE</div>
-                        <div id="facetier-percent" class="tier-percent">매칭도 0.0%</div>
-
-                        <div class="tier-image-box">
-                            <img id="facetier-user-img" src="" alt="나의 사진">
-                        </div>
-
-                        <div class="tier-info-box">
-                            <h2 id="facetier-title" class="tier-title"></h2>
-                            <p id="facetier-desc" class="tier-desc"></p>
-                        </div>
-
-                        <div class="tier-watermark">TESTERLAB : 첫인상 스타일 테스트</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="share-container" style="margin-top: 30px;">
-                <div class="share-btn facetier-share-btn" id="facetier-copy-link-btn">
-                    <span>🔗</span> 링크 복사
-                </div>
-                <div class="share-btn facetier-share-btn" id="facetier-share-native-btn">
-                    <span>📤</span> 공유하기
-                </div>
-            </div>
-            <button class="btn facetier-btn" id="facetier-retry-btn" style="margin-top: 10px; background: #333;">다시
-                테스트하기</button>
-        </section>
-
-        <!-- 결과 섹션 (동안 테스트) -->
-        <section id="babyface-result" class="section">
-            <div class="result-header">
-                <p class="subtitle" id="babyface-res-diff-text"
-                    style="font-weight: 700; color: #40C057; margin-bottom: 10px;"></p>
-                <div class="age-comparison-box"
-                    style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 15px;">
-                    <div class="age-item">
-                        <span style="font-size: 0.8rem; color: #888; display: block;">실제 나이</span>
-                        <span id="babyface-real-age"
-                            style="font-size: 1.5rem; font-weight: 800; color: #333;">32세</span>
-                    </div>
-                    <div style="font-size: 1.5rem; color: #ddd; font-weight: 200;">↔</div>
-                    <div class="age-item">
-                        <span style="font-size: 0.8rem; color: #888; display: block;">사진 나이</span>
-                        <span id="babyface-ai-age"
-                            style="font-size: 2.2rem; font-weight: 900; color: #40C057;">26세</span>
-                    </div>
-                </div>
-                <h3 id="babyface-res-title"
-                    style="font-size: 1.3rem; margin-bottom: 25px; color: #555; font-weight: 700;"></h3>
-            </div>
-
-            <!-- 타임라인 바 -->
-            <div class="timeline-container" style="padding: 0 20px 40px;">
-                <div class="timeline-labels"
-                    style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #aaa; margin-bottom: 10px; font-weight: 600;">
-                    <span>10대</span>
-                    <span>40대</span>
-                    <span>80대</span>
-                </div>
-                <div class="timeline-bar"
-                    style="height: 12px; background: #eee; border-radius: 6px; position: relative;">
-                    <div id="timeline-real-dot"
-                        style="position: absolute; top: 50%; left: 30%; transform: translate(-50%, -50%); width: 10px; height: 10px; background: #aaa; border-radius: 50%; z-index: 2;">
-                        <span
-                            style="position: absolute; top: 15px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #aaa;">실제</span>
-                    </div>
-                    <div id="timeline-ai-dot"
-                        style="position: absolute; top: 50%; left: 20%; transform: translate(-50%, -50%); width: 16px; height: 16px; background: #40C057; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 10px rgba(64, 192, 87, 0.4); z-index: 3;">
-                        <span
-                            style="position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.75rem; color: #40C057; font-weight: 800;">사진</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bento-grid" style="grid-template-areas: 'main main' 'trait ability'; margin-top: 0;">
-                <div class="bento-item bento-main glass" style="border-color: #E3FAEF; height: 240px;">
-                    <img id="babyface-res-img" src="" alt="동안 분석 이미지">
-                </div>
-                <div class="bento-item glass"
-                    style="grid-area: trait; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
-                    <span class="label">사진 나이 분석</span>
-                    <p id="babyface-res-trait" style="font-size: 0.85rem;"></p>
-                </div>
-                <div class="bento-item glass"
-                    style="grid-area: ability; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
-                    <span class="label">주요 매력포인트</span>
-                    <p id="babyface-res-ability" style="font-size: 0.85rem;"></p>
-                </div>
-            </div>
-
-            <div class="bento-item glass"
-                style="width: 100%; margin-top: 15px; background: #E3FAEF !important; display: flex; flex-direction: column; align-items: flex-start; text-align: left; border-color: #40C057;">
-                <span class="label" style="color: #2F9E44;">오늘의 동안 솔루션</span>
-                <p id="babyface-res-tip" style="font-weight: 600; font-size: 0.95rem; color: #333;"></p>
-            </div>
-
-            <div class="share-container" style="margin-top: 30px;">
-                <div class="share-btn" id="babyface-copy-link-btn">
-                    <span>🔗</span> 링크 복사
-                </div>
-                <div class="share-btn" id="babyface-share-native-btn">
-                    <span>📤</span> 공유하기
-                </div>
-            </div>
-            <button class="btn" id="babyface-retry-btn" style="margin-top: 10px; background: #666; box-shadow: none;">다른
-                사진으로 테스트</button>
-        </section>
-    </div>
 
     <!-- Site Content: 소개 & 테스트 가이드 & FAQ -->
     <section class="site-content" style="max-width: 720px; margin: 40px auto 0; padding: 0 20px; text-align: left; color: #333;">

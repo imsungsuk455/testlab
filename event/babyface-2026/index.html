@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동안 테스트 | 테스터랩(TesterLab)</title>
+    <meta name="description" content="사진으로 보는 나의 동안도. 실제 나이와 사진 나이를 비교해 동안 여부를 재미로 확인하세요.">
+    <meta name="keywords" content="동안 테스트, 동안 나이 테스트, 동안도 테스트, TesterLab, 테스터랩">
+    <link rel="canonical" href="https://testerlab.org/event/babyface-2026/">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="동안 테스트">
+    <meta property="og:description" content="사진으로 보는 나의 동안도. 실제 나이와 사진 나이를 비교해 동안 여부를 재미로 확인하세요.">
+    <meta property="og:image" content="https://testerlab.org/images/lee.webp">
+    <meta property="og:url" content="https://testerlab.org/event/babyface-2026/">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="TesterLab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="동안 테스트">
+    <meta name="twitter:description" content="사진으로 보는 나의 동안도. 실제 나이와 사진 나이를 비교해 동안 여부를 재미로 확인하세요.">
+    <meta name="twitter:image" content="https://testerlab.org/images/lee.webp">
+
+    <link rel="stylesheet" href="../../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../../'">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in">
+        <!-- 동안 테스트 시작 (홈) -->
+        <section id="babyface-home" class="section active"">
+            <div class="back-nav" onclick="location.href='../../'">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h2 style="color: #40C057;">동안 테스트</h2>
+                <p class="subtitle">사진으로 보는 나의 동안도 (재미용)</p>
+            </div>
+            <div class="main-img-placeholder">
+                <img src="../../images/lee.webp" alt="동안 테스트 타이틀" loading="lazy" decoding="async">
+            </div>
+            <button class="btn" id="babyface-start-btn" onclick="resetUploadUI(); showSection('upload');"
+                style="background: #40C057; box-shadow: 0 10px 20px rgba(64, 192, 87, 0.3);">테스트 시작하기</button>
+            <p class="footer">제공된 사진은 분석 후 즉시 파기됩니다.</p>
+        </section>
+
+        <!-- 얼굴 사진 업로드 섹션 -->
+        <section id="upload" class="section">
+            <div class="title-container">
+                <h2>얼굴 사진 업로드</h2>
+                <p class="subtitle">정면 사진일수록 결과가 잘 나와요!</p>
+            </div>
+            <div class="upload-area" id="drop-zone">
+                <span class="upload-icon">📸</span>
+                <p>클릭하여 사진 선택 또는 드래그</p>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+            <div class="preview-container" id="preview-box">
+                <img id="image-preview" src="#" alt="Preview">
+                <button class="btn" id="analyze-btn" style="margin-top: 20px;">사진 선택 완료</button>
+            </div>
+        </section>
+
+        <!-- 동안 테스트 전용: 나이 입력 섹션 -->
+        <section id="babyface-age-input" class="section">
+            <div class="title-container">
+                <h2 style="font-size: 1.8rem; margin-bottom: 5px;">현재 나이는?</h2>
+                <p class="subtitle">더 재미있는 비교를 위해 현재 나이를 알려주세요.</p>
+            </div>
+            <div class="age-input-container" style="margin: 30px 0;">
+                <input type="number" id="user-age-input" placeholder="나이"
+                    style="width: 80px; height: 40px; font-size: 1.2rem; text-align: center; border: none; border-bottom: 2px solid #40C057; outline: none; background: transparent; font-weight: 700; color: #333;">
+                <span style="font-size: 1rem; font-weight: 600; color: #888; margin-left: 8px;">세</span>
+            </div>
+            <button class="btn" id="age-submit-btn"
+                style="background: #40C057; box-shadow: 0 10px 20px rgba(64, 192, 87, 0.3);">결과 확인하기</button>
+        </section>
+
+        <!-- 로딩 섹션 -->
+        <section id="loading" class="section">
+            <div class="loading-box">
+                <div class="scan-box">
+                    <img id="scan-img" src="#" alt="Scanning">
+                    <div class="scanner"></div>
+                </div>
+                <div class="loader" style="margin-top: 30px;"></div>
+                <p class="loading-text" id="status-text">관상을 분석하고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- 결과 섹션 (동안 테스트) -->
+        <section id="babyface-result" class="section">
+            <div class="result-header">
+                <p class="subtitle" id="babyface-res-diff-text"
+                    style="font-weight: 700; color: #40C057; margin-bottom: 10px;"></p>
+                <div class="age-comparison-box"
+                    style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 15px;">
+                    <div class="age-item">
+                        <span style="font-size: 0.8rem; color: #888; display: block;">실제 나이</span>
+                        <span id="babyface-real-age"
+                            style="font-size: 1.5rem; font-weight: 800; color: #333;">32세</span>
+                    </div>
+                    <div style="font-size: 1.5rem; color: #ddd; font-weight: 200;">↔</div>
+                    <div class="age-item">
+                        <span style="font-size: 0.8rem; color: #888; display: block;">사진 나이</span>
+                        <span id="babyface-ai-age"
+                            style="font-size: 2.2rem; font-weight: 900; color: #40C057;">26세</span>
+                    </div>
+                </div>
+                <h3 id="babyface-res-title"
+                    style="font-size: 1.3rem; margin-bottom: 25px; color: #555; font-weight: 700;"></h3>
+            </div>
+
+            <!-- 타임라인 바 -->
+            <div class="timeline-container" style="padding: 0 20px 40px;">
+                <div class="timeline-labels"
+                    style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #aaa; margin-bottom: 10px; font-weight: 600;">
+                    <span>10대</span>
+                    <span>40대</span>
+                    <span>80대</span>
+                </div>
+                <div class="timeline-bar"
+                    style="height: 12px; background: #eee; border-radius: 6px; position: relative;">
+                    <div id="timeline-real-dot"
+                        style="position: absolute; top: 50%; left: 30%; transform: translate(-50%, -50%); width: 10px; height: 10px; background: #aaa; border-radius: 50%; z-index: 2;">
+                        <span
+                            style="position: absolute; top: 15px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #aaa;">실제</span>
+                    </div>
+                    <div id="timeline-ai-dot"
+                        style="position: absolute; top: 50%; left: 20%; transform: translate(-50%, -50%); width: 16px; height: 16px; background: #40C057; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 10px rgba(64, 192, 87, 0.4); z-index: 3;">
+                        <span
+                            style="position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.75rem; color: #40C057; font-weight: 800;">사진</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-grid" style="grid-template-areas: 'main main' 'trait ability'; margin-top: 0;">
+                <div class="bento-item bento-main glass" style="border-color: #E3FAEF; height: 240px;">
+                    <img id="babyface-res-img" src="" alt="동안 분석 이미지">
+                </div>
+                <div class="bento-item glass"
+                    style="grid-area: trait; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+                    <span class="label">사진 나이 분석</span>
+                    <p id="babyface-res-trait" style="font-size: 0.85rem;"></p>
+                </div>
+                <div class="bento-item glass"
+                    style="grid-area: ability; display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+                    <span class="label">주요 매력포인트</span>
+                    <p id="babyface-res-ability" style="font-size: 0.85rem;"></p>
+                </div>
+            </div>
+
+            <div class="bento-item glass"
+                style="width: 100%; margin-top: 15px; background: #E3FAEF !important; display: flex; flex-direction: column; align-items: flex-start; text-align: left; border-color: #40C057;">
+                <span class="label" style="color: #2F9E44;">오늘의 동안 솔루션</span>
+                <p id="babyface-res-tip" style="font-weight: 600; font-size: 0.95rem; color: #333;"></p>
+            </div>
+
+            <div class="share-container" style="margin-top: 30px;">
+                <div class="share-btn" id="babyface-copy-link-btn">
+                    <span>🔗</span> 링크 복사
+                </div>
+                <div class="share-btn" id="babyface-share-native-btn">
+                    <span>📤</span> 공유하기
+                </div>
+            </div>
+            <button class="btn" id="babyface-retry-btn" style="margin-top: 10px; background: #666; box-shadow: none;">다른
+                사진으로 테스트</button>
+        </section>
+    </div>
+
+    </div>
+
+    <!-- 테스트 소개 & FAQ (정적 콘텐츠 — AdSense 심사 핵심 영역) -->
+    <!-- 규칙: 800자 이상, 테스트별 고유 서술. 다른 테스트 문구 복붙 금지. -->
+    <div class="site-content-block" style="max-width: 720px; margin: 10px auto 40px; padding: 20px; text-align: left; color: #333; background: #fff; border-radius: 12px; border: 1px solid #eee;">
+
+<h2>동안 테스트란?</h2>
+<p>동안 테스트는 정면 사진 한 장과 실제 나이를 입력하면 사진에서 읽힌 나이와 비교해 동안 여부를 재미로 알아보는 콘텐츠입니다. 우주급 최강 동안, 아이돌급 동안, 세련된 동안 인상, 중후한 매력의 성숙함, 연륜이 깊게 묻어난 관상, 세월의 흐름이 역력한 인상까지 여섯 가지 결과 유형이 준비되어 있습니다.</p>
+<p>사진 나이는 파일 정보의 해시 값으로 계산되는 결정론적 방식이라 같은 사진 파일을 올리면 항상 같은 사진 나이가 나옵니다. 입력한 실제 나이와의 차이로 동안 점수가 정해지며, 사진은 브라우저 안에서만 처리되고 서버로 전송되거나 저장되지 않습니다. 나이를 판별하는 진단이 아니라 재미를 위한 비교 놀이라는 점을 참고해 주세요.</p>
+<h3>결과 유형 해설</h3>
+<p><strong>우주급 최강 동안:</strong> 세월이 비껴간 수준의 동안이라는 해석입니다. <strong>아이돌급 동안:</strong> 생기 넘치는 동안 매력의 소유자입니다. <strong>세련된 동안 인상:</strong> 관리로 유지되는 정돈된 동안입니다. <strong>중후한 매력의 성숙함:</strong> 나이에 걸맞은 품위 있는 인상입니다. <strong>연륜이 깊게 묻어난 관상:</strong> 세월의 흔적이 묻어난 노련한 인상입니다. <strong>세월의 흐름이 역력한 인상:</strong> 수면과 관리의 필요성이 강조되는 해석입니다.</p>
+<h3>이용 방법</h3>
+<ol style="line-height: 1.9; font-size: 0.92rem; padding-left: 18px;">
+<li><strong>테스트 시작하기</strong> — 상단 버튼을 눌러 사진 업로드 화면으로 이동합니다.</li>
+<li><strong>정면 사진 올리기</strong> — 얼굴이 선명한 사진을 선택하거나 드래그합니다.</li>
+<li><strong>나이 입력하기</strong> — 실제 나이를 숫자로 입력하면 사진 나이와 비교가 시작됩니다.</li>
+<li><strong>결과 확인</strong> — 실제 나이와 사진 나이, 타임라인, 동안 솔루션을 확인하고 공유할 수 있습니다.</li>
+</ol>
+<h3>이런 분께 추천합니다</h3>
+<p>사진 나이를 궁금해하는 분, 친구와 서로 동안 여부를 겨뤄보고 싶은 분께 잘 맞습니다. 나이 입력이 포함되어 있어 단체로 하면 누가 진짜 동안인지 비교하는 재미가 있습니다.</p>
+<h3>자주 묻는 질문</h3>
+<h4>Q. 사진 나이는 정확한가요?</h4>
+<p>아니요. 파일 정보로 계산되는 오락용 수치이며 실제 나이 판별과 무관합니다.</p>
+<h4>Q. 사진은 저장되나요?</h4>
+<p>저장되지 않습니다. 브라우저 안에서만 처리되고 서버로 전송되지 않습니다.</p>
+<h4>Q. 같은 사진이면 같은 사진 나이인가요?</h4>
+<p>네. 같은 파일은 항상 같은 사진 나이가 나옵니다.</p>
+<h4>Q. 나이를 안 입력하면 되나요?</h4>
+<p>실제 나이가 있어야 비교 결과가 계산되므로 나이 입력은 필수입니다.</p>
+<h4>Q. 결과가 나쁘게 나왔어요.</h4>
+<p>결과는 재미를 위한 참고용 해석입니다. 수면과 관리 습관에 신경 쓰라는 유머러스한 조언으로 받아들여 주세요.</p>
+<h3>함께 해보면 좋은 테스트</h3>
+<p><a href="../facetier-2026/">첫인상 스타일 테스트</a>로 첫인상 매칭도를, <a href="../mind-age/">정신연령 테스트</a>로 마음의 나이를 확인해 보세요. <a href="../flirt-quiz-2026/">바람기 테스트</a>도 함께 즐길 수 있습니다.</p>
+<p>모든 결과는 재미와 오락을 위한 참고용 해석입니다.</p>
+
+    </div>
+
+    <!-- AdSense 승인 전에는 수동 <ins> 광고 유닛 추가 금지. head의 자동 광고 스크립트만 유지한다. -->
+    <footer class="main-footer" style="max-width: 720px; margin: 30px auto 0; padding: 24px 20px; text-align: center;">
+        <div class="footer-links">
+            <a href="../../about">소개</a>
+            <a href="../../privacy">개인정보처리방침</a>
+            <a href="../../terms">이용약관</a>
+            <a href="../../contact">문의하기</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2026 TesterLab (테스터랩). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js?v=20260927"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://testerlab.org/event/babyface-2026/",
+          "url": "https://testerlab.org/event/babyface-2026/",
+          "name": "동안 테스트",
+          "description": "사진으로 보는 나의 동안도. 실제 나이와 사진 나이를 비교해 동안 여부를 재미로 확인하세요.",
+          "image": "https://testerlab.org/images/lee.webp",
+          "inLanguage": "ko",
+          "isPartOf": { "@id": "https://testerlab.org/#website" },
+          "breadcrumb": { "@id": "https://testerlab.org/event/babyface-2026/#breadcrumb" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://testerlab.org/event/babyface-2026/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://testerlab.org/" },
+            { "@type": "ListItem", "position": 2, "name": "동안 테스트", "item": "https://testerlab.org/event/babyface-2026/" }
+          ]
+        }
+      ]
+    }
+    </script>
+</body>
+
+</html>

@@ -91,6 +91,36 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://testerlab.org/event/joseon-2026/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://testerlab.org/event/manhwa-2026/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://testerlab.org/event/moral-2026/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://testerlab.org/event/facetier-2026/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://testerlab.org/event/babyface-2026/</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://testerlab.org/about</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>

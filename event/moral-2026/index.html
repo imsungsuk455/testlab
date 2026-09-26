@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>첫인상 분위기 테스트 | 테스터랩(TesterLab)</title>
+    <meta name="description" content="사진으로 보는 나의 첫인상 분위기. 전략가부터 이타주의자까지 10가지 분위기를 재미로 확인하세요.">
+    <meta name="keywords" content="첫인상 테스트, 첫인상 분위기 테스트, 첫인상 분석, TesterLab, 테스터랩">
+    <link rel="canonical" href="https://testerlab.org/event/moral-2026/">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="첫인상 분위기 테스트">
+    <meta property="og:description" content="사진으로 보는 나의 첫인상 분위기. 전략가부터 이타주의자까지 10가지 분위기를 재미로 확인하세요.">
+    <meta property="og:image" content="https://testerlab.org/images/main_moral.webp">
+    <meta property="og:url" content="https://testerlab.org/event/moral-2026/">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="TesterLab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="첫인상 분위기 테스트">
+    <meta name="twitter:description" content="사진으로 보는 나의 첫인상 분위기. 전략가부터 이타주의자까지 10가지 분위기를 재미로 확인하세요.">
+    <meta name="twitter:image" content="https://testerlab.org/images/main_moral.webp">
+
+    <link rel="stylesheet" href="../../style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../../'">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in">
+        <!-- 첫인상 분위기 테스트 시작 (홈) -->
+        <section id="moral-home" class="section active"">
+            <div class="back-nav" onclick="location.href='../../'">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h2 style="font-size: 1.8rem;">첫인상 분위기 테스트</h2>
+                <p class="subtitle">사진으로 보는 나의 첫인상 분위기 (재미용)</p>
+            </div>
+            <div class="main-img-placeholder">
+                <img src="../../images/main_moral.webp" alt="Crime Test Title Image" loading="lazy" decoding="async">
+            </div>
+            <button class="btn" id="moral-start-btn" style="background: #111;">테스트 시작하기</button>
+            <p class="footer">본 테스트는 과학적 근거보다는 재미를 위한 콘텐츠입니다.</p>
+        </section>
+
+        <!-- 얼굴 사진 업로드 섹션 -->
+        <section id="upload" class="section">
+            <div class="title-container">
+                <h2>얼굴 사진 업로드</h2>
+                <p class="subtitle">정면 사진일수록 결과가 잘 나와요!</p>
+            </div>
+            <div class="upload-area" id="drop-zone">
+                <span class="upload-icon">📸</span>
+                <p>클릭하여 사진 선택 또는 드래그</p>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+            <div class="preview-container" id="preview-box">
+                <img id="image-preview" src="#" alt="Preview">
+                <button class="btn" id="analyze-btn" style="margin-top: 20px;">사진 선택 완료</button>
+            </div>
+        </section>
+
+        <!-- 로딩 섹션 -->
+        <section id="loading" class="section">
+            <div class="loading-box">
+                <div class="scan-box">
+                    <img id="scan-img" src="#" alt="Scanning">
+                    <div class="scanner"></div>
+                </div>
+                <div class="loader" style="margin-top: 30px;"></div>
+                <p class="loading-text" id="status-text">관상을 분석하고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- 결과 섹션 (첫인상 분위기) -->
+        <section id="moral-result" class="section moral-theme">
+            <div class="result-header">
+                <p class="subtitle" style="color: var(--secondary-text);">분석 완료: 당신의 첫인상 분위기는</p>
+                <h2 class="result-title" id="moral-res-type" style="color: var(--accent-color); font-size: 2.2rem;">
+                </h2>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-item bento-main glass">
+                    <img id="moral-res-img" src="" alt="관상 결과 이미지">
+                </div>
+                <div class="bento-item bento-stat glass">
+                    <span class="label">첫인상 지수</span>
+                    <div class="stat-bar">
+                        <div id="moral-stat-fill" class="stat-fill"></div>
+                    </div>
+                    <p id="moral-stat-value" style="font-weight: 800; font-size: 1.2rem; margin-top: 10px;">0%</p>
+                </div>
+                <div class="bento-item bento-trait glass">
+                    <span class="label">대표 특징</span>
+                    <p id="moral-res-trait"></p>
+                </div>
+                <div class="bento-item bento-ability glass">
+                    <span class="label">잠재 능력</span>
+                    <p id="moral-res-ability"></p>
+                </div>
+                <div class="bento-item bento-tip glass">
+                    <span class="label">삶의 조언</span>
+                    <p id="moral-res-tip"></p>
+                </div>
+            </div>
+
+            <div class="share-container" style="margin-top: 30px;">
+                <div class="share-btn" id="moral-copy-link-btn">
+                    <span>🔗</span> 링크 복사
+                </div>
+                <div class="share-btn" id="moral-share-native-btn">
+                    <span>📤</span> 공유하기
+                </div>
+            </div>
+            <button class="btn" id="moral-retry-btn" style="margin-top: 10px; background: #666;">다른 사진으로 테스트</button>
+        </section>
+
+    </div>
+
+    <!-- 테스트 소개 & FAQ (정적 콘텐츠 — AdSense 심사 핵심 영역) -->
+    <!-- 규칙: 800자 이상, 테스트별 고유 서술. 다른 테스트 문구 복붙 금지. -->
+    <div class="site-content-block" style="max-width: 720px; margin: 10px auto 40px; padding: 20px; text-align: left; color: #333; background: #fff; border-radius: 12px; border: 1px solid #eee;">
+
+<h2>첫인상 분위기 테스트란?</h2>
+<p>첫인상 분위기 테스트는 정면 사진 한 장으로 나의 첫인상이 어떤 분위기로 읽히는지 재미로 알아보는 콘텐츠입니다. 냉혹한 전략가, 열혈 트러블메이커, 그림자 배후, 폭발적 반항아, 신출귀몰 괴도, 천의 얼굴, 예리한 감시자, 평화의 수호자, 지혜로운 멘토, 햇살 같은 이타주의자까지 열 가지 분위기 유형이 준비되어 있습니다.</p>
+<p>결과는 사진 파일의 이름·크기·수정 시각을 조합해 브라우저 안에서 계산되는 결정론적 방식입니다. 같은 사진 파일을 올리면 항상 같은 유형이 나오며, 사진은 서버로 전송되거나 저장되지 않습니다. 첫인상은 사람마다 다르게 느낄 수 있는 주관적인 것이라는 점을 감안해 가볍게 즐겨 주세요.</p>
+<h3>결과 유형 해설</h3>
+<p><strong>냉혹한 전략가:</strong> 차갑고 이성적인 눈매의 지략가형입니다. <strong>열혈 트러블메이커:</strong> 에너지를 주체하지 못하는 다혈질형입니다. <strong>그림자 배후:</strong> 조용히 모든 상황을 설계하는 전략가입니다. <strong>폭발적 반항아:</strong> 규칙과 억압을 거부하는 자유분방형입니다. <strong>평화의 수호자:</strong> 온화한 평화주의자입니다. <strong>지혜로운 멘토:</strong> 신뢰가 느껴지는 지도자형입니다. <strong>햇살 같은 이타주의자:</strong> 존재만으로 주변을 밝히는 선한 기운의 소유자입니다. 이 밖에도 괴도, 천의 얼굴, 감시자 유형이 있습니다.</p>
+<h3>이용 방법</h3>
+<ol style="line-height: 1.9; font-size: 0.92rem; padding-left: 18px;">
+<li><strong>테스트 시작하기</strong> — 상단 버튼을 눌러 사진 업로드 화면으로 이동합니다.</li>
+<li><strong>정면 사진 올리기</strong> — 얼굴이 선명하게 보이는 사진을 선택하거나 드래그합니다.</li>
+<li><strong>분석 대기</strong> — 랜드마크 스캔과 분위기 분석 문구가 지나간 뒤 결과가 표시됩니다.</li>
+<li><strong>결과 확인</strong> — 첫인상 지수와 대표 특징, 잠재 능력, 삶의 조언을 확인하고 공유할 수 있습니다.</li>
+</ol>
+<h3>이런 분께 추천합니다</h3>
+<p>첫인상에 대한 주변 평가가 궁금한 분, 모임에서 자신이 어떻게 읽히는지 궁금한 분께 잘 맞습니다. 친구나 동료와 함께 해서 서로의 결과를 비교하면 대화가 풍성해집니다.</p>
+<h3>자주 묻는 질문</h3>
+<h4>Q. 첫인상 분위기는 객관적인가요?</h4>
+<p>아니요. 첫인상은 주관적이며 본 테스트 결과는 재미를 위한 참고용 해석입니다.</p>
+<h4>Q. 사진은 안전한가요?</h4>
+<p>네. 사진은 브라우저 안에서만 처리되고 서버로 전송되지 않으며 페이지를 벗어나면 사라집니다.</p>
+<h4>Q. 같은 사진이면 같은 결과인가요?</h4>
+<p>네. 사진 파일 정보의 해시 값으로 계산되므로 같은 파일은 항상 같은 유형이 나옵니다.</p>
+<h4>Q. 어떤 사진이 좋은가요?</h4>
+<p>정면, 밝은 조명, 자연스러운 표정이 좋습니다. 꾸민 느낌보다 평소 모습이 반영됩니다.</p>
+<h4>Q. 여러 번 할 수 있나요?</h4>
+<p>네. 무료로 횟수 제한 없이 다시 할 수 있습니다.</p>
+<h3>함께 해보면 좋은 테스트</h3>
+<p><a href="../facetier-2026/">첫인상 스타일 테스트</a>로 매칭도를 확인하고, <a href="../babyface-2026/">동안 테스트</a>로 사진 나이를 비교해 보세요. <a href="../social-position/">사교 포지션 테스트</a>로 모임 속 내 역할도 알아볼 수 있습니다.</p>
+<p>모든 결과는 재미와 오락을 위한 참고용 해석입니다.</p>
+
+    </div>
+
+    <!-- AdSense 승인 전에는 수동 <ins> 광고 유닛 추가 금지. head의 자동 광고 스크립트만 유지한다. -->
+    <footer class="main-footer" style="max-width: 720px; margin: 30px auto 0; padding: 24px 20px; text-align: center;">
+        <div class="footer-links">
+            <a href="../../about">소개</a>
+            <a href="../../privacy">개인정보처리방침</a>
+            <a href="../../terms">이용약관</a>
+            <a href="../../contact">문의하기</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2026 TesterLab (테스터랩). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js?v=20260927"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://testerlab.org/event/moral-2026/",
+          "url": "https://testerlab.org/event/moral-2026/",
+          "name": "첫인상 분위기 테스트",
+          "description": "사진으로 보는 나의 첫인상 분위기. 전략가부터 이타주의자까지 10가지 분위기를 재미로 확인하세요.",
+          "image": "https://testerlab.org/images/main_moral.webp",
+          "inLanguage": "ko",
+          "isPartOf": { "@id": "https://testerlab.org/#website" },
+          "breadcrumb": { "@id": "https://testerlab.org/event/moral-2026/#breadcrumb" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://testerlab.org/event/moral-2026/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://testerlab.org/" },
+            { "@type": "ListItem", "position": 2, "name": "첫인상 분위기 테스트", "item": "https://testerlab.org/event/moral-2026/" }
+          ]
+        }
+      ]
+    }
+    </script>
+</body>
+
+</html>

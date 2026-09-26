@@ -43,12 +43,11 @@
     <meta property="twitter:image" content="https://testerlab.org/images/logo.webp">
 
     <meta name="google-adsense-account" content="ca-pub-3484572882367046">
-    <link rel="stylesheet" href="style.css?v=20260912">
+    <link rel="stylesheet" href="style.css?v=20260926">
     <!-- Pretendard Font -->
     <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <!-- Iconify Solar icons (Supanova icon system) -->
-    <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+    <!-- Solar icons (inlined SVG, no external dependency) -->
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://pagead2.googlesyndication.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -91,19 +90,19 @@
                 <h1>사진 한 장으로 알아보는<br><span class="hero-gradient">나의 진짜 모습</span></h1>
                 <p>관상 테스트와 심리 퀴즈 전문 사이트, 테스터랩입니다. 조선시대 관상부터 연애 유형까지, 친구와 함께 가볍게 즐기는 오락 콘텐츠를 지금 바로 확인해 보세요. 모든 결과는 재미를 위한 참고용 해석입니다.</p>
                 <div class="hero-cta-row">
-                    <button class="hero-cta" onclick="document.getElementById('test-tabs').scrollIntoView({behavior:'smooth',block:'start'})">인기 테스트 보러가기 <span class="hero-cta-icon"><iconify-icon icon="solar:arrow-right-linear"></iconify-icon></span></button>
+                    <button class="hero-cta" onclick="document.getElementById('test-tabs').scrollIntoView({behavior:'smooth',block:'start'})">인기 테스트 보러가기 <span class="hero-cta-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12H20M14 18L20 12L14 6"/></svg></span></button>
                 </div>
                 <div class="hero-trust">
-                    <span><iconify-icon icon="solar:shield-check-bold"></iconify-icon> 사진 서버 미저장</span>
-                    <span><iconify-icon icon="solar:fire-bold"></iconify-icon> 매주 새 테스트</span>
-                    <span><iconify-icon icon="solar:chat-round-like-bold"></iconify-icon> 결과 공유 가능</span>
+                    <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M3.37752 5.08241C3 5.62028 3 7.21907 3 10.4167V11.9914C3 17.6294 7.23896 20.3655 9.89856 21.5273C10.62 21.8424 10.9807 22 12 22C13.0193 22 13.38 21.8424 14.1014 21.5273C16.761 20.3655 21 17.6294 21 11.9914V10.4167C21 7.21907 21 5.62028 20.6225 5.08241C20.245 4.54454 18.7417 4.02996 15.7351 3.00079L15.1623 2.80472C13.595 2.26824 12.8114 2 12 2C11.1886 2 10.405 2.26824 8.83772 2.80472L8.26491 3.00079C5.25832 4.02996 3.75503 4.54454 3.37752 5.08241ZM15.0595 10.4995C15.3353 10.1905 15.3085 9.71642 14.9995 9.44055C14.6905 9.16467 14.2164 9.19151 13.9405 9.50049L10.9286 12.8739L10.0595 11.9005C9.78358 11.5915 9.30947 11.5647 9.00049 11.8405C8.69151 12.1164 8.66467 12.5905 8.94055 12.8995L10.3691 14.4995C10.5114 14.6589 10.7149 14.75 10.9286 14.75C11.1422 14.75 11.3457 14.6589 11.488 14.4995L15.0595 10.4995Z" clip-rule="evenodd"/></svg> 사진 서버 미저장</span>
+                    <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.8324 21.8013C15.9583 21.1747 20 18.926 20 13.1112C20 7.8196 16.1267 4.29593 13.3415 2.67685C12.7235 2.31757 12 2.79006 12 3.50492V5.3334C12 6.77526 11.3938 9.40711 9.70932 10.5018C8.84932 11.0607 7.92052 10.2242 7.816 9.20388L7.73017 8.36604C7.6304 7.39203 6.63841 6.80075 5.85996 7.3946C4.46147 8.46144 3 10.3296 3 13.1112C3 20.2223 8.28889 22.0001 10.9333 22.0001C11.0871 22.0001 11.2488 21.9955 11.4171 21.9858C10.1113 21.8742 8 21.064 8 18.4442C8 16.3949 9.49507 15.0085 10.631 14.3346C10.9365 14.1533 11.2941 14.3887 11.2941 14.7439V15.3331C11.2941 15.784 11.4685 16.4889 11.8836 16.9714C12.3534 17.5174 13.0429 16.9454 13.0985 16.2273C13.1161 16.0008 13.3439 15.8564 13.5401 15.9711C14.1814 16.3459 15 17.1465 15 18.4442C15 20.4922 13.871 21.4343 12.8324 21.8013Z"/></svg> 매주 새 테스트</span>
+                    <span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C10.4003 22 8.88837 21.6244 7.54753 20.9565C7.19121 20.7791 6.78393 20.72 6.39939 20.8229L4.17335 21.4185C3.20701 21.677 2.32295 20.793 2.58151 19.8267L3.17712 17.6006C3.28001 17.2161 3.22094 16.8088 3.04346 16.4525C2.37562 15.1116 2 13.5997 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM7.5 11.1084C7.5 12.4768 8.81884 13.9126 10.0286 14.9417C10.8524 15.6426 11.2644 15.9931 12 15.9931C12.7356 15.9931 13.1476 15.6426 13.9714 14.9417C15.1812 13.9126 16.5 12.4768 16.5 11.1084C16.5 8.43124 14.0249 7.43172 12 9.4998C9.97507 7.43172 7.5 8.43124 7.5 11.1084Z" clip-rule="evenodd"/></svg> 결과 공유 가능</span>
                 </div>
             </div>
 
             <!-- AdSense 승인 후 수동 광고 삽입 위치 (승인 전에는 head의 자동 광고 스크립트만 유지) -->
 
             <div class="hub-header" style="margin-top: 20px;">
-                <h2><iconify-icon icon="solar:fire-bold" class="hub-fire"></iconify-icon> 지금 가장 핫한 테스트</h2>
+                <h2><svg class="ico hub-fire" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.8324 21.8013C15.9583 21.1747 20 18.926 20 13.1112C20 7.8196 16.1267 4.29593 13.3415 2.67685C12.7235 2.31757 12 2.79006 12 3.50492V5.3334C12 6.77526 11.3938 9.40711 9.70932 10.5018C8.84932 11.0607 7.92052 10.2242 7.816 9.20388L7.73017 8.36604C7.6304 7.39203 6.63841 6.80075 5.85996 7.3946C4.46147 8.46144 3 10.3296 3 13.1112C3 20.2223 8.28889 22.0001 10.9333 22.0001C11.0871 22.0001 11.2488 21.9955 11.4171 21.9858C10.1113 21.8742 8 21.064 8 18.4442C8 16.3949 9.49507 15.0085 10.631 14.3346C10.9365 14.1533 11.2941 14.3887 11.2941 14.7439V15.3331C11.2941 15.784 11.4685 16.4889 11.8836 16.9714C12.3534 17.5174 13.0429 16.9454 13.0985 16.2273C13.1161 16.0008 13.3439 15.8564 13.5401 15.9711C14.1814 16.3459 15 17.1465 15 18.4442C15 20.4922 13.871 21.4343 12.8324 21.8013Z"/></svg> 지금 가장 핫한 테스트</h2>
                 <p>당신도 몰랐던 당신의 진짜 모습! 카드를 눌러 바로 시작하세요.</p>
             </div>
 
@@ -157,7 +156,7 @@
                     <div class="card-info">
                         <h3>이상형 동물 테스트</h3>
                         <p>8문항으로 알아보는 나의 이상형 동물</p>
-                        <span class="card-go">테스트하기 <iconify-icon icon="solar:arrow-right-linear"></iconify-icon></span>
+                        <span class="card-go">테스트하기 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12H20M14 18L20 12L14 6"/></svg></span>
                     </div>
                 </div>
                 <!-- [QUIZ] 플러팅 능력 테스트 -->
@@ -765,8 +764,7 @@
       ]
     }
     </script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="script.js?v=20260812b"></script>
+    <script src="script.js?v=20260926"></script>
     <script>
     // Supanova staggered reveal (progressive enhancement, GPU-safe: transform/opacity only)
     (function () {

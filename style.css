@@ -13,7 +13,7 @@
     --glass-bg: rgba(255, 255, 255, 0.9);
     --glass-border: rgba(255, 255, 255, 0.5);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    --font-main: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
     --joseon-bg: #F9F7F2;
     --joseon-ink: #111;
     --facetier-gold: #D4AF37;
@@ -1643,7 +1643,7 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
     gap: 5px;
 }
 
-.hero-trust iconify-icon {
+.hero-trust svg.ico {
     font-size: 0.95rem;
     color: var(--accent-color);
 }
@@ -1660,6 +1660,13 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
 .hub-fire {
     color: #ff6b4a;
     font-size: 1.25rem;
+}
+
+/* Inlined Solar icons (replaces iconify-icon web component) */
+svg.ico {
+    width: 1em;
+    height: 1em;
+    flex: none;
 }
 
 /* Tabs spring physics */
@@ -1737,11 +1744,11 @@ ins.adsbygoogle[data-ad-status="unfilled"] {
     color: #e64980;
 }
 
-.card-go iconify-icon {
+.card-go svg.ico {
     transition: transform 0.5s var(--spring);
 }
 
-.featured-card:hover .card-go iconify-icon {
+.featured-card:hover .card-go svg.ico {
     transform: translateX(4px);
 }
 

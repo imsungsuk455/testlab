@@ -1001,11 +1001,26 @@ function showResult() {
     }
 }
 
+var __h2cPromise = null;
+function loadHtml2Canvas() {
+    if (window.html2canvas) return Promise.resolve(window.html2canvas);
+    if (!__h2cPromise) {
+        __h2cPromise = new Promise(function (res, rej) {
+            var s = document.createElement('script');
+            s.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
+            s.onload = function () { res(window.html2canvas); };
+            s.onerror = function () { rej(new Error('html2canvas load failed')); };
+            document.head.appendChild(s);
+        });
+    }
+    return __h2cPromise;
+}
+
 async function saveFaceTierImage() {
     const card = document.getElementById('facetier-result-card');
     if (!card) return;
     try {
-        const canvas = await html2canvas(card, {
+        const canvas = await (await loadHtml2Canvas())(card, {
             backgroundColor: '#121212',
             scale: 2
         });

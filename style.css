@@ -513,7 +513,7 @@ body::before {
     display: block;
 }
 
-.title-container h1 {
+.title-container h1, .title-container h2 {
     font-size: 2rem;
     font-weight: 800;
     margin-bottom: 10px;

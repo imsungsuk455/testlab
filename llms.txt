@@ -2,13 +2,20 @@
 > 사진 한 장 또는 짧은 질문으로 즐기는 무료 관상 테스트와 심리 퀴즈 전문 사이트입니다.
 
 ## 주요 테스트
+- [MBTI 관상 테스트](https://testerlab.org/event/mbti-face-2026/): MBTI 관상으로 보는 성향 진단
+- [도파민 테스트](https://testerlab.org/event/dopamine-2026/): 도파민 성향 진단
+- [오라 컬러 테스트](https://testerlab.org/event/aura-color-2026/): 나의 아우라 컬러 진단
+- [천사악마 관상 테스트](https://testerlab.org/event/angel-devil-face/): 천사 vs 악마 관상 진단
 - [이상형 동물 테스트](https://testerlab.org/event/ideal-animal/): 8문항으로 알아보는 나의 이상형 동물
 - [연애 유형 테스트](https://testerlab.org/event/love-type/): 8문항으로 알아보는 나의 연애 스타일
 - [플러팅 능력 테스트](https://testerlab.org/event/flirt-skill-2026/): 나의 매력 발산 방식 진단
+- [플러팅 퀴즈 테스트](https://testerlab.org/event/flirt-quiz-2026/): 플러팅 성향 퀴즈
 - [재물운 부자 관상 테스트](https://testerlab.org/event/wealth-face-2026/): 얼굴에 숨겨진 재물운 확인
 - [상견례 관상 테스트](https://testerlab.org/event/sanggyeonrye-2026/): 첫인상 프리패스 여부 진단
 - [정신연령 테스트](https://testerlab.org/event/mind-age/): 행동 패턴으로 측정하는 마음의 나이
 - [전생 직업 테스트](https://testerlab.org/event/past-life/): 성향으로 상상해보는 전생의 직업
+- [친구 유형 테스트](https://testerlab.org/event/friend-type/): 나의 친구 관계 유형 진단
+- [사교 포지션 테스트](https://testerlab.org/event/social-position/): 모임 속 나의 역할 진단
 
 ## 핵심 사실
 - 모든 테스트는 무료이며 회원가입이 필요 없습니다.

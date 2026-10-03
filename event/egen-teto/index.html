@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에겐남 테토남 테스트 | 테스터랩(TesterLab)</title>
+    <meta name="description" content="에겐남 테토남 테스트 - 나는 에겐? 테토? 8문항 성향 점검으로 알아보는 에겐·테토 유형 (재미용).">
+    <meta name="keywords" content="에겐남 테토남 테스트, 에겐 테토 성향, 심리 테스트, TesterLab, 테스터랩, 재미용 테스트">
+    <link rel="canonical" href="https://testerlab.org/event/egen-teto/">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="에겐남 테토남 테스트 - 나는 과연 무엇일까?">
+    <meta property="og:description" content="에겐남 테토남 테스트 - 나는 에겐? 테토? 8문항 성향 점검으로 알아보는 에겐·테토 유형 (재미용).">
+    <meta property="og:image" content="https://testerlab.org/images/title_egen-teto.webp">
+    <meta property="og:url" content="https://testerlab.org/event/egen-teto/">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="TesterLab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="에겐남 테토남 테스트 - 나는 과연 무엇일까?">
+    <meta name="twitter:description" content="에겐남 테토남 테스트 - 나는 에겐? 테토? 8문항 성향 점검으로 알아보는 에겐·테토 유형 (재미용).">
+    <meta name="twitter:image" content="https://testerlab.org/images/title_egen-teto.webp">
+
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css?v=20261003">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-container" onclick="location.href='../../'">
+                <span class="logo-text">TesterLab</span>
+            </div>
+            <nav class="main-nav">
+                <a href="../../" class="nav-item">홈</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="app" class="fade-in custom-theme">
+
+        <!-- SECTION: HOME -->
+        <section id="q-home" class="section active">
+            <div class="back-nav" onclick="location.href='../../'">← 전체 테스트 보기</div>
+            <div class="title-container">
+                <h1>에겐남 테토남 테스트</h1>
+                <p class="subtitle">나는 에겐? 테토? 8문항 성향 점검 (재미용)</p>
+            </div>
+            <div class="main-img-placeholder" style="background: #FFF7F0;">
+                <img src="../../images/title_egen-teto.webp" alt="에겐남 테토남 테스트"
+                    style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <button id="q-start-btn" class="btn custom-btn pulse" style="background: #FFF7F0; color: #222222;">테스트
+                시작하기</button>
+            <p class="footer">총 8문항 · 약 2분</p>
+        </section>
+
+        <!-- SECTION: QUIZ -->
+        <section id="q-quiz" class="section">
+            <div class="quiz-progress">
+                <div class="quiz-progress-text"><span id="q-current">1</span> / <span id="q-total">8</span></div>
+                <div class="quiz-progress-bar">
+                    <div id="q-progress-fill" class="quiz-progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="quiz-question-box">
+                <h2 id="q-question-text"></h2>
+                <div id="q-options" class="quiz-options"></div>
+            </div>
+
+            <button id="q-prev-btn" class="btn quiz-prev-btn" style="background: #ddd; color: #555;">이전</button>
+        </section>
+
+        <!-- SECTION: LOADING -->
+        <section id="q-loading" class="section">
+            <div class="loading-box">
+                <div class="loader" style="margin-top: 30px; border-top-color: #FFF7F0;"></div>
+<p class="loading-text" id="q-loading-text">결과를 모으고 있습니다...</p>
+            </div>
+        </section>
+
+        <!-- SECTION: RESULT -->
+        <section id="q-result" class="section">
+            <div class="result-header">
+                <p class="subtitle" style="margin-bottom: 10px;">당신의 결과는</p>
+                <h2 class="result-title custom-title" id="q-res-title" style="color: #222222; font-size: 1.9rem;">
+                </h2>
+            </div>
+
+            <div class="q-result-card" style="border-top-color: #FFF7F0;">
+                <div class="q-result-icon" id="q-res-icon"></div>
+                <div class="q-result-tags" id="q-res-tags"></div>
+                <div class="result-desc" style="border-left-color: #FFF7F0; background: #FFF; text-align: left;">
+                    <p id="q-res-desc-text"></p>
+                </div>
+                <div class="q-result-extra" id="q-res-extra" style="background: #FFF7F022;"></div>
+            </div>
+
+            <div class="share-container">
+                <button class="share-btn" id="q-share-link" title="링크 복사">
+                    <span>🔗</span> 링크 복사하기
+                </button>
+                <button class="share-btn" id="q-share-native" title="공유하기">
+                    <span>📤</span> 결과 공유하기
+                </button>
+            </div>
+            <button class="btn" id="q-retry-btn" style="margin-top: 20px; background: #666;">다시 테스트하기</button>
+        </section>
+
+    </div>
+
+    <!-- 테스트 소개 & FAQ (정적 콘텐츠 — AdSense 심사 핵심 영역) -->
+    <!-- 규칙: 가시 텍스트 2,000자 이상, 테스트별 고유 서술. 다른 테스트 문구 복붙 금지. -->
+    <!-- 금지: 인공지능 판독·얼굴 판독·스캔·정밀진단 뉘앙스 표현 (가중치 합산 로직과 모순되는 허위 신뢰신호) -->
+    <!-- 구성: 테스트란? → 이용 방법(4단계) → 이런 분께 추천 → FAQ 5개(고유 Q&A 2개 포함) → 관련 테스트 내부링크 3개 + 관련 가이드 1개 → 작성자 byline → 재미용 면책 -->
+    <div class="site-content-block" style="max-width: 720px; margin: 10px auto 40px; padding: 20px; text-align: left; color: #333; background: #fff; border-radius: 12px; border: 1px solid #eee;">
+        <h2>에겐남 테토남 테스트란?</h2>
+        <p>에겐남 테토남 테스트는 요즘 유행하는 에겐(부드럽고 감성적인 스타일)과 테토(강하고 추진력 있는 스타일) 구분을 8가지 캐릭터로 재미있게 풀어보는 심리 퀴즈입니다. 순수 새싹 에겐형, 댕댕미 에겐형, 여우 에겐형, 츤데레 에겐형부터 직진 테토형, 야생 테토형, 카리스마 테토형, 반전 테토형까지 하나가 결과로 나옵니다. 결과마다 최고의 궁합 한 줄과 에겐 지수·테토 지수 비율이 함께 표시되니, 친구와 비교하며 이야기꽃을 피우기 좋습니다. 실제 심리 검사가 아니라 유행어를 소재로 한 놀이이니 부담 없이 즐겨주세요.</p>
+        <p>유형을 가리는 방식이 아닙니다. 8개 질문의 각 보기가 특정 유형에 미리 정해진 가중치를 주며, 모든 문항의 점수를 합산해 가장 높은 유형이 결과로 표시됩니다. 가입 없이 약 2분이면 끝나고, 고른 답변과 결과는 브라우저 안에서만 계산되며 서버로 보내지거나 저장되지 않습니다.</p>
+
+        <h3>결과 유형 해설</h3>
+        <p><strong>순수 새싹 에겐형(🌱):</strong> 마음이 얼굴에 다 드러나는 순수형입니다. 좋아하면 좋아한다고 말하는 솔직함이 매력입니다.</p>
+        <p><strong>댕댕미 에겐형(🐶):</strong> 사람을 좋아하고 표현에 거리낌이 없는 댕댕이형입니다. 함께 있으면 기분이 좋아지는 리액션 장인입니다.</p>
+        <p><strong>여우 에겐형(🦊):</strong> 부드러운 얼굴로 밀당을 즐기는 여우형입니다. 관심 없는 척 다 챙기는 눈치의 달인입니다.</p>
+        <p><strong>츤데레 에겐형(🧊):</strong> 말은 툴툴해도 행동은 따뜻한 츤데레형입니다. 알수록 빠져드는 겉차속따 타입입니다.</p>
+        <p><strong>직진 테토형(🔥):</strong> 좋으면 좋다고 바로 말하는 직진형입니다. 연락도 고백도 망설이지 않는 추진력의 소유자입니다.</p>
+        <p><strong>야생 테토형(🐺):</strong> 틀에 갇히기를 싫어하는 자유로운 영혼입니다. 예측 불가능한 매력이 사람을 끌어당깁니다.</p>
+        <p><strong>카리스마 테토형(👑):</strong> 어디서든 자연스럽게 리더가 되는 카리스마형입니다. "나만 믿어"를 실제로 지키는 신뢰감의 상징입니다.</p>
+        <p><strong>반전 테토형(🎭):</strong> 겉보기엔 강해 보여도 속은 여린 반전형입니다. 무심한 척 챙기는 갭 차이가 최대 매력입니다.</p>
+
+        <h3>이용 방법</h3>
+        <ol style="line-height: 1.9; font-size: 0.92rem; padding-left: 18px;">
+            <li><strong>테스트 시작</strong> — 상단의 테스트 시작하기 버튼을 누르면 일상 장면 8문항이 순서대로 나오고 진행 막대로 위치를 확인할 수 있습니다.</li>
+            <li><strong>솔직하게 답변</strong> — 잘 보이고 싶은 모습이 아니라 평소 모습에 가까운 보기를 고릅니다. 이전 버튼으로 다시 고를 수 있습니다.</li>
+            <li><strong>결과 확인</strong> — 8가지 유형 중 총점이 가장 높은 유형이 표시됩니다. 최고의 궁합 한 줄과 에겐 지수·테토 지수 비율도 함께 확인하세요.</li>
+            <li><strong>공유하기</strong> — 결과 화면의 링크 복사하기·공유하기 버튼으로 친구에게 보내고 서로의 유형과 궁합을 비교해보세요.</li>
+        </ol>
+
+        <h3>이런 분께 추천합니다</h3>
+        <p>에겐·테토 이야기가 나오면 빠지지 않고 참여하는 분, 썸 상대의 스타일이 궁금한 분께 잘 맞습니다. 연인과 각자 해보고 궁합을 비교하는 활용법도 인기가 많으며, 모임에서 서로의 유형을 공개하면 어색한 분위기가 풀립니다.</p>
+
+        <h3>자주 묻는 질문</h3>
+        <h4>Q. 결과는 저장되거나 공유되나요?</h4>
+        <p>아니요. 답변과 결과는 브라우저에서만 처리되며 서버로 전송되지 않습니다. 페이지를 벗어나면 사라지니, 간직하고 싶은 결과는 공유 버튼으로 저장해두세요.</p>
+        <h4>Q. 몇 번이나 반복해서 할 수 있나요?</h4>
+        <p>무제한 무료입니다. 답변을 바꿔가며 다른 유형도 확인해보세요. 친구와 각자 해보고 결과를 비교하는 것도 재미있습니다.</p>
+        <h4>Q. 결과를 친구에게 공유할 수 있나요?</h4>
+        <p>결과 화면 하단의 '링크 복사하기' 또는 '공유하기' 버튼으로 공유할 수 있습니다. 친구에게 링크를 보내면 같은 테스트를 바로 해볼 수 있습니다.</p>
+        <h4>Q. 에겐 지수와 테토 지수는 어떻게 계산되나요?</h4>
+        <p>8문항의 보기마다 에겐 4유형과 테토 4유형에 가중치가 나뉘어 있습니다. 양쪽 계열의 합산 점수 비율을 백분율로 보여주는 것으로, 심리 측정 수치가 아니라 재미용 비율입니다.</p>
+        <h4>Q. 에겐과 테토가 반반으로 나오면 어떻게 하나요?</h4>
+        <p>그렇다면 반전 테토형이나 츤데레 에겐형처럼 양쪽 매력을 가진 유형이 나올 가능성이 큽니다. 어느 한쪽으로 치우치지 않은 것도 하나의 개성이니 결과 그대로 즐겨주세요.</p>
+
+        <h3>결과 유형 한눈에 보기</h3>
+        <div class="t-table-wrap">
+        <table class="t-types">
+        <thead><tr><th scope="col">유형</th><th scope="col">특징</th></tr></thead>
+        <tbody>
+        <tr><td>🌱 순수 새싹 에겐형</td><td>마음이 얼굴에 다 드러나는 순수형.</td></tr>
+        <tr><td>🐶 댕댕미 에겐형</td><td>표현에 거리낌 없는 리액션 장인.</td></tr>
+        <tr><td>🦊 여우 에겐형</td><td>부드럽게 밀당을 즐기는 눈치의 달인.</td></tr>
+        <tr><td>🧊 츤데레 에겐형</td><td>말은 툴툴해도 행동은 따뜻한 타입.</td></tr>
+        <tr><td>🔥 직진 테토형</td><td>좋으면 바로 말하는 추진력의 소유자.</td></tr>
+        <tr><td>🐺 야생 테토형</td><td>틀에 갇히기 싫어하는 자유로운 영혼.</td></tr>
+        <tr><td>👑 카리스마 테토형</td><td>자연스럽게 리더가 되는 신뢰감의 상징.</td></tr>
+        <tr><td>🎭 반전 테토형</td><td>겉은 강해 보여도 속은 여린 갭 차이.</td></tr>
+        </tbody>
+        </table>
+        </div>
+
+        <h3>함께 해보면 좋은 테스트</h3>
+        <p><a href="../love-type/">연애 유형 테스트</a>에서 데이트 스타일을, <a href="../flirt-skill-2026/">플러팅 능력 테스트</a>에서 매력 발산 방식을 확인해보세요. 친구 사이 역할이 궁금하다면 <a href="../friend-type/">친구 관계 유형 테스트</a>도 추천합니다. 배경이 궁금하면 <a href="../../guide/egen-teto/">에겐남 테토남, 어떻게 구분할까?</a>도 함께 읽어보세요.</p>
+
+        <p class="t-meta" style="font-size:.85rem;color:#777;">작성: <a href="../../about">테스터랩 운영자</a> · 최초 공개 2026-10-03 · 최종 점검 2026-10-03 · 확인 환경: 모바일·PC Chrome/Edge · 답변은 브라우저에서만 처리됩니다. <a href="../../editorial-policy">편집 기준</a></p>
+
+        <p>모든 결과는 재미와 오락을 위한 참고용 해석입니다.</p>
+    </div>
+
+    <!-- AdSense 승인 전에는 수동 <ins> 광고 유닛 추가 금지. head의 자동 광고 스크립트만 유지한다. -->
+    <footer class="main-footer" style="max-width: 720px; margin: 30px auto 0; padding: 24px 20px; text-align: center;">
+        <div class="footer-links">
+            <a href="../../about">소개</a>
+            <a href="../../guide/">가이드</a>
+            <a href="../../editorial-policy">편집 기준</a>
+            <a href="../../privacy">개인정보처리방침</a>
+            <a href="../../terms">이용약관</a>
+            <a href="../../contact">문의하기</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2026 TesterLab (테스터랩). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast">링크가 복사되었습니다!</div>
+
+    <script src="script.js?v=20261003"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://testerlab.org/event/egen-teto/",
+          "url": "https://testerlab.org/event/egen-teto/",
+          "name": "에겐남 테토남 테스트",
+          "description": "에겐남 테토남 테스트 - 나는 에겐? 테토? 8문항 성향 점검으로 알아보는 에겐·테토 유형 (재미용).",
+          "image": "https://testerlab.org/images/title_egen-teto.webp",
+          "inLanguage": "ko",
+          "isPartOf": { "@id": "https://testerlab.org/#website" },
+          "breadcrumb": { "@id": "https://testerlab.org/event/egen-teto/#breadcrumb" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://testerlab.org/event/egen-teto/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://testerlab.org/" },
+            { "@type": "ListItem", "position": 2, "name": "에겐남 테토남 테스트", "item": "https://testerlab.org/event/egen-teto/" }
+          ]
+        }
+      ]
+    }
+    </script>
+</body>
+
+</html>

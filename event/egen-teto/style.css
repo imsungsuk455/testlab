@@ -286,3 +286,20 @@
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
+
+/* 결과 캐릭터 이미지: 화면 안 고정 크기 */
+.q-result-char-img {
+    max-width: 300px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #FFF7F0;
+    border: 1px solid #e8e8ef;
+}
+
+.q-result-char-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}

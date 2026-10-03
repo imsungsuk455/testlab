@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const resTitle = document.getElementById('q-res-title');
     const resIcon = document.getElementById('q-res-icon');
+    const resCharImg = document.getElementById('q-res-char-img');
     const resTags = document.getElementById('q-res-tags');
     const resDesc = document.getElementById('q-res-desc-text');
     const resExtra = document.getElementById('q-res-extra');
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: "egen-sprout",
             icon: "🌱",
+            char: "../../images/char_egen-sprout.webp",
             title: "순수 새싹 에겐형",
             desc: "마음이 얼굴에 다 드러나는 순수형입니다. 좋아하면 좋아한다고 말하고, 서운하면 숨기지 못합니다. 계산 없이 다가가는 모습에 주변 사람들이 절로 챙겨주게 됩니다. 가끔은 순수함이 약점으로 보일 수 있으니, 중요한 결정 앞에서는 하루만 더 생각해보세요.",
             tags: ["순수함", "솔직함", "보호본능 유발"],
@@ -49,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: "egen-puppy",
             icon: "🐶",
+            char: "../../images/char_egen-puppy.webp",
             title: "댕댕미 에겐형",
             desc: "사람을 좋아하고 표현하는 데 거리낌이 없는 댕댕이형입니다. 반갑게 맞이하고, 리액션이 크고, 함께 있으면 기분이 좋아집니다. 애정 표현이 풍부한 만큼 혼자 있는 시간을 어려워할 수 있으니, 가끔은 혼자만의 충전 시간도 가져보세요.",
             tags: ["애교", "리액션", "분위기 메이커"],
@@ -57,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: "egen-fox",
             icon: "🦊",
+            char: "../../images/char_egen-fox.webp",
             title: "여우 에겐형",
             desc: "부드러운 얼굴로 밀당을 즐기는 여우형입니다. 관심 없는 척하면서 다 챙기고, 모르는 척하면서 다 알고 있습니다. 눈치가 빠르고 상대의 마음을 읽는 데 능숙합니다. 다만 밀당이 길어지면 상대가 지칠 수 있으니, 가끔은 직진 모드도 보여주세요.",
             tags: ["밀당", "눈치", "은근한 챙김"],
@@ -65,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: "egen-tsun",
             icon: "🧊",
+            char: "../../images/char_egen-tsun.webp",
             title: "츤데레 에겐형",
             desc: "말은 툴툴해도 행동은 따뜻한 츤데레형입니다. 걱정된다면서 챙겨주고, 관심 없다면서 다 기억합니다. 겉과 속이 달라 처음엔 오해를 받지만, 알수록 빠져드는 타입입니다. 고마우면 고맙다고 말하는 연습을 하면 인간관계가 훨씬 편해집니다.",
             tags: ["츤데레", "겉차속따", "행동파"],
@@ -73,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: "teto-direct",
             icon: "🔥",
+            char: "../../images/char_teto-direct.webp",
             title: "직진 테토형",
             desc: "좋으면 좋다고 바로 말하는 직진형입니다. 연락도 만남고백도 망설이지 않고, 썸의 기간이 짧은 편입니다. 추진력이 강해 원하는 것을 쟁취하지만, 상대의 속도도 가끔은 배려해주세요. 직진 뒤에 오는 책임감까지 갖추면 최강입니다.",
             tags: ["직진", "추진력", "빠른 썸"],
@@ -81,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: "teto-wild",
             icon: "🐺",
+            char: "../../images/char_teto-wild.webp",
             title: "야생 테토형",
             desc: "틀에 갇히기를 싫어하는 자유로운 영혼입니다. 갑자기 여행을 떠나고, 꽂힌 취미에는 올인합니다. 예측 불가능한 매력이 사람을 끌어당깁니다. 자유를 존중해주는 사람을 만나면 오래 가고, 구속하려 들면 멀어집니다.",
             tags: ["자유로움", "즉흥적", "매력적인 예측불가"],
@@ -89,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: "teto-charisma",
             icon: "👑",
+            char: "../../images/char_teto-charisma.webp",
             title: "카리스마 테토형",
             desc: "어디서든 자연스럽게 리더가 되는 카리스마형입니다. 결정이 빠르고 책임을 지며, \u2018나만 믿어\u2019라는 말을 실제로 지킵니다. 믿음직한 모습에 따르는 사람이 많습니다. 다만 모든 결정을 혼자 하려 하면 주변인이 수동적으로 변하니, 가끔은 맡기는 연습도 필요합니다.",
             tags: ["리더십", "결단력", "신뢰감"],
@@ -97,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: "teto-twist",
             icon: "🎭",
+            char: "../../images/char_teto-twist.webp",
             title: "반전 테토형",
             desc: "겉보기엔 강해 보이지만 속은 여린 반전형입니다. 무심한 척 챙기고, 쿨한 척 속으로 끙끙 앓습니다. 이런 갭 차이가 가장 큰 매력 포인트입니다. 속마음을 조금만 더 꺼내 보이면 주변 사람들이 훨씬 다가오기 쉬워집니다.",
             tags: ["갭 차이", "겉테 속 에겐", "무심한 챙김"],
@@ -278,6 +287,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             resTitle.textContent = res.title;
             resIcon.textContent = res.icon;
+            if (resCharImg && res.char) {
+                resCharImg.src = res.char;
+                resCharImg.alt = res.title + ' 캐릭터';
+            }
             resDesc.innerHTML = res.desc;
             resTags.innerHTML = (res.tags || []).map(t => `<span class="q-result-tag">#${t}</span>`).join('');
             resExtra.innerHTML = (res.extra ? `<strong>한 줄 조언</strong><br>${res.extra}<br><br>` : '')

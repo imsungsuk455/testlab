@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>편집 기준 | TesterLab (테스터랩)</title>
+    <meta name="description" content="테스터랩(TesterLab) 편집 기준. 테스트 제작 방식, AI 도구 활용 범위, 검수 절차, 정정 요청 방법을 공개합니다.">
+    <link rel="canonical" href="https://testerlab.org/editorial-policy">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="google-adsense-account" content="ca-pub-3484572882367046">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3484572882367046"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px 20px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: left;
+            line-height: 1.8;
+        }
+        h1 { font-size: 1.8rem; margin-bottom: 30px; border-bottom: 2px solid var(--accent-color); padding-bottom: 15px; }
+        h2 { font-size: 1.2rem; margin-top: 30px; margin-bottom: 15px; color: #111; }
+        p, li { color: #555; margin-bottom: 10px; }
+        .back-home { display: inline-block; margin-bottom: 20px; text-decoration: none; color: var(--accent-color); font-weight: 600; }
+        .t-meta { font-size: .85rem; color: #777; }
+    </style>
+</head>
+<body>
+    <div class="page-content">
+        <a href="./" class="back-home">← 홈으로 돌아가기</a>
+        <h1>테스터랩(TesterLab) 편집 기준</h1>
+        <p class="t-meta">작성: <a href="about">테스터랩 운영자 임성석</a> · 최초 공개 2026-10-03 · 최종 점검 2026-10-03</p>
+
+        <p>테스터랩의 모든 테스트와 가이드는 재미와 오락을 목적으로 운영자가 직접 기획·제작합니다. 이 페이지는 테스트 결과가 어떻게 만들어지는지, AI 도구를 어디까지 쓰는지, 오류를 어떻게 고치는지를 공개합니다.</p>
+
+        <h2>1. 테스트 결과의 계산 방식</h2>
+        <p>사진 업로드형 테스트는 인공지능이 얼굴을 판독하는 방식이 아닙니다. 올린 사진 파일의 이름·용량·수정시각을 조합해 브라우저 안에서 계산하는 결정론적 방식으로, 같은 파일에서는 항상 같은 결과가 나옵니다. 질문형 테스트는 각 보기에 미리 정해진 유형별 가중치를 주고, 모든 문항의 점수를 합산해 가장 높은 유형을 결과로 보여줍니다. 서버로 사진이나 답변이 전송되지 않으며, 진짜 AI 분석이나 운세 감정이 아님을 각 테스트 페이지에 명시합니다.</p>
+
+        <h2>2. AI 도구의 활용 범위</h2>
+        <p>테스트 설명문과 가이드 초안을 다듬을 때 AI 도구를 보조로 사용합니다. 결과 유형의 성격 설정, 문항과 보기의 구성, 최종 문구는 운영자가 직접 작성하고 검수합니다. AI가 생성한 문장을 그대로 공개하지 않으며, 유행어나 심리학 용어를 쓸 때는 뜻이 맞는지 직접 확인합니다. 의학적·심리학적 진단을 가장한 표현(예: 중독 진단, 성격 확정)은 사용하지 않고, 재미용 자가점검·놀이용 해석으로 범위를 분명히 합니다.</p>
+
+        <h2>3. 공개 전 검수 절차</h2>
+        <ul>
+            <li>모바일(390px)과 PC에서 화면 깨짐과 가로 스크롤이 없는지 확인합니다.</li>
+            <li>사진형은 업로드→로딩→결과 흐름을, 질문형은 문항 진행→점수 합산→유형별 결과 전환을 직접 눌러 확인합니다.</li>
+            <li>같은 파일·같은 답변이 항상 같은 결과를 내는지 재현 여부를 확인합니다.</li>
+            <li>결과 유형명과 설명이 페이지마다 고유한 서술인지 확인하고, 다른 테스트 문구를 복사하지 않습니다.</li>
+            <li>소개·문의·개인정보·약관 링크와 canonical이 정상인지 확인합니다.</li>
+        </ul>
+
+        <h2>4. 오류 정정과 제보</h2>
+        <p>오타, 잘못된 결과 설명, 동작 오류를 발견하면 <a href="contact">문의하기</a>(imsungsuk455@gmail.com)로 알려주세요. 근무일 기준 24시간 내에 확인하고, 사실관계가 틀린 내용은 수정일에 반영합니다. 중대한 오류(결과가 나오지 않거나 잘못 안내하는 경우)는 확인 즉시 수정하고, 해당 테스트 페이지의 최종 점검일을 갱신합니다.</p>
+
+        <h2>5. 광고와 운영</h2>
+        <p>사이트 운영은 광고 수익으로 유지됩니다. 광고는 테스트 이용을 방해하지 않는 위치에만 배치하며, 결과를 보기 위해 광고를 눌러야 하는 구조를 만들지 않습니다. 모든 테스트는 회원가입 없이 무료로 제공됩니다.</p>
+
+        <h2>관련 페이지</h2>
+        <p><a href="./">전체 테스트 보기</a> · <a href="guide/">테스트 가이드</a> · <a href="about">소개</a> · <a href="privacy">개인정보처리방침</a> · <a href="terms">이용약관</a> · <a href="contact">문의하기</a></p>
+    </div>
+</body>
+</html>

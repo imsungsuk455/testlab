@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBTI 관상 테스트 | 테스터랩(TesterLab)</title>
     <meta name="description" content="MBTI 관상 테스트 - 나의 진짜 관상과 성향을 확인해보세요!">
-    <meta name="keywords" content="MBTI 관상 테스트, 관상 테스트, 심리 테스트, TesterLab, 테스터랩, AI 관상 분석">
+    <meta name="keywords" content="MBTI 관상 테스트, 관상 테스트, 심리 테스트, TesterLab, 테스터랩, 재미용 관상 테스트">
     <link rel="canonical" href="https://testerlab.org/event/mbti-face-2026/">
     <link rel="icon" type="image/x-icon" href="../../favicon.ico">
     <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
@@ -53,7 +53,7 @@
 
             <div class="title-container">
                 <h1>MBTI 관상 테스트</h1>
-                <p class="subtitle">AI가 분석하는 나의 진짜 관상</p>
+                <p class="subtitle">사진으로 재미있게 살펴보는 나의 MBTI풍 관상 (재미용)</p>
             </div>
 
             <div class="main-img-placeholder" style="background: #F4F1FF;">
@@ -61,9 +61,8 @@
                     style="width: 100%; height: 100%; object-fit: contain;">
             </div>
 
-            <button id="t-start-btn" class="btn custom-btn pulse" style="background: #F4F1FF; color: #222222;">관상
-                스캔하기</button>
-            <p class="footer">제공된 사진은 분석 후 즉시 파기됩니다.</p>
+            <button id="t-start-btn" class="btn custom-btn pulse" style="background: #F4F1FF; color: #222222;">관상 테스트 시작하기</button>
+            <p class="footer">올린 사진은 브라우저에서만 계산하고 서버에 저장하지 않습니다.</p>
         </section>
 
         <!-- SECTION: UPLOAD -->
@@ -87,18 +86,18 @@
         <section id="t-loading" class="section">
             <div class="loading-box">
                 <div class="scan-box">
-                    <img id="t-scan-image" src="#" alt="Scanning">
+                    <img id="t-scan-image" src="#" alt="결과 준비 중">
                     <div class="scanner" style="background: #F4F1FF; box-shadow: 0 0 15px #F4F1FF;"></div>
                 </div>
                 <div class="loader" style="margin-top: 30px; border-top-color: #F4F1FF;"></div>
-                <p class="loading-text" id="t-loading-text">관상을 분석하고 있습니다...</p>
+                <p class="loading-text" id="t-loading-text">재미용 결과를 고르고 있습니다...</p>
             </div>
         </section>
 
         <!-- SECTION: RESULT -->
         <section id="t-result" class="section">
             <div class="result-header">
-                <p class="subtitle" style="margin-bottom: 10px;">분석 완료</p>
+                <p class="subtitle" style="margin-bottom: 10px;">결과 완성</p>
                 <span id="t-res-label" class="custom-badge"></span>
                 <h2 class="result-title custom-title" id="t-res-title" style="margin-top: 15px;">
                 </h2>
@@ -110,7 +109,7 @@
 
             <div class="main-img-placeholder"
                 style="background: #f8f9fa; position: relative; overflow: hidden; border-radius: 16px;">
-                <img id="t-res-user-img" src="#" alt="분석된 얼굴"
+                <img id="t-res-user-img" src="#" alt="업로드한 사진"
                     style="width: 100%; height: 100%;">
                 <span id="t-res-icon"
                     style="font-size: 3rem; position: absolute; bottom: 10px; right: 10px; background: rgba(255,255,255,0.9); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></span>
@@ -188,15 +187,19 @@
 </div>
 
 <h3>함께 해보면 좋은 테스트</h3>
-        <p>MBTI 관상이 재미있었다면 <a href="../wealth-face-2026/">재물 관상 테스트</a>에서 얼굴에 숨겨진 재물 기운을, <a href="../angel-devil-face/">천사악마 관상 테스트</a>에서 나의 천사·악마 본성을 확인해보세요. MBTI 이야기가 더 듣고 싶다면 <a href="../love-type/">연애 유형 테스트</a>에서 8문항으로 알아보는 나의 연애 스타일도 함께 해보세요.</p>
+        <p>MBTI 관상이 재미있었다면 <a href="../wealth-face-2026/">재물 관상 테스트</a>에서 얼굴에 숨겨진 재물 기운을, <a href="../angel-devil-face/">천사악마 관상 테스트</a>에서 나의 천사·악마 본성을 확인해보세요. MBTI 이야기가 더 듣고 싶다면 <a href="../love-type/">연애 유형 테스트</a>에서 데이트 스타일로 알아보는 나의 연애 유형도 함께 해보세요.</p>
 
-        <p>모든 결과는 재미와 오락을 위한 참고용 해석입니다.</p>
+        <p class="t-meta" style="font-size:.85rem;color:#777;">작성: <a href="../../about">테스터랩 운영자</a> · 최초 공개 2026-09-23 · 최종 점검 2026-10-03 · 확인 환경: 모바일·PC Chrome/Edge · 사진과 답변은 브라우저에서만 처리됩니다. <a href="../../editorial-policy">편집 기준</a></p>
+<p style="font-size:.92rem;">배경이 궁금하면 <a href="../../guide/mbti-chemistry/">MBTI 궁합표 보는 법</a>도 함께 읽어보세요.</p>
+<p>모든 결과는 재미와 오락을 위한 참고용 해석입니다.</p>
     </div>
 
     <!-- AdSense 승인 전에는 수동 <ins> 광고 유닛 추가 금지. head의 자동 광고 스크립트만 유지한다. -->
     <footer class="main-footer" style="max-width: 720px; margin: 30px auto 0; padding: 24px 20px; text-align: center;">
         <div class="footer-links">
             <a href="../../about">소개</a>
+            <a href="../../guide/">가이드</a>
+            <a href="../../editorial-policy">편집 기준</a>
             <a href="../../privacy">개인정보처리방침</a>
             <a href="../../terms">이용약관</a>
             <a href="../../contact">문의하기</a>
